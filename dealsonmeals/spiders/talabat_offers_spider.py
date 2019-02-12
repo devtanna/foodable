@@ -65,7 +65,7 @@ class TalabatOffersSpider(scrapy.Spider):
         offers_json['spider_results']['results'] = results
 
         # construct file
-        filename = 'results-listings-area-%s.json' % location_id
+        filename = 'talabat-spider-results-area-%s.json' % location_id
         # write json to file
         with open(filename, 'wb') as outfile:
             json.dump(offers_json, outfile, sort_keys = True, indent = 2, ensure_ascii = False)
