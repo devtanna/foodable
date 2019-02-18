@@ -11,21 +11,32 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       while (pageNum < pageCount) {
         console.log("Scraping page: " + pageNum);
         
-        const html = await page.content();               
+        const html = await page.content();
+        // we get the location from the url
+        const location = page.url().split('/')[6]             
         $('.rest-link', html).each(function() {
-            items.push({
-              title: $('.media-heading', this).text().trim().replace(/['"]+/g, '')
-            //   href: $('.rest-link', this).prop('href'),
-            //   image: $('.valign-helper', this).prop('lazy-img')
-            //   location: $('.search_result_subzone', this).text().trim(), 
-            //   address: $('.search-result-address', this).text().trim(), 
-            //   address: $('.search-result-address', this).text().trim(), 
-            //   cuisine: cuisine.join(','),
-            //   offer: $('.res-offers .zgreen', this).text().trim(),
-            //   rating: $('.rating-popup', this).text().trim(),
-            //   votes: $('[class^="rating-votes-div"]', this).text().trim(),
-            //   cost_for_two: $('.res-cost span:nth-child(2)', this).text().trim()
-          });
+
+            let cuisine = [];
+            $('.cuisShow .ng-binding', this).each(function() {
+                cuisine.push($(this).text());
+            });
+            
+            let result = {
+                    title: $('.media-heading', this).text().trim().replace(/['"]+/g, ''),
+                    // href: this.attr('href')
+                    image: $('.valign-helper', this).next().prop('lazy-img'),
+                    location: location.trim(), 
+                    address: '', 
+                    cuisine: cuisine.join('')
+                //   offer: $('.res-offers .zgreen', this).text().trim(),
+                //   rating: $('.rating-popup', this).text().trim(),
+                //   votes: $('[class^="rating-votes-div"]', this).text().trim(),
+                //   cost_for_two: $('.res-cost span:nth-child(2)', this).text().trim()
+            };
+            var index = items.indexOf(result);
+            if (index === -1){
+                items.push(result);
+            }
         });
         
         // scroll to next page
@@ -38,6 +49,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     } catch(e) { 
         console.log(e);
     }
+
+    console.log(items);
+
     return items;
 }
 

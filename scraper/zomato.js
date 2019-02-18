@@ -26,7 +26,6 @@ const scrapePage = async (pageNum = 1) => {
                 image: $('.feat-img', this).css('background-image'),
                 location: $('.search_result_subzone', this).text().trim(), 
                 address: $('.search-result-address', this).text().trim(), 
-                address: $('.search-result-address', this).text().trim(), 
                 cuisine: cuisine.join(','),
                 offer: $('.res-offers .zgreen', this).text().trim(),
                 rating: $('.rating-popup', this).text().trim(),
