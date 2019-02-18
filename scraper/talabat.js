@@ -56,7 +56,6 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
         }
     });
 
-
     // Navigate to the demo page.
     await page.goto('https://www.talabat.com/uae/restaurants/1256/difc');
     
