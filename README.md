@@ -1,4 +1,7 @@
 # Scrappers written in node
 
+### Setup:
+```npm install```
+
 ### Running the scraper:
-```node zomato.js```
+```node scraper/zomato.js```
