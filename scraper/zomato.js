@@ -43,6 +43,7 @@ const scrapePage = async (pageNum = 1) => {
 
 let hasNext = true;
 let pageNum = 1;
+let maxPage = 3;//200;
 let data = [];
 
 const run = async () => {
@@ -50,7 +51,7 @@ const run = async () => {
     page = await browser.newPage();
     await page.setViewport({ width: 1400, height: 800 });
 
-    while (hasNext) {
+    while (hasNext && pageNum <= maxPage) {
         let res = await scrapePage(pageNum);
         data.push(res.result);
         if (res.goNext) {
@@ -62,8 +63,8 @@ const run = async () => {
 
     await browser.close();
 
-    console.log(data);
-
+    console.log("Scraped " + pageNum-1+ " pages.");
+    
     let csv = new ObjectsToCsv(data);
     await csv.toDisk('./zomato.csv');
 }
