@@ -1,0 +1,12 @@
+.git
+*.pyc
+*.log
+*.csv
+.vscode/
+.DS_Store
+node_modules
+modules
+old_python_scraper/
+.cache
+*.md
+docker-compose.yml
