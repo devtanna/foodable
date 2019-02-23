@@ -3,6 +3,22 @@ const axios = require('axios');
 const $ = require('cheerio');
 const ObjectsToCsv = require('objects-to-csv');
 
+const getLocations = async (page) => {
+    try {
+        await page.goto('https://www.talabat.com/uae/sitemap');
+        const html = await page.content();
+        const links = $("h4:contains('Dubai')", html).next('.row').find('a').map((i, link) => { 
+            return { 
+                locationName: $(link).text(), 
+                url: $(link).prop('href') 
+            };
+        });
+        return links;
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     let items = [];
     let pageNum = 0;
@@ -13,7 +29,12 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
         
         const html = await page.content();
         // we get the location from the url
-        const location = page.url().split('/')[6]             
+        const location = page.url().split('/')[6];
+
+        await page.evaluate( () => {
+            Array.from( document.querySelectorAll( 'span' ) ).filter( element => element.textContent === 'Offers' )[0].click();
+        });
+
         $('.rest-link', html).each(function() {
 
             let cuisine = [];
@@ -73,21 +94,23 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     const page = await browser.newPage();
     page.setViewport({ width: 1280, height: 926 });
 
-    const urls = [
-        'https://www.talabat.com/uae/restaurants/1256/difc',
-        'https://www.talabat.com/uae/restaurants/1589/abu-shagara'
-    ];
+    const urls = await getLocations(page);
+
     let giantResultsObj = []
     for (let i = 0; i < urls.length; i++) {
-        const url = urls[i];
-        // Navigate to the page.
-        console.log('Handling URL: '+ url);
-        await page.goto(`${url}`, {waitUntil: 'load'});
-        
-        // max number of pages to scroll through
-        let maxPage = 1;
-        // Scroll and extract items from the page.
-        giantResultsObj.push(await scrapeInfiniteScrollItems(page, maxPage));
+        let url = urls[i];
+        try {
+            // Navigate to the page.
+            await page.goto(`https://www.talabat.com/${url.url}`, {waitUntil: 'load'});
+            
+            // max number of pages to scroll through
+            let maxPage = 1;
+            // Scroll and extract items from the page.
+            let res = await scrapeInfiniteScrollItems(page, maxPage);
+            giantResultsObj.push(res);
+        } catch(error) {
+            console.log(error);
+        }
     }
   
     // Close the browser.
