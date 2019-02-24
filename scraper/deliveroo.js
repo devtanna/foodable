@@ -10,13 +10,13 @@ const getLocations = async () => {
     try {
         await page.goto('https://deliveroo.ae/sitemap');
         const html = await page.content();
-        const links = $("h3:contains('Dubai')", html).next('.sitemap--zones').find('li > a').map((i, link) => { 
+        const links = $("h3:contains('Dubai')", html).next('.sitemap--zones').find('> li').find('> a').map((i, link) => { 
             return { 
                 locationName: $(link).text(), 
                 url: $(link).prop('href') 
             };
         });
-        console.log(links);
+
         return links;
     } catch(error) {
         console.log(error);
@@ -30,11 +30,10 @@ const scrapePage = async (url) => {
         let result = [];
 
         $('ol li[class*="RestaurantsList"]', html).each(function() {
-            console.log(this);
             result.push({
                 title: $('div[class*="RestaurantCard"] span p', this).eq(0).text().trim(),
                 href: $('a', this).prop('href'),
-                image: $('span[class*="RestaurantCard"] div', this).css('background-image'),
+                image: $('span[class*="RestaurantCard"] > div', this).css('background-image'),
                 location: url.locationName, 
                 address: null, 
                 cuisine: null,
@@ -44,8 +43,7 @@ const scrapePage = async (url) => {
                 cost_for_two: null
             });
         });
-
-        console.log(result);
+        
         return result;
     } catch(error) {
         console.log(error);
