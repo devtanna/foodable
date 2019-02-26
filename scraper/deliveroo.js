@@ -36,14 +36,14 @@ const scrapePage = async (url) => {
                 image: $('span[class*="RestaurantCard"] > div', this).css('background-image'),
                 location: url.locationName, 
                 address: null, 
-                cuisine: null,
+                cuisine: $('span[class*="TagList"]').text().trim(),
                 offer: $('div[class*="RestaurantCard"] span p', this).eq(3).text().trim(),
                 rating: null,
                 votes: null,
                 cost_for_two: null
             });
         });
-        
+
         return result;
     } catch(error) {
         console.log(error);
