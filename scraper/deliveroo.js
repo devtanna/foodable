@@ -30,16 +30,30 @@ const scrapePage = async (url) => {
         let result = [];
 
         $('ol li[class*="RestaurantsList"]', html).each(function() {
+            let img
+            try {
+                img = $("div", this).first().children('a').first().children('span').first().children('div').first().css('background-image');
+            } catch(err) {
+                img = null;
+                return;
+            }
+
+            let cuisine = [];
+            $('span[class*="TagList"]', this).each(function() {
+                cuisine.push($(this).text().trim());
+            });
+            cuisine.shift();
+
             result.push({
                 title: $('div[class*="RestaurantCard"] span p', this).eq(0).text().trim(),
                 href: $('a', this).prop('href'),
-                image: $('span[class*="RestaurantCard"] > div', this).css('background-image'),
+                image: img,
                 location: url.locationName, 
                 address: null, 
-                cuisine: $('span[class*="TagList"]').text().trim(),
+                cuisine: cuisine,
                 offer: $('div[class*="RestaurantCard"] span p', this).eq(3).text().trim(),
-                rating: null,
-                votes: null,
+                rating: $('span[class*="RestaurantStarRating"]', this).eq(2).text().trim(), 
+                votes: $('span[class*="RestaurantStarRating"]', this).eq(4).text().trim(),
                 cost_for_two: null
             });
         });
@@ -61,6 +75,7 @@ const run = async () => {
 
     for (let i = 0; i < links.length; i ++) {
         let res = await scrapePage(links[i]);
+        data.push(res);
     }
 
     await browser.close();
