@@ -17,6 +17,6 @@ This will:
 - Run npm install in the container
 - Start the server
 
-4) Stop the containers  ```docker stop myoffersapp```
+4) Stop the containers  ```docker stop foodable```
                         ```docker stop mongo```
 

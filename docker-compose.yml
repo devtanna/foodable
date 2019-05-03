@@ -1,7 +1,7 @@
 version: "3"
 services:
-  myoffersapp:
-    container_name: myoffersapp
+  foodable:
+    container_name: foodable
     restart: always
     build: .
     ports:
