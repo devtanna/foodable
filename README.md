@@ -1,22 +1,41 @@
 # Scrappers written in node
 
-### Setup Manually:
-```npm install```
+### Running the scrapers:
+```node scraper/location.js```
+Run this first to load the locations
 
-### Running the scraper manually:
-```node scraper/zomato.js```
+- ```node scraper/zomato.js```
+- ```node scraper/talabat.js```
+- ```node scraper/deliveroo.js```
+
+
+This is the only subset of scrapers working for now. More will be added when availible here. You can run these in any order at any given time.
+
+- ```node scraper/reindex_offers.js```
+
+
+Run this at any given time after any number of scraper runs to generate the offers.
+
 
 ### Docker Commands:
 1) Install Docker
 
-2) Build the Docker containers (need to run only once) ```docker-compose build```
+2) Build and Run the containers 
+    - ```docker-compose up --build foodable_front```
 
-3) Run the containers ```docker-compose up```
-This will:
-- Update the code in the container
-- Run npm install in the container
-- Start the server
+    This is for the frontend. Port: ```5000!```
 
-4) Stop the containers  ```docker stop foodable```
-                        ```docker stop mongo```
+    - ```docker-compose up --build foodable_back```
+    
+    This is for the backend. Port: ```4000!```
 
+3) Stop the containers  
+- ```docker stop foodable_front```
+- ```docker stop foodable_back```
+- ```docker stop mongo```
+
+4) Endpoints:
+    - ```http://localhost:4000/graphql```
+
+Please Note: 
+    - You will need to run the scraper manually to poopulate the db with data.

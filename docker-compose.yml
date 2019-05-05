@@ -1,15 +1,32 @@
-version: "3"
+version: "2"
 services:
-  foodable:
-    container_name: foodable
+  foodable_front:
+    container_name: foodable_front
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: ./docker/front/Dockerfile
+    ports:
+      - "5000:5000"
+  
+  foodable_back:
+    container_name: foodable_back
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker/back/Dockerfile
     ports:
       - "4000:4000"
     links:
       - mongo
+  
+  #create another service called mongo
   mongo:
     container_name: mongo
+    #pull the official mongodb image from DockerHub registry
     image: mongo
+    # #mount the host directory for persistent storage
+    # volumes:
+    #   - ./data:/data/db
     ports:
       - "27017:27017"
