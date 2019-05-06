@@ -34,7 +34,8 @@ async function reindex(db,dbClient){
             current_restaturant_slug = restaurants[i]['slug']
             current_source = restaurants[i]['source']
             current_location_slug = restaurants[i]['locationSlug']
-            // find others that do not match
+
+            // find others that do not match the same scraper
             var otherRestaurants = await db.collection(locationCollectionName).find(
                 {
                     'type': 'restaurant',
@@ -42,6 +43,7 @@ async function reindex(db,dbClient){
                     'source': {$ne: current_source},
                 }
             ).toArray();
+
             if (otherRestaurants.length > 0){
                 for (var j = 0, lenor = otherRestaurants.length; j < lenor; j++) {
                     if (otherRestaurants[j] == undefined){
@@ -100,12 +102,35 @@ async function reindex(db,dbClient){
                         break;
                     }
                 } 
+            } else {
+                // no other restaurant. lets add it to its own offer
+                delete current_restaturant['_id'];
+                ops.push(
+                    {
+                        updateOne: {
+                            'filter': {
+                                'type': 'offers',
+                                'slug': current_restaturant_slug,
+                                'locationSlug': current_restaturant['locationSlug'],
+                                'locationId': current_restaturant['locationId'],
+                            },
+                            'update': {
+                                $addToSet: {
+                                    'offers': current_restaturant
+                                }
+                            },
+                            'upsert': true,
+                            'new':true
+                        }
+                    }
+                );
             }
         }
     }
 
     // insert to db
     if (ops.length > 0){
+        console.log('Reindex offers: DB: Number of opertations', ops.length);
         db.collection(locationCollectionName).bulkWrite(ops, { ordered: false }).then(function (result)
             {
                 console.log('Reindex offers: Mongo Bulk Write Operation Complete');

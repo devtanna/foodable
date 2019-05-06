@@ -56,28 +56,27 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
             });
             
             let result = {
-                    title: clean_talabat_title($('.media-heading', this).text().trim().replace(/['"]+/g, '')),
-                    branch: clean_talabat_branch($('.media-heading', this).text().trim().replace(/['"]+/g, '')),
-                    slug: utils.slugify(clean_talabat_title($('.media-heading', this).text().trim().replace(/['"]+/g, ''))),
-                    href: 'https://www.talabat.com' + $(this).attr("href"),
-                    image: $('.valign-helper', this).next().prop('lazy-img'),
-                    location: location.trim(), 
-                    rating: $('.rating-num', this).text().trim(), 
-                    cuisine: cuisine.join(''),
-                    offer: $("div[ng-if='rest.offersnippet']", this).text().trim(),
-                    deliveryTime: $('span[ng-if="!showDeliveryRange || rest.dtim >= 120"]', this).text().trim(),
-                    minimumOrder: $('span:contains("Min:")', this).next().text().trim(),
-                    deliveryCharge: $('span[ng-switch-when="0"]', this).text().trim(),
-                    cost_for_two: '', // no info on talabat
-                    votes: '', // no info on talabat
-                    source: `${scraper_name}`,
-                    address: '', // no info on talabat
-                    score: utils.calculateScore({
-                        offer:$("div[ng-if='rest.offersnippet']", this).text().trim(),
-                        rating:$('.rating-num', this).text().trim()
-                    }),
-                    'type': 'restaurant'
+                title: clean_talabat_title($('.media-heading', this).text().trim().replace(/['"]+/g, '')),
+                branch: clean_talabat_branch($('.media-heading', this).text().trim().replace(/['"]+/g, '')),
+                slug: utils.slugify(clean_talabat_title($('.media-heading', this).text().trim().replace(/['"]+/g, ''))),
+                href: 'https://www.talabat.com' + $(this).attr("href"),
+                image: $('.valign-helper', this).next().prop('lazy-img'),
+                location: location.trim(), 
+                rating: $('.rating-num', this).text().trim(), 
+                cuisine: cuisine.join(''),
+                offer: $("div[ng-if='rest.offersnippet']", this).text().trim(),
+                deliveryTime: $('span[ng-if="!showDeliveryRange || rest.dtim >= 120"]', this).text().trim(),
+                minimumOrder: $('span:contains("Min:")', this).next().text().trim(),
+                deliveryCharge: $('span[ng-switch-when="0"]', this).text().trim(),
+                cost_for_two: '', // no info on talabat
+                votes: '', // no info on talabat
+                source: `${scraper_name}`,
+                address: '', // no info on talabat
+                'type': 'restaurant'
             };
+            
+            // meta fields
+            result['score'] = utils.calculateScore(result);
 
             // if no offer, then skip
             if (result.offer.length > 0 ){

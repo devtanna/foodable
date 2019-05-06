@@ -35,7 +35,7 @@ const scrapePage = async (pageNum = 1) => {
                 cuisine.push($(this).text());
             });
             
-            result.push({
+            var singleItem = {
                 title: $('.result-title', this).text().trim(),
                 href: $('.result-title', this).prop('href'),
                 image: $('.feat-img', this).css('background-image'),
@@ -48,12 +48,19 @@ const scrapePage = async (pageNum = 1) => {
                 cost_for_two: $('.res-cost span:nth-child(2)', this).text().trim(),
                 source: `${scraper_name}`,
                 slug: utils.slugify($('.result-title', this).text().trim()),
-                score: utils.calculateScore({
-                    offer:$('.res-offers .zgreen', this).text().trim(),
-                    rating:$('.rating-popup', this).text().trim()
-                }),
                 'type': 'restaurant'
-            });
+            };
+
+            // meta fields
+            singleItem['score'] = utils.calculateScore(singleItem);
+            
+            // if no offer, then skip
+            if (singleItem.offer.length > 0 ){
+                var index = singleItem.indexOf(singleItem); // dont want to push duplicates
+                if (index === -1){
+                    result.push(singleItem);
+                }
+            }
         });
 
         return { result, goNext: $('.paginator_item.next.item', html).length > 0 };

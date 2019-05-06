@@ -36,10 +36,6 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
                 let result = {
                     'type': 'restaurant',
-                    score: utils.calculateScore({
-                        offer:$(".truncatedText_.ue-bz.ue-cq.ue-cp.ue-cr", this).text().trim(),
-                        rating:$('div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span > span', this).text()
-                    }),
                     source: `${scraper_name}`,
                     slug: utils.slugify($('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[0].trim()),
                     title: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[0].trim(),
@@ -56,6 +52,10 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
                     votes: $('div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span:nth-child(2)', this).text(),
                     address: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[1]
                 };
+
+                // meta fields
+                result['score'] = utils.calculateScore(result);
+
                 // if no offer, then skip
                 if (result.offer.length > 0 ){
                     var index = items.indexOf(result); // dont want to push duplicates

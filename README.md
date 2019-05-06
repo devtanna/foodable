@@ -37,5 +37,19 @@ Run this at any given time after any number of scraper runs to generate the offe
 4) Endpoints:
     - ```http://localhost:4000/graphql```
 
+### Example Queries:
+`query{
+  entity(page:1 pageSize:3 locationSlug: "al-karama" type:"offers"){
+    slug,
+    _id,
+    offers(orderBy: score_DESC){
+      title,
+      offer,
+      score,
+      source
+    }
+  }
+}`
+
 Please Note: 
     - You will need to run the scraper manually to poopulate the db with data.

@@ -21,77 +21,42 @@ exports.EntityQuery = new GraphQLObjectType({
   name: 'Query',
   fields:  ()=> {
     return {
-      entities: {
-        type: new GraphQLList(entityType),
-        args: {
-            pageSize: { type: GraphQLInt },
-            page: { type: GraphQLInt }
-          },
-        resolve:  async (root, args, context, info)=> {
-            const { pageSize, page } = args;
-            // const projections = getProjection(info);
-            const items = await EntityModel.find().skip(page*pageSize)
-            .limit(pageSize)
-            .exec();
-            if (!items) {
-                throw new Error('Error while fetching all data.')
-            }
-            return items
-        }
-      },
-      entity: {
-        type: new GraphQLList(entityType),
-        args: {
-            type: { type: GraphQLNonNull(GraphQLString) },
-            locationSlug: { type: GraphQLString },
-            pageSize: { type: GraphQLInt },
-            page: { type: GraphQLInt }
+        entities: {
+          type: new GraphQLList(entityType),
+          args: {
+              pageSize: { type: GraphQLInt },
+              page: { type: GraphQLInt }
+            },
+          resolve:  async (root, args, context, info)=> {
+              const { pageSize, page } = args;
+              const projections = getProjection(info);
+              const items = await EntityModel.find().select(projections).skip(page*pageSize)
+              .limit(pageSize)
+              .exec();
+              if (!items) {
+                  throw new Error('Error while fetching all data.')
+              }
+              return items
+          }
         },
-        resolve: (root, args, context, info) => {
-            const { pageSize, page } = args;
-            return EntityModel.find({'type': args.type, 'locationSlug': args.locationSlug}).skip(page*pageSize)
-            .limit(pageSize)
-            .exec();
+        entity: {
+          type: new GraphQLList(entityType),
+          args: {
+              type: { type: GraphQLNonNull(GraphQLString) },
+              locationSlug: { type: GraphQLString },
+              pageSize: { type: GraphQLInt },
+              page: { type: GraphQLInt }
+          },
+          resolve: async (root, args, context, info) => {
+              const { pageSize, page } = args;
+              const projections = getProjection(info);
+              const items = await EntityModel.find({'type': args.type, 'locationSlug': args.locationSlug}).select(projections).skip(page*pageSize)
+              .limit(pageSize)
+              .exec();
+              return items;
+          }
         }
-      }
-
-
-
-
     }
   }
 });
 
-// exports.RestaurantQueryFindByKeyword = new GraphQLObjectType({
-//     name: 'QueryFindByKeyword',
-//     fields:  ()=> {
-//       return {
-//         restaurants: {
-//           type: new GraphQLList(restaurantType),
-//           args: {
-//             keyword: { type: GraphQLString },
-//             pageSize: { type: GraphQLInt },
-//             page: { type: GraphQLInt }
-//           },
-//           resolve: async (root, args, context, info) => {
-//             const { keyword, pageSize, page } = args;
-//             const projections = getProjection(info);
-//             var restaurants = await RestaurantModel.find().select(projections).or(
-//                 [
-//                     {'slug': {'$regex': keyword, '$options': 'i'}}, 
-//                     {'cuisine': {'$regex': keyword, '$options': 'i'}},
-//                     {'title': {'$regex': keyword, '$options': 'i'}},
-//                     {'locationSlug': {'$regex': keyword, '$options': 'i'}}
-//                 ]
-//             ).skip(page*pageSize)
-//             .limit(pageSize)
-//             .exec();
-//             if (!restaurants) {
-//                 throw new Error('Error while fetching data by keyword.')
-//             }
-//             return restaurants
-//           }
-//         }
-//       }
-//     }
-// });

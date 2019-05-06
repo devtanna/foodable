@@ -72,12 +72,12 @@ const scrapePage = async (url) => {
                 votes: $('span[class*="RestaurantStarRating"]', this).eq(4).text().trim(),
                 source: `${scraper_name}`,
                 cost_for_two: '',
-                score: utils.calculateScore({
-                    offer:$('div[class*="RestaurantCard"] span p', this).eq(3).text().trim(),
-                    rating:$('span[class*="StarRating"]', this).eq(2).text().trim()
-                }),
                 'type': 'restaurant'
             };
+
+            // meta fields
+            result['score'] = utils.calculateScore(result);
+
             // if no offer, then skip
             if (result.offer.length > 0 ){
                 let obj = items.find(o => o.slug === result.slug);

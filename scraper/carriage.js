@@ -47,10 +47,6 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000, lo
             listingsWithOffers.each(function() {
                 let result = {
                     title: $('.rest-name-slogan h3', this).text().trim(),
-                    score: utils.calculateScore({
-                        offer:$("div[ng-if='rest.offersnippet']", this).text().trim(),
-                        rating:$('.rating-num', this).text().trim()
-                    }),
                     'type': 'restaurant',
                     source: `${scraper_name}`,
                     href: "https://www.trycarriage.com/en/ae/" + $('a:first-child', this).prop('href'),
@@ -67,6 +63,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000, lo
                     votes: null,
                     address: location.name
                 };
+
+                // meta fields
+                result['score'] = utils.calculateScore(result);
 
                 if (result.offer.length > 0 ){
                     var index = items.indexOf(result); // dont want to push duplicates

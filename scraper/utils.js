@@ -55,7 +55,71 @@ function editDistance(s1, s2) {
 }
 
 function calculateScore(item){
-    return 1;
+    score = 0;
+    rating = item['rating'];
+    offer = item['offer'];
+    offer_map = {
+        'Special': 10,
+        'Offer': 10,
+        'Discount': 5,
+        'Special': 5,
+    };
+
+    // offer is defined - 10 points
+    if (offer != undefined){
+        if (offer.trim() != ''){
+            score += 10;
+        }
+      
+        // get number from string
+        match = offer.match(/\d+/);
+        if (match != null)
+            number = match[0];
+        else
+            number = null;
+
+        // extract % offer from offer string
+        if (offer.indexOf('%') > -1){
+            if (number != undefined || number != null){
+                // we have a percentage number
+                // !! higher is better !!
+                score += parseFloat(number);
+            }
+        } else {
+            if (number != undefined || number != null){
+                // we have an amount of discount number
+                // !! lower is better !! So subtract from 100 to reflect this.
+                score += (100 - parseFloat(number));
+            }
+        }
+
+        // Add up the string scores
+        for (key in offer_map){
+            if (offer.toString().toLowerCase().indexOf(key.toString().toLowerCase())!= -1){
+                score += offer_map[key];
+            }
+        }
+    }
+
+    // rating is defined - 10 points
+    if (rating != undefined){
+        if (rating.trim() != ''){
+            score += 10;
+        }
+        // add the rating
+        // get number from string
+        match = rating.match(/\d+/)
+        if (match!=null)
+            number = match[0];
+        else
+            number = null;
+
+        if (number != undefined || number != null){
+            score += parseFloat(number);
+        }
+    }
+
+    return parseFloat(score);
 }
 
 module.exports = {
