@@ -3,6 +3,13 @@ services:
   foodable_front:
     container_name: foodable_front
     restart: always
+    volumes:
+      - .:/src
+    command:  ["npm", "run", "dev"]
+    environment:
+      NODE_ENV: dev
+      VIRTUAL_HOST: 'foodable.dev'
+      VIRTUAL_PORT: 5000
     build:
       context: .
       dockerfile: ./docker/front/Dockerfile
