@@ -61,8 +61,8 @@ const getLocations = async (page) => {
                 + currentdate.getFullYear();
             var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
             var locationCollection = db.collection(collectionName);
-            locationCollection.drop().catch(e => console.error('No databse found; ignore.'))
-            console.log('Location script: Location collection dropped');
+            locationCollection.drop().catch(e => console.error(''))
+            console.log('Location script: Location collection dropped.');
             locationCollection.insertMany(
                 urls
             )

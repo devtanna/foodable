@@ -1,7 +1,22 @@
 const puppeteer = require('puppeteer');
-const axios = require('axios');
 const $ = require('cheerio');
-const ObjectsToCsv = require('objects-to-csv');
+const settings = require('../settings');
+const utils = require('./utils');
+const parse = require('./parse_and_store/parse');
+// ########## START DB STUFF ####################
+var scraper_name = 'ubereats';
+var db;
+var dbClient;
+// Initialize connection once at the top of the scraper
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
+  if(err) throw err;
+  db = client.db(settings.DB_NAME);
+  dbClient = client;
+  console.log("... Ubereats: Connected to mongo! ...");
+});
+// ########## END DB STUFF ####################
+
 
 async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     let items = [];
@@ -9,22 +24,29 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     try {
       let previousHeight;
       while (pageNum < pageCount) {
-        console.log("Scraping page: " + pageNum);
+        console.log("Ubereats: Scraping page: " + pageNum);
         
         const html = await page.content();
 
         const listingsWithOffers = $('.base_ > div a', html);
-
+        console.log('Ubereats: Number of offers on current page:', listingsWithOffers.length);
         try {
             listingsWithOffers.each(function() {
                 if ($(this).find('.truncatedText_.ue-bz.ue-cq.ue-cp.ue-cr').length < 1) return;
 
                 let result = {
-                    title: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[0],
+                    'type': 'restaurant',
+                    score: utils.calculateScore({
+                        offer:$(".truncatedText_.ue-bz.ue-cq.ue-cp.ue-cr", this).text().trim(),
+                        rating:$('div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span > span', this).text()
+                    }),
+                    source: `${scraper_name}`,
+                    slug: utils.slugify($('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[0].trim()),
+                    title: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[0].trim(),
                     href: 'https://www.ubereats.com' + $(this).attr("href"),
                     image: null,
-                    location: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[1], 
-                    rating: $('div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span > span', this).text(), 
+                    location: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[1].trim(), 
+                    rating: $('div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span > span', this).text().trim(), 
                     cuisine: $('div.ue-bz.ue-cq.ue-cp.ue-cr', this).text().trim(),
                     offer: $(".truncatedText_.ue-bz.ue-cq.ue-cp.ue-cr", this).text().trim(),
                     deliveryTime: $('div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div.ue-a6ue-ab', this).text().trim(),
@@ -34,13 +56,17 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
                     votes: $('div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span:nth-child(2)', this).text(),
                     address: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this).text().split('-')[1]
                 };
-
-                console.log(result);
-
-                items.push(result);
+                // if no offer, then skip
+                if (result.offer.length > 0 ){
+                    var index = items.indexOf(result); // dont want to push duplicates
+                    if (index === -1){
+                        items.push(result);
+                    }
+                }
+                
             });
         } catch(error) {
-            console.log(error);
+            console.log('Ubereats:', error);
         }
         
         // scroll to next page
@@ -51,10 +77,10 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
         pageNum++;
       }
     } catch(e) { 
-        console.log(e);
+        console.log('Ubereats', e);
     }
 
-    console.log(items);
+    console.log('ubereats: Scraped total items:', items.length);
 
     return items;
 }
@@ -62,17 +88,17 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 (async () => {
     // Set up browser and page.
     const browser = await puppeteer.launch({
-      headless: false,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        headless: settings.PUPPETEER_BROWSER_ISHEADLESS, 
+        args: settings.PUPPETEER_BROWSER_ARGS 
     });
     const page = await browser.newPage();
-    page.setViewport({ width: 1280, height: 926 });
+    page.setViewport(settings.PUPPETEER_VIEWPORT);
 
     let giantResultsObj = [];
 
     try {
         // Navigate to the page.
-        await page.goto('https://www.ubereats.com/en-AE/dubai/', {waitUntil: 'load'});
+        await page.goto('https://www.ubereats.com/en-AE/dubai/', settings.PUPPETEER_GOTO_PAGE_ARGS);
         
         // max number of pages to scroll through
         let maxPage = 2;
@@ -86,6 +112,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     // Close the browser.
     await browser.close();
 
-    let csv = new ObjectsToCsv(giantResultsObj);
-    await csv.toDisk('./ubereats.csv');
+    // merge all pages results into one array
+    var mergedResults = [].concat.apply([], giantResultsObj);
+    console.log("Talabat: Scraped talabat. Results count: "+mergedResults.length);
+
+    parse.process_results(mergedResults, db, dbClient, scraper_name);
   })();

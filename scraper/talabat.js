@@ -83,9 +83,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
             if (result.offer.length > 0 ){
                 var index = items.indexOf(result); // dont want to push duplicates
                 if (index === -1){
-                    items.push(
-                        result
-                    );
+                    items.push(result);
                 }
             }
         });
@@ -97,9 +95,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
         await page.waitFor(scrollDelay);
       }
     } catch(e) { 
-        console.log(e);
+        console.log('Talabat:', e);
     }
-    console.log('talabat: number of items scraped: '+items.length)
+    console.log('Talabat: number of items scraped: '+items.length)
     return items;
 }
 
@@ -134,7 +132,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
             let res = await scrapeInfiniteScrollItems(page, maxPage);
             giantResultsObj.push(res);
         } catch(error) {
-            console.log(error);
+            console.log('Talabat:', error);
         }
     }
   

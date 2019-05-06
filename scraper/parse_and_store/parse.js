@@ -1,6 +1,6 @@
 const utils = require('../utils');
 const settings = require('../../settings');
-const db = required('./db');
+const db = require('./db');
 
 async function process_results(mergedResults, db, dbClient, scraperName){
 
@@ -25,7 +25,7 @@ async function process_results(mergedResults, db, dbClient, scraperName){
             for (var j = 0, lenll = locations.length; j < lenll; j++) {
                 stored_location = locations[j]['locationSlug'];
                 cmp_score = compare_strings(stored_location, item_location)
-                
+                // console.log('comparing,', cmp_score, stored_location, item_location);
                 if (cmp_score > 0.8){
                     mergedResults[i]['locationId'] = locations[j]['_id'];
                     mergedResults[i]['locationSlug'] = locations[j]['locationSlug'];

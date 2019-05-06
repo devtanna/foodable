@@ -1,4 +1,8 @@
 // Global app settings
+var currentdate = new Date(); 
+var datetime = currentdate.getDate() + "_"
+                + (currentdate.getMonth()+1)  + "_" 
+                + currentdate.getFullYear();
 
 module.exports = {
     DB: 'mongodb://mongo/foodabledb',
@@ -15,5 +19,6 @@ module.exports = {
     PUPPETEER_BROWSER_ISHEADLESS: false,
     PUPPETEER_GOTO_PAGE_ARGS: {timeout: 35000, waitUntil: ['networkidle0', 'load']},
     MONGO_COLLECTION_NAME: 'collection_',
+    SCRAPER_COLLECTION_NAME: 'collection_' + datetime,
     MONGO_MODEL_NAME: 'Entity'
 }
