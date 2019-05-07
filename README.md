@@ -7,6 +7,8 @@ Run this first to load the locations
 - ```node scraper/zomato.js```
 - ```node scraper/talabat.js```
 - ```node scraper/deliveroo.js```
+- ```node scraper/carriage.js```
+- ```node scraper/ubereats.js```
 
 
 This is the only subset of scrapers working for now. More will be added when availible here. You can run these in any order at any given time.
