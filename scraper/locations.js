@@ -55,14 +55,15 @@ const getLocations = async (page) => {
     await browser.close();
     try {
         if (urls.length > 0){
+            cleanupOldCollections(db);
+
             var currentdate = new Date(); 
             var datetime = currentdate.getDate() + "_"
                 + (currentdate.getMonth()+1)  + "_" 
                 + currentdate.getFullYear();
             var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
             var locationCollection = db.collection(collectionName);
-            locationCollection.drop().catch(e => console.error(''))
-            console.log('Location script: Location collection dropped.');
+
             locationCollection.insertMany(
                 urls
             )
@@ -74,3 +75,16 @@ const getLocations = async (page) => {
         console.log(e);
     }
   })();
+
+function cleanupOldCollections(db){
+    for (let i = 0; i < 31; i++) {
+        var date = new Date(new Date().setDate(new Date().getDate()-i));
+        var datetime = date.getDate() + "_"
+                + (date.getMonth()+1)  + "_" 
+                + date.getFullYear();
+        var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
+        var locationCollection = db.collection(collectionName);
+        locationCollection.drop().catch(e => console.error(''));
+        console.log('Location script: Location collections cleaned up.');
+    }
+}

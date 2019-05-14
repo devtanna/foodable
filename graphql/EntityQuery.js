@@ -3,11 +3,8 @@ var GraphQLList = require('graphql').GraphQLList;
 var GraphQLString = require('graphql').GraphQLString;
 var GraphQLNonNull = require('graphql').GraphQLNonNull;
 var GraphQLInt = require('graphql').GraphQLInt;
-//import restaurant model 
 var EntityModel = require('./Entity');
-//import GraphQL RestaurantType
 var entityType = require('./EntityType').entityType;
-
 
 function getProjection (fieldASTs) {
     return fieldASTs.fieldNodes[0].selectionSet.selections.reduce((projections, selection) => {
@@ -39,22 +36,47 @@ exports.EntityQuery = new GraphQLObjectType({
               return items
           }
         },
-        entity: {
-          type: new GraphQLList(entityType),
-          args: {
-              type: { type: GraphQLNonNull(GraphQLString) },
-              locationSlug: { type: GraphQLString },
-              pageSize: { type: GraphQLInt },
-              page: { type: GraphQLInt }
-          },
-          resolve: async (root, args, context, info) => {
-              const { pageSize, page } = args;
-              const projections = getProjection(info);
-              const items = await EntityModel.find({'type': args.type, 'locationSlug': args.locationSlug}).select(projections).skip(page*pageSize)
-              .limit(pageSize)
-              .exec();
-              return items;
-          }
+        locations: {
+            type: new GraphQLList(entityType),
+            args: {
+                pageSize: { type: GraphQLInt },
+                page: { type: GraphQLInt }
+              },
+            resolve:  async (root, args, context, info)=> {
+                const { pageSize, page } = args;
+                const projections = getProjection(info);
+                const items = await EntityModel.find({'type':'location'}).select(projections).skip(page*pageSize)
+                .limit(pageSize)
+                .exec();
+                if (!items) {
+                    throw new Error('Error while fetching location data.')
+                }
+                return items
+            }
+        },
+        offers: {
+            type: new GraphQLList(entityType),
+            args: {
+                pageSize: { type: GraphQLInt },
+                page: { type: GraphQLInt },
+                locationSlug: { type: GraphQLString },
+              },
+            resolve:  async (root, args, context, info)=> {
+                const { pageSize, page } = args;
+                const projections = getProjection(info);
+                const items = await EntityModel.aggregate([
+                    {$match:{'type':'offers', 'locationSlug': args.locationSlug}},
+                    {$unwind: "$offers"},
+                    {$sort: {"offers.score":-1}},
+                    {$group: {_id:"$_id", offers: {$push:"$offers"}}}
+                    ]).skip(page*pageSize)
+                    .limit(pageSize)
+                    .exec();
+                if (!items) {
+                    throw new Error('Error while fetching location data.')
+                }
+                return items
+            }
         }
     }
   }

@@ -16,7 +16,7 @@ module.exports = {
         '--user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36'
     ],
     PUPPETEER_VIEWPORT: { width: 1400, height: 800 },
-    PUPPETEER_BROWSER_ISHEADLESS: false,
+    PUPPETEER_BROWSER_ISHEADLESS: true,
     PUPPETEER_GOTO_PAGE_ARGS: {timeout: 35000, waitUntil: ['networkidle0', 'load']},
     MONGO_COLLECTION_NAME: 'collection_',
     SCRAPER_COLLECTION_NAME: 'collection_' + datetime,

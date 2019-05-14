@@ -40,15 +40,33 @@ Run this at any given time after any number of scraper runs to generate the offe
     - ```http://localhost:4000/graphql```
 
 ### Example Queries:
+Get all locations
+
 `query{
-  entity(page:1 pageSize:3 locationSlug: "al-karama" type:"offers"){
-    slug,
+  locations(page:1 pageSize:3){
     _id,
-    offers(orderBy: score_DESC){
+    locationSlug,
+    locationName
+  }
+}`
+
+Get offers in a certain location input. Each offer item is sorted in descending order by score internally.
+
+`query{
+  offers(page:1 pageSize:3, locationSlug:"al-karama"){
+    _id,
+    offers{
       title,
+      cuisine,
       offer,
       score,
-      source
+      source,
+      locationSlug,
+      rating,
+      cost_for_two,
+      votes,
+      image,
+      href
     }
   }
 }`
