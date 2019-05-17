@@ -51,7 +51,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000, lo
                     source: `${scraper_name}`,
                     href: "https://www.trycarriage.com/en/ae/" + $('a:first-child', this).prop('href'),
                     slug: utils.slugify($('.rest-name-slogan h3', this).text().trim()),
-                    image: $('.rest-cover', this).css('background-image'),
+                    image: $('.rest-cover', this).css('background-image').split(/"/)[1],
                     location: location.name, 
                     rating: null, 
                     cuisine: $('.rest-name-slogan p', this).text().trim(),

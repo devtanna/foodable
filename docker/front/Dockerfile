@@ -4,4 +4,4 @@ COPY package.json /src
 RUN npm install
 COPY . /src
 CMD npm run build && npm run start
-EXPOSE 5000
+EXPOSE 5000 5001

@@ -60,7 +60,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
                 branch: clean_talabat_branch($('.media-heading', this).text().trim().replace(/['"]+/g, '')),
                 slug: utils.slugify(clean_talabat_title($('.media-heading', this).text().trim().replace(/['"]+/g, ''))),
                 href: 'https://www.talabat.com' + $(this).attr("href"),
-                image: $('.valign-helper', this).next().prop('lazy-img'),
+                image: $('.valign-helper', this).next().prop('lazy-img').split("?").shift(),
                 location: location.trim(), 
                 rating: $('.rating-num', this).text().trim(), 
                 cuisine: cuisine.join(''),

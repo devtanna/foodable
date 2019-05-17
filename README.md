@@ -71,5 +71,28 @@ Get offers in a certain location input. Each offer item is sorted in descending 
   }
 }`
 
+
+Get a list of X Random offers.
+
+`
+query{
+  randomOffers(count:4 page:1 pageSize:3 locationSlug:"al-karama"){
+    _id,
+    offers{
+      title,
+      cuisine,
+      offer,
+      score,
+      source,
+      locationSlug,
+      rating,
+      cost_for_two,
+      votes,
+      image,
+      href
+    }
+  }
+}`
+
 Please Note: 
     - You will need to run the scraper manually to poopulate the db with data.

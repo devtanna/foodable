@@ -13,7 +13,7 @@ function getProjection (fieldASTs) {
     }, {});
 };
 
-// Query
+// Queries
 exports.EntityQuery = new GraphQLObjectType({
   name: 'Query',
   fields:  ()=> {
@@ -27,7 +27,7 @@ exports.EntityQuery = new GraphQLObjectType({
           resolve:  async (root, args, context, info)=> {
               const { pageSize, page } = args;
               const projections = getProjection(info);
-              const items = await EntityModel.find().select(projections).skip(page*pageSize)
+              const items = await EntityModel.find().select(projections).skip(pageSize * (page - 1))
               .limit(pageSize)
               .exec();
               if (!items) {
@@ -45,11 +45,35 @@ exports.EntityQuery = new GraphQLObjectType({
             resolve:  async (root, args, context, info)=> {
                 const { pageSize, page } = args;
                 const projections = getProjection(info);
-                const items = await EntityModel.find({'type':'location'}).select(projections).skip(page*pageSize)
+                const items = await EntityModel.find({'type':'location'}).select(projections).skip(pageSize * (page - 1))
                 .limit(pageSize)
                 .exec();
                 if (!items) {
                     throw new Error('Error while fetching location data.')
+                }
+                return items
+            }
+        },
+        randomOffers: {
+            type: new GraphQLList(entityType),
+            args: {
+                pageSize: { type: GraphQLInt },
+                page: { type: GraphQLInt },
+                locationSlug: { type: GraphQLString },
+                count: { type: GraphQLInt }
+              },
+            resolve:  async (root, args, context, info)=> {
+                const { pageSize, page,locationSlug,count } = args;
+                const projections = getProjection(info);
+                const items = await EntityModel.aggregate(
+                    [
+                        {$match:{'type':'offers', 'locationSlug': args.locationSlug}},
+                        {$sample: { size: args.count }}
+                    ]).skip(pageSize * (page - 1))
+                    .limit(pageSize)
+                    .exec();
+                if (!items) {
+                    throw new Error('Error while fetching random offers data.')
                 }
                 return items
             }
@@ -63,17 +87,17 @@ exports.EntityQuery = new GraphQLObjectType({
               },
             resolve:  async (root, args, context, info)=> {
                 const { pageSize, page } = args;
-                const projections = getProjection(info);
+                // const projections = getProjection(info);
                 const items = await EntityModel.aggregate([
                     {$match:{'type':'offers', 'locationSlug': args.locationSlug}},
                     {$unwind: "$offers"},
                     {$sort: {"offers.score":-1}},
                     {$group: {_id:"$_id", offers: {$push:"$offers"}}}
-                    ]).skip(page*pageSize)
+                    ]).skip(pageSize * (page - 1))
                     .limit(pageSize)
                     .exec();
                 if (!items) {
-                    throw new Error('Error while fetching location data.')
+                    throw new Error('Error while fetching offers data.')
                 }
                 return items
             }
