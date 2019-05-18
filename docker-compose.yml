@@ -13,7 +13,21 @@ services:
       dockerfile: ./docker/front/Dockerfile
     ports:
       - "5000:5000"
-      - "5001:5001"
+    links:
+      - foodable_back
+  
+  prod:
+    restart: always
+    volumes:
+      - .:/src
+    command:  ["npm", "run", "prod"]
+    environment:
+      NODE_ENV: prod
+    build:
+      context: .
+      dockerfile: ./docker/front/Dockerfile
+    expose:
+      - "5000"
     links:
       - foodable_back
   
@@ -28,18 +42,6 @@ services:
     links:
       - mongo
   
-  foodable_nginx:
-    container_name: foodable_nginx
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: ./docker/ops/Dockerfile
-    ports:
-      - "8080:8080"
-    links:
-      - foodable_front
-  
-  #mongo
   mongo:
     container_name: mongo
     #pull the official mongodb image from DockerHub registry
