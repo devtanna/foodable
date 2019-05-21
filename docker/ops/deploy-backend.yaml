@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: backend-pod
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      name: backend-pod
+      labels:
+        app: backend-pod
+    spec:
+      containers:
+      - name: backend
+        image: foodable_back:latest
+        imagePullPolicy: Never
+        env:
+        - name: ENABLE_K8
+          value: 'true'
+        ports:
+        - containerPort: 4000

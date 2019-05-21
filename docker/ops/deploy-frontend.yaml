@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: frontend-pod 
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      name: frontend-pod
+      labels:
+        app: frontend-pod
+    spec:
+      containers:
+      - name: frontend
+        image: foodable_front
+        imagePullPolicy: Never
+        env:
+        - name: ENABLE_K8
+          value: 'true'
+        ports:
+          - containerPort: 5000
+        command: ["npm", "run", "prod"]

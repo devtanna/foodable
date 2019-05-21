@@ -5,7 +5,7 @@ WORKDIR /app
 #copy package.json file under the working directory 
 COPY package.json /app
 # install all the dependencies 
-RUN npm install
+RUN npm install && apt-get update && apt-get install -y vim
 #copy all your files under the working directory
 COPY . /app
 #expose the port 4000

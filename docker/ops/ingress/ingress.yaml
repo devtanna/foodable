@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: foodable-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: frontend-service
+    servicePort: 5000
+  rules:
+  - http:
+    paths:
+      - path: /graphiql
+        backend:
+          serviceName: backend-service
+          servicePort: 4000
+      - path: /
+        backend:
+          serviceName: frontend-service
+          servicePort: 5000

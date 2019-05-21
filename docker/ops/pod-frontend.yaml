@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-pod
+  labels:
+    app: frontend-pod
+spec:
+  containers:
+    - name: frontend
+      image: foodable_front
+      imagePullPolicy: Never
+      env:
+      - name: ENABLE_K8
+        value: 'true'
+      ports:
+        - containerPort: 5000
+      command: ["npm", "run", "prod"]

@@ -1,6 +1,8 @@
 // mongo schema file
 var mongoose = require('mongoose');
 var settings = require('../settings');
+const dbutils = require('./db');
+
 var Schema = mongoose.Schema;
 
 var OfferModelSchema = new Schema({
@@ -221,10 +223,13 @@ var EnityModelSchema = new Schema({
 EnityModelSchema.index({"cuisine": 1, "title": 1, "slug": 1, "locationSlug": 1, 'type': 1});
 OfferModelSchema.index({"cuisine": 1, "title": 1, "slug": 1, "locationSlug": 1, 'type': 1});
 
-var currentdate = new Date(); 
-var datetime = currentdate.getDate() + "_"
-            + (currentdate.getMonth()+1)  + "_" 
-            + currentdate.getFullYear();
-var locationCollectionName = settings.MONGO_COLLECTION_NAME + datetime;
+// var currentdate = new Date(); 
+// var datetime = currentdate.getDate() + "_"
+//             + (currentdate.getMonth()+1)  + "_" 
+//             + currentdate.getFullYear();
+// var locationCollectionName = settings.MONGO_COLLECTION_NAME + datetime;
+
+var locationCollectionName = dbutils.getCurrentMealTimeDBCollection();
+
 var Model = mongoose.model(locationCollectionName, EnityModelSchema);
 module.exports = Model;

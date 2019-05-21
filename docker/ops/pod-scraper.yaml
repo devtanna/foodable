@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: scraper-pod
+  labels:
+    app: scraper-pod
+spec:
+  containers:
+  - name: scraper
+    image: scraper
+    imagePullPolicy: Never
+    env:
+    - name: ENABLE_K8
+      value: true
+    command: ["sh", "-c", "tail -f /dev/null"]

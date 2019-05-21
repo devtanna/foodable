@@ -3,6 +3,7 @@ const $ = require('cheerio');
 
 const settings = require('../settings');
 const utils = require('./utils');
+const dbutils = require('./db');
 // ########## START DB STUFF ####################
 // var scraper_name = 'Location script';
 var db;
@@ -57,11 +58,14 @@ const getLocations = async (page) => {
         if (urls.length > 0){
             cleanupOldCollections(db);
 
-            var currentdate = new Date(); 
-            var datetime = currentdate.getDate() + "_"
-                + (currentdate.getMonth()+1)  + "_" 
-                + currentdate.getFullYear();
-            var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
+            // var currentdate = new Date(); 
+            // var datetime = currentdate.getDate() + "_"
+            //     + (currentdate.getMonth()+1)  + "_" 
+            //     + currentdate.getFullYear();
+            // var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
+            // var locationCollection = db.collection(collectionName);
+            
+            var collectionName = dbutils.getCurrentMealTimeDBCollection()
             var locationCollection = db.collection(collectionName);
 
             locationCollection.insertMany(
@@ -77,14 +81,24 @@ const getLocations = async (page) => {
   })();
 
 function cleanupOldCollections(db){
-    for (let i = 0; i < 31; i++) {
-        var date = new Date(new Date().setDate(new Date().getDate()-i));
-        var datetime = date.getDate() + "_"
-                + (date.getMonth()+1)  + "_" 
-                + date.getFullYear();
-        var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
-        var locationCollection = db.collection(collectionName);
-        locationCollection.drop().catch(e => console.error(''));
+    for (let i = 1; i < 31; i++) {
+        var date = new Date(new Date().setDate(dbutils.getCurrentDateTime().getDate()-i));
+        collection_1 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'z')
+        collection_2 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'b')
+        collection_3 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'l')
+        collection_4 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'd')
+        
+        db.collection(collection_1).drop().catch(e => {});
+        db.collection(collection_2).drop().catch(e => {});
+        db.collection(collection_3).drop().catch(e => {});
+        db.collection(collection_4).drop().catch(e => {});
+        
+        // var datetime = date.getDate() + "_"
+        //         + (date.getMonth()+1)  + "_" 
+        //         + date.getFullYear();
+        // var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
+        // var locationCollection = db.collection(collectionName);
+        // locationCollection.drop().catch(e => console.error(''));
         console.log('Location script: Location collections cleaned up.');
     }
 }

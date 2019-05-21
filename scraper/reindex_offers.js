@@ -4,6 +4,7 @@ const $ = require('cheerio');
 const settings = require('../settings');
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+const dbutils = require('./db');
 // ########## START DB STUFF ####################
 var db;
 var dbClient;
@@ -19,11 +20,12 @@ MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function
 // ########## END DB STUFF ####################
 
 async function reindex(db,dbClient){
-    var currentdate = new Date(); 
-    var datetime = currentdate.getDate() + "_"
-                + (currentdate.getMonth()+1)  + "_" 
-                + currentdate.getFullYear();
-    var locationCollectionName = settings.MONGO_COLLECTION_NAME + datetime;
+    // var currentdate = new Date(); 
+    // var datetime = currentdate.getDate() + "_"
+    //             + (currentdate.getMonth()+1)  + "_" 
+    //             + currentdate.getFullYear();
+    // var locationCollectionName = settings.MONGO_COLLECTION_NAME + datetime;
+    var locationCollectionName = dbutils.getCurrentMealTimeDBCollection();
 
     // find
     var restaurants = await db.collection(locationCollectionName).find({'type': 'restaurant'}).toArray();

@@ -62,14 +62,14 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
                 href: 'https://www.talabat.com' + $(this).attr("href"),
                 image: $('.valign-helper', this).next().prop('lazy-img').split("?").shift(),
                 location: location.trim(), 
-                rating: $('.rating-num', this).text().trim(), 
-                cuisine: cuisine.join(''),
+                rating: clean_talabat_rating($('.rating-num', this).prev().src), 
+                cuisine: clean_talabat_cuisine(cuisine.join('')),
                 offer: $("div[ng-if='rest.offersnippet']", this).text().trim(),
                 deliveryTime: $('span[ng-if="!showDeliveryRange || rest.dtim >= 120"]', this).text().trim(),
                 minimumOrder: $('span:contains("Min:")', this).next().text().trim(),
                 deliveryCharge: $('span[ng-switch-when="0"]', this).text().trim(),
                 cost_for_two: '', // no info on talabat
-                votes: '', // no info on talabat
+                votes: clean_talabat_votes($('.rating-num', this).text().trim()),
                 source: `${scraper_name}`,
                 address: '', // no info on talabat
                 'type': 'restaurant'
@@ -148,6 +148,26 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
 function clean_talabat_title(title){
     return title.split(',')[0].replace('Restaurant', '').trim();
+}
+
+function clean_talabat_cuisine(input){
+    return input.replace(/,\s*$/, "");
+}
+
+function clean_talabat_votes(input){
+    if (input!=null && input.match(/\d+/) !=null && input.match(/\d+/).length>0){
+        return input.match(/\d+/)[0];
+    } else {
+        return '';
+    }
+}
+
+function clean_talabat_rating(input){
+    if (input != null && input.match(/\d+/)!=null && input.match(/\d+/).length>0){
+        return input.match(/\d+/)[0];
+    } else {
+        return ''
+    }
 }
 
 function clean_talabat_branch(title){

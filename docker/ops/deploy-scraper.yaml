@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper-deployment
+  labels:
+    app: scraper-deployment
+spec:
+  selector:
+    matchLabels:
+      app: scraper-pod
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      name: scraper-pod
+      labels:
+        app: scraper-pod
+    spec:
+      containers:
+      - name: scraper
+        image: scraper
+        imagePullPolicy: Never
+        env:
+        - name: ENABLE_K8
+          value: 'true'
+        command: ["sh", "-c", "tail -f /dev/null"]
+        volumeMounts:
+        - name: tz-config
+          mountPath: /etc/localtime
+      volumes:
+        - name: tz-config
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Dubai

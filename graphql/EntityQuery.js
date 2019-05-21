@@ -18,6 +18,7 @@ exports.EntityQuery = new GraphQLObjectType({
   name: 'Query',
   fields:  ()=> {
     return {
+        // GET ALL ENTITIES
         entities: {
           type: new GraphQLList(entityType),
           args: {
@@ -36,6 +37,7 @@ exports.EntityQuery = new GraphQLObjectType({
               return items
           }
         },
+        // GET ALL LOCATIONS
         locations: {
             type: new GraphQLList(entityType),
             args: {
@@ -54,6 +56,7 @@ exports.EntityQuery = new GraphQLObjectType({
                 return items
             }
         },
+        // GET A RANDOM SAMPLE OF OFFERS
         randomOffers: {
             type: new GraphQLList(entityType),
             args: {
@@ -67,7 +70,7 @@ exports.EntityQuery = new GraphQLObjectType({
                 const projections = getProjection(info);
                 const items = await EntityModel.aggregate(
                     [
-                        {$match:{'type':'offers', 'locationSlug': args.locationSlug}},
+                        {$match:{'type':'restaurants', 'locationSlug': args.locationSlug}},
                         {$sample: { size: args.count }}
                     ]).skip(pageSize * (page - 1))
                     .limit(pageSize)
@@ -78,6 +81,7 @@ exports.EntityQuery = new GraphQLObjectType({
                 return items
             }
         },
+        // GET ALL OFFERS IN A LOCATION
         offers: {
             type: new GraphQLList(entityType),
             args: {

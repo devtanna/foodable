@@ -1,15 +1,17 @@
 const utils = require('../utils');
 const settings = require('../../settings');
-const db = require('./db');
+const dbutils = require('../db');
 
 async function process_results(mergedResults, db, dbClient, scraperName){
 
     // ============== DB Store section================================
-    var currentdate = new Date(); 
-    var datetime = currentdate.getDate() + "_"
-                + (currentdate.getMonth()+1)  + "_" 
-                + currentdate.getFullYear();
-    var locationCollectionName = settings.MONGO_COLLECTION_NAME + datetime;
+    // var currentdate = new Date(); 
+    // var datetime = currentdate.getDate() + "_"
+    //             + (currentdate.getMonth()+1)  + "_" 
+    //             + currentdate.getFullYear();
+    // var locationCollectionName = settings.MONGO_COLLECTION_NAME + datetime;
+
+    var locationCollectionName = dbutils.getCurrentMealTimeDBCollection();
 
     // find
     var locations = await db.collection(locationCollectionName).find({'type': 'location'}).toArray();

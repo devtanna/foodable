@@ -4,11 +4,50 @@ var datetime = currentdate.getDate() + "_"
                 + (currentdate.getMonth()+1)  + "_" 
                 + currentdate.getFullYear();
 
+if(process.env.ENABLE_K8 && process.env.ENABLE_K8 == 'true') { 
+    ENABLE_K8 = true; 
+}
+else { 
+    ENABLE_K8 = false; 
+}
+
+K8_settings = {
+    DB_SERVICE_NAME: 'db-service',
+    BACKEND_SERVICE_NAME: 'backend-service'
+}
+
+function getDBsettings(){
+    if (ENABLE_K8 == true){
+        return {
+            DB: 'mongodb://db-service/foodabledb',
+            DB_CONNECT_URL: 'mongodb://db-service:27017/',
+            DB_NAME: 'foodabledb',
+            DB_FULL_URL: 'mongodb://db-service:27017/foodlabdb'
+        }
+    } else {
+        return {
+            DB: 'mongodb://mongo/foodabledb',
+            DB_CONNECT_URL: 'mongodb://localhost:27017/',
+            DB_NAME: 'foodabledb',
+            DB_FULL_URL: 'mongodb://localhost:27017/foodlabdb'
+        }
+    }
+}
+
+function getBackendEndpoint(){
+    if (ENABLE_K8 == true){
+        return 'http://backend-service:4000/'
+    } else {
+        return 'http://localhost:4000/'
+    }
+}
+
 module.exports = {
-    DB: 'mongodb://mongo/foodabledb',
-    DB_CONNECT_URL: 'mongodb://localhost:27017/',
-    DB_NAME: 'foodabledb',
-    DB_FULL_URL: 'mongodb://localhost:27017/foodlabdb',
+    BACKEND_ENDPOINT: getBackendEndpoint(),
+    DB: getDBsettings().DB,
+    DB_CONNECT_URL: getDBsettings().DB_CONNECT_URL,
+    DB_NAME: getDBsettings().DB_NAME,
+    DB_FULL_URL: getDBsettings().DB_FULL_URL,
     PORT: 4000,
     PUPPETEER_BROWSER_ARGS: [
         '--no-sandbox', 

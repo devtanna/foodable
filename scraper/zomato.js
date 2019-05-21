@@ -56,7 +56,7 @@ const scrapePage = async (pageNum = 1) => {
             
             // if no offer, then skip
             if (singleItem.offer.length > 0 ){
-                var index = singleItem.indexOf(singleItem); // dont want to push duplicates
+                var index = result.indexOf(singleItem); // dont want to push duplicates
                 if (index === -1){
                     result.push(singleItem);
                 }
