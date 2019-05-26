@@ -10,95 +10,111 @@ var db;
 var dbClient;
 // Initialize connection once at the top of the scraper
 var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
-  if(err) throw err;
-  db = client.db(settings.DB_NAME);
-  dbClient = client;
-  console.log("... Location script:Connected to mongo! ...");
-});
+MongoClient.connect(
+  settings.DB_CONNECT_URL,
+  { useNewUrlParser: true },
+  function(err, client) {
+    if (err) throw err;
+    db = client.db(settings.DB_NAME);
+    dbClient = client;
+    console.log('... Location script:Connected to mongo! ...');
+  }
+);
 // ########## END DB STUFF ####################
 
-const getLocations = async (page) => {
-    try {
-        await page.goto('https://www.talabat.com/uae/sitemap');
-        const html = await page.content();
-        const links = $("h4:contains('Dubai')", html).next('.row').find('a').map((i, link) => { 
-            return { 
-                locationName: $(link).text(),
-                locationSlug: utils.slugify($(link).text()),
-                type: 'location'
-            };
-        });
-        // return links;
-        var ops = [];
-        for (var j = 0; j < links.length; j++){
-            ops.push(links[j]);
-        }
-        return ops
-    } catch(error) {
-        console.log(error);
+const getLocations = async page => {
+  try {
+    await page.goto('https://www.talabat.com/uae/sitemap');
+    const html = await page.content();
+    const links = $("h4:contains('Dubai')", html)
+      .next('.row')
+      .find('a')
+      .map((i, link) => {
+        return {
+          locationName: $(link).text(),
+          locationSlug: utils.slugify($(link).text()),
+          type: 'location',
+        };
+      });
+    // return links;
+    var ops = [];
+    for (var j = 0; j < links.length; j++) {
+      ops.push(links[j]);
     }
-}
+    return ops;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 (async () => {
-    browser = await puppeteer.launch({ 
-        headless: settings.PUPPETEER_BROWSER_ISHEADLESS, 
-        args: settings.PUPPETEER_BROWSER_ARGS 
-    });
+  browser = await puppeteer.launch({
+    headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
+    args: settings.PUPPETEER_BROWSER_ARGS,
+  });
 
-    const page = await browser.newPage();
-    await page.setViewport(settings.PUPPETEER_VIEWPORT);
+  const page = await browser.newPage();
+  await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-    const urls = await getLocations(page);
-    console.log('Location script: Number of locations: '+urls.length);
-  
-    // Close the browser.
-    await browser.close();
-    try {
-        if (urls.length > 0){
-            cleanupOldCollections(db);
+  const urls = await getLocations(page);
+  console.log('Location script: Number of locations: ' + urls.length);
 
-            // var currentdate = new Date(); 
-            // var datetime = currentdate.getDate() + "_"
-            //     + (currentdate.getMonth()+1)  + "_" 
-            //     + currentdate.getFullYear();
-            // var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
-            // var locationCollection = db.collection(collectionName);
-            
-            var collectionName = dbutils.getCurrentMealTimeDBCollection()
-            var locationCollection = db.collection(collectionName);
+  // Close the browser.
+  await browser.close();
+  try {
+    if (urls.length > 0) {
+      cleanupOldCollections(db);
 
-            locationCollection.insertMany(
-                urls
-            )
-            .catch(e => console.error(e))
-            .then(() => dbClient.close());
-            console.log('Location script: Mongo Bulk Write Operation Complete');
-        }
-    } catch(e) { 
-        console.log(e);
+      // var currentdate = new Date();
+      // var datetime = currentdate.getDate() + "_"
+      //     + (currentdate.getMonth()+1)  + "_"
+      //     + currentdate.getFullYear();
+      // var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
+      // var locationCollection = db.collection(collectionName);
+
+      var collectionName = dbutils.getCurrentMealTimeDBCollection();
+      var locationCollection = db.collection(collectionName);
+
+      locationCollection
+        .insertMany(urls)
+        .catch(e => console.error(e))
+        .then(() => dbClient.close());
+      console.log('Location script: Mongo Bulk Write Operation Complete');
     }
-  })();
+  } catch (e) {
+    console.log(e);
+  }
+})();
 
-function cleanupOldCollections(db){
-    for (let i = 1; i < 31; i++) {
-        var date = new Date(new Date().setDate(dbutils.getCurrentDateTime().getDate()-i));
-        collection_1 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'z')
-        collection_2 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'b')
-        collection_3 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'l')
-        collection_4 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'd')
-        
-        db.collection(collection_1).drop().catch(e => {});
-        db.collection(collection_2).drop().catch(e => {});
-        db.collection(collection_3).drop().catch(e => {});
-        db.collection(collection_4).drop().catch(e => {});
-        
-        // var datetime = date.getDate() + "_"
-        //         + (date.getMonth()+1)  + "_" 
-        //         + date.getFullYear();
-        // var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
-        // var locationCollection = db.collection(collectionName);
-        // locationCollection.drop().catch(e => console.error(''));
-        console.log('Location script: Location collections cleaned up.');
-    }
+function cleanupOldCollections(db) {
+  for (let i = 1; i < 31; i++) {
+    var date = new Date(
+      new Date().setDate(dbutils.getCurrentDateTime().getDate() - i)
+    );
+    collection_1 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'z');
+    collection_2 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'b');
+    collection_3 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'l');
+    collection_4 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'd');
+
+    db.collection(collection_1)
+      .drop()
+      .catch(e => {});
+    db.collection(collection_2)
+      .drop()
+      .catch(e => {});
+    db.collection(collection_3)
+      .drop()
+      .catch(e => {});
+    db.collection(collection_4)
+      .drop()
+      .catch(e => {});
+
+    // var datetime = date.getDate() + "_"
+    //         + (date.getMonth()+1)  + "_"
+    //         + date.getFullYear();
+    // var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
+    // var locationCollection = db.collection(collectionName);
+    // locationCollection.drop().catch(e => console.error(''));
+    console.log('Location script: Location collections cleaned up.');
+  }
 }

@@ -7,16 +7,16 @@ exports.addRestaurant = {
 
   args: {
     slug: {
-        type: new GraphQLNonNull(GraphQLString)
-    }
+      type: new GraphQLNonNull(GraphQLString),
+    },
   },
-  resolve: async(root, args)=> {
+  resolve: async (root, args) => {
     //under the resolve method we get our arguments
     const uModel = new restaurantModel(args);
     const newRestaurant = await uModel.save();
     if (!newRestaurant) {
       throw new Error('error');
     }
-    return newRestaurant
-  }
-}
+    return newRestaurant;
+  },
+};

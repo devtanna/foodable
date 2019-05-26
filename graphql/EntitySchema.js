@@ -5,12 +5,12 @@ var query = require('./EntityQuery').EntityQuery;
 // var mutation = require('./RestaurantMutations');
 
 exports.EntitySchema = new GraphQLSchema({
-    query: query
-    // mutation: new GraphQLObjectType({
-    //     name: 'Mutation',
-    //     fields: mutation
-    // })
-})
+  query: query,
+  // mutation: new GraphQLObjectType({
+  //     name: 'Mutation',
+  //     fields: mutation
+  // })
+});
 
 // exports.RestaurantSearchSchema = new GraphQLSchema({
 //     query: queryFindByKeyword

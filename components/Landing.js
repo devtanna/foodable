@@ -6,8 +6,7 @@ const locations = [
   { key: 'angular', text: 'Angular', value: 'angular' },
   { key: 'css', text: 'CSS', value: 'css' },
   { key: 'design', text: 'Graphic Design', value: 'design' },
-]
-
+];
 
 const Landing = () => (
   <main>
@@ -15,23 +14,25 @@ const Landing = () => (
       <img className="logo" src="/static/logo.svg" />
       <h1>Discover and compare food deals from top local delivery services!</h1>
       <div className="ctaWrapper">
-        <Dropdown 
+        <Dropdown
           selection
-          placeholder='Choose your city' 
-          fluid 
-          options={locations} 
+          placeholder="Choose your city"
+          fluid
+          options={locations}
           className="fdbDropdown"
         />
-        <Dropdown 
+        <Dropdown
           selection
-          placeholder='Select your area' 
-          fluid 
-          multiple 
+          placeholder="Select your area"
+          fluid
+          multiple
           search
-          options={locations} 
+          options={locations}
           className="fdbDropdown"
         />
-        <Button size="large" className="searchBtn">Search</Button>
+        <Button size="large" className="searchBtn">
+          Search
+        </Button>
       </div>
     </div>
     <style jsx>{`
@@ -55,7 +56,7 @@ const Landing = () => (
       }
       h1 {
         font-size: 20px;
-        color: #7C7C7C;
+        color: #7c7c7c;
         margin: 30px;
       }
       .ctaWrapper {

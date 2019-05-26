@@ -19,25 +19,29 @@ const Index = () => (
         border-radius: 0 !important;
       }
       :global(.searchBtn) {
-        background: linear-gradient(270deg, #F34343 18.23%, #FF7E52 100%) !important;
+        background: linear-gradient(
+          270deg,
+          #f34343 18.23%,
+          #ff7e52 100%
+        ) !important;
         color: #fff !important;
         width: 100%;
       }
       :global(.fdbDropdown) {
-        font-size: 1.12300000em !important;
+        font-size: 1.123em !important;
       }
       .wrapper {
         height: 100%;
       }
       .desktop {
-        display: none; 
+        display: none;
       }
       @media ${device.tablet} {
         .mobile {
           display: none;
         }
         .desktop {
-          display: block; 
+          display: block;
         }
       }
     `}</style>

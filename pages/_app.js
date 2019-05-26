@@ -17,7 +17,10 @@ Router.events.on('routeChangeError', (err, url) => {
 const PageHead = () => (
   <Head>
     <title>Foodable.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
     <link rel="icon" href="/static/favicon.png" />
     <link rel="stylesheet" href="/static/nprogress.css" />
     <link rel="stylesheet" href="/static/ReactToastify.min.css" />
@@ -36,7 +39,7 @@ class FoodableApp extends App {
           </AppProvider>
         </Container>
       </Fragment>
-    )
+    );
   }
 }
 
