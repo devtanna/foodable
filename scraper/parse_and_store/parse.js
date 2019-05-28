@@ -2,7 +2,13 @@ const utils = require('../utils');
 const settings = require('../../settings');
 const dbutils = require('../db');
 
-async function process_results(mergedResults, db, dbClient, scraperName) {
+async function process_results(
+  mergedResults,
+  db,
+  dbClient,
+  scraperName,
+  batch = false
+) {
   // ============== DB Store section================================
   var locationCollectionName = dbutils.getCurrentDBCollection();
 
@@ -41,24 +47,40 @@ async function process_results(mergedResults, db, dbClient, scraperName) {
       }
     }
   }
-  // insert to db
-  if (ops.length > 0) {
-    db.collection(locationCollectionName)
-      .bulkWrite(ops, { ordered: false })
-      .then(
-        function(result) {
-          console.log('Deliveroo: Mongo Bulk Write Operation Complete');
-        },
-        function(err) {
-          console.log('Deliveroo: Mongo Bulk Write: Promise: error', err);
-        }
-      )
-      .catch(e => console.error(e))
-      .then(() => dbClient.close());
+  // insert to db as a giant blob
+  if (!batch) {
+    if (ops.length > 0) {
+      db.collection(locationCollectionName)
+        .bulkWrite(ops, { ordered: false })
+        .then(
+          function(result) {
+            console.log('Mongo Bulk Write Operation Complete');
+          },
+          function(err) {
+            console.log('Mongo Bulk Write: Promise: error', err);
+          }
+        )
+        .catch(e => console.error(e))
+        .then(() => dbClient.close());
+    } else {
+      dbClient.close();
+    }
   } else {
-    dbClient.close();
+    // batch insert
+    if (ops.length > 0) {
+      db.collection(locationCollectionName)
+        .bulkWrite(ops, { ordered: false })
+        .then(
+          function(result) {
+            console.log('Mongo Batch Write Operation Complete');
+          },
+          function(err) {
+            console.log('Mongo Batch Write: Promise: error', err);
+          }
+        )
+        .catch(e => console.error(e));
+    }
   }
-
   // ============== END DB Store section================================
 }
 
