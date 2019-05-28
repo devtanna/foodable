@@ -12,16 +12,15 @@ RUN npm install && apt-get update && apt-get install -y vim-tiny && apt install 
 # Copy scraper-cron file to the cron.d directory
 COPY docker/scraper/scraper-cron /etc/cron.d/scraper-cron
 
-COPY docker/scraper/script.sh /app/script.sh
+COPY docker/scraper/run_all_scrapers_script.sh .
 
 # Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/scraper-cron && chmod 777 /app/script.sh
+RUN chmod 0644 /etc/cron.d/scraper-cron && chmod 777 run_all_scrapers_script.sh && touch /var/log/cron.log && npm install -g puppeteer
 
 # Apply cron job
 # RUN crontab /etc/cron.d/scraper-cron
 
-# Create the log file to be able to run tail
-RUN touch /var/log/cron.log
-
 # Run the command on container startup
 # CMD ["cron", "-f"]
+
+CMD ["sh", "run_all_scrapers_script.sh"]

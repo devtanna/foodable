@@ -50,12 +50,15 @@ services:
   
   scraper:
     container_name: scraper
+    command: ["sh", "-c", "tail -f /dev/null"]
     restart: always
     volumes:
       - .:/app
     build:
       context: .
       dockerfile: ./docker/scraper/Dockerfile
+    environment:
+      ENV: 'docker'
     links:
       - mongo
 

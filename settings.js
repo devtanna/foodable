@@ -30,11 +30,20 @@ function getDBsettings(){
             DB_FULL_URL: 'mongodb://db-service:27017/foodlabdb'
         }
     } else {
-        return {
-            DB: 'mongodb://mongo/foodabledb',
-            DB_CONNECT_URL: 'mongodb://localhost:27017/',
-            DB_NAME: 'foodabledb',
-            DB_FULL_URL: 'mongodb://localhost:27017/foodlabdb'
+        if (process.env && process.env.ENV != null && process.env.ENV == 'docker'){
+            return {
+                DB: 'mongodb://mongo/foodabledb',
+                DB_CONNECT_URL: 'mongodb://mongo/',
+                DB_NAME: 'foodabledb',
+                DB_FULL_URL: 'mongodb://mongo/foodlabdb'
+            }
+        } else {
+            return {
+                DB: 'mongodb://mongo/foodabledb',
+                DB_CONNECT_URL: 'mongodb://localhost:27017/',
+                DB_NAME: 'foodabledb',
+                DB_FULL_URL: 'mongodb://localhost:27017/foodlabdb'
+            }
         }
     }
 }

@@ -67,11 +67,24 @@ const getLocations = async page => {
       var collectionName = dbutils.getCurrentMealTimeDBCollection()
       var locationCollection = db.collection(collectionName);
 
-      locationCollection
-        .insertMany(urls)
-        .catch(e => console.error(e))
-        .then(() => dbClient.close());
-      console.log('Location script: Mongo Bulk Write Operation Complete');
+      // if collectionName exists dont empty it!!!!
+      await db.listCollections().toArray(function(err, items) {
+          const found = dbutils.checkDBhasActiveCollection(items);
+          if (found){
+            console.log('Location script: Collection found.');
+            dbClient.close();
+          } else {
+            console.log('Location script: Collection NOT found.');
+            // collection doesnt exist: create it
+            locationCollection
+              .insertMany(urls)
+              .catch(e => console.error(e))
+              .then(() => dbClient.close());
+            console.log('Location script: Mongo Bulk Write Operation Complete');
+          }
+      });
+
+
     }
   } catch (e) {
     console.log(e);
