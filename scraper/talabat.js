@@ -161,7 +161,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   for (let i = 0; i < urls.length; i++) {
     let url = urls[i];
 
-    // TESTING
+    // // TESTING TODO
     if (url['locationName'].toLowerCase() != 'al karama') {
       continue;
     }

@@ -12,6 +12,9 @@ const offerObjectType = new GraphQLObjectType({
     title: {
       type: GraphQLString,
     },
+    added: {
+      type: GraphQLFloat,
+    },
     type: {
       type: GraphQLString,
     },
@@ -64,14 +67,14 @@ const offerObjectType = new GraphQLObjectType({
 });
 
 exports.arrayLocationType = new GraphQLObjectType({
-    name: 'arrayLocationType',
-    fields: () =>{
-        return {
-            location: {
-                type: GraphQLString
-            }
-        }
-    }
+  name: 'arrayLocationType',
+  fields: () => {
+    return {
+      location: {
+        type: GraphQLString,
+      },
+    };
+  },
 });
 
 exports.entityType = new GraphQLObjectType({
@@ -80,6 +83,9 @@ exports.entityType = new GraphQLObjectType({
     return {
       title: {
         type: GraphQLString,
+      },
+      added: {
+        type: GraphQLFloat,
       },
       type: {
         type: GraphQLString,

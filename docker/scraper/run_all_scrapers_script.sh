@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 echo "---starting script---"
+date
 echo "---starting script---" >> /var/log/cron.log
 date >> /var/log/cron.log
 echo "-"
@@ -28,3 +29,4 @@ echo "------------"
 date >> /var/log/cron.log
 echo "---script done---" >> /var/log/cron.log
 echo "---script done---"
+date

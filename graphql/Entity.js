@@ -24,6 +24,12 @@ var OfferModelSchema = new Schema({
     index: false,
     required: false,
   },
+  added: {
+    type: Number,
+    text: true,
+    index: false,
+    required: false,
+  },
   href: {
     type: String,
     text: true,
@@ -211,6 +217,12 @@ var EnityModelSchema = new Schema({
     index: false,
     required: false,
   },
+  added: {
+    type: Number,
+    text: true,
+    index: false,
+    required: false,
+  },
   offers: {
     type: [OfferModelSchema],
     index: false,
@@ -226,6 +238,7 @@ EnityModelSchema.index({
   slug: 1,
   locationSlug: 1,
   type: 1,
+  added: 1,
 });
 OfferModelSchema.index({
   cuisine: 1,
@@ -235,13 +248,8 @@ OfferModelSchema.index({
   type: 1,
 });
 
-// var currentdate = new Date();
-// var datetime = currentdate.getDate() + "_"
-//             + (currentdate.getMonth()+1)  + "_"
-//             + currentdate.getFullYear();
-// var locationCollectionName = settings.MONGO_COLLECTION_NAME + datetime;
-
-var locationCollectionName = dbutils.getCurrentMealTimeDBCollection();
+var locationCollectionName = dbutils.getCurrentDBCollection();
 
 var Model = mongoose.model(locationCollectionName, EnityModelSchema);
+
 module.exports = Model;

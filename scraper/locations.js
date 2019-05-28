@@ -64,27 +64,34 @@ const getLocations = async page => {
     if (urls.length > 0) {
       cleanupOldCollections(db);
 
-      var collectionName = dbutils.getCurrentMealTimeDBCollection()
+      var collectionName = dbutils.getCurrentDBCollection();
       var locationCollection = db.collection(collectionName);
 
-      // if collectionName exists dont empty it!!!!
-      await db.listCollections().toArray(function(err, items) {
-          const found = dbutils.checkDBhasActiveCollection(items);
-          if (found){
-            console.log('Location script: Collection found.');
-            dbClient.close();
-          } else {
-            console.log('Location script: Collection NOT found.');
-            // collection doesnt exist: create it
-            locationCollection
-              .insertMany(urls)
-              .catch(e => console.error(e))
-              .then(() => dbClient.close());
-            console.log('Location script: Mongo Bulk Write Operation Complete');
-          }
-      });
+      var collectionFound = false;
+      var dataFound = false;
 
+      var collectionsList = await db.listCollections().toArray();
+      collectionFound = dbutils.checkDBhasActiveCollection(collectionsList);
 
+      if (collectionFound == true) {
+        var collectionStats = await locationCollection.stats();
+        dataFound = collectionStats['count'] > 0 ? true : false;
+        console.log(
+          'Location script: Size of collection:',
+          collectionStats['count']
+        );
+      }
+
+      if (!collectionFound || !dataFound) {
+        console.log('Location script: Populating Collection.');
+        locationCollection
+          .insertMany(urls)
+          .catch(e => console.error(e))
+          .then(() => dbClient.close());
+        console.log('Location script: Mongo Bulk Write Operation Complete');
+      } else {
+        dbClient.close();
+      }
     }
   } catch (e) {
     console.log(e);
@@ -96,24 +103,15 @@ function cleanupOldCollections(db) {
     var date = new Date(
       new Date().setDate(dbutils.getCurrentDateTime().getDate() - i)
     );
-    collection_1 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'z');
-    collection_2 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'b');
-    collection_3 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'l');
-    collection_4 = dbutils.getDBCollectionForMealTimeZoneAndDateTime(date, 'd');
+    collection_1 = dbutils.getDBCollectionForDateTime(date);
 
     db.collection(collection_1)
       .drop()
       .catch(e => {});
-    db.collection(collection_2)
-      .drop()
-      .catch(e => {});
-    db.collection(collection_3)
-      .drop()
-      .catch(e => {});
-    db.collection(collection_4)
-      .drop()
-      .catch(e => {});
 
-    console.log('Location script: Location collections cleaned up.');
+    console.log(
+      'Location script: Location collections cleaned up.',
+      collection_1
+    );
   }
 }

@@ -24,12 +24,7 @@ MongoClient.connect(
 // ########## END DB STUFF ####################
 
 async function reindex(db, dbClient) {
-  // var currentdate = new Date();
-  // var datetime = currentdate.getDate() + "_"
-  //             + (currentdate.getMonth()+1)  + "_"
-  //             + currentdate.getFullYear();
-  // var locationCollectionName = settings.MONGO_COLLECTION_NAME + datetime;
-  var locationCollectionName = dbutils.getCurrentMealTimeDBCollection();
+  var locationCollectionName = dbutils.getCurrentDBCollection();
 
   // find
   var restaurants = await db
@@ -82,6 +77,7 @@ async function reindex(db, dbClient) {
               updateOne: {
                 filter: {
                   type: 'offers',
+                  added: dbutils.getCurrentHour(),
                   slug: current_restaturant_slug,
                   locationSlug: current_restaturant['locationSlug'],
                   locationId: current_restaturant['locationId'],
@@ -99,6 +95,7 @@ async function reindex(db, dbClient) {
               updateOne: {
                 filter: {
                   type: 'offers',
+                  added: dbutils.getCurrentHour(),
                   slug: current_restaturant_slug,
                   locationSlug: current_restaturant['locationSlug'],
                   locationId: current_restaturant['locationId'],
@@ -123,6 +120,7 @@ async function reindex(db, dbClient) {
           updateOne: {
             filter: {
               type: 'offers',
+              added: dbutils.getCurrentHour(),
               slug: current_restaturant_slug,
               locationSlug: current_restaturant['locationSlug'],
               locationId: current_restaturant['locationId'],
