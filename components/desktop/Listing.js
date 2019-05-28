@@ -1,90 +1,102 @@
 import React from 'react';
 import Rating from 'react-rating';
 import { Icon, Responsive } from 'semantic-ui-react';
+import { offerSources } from '../../helpers/constants';
 
-const Listing = () => (
-  <div className="listing">
-    <div className="listing__img">
-      <img src="/static/placeholder.png" />
-    </div>
-    <div className="listing__content">
-      <ListingMeta />
-      <BestOffer />
-      <OtherOffers />
-    </div>
-    <style jsx>{`
-      .listing {
-        display: grid;
-        grid-template-columns: 20% 80%;
-        background: #fff;
-        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 30px;
-      }
-      .listing__content {
-        display: grid;
-        grid-template-columns: 1fr .9fr .8fr;
-      }
-      .listing__img {
-        padding: 20px;
-      }
-      .listing__img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    `}</style>
-  </div>
-);
+const Listing = ({ offer }) => {
+  const mainOffer = offer.offers[0];
+  const otherOffers = offer.offers.slice(1);
 
-const ListingMeta = () => (
-  <div className="listing__meta">
-    <h2 className="meta__name">
-      Hardees
-      <small className="meta__cuisine">Burger, Fast Food</small>
-    </h2>
-    <div className="meta__costForTwo">AED 60 for two people (approx.)</div>
-    <div className="meta__rating">
-      <div className="rating__heading">Rating</div>
-      <Rating
-        className="rating__stars"
-        readonly
-        initialRating={3}
-        emptySymbol={<Icon name="star" size="large" color="teal" />}
-        fullSymbol={<Icon name="star" size="large" color="yellow" />}
-      />
+  return (
+    <div className="listing">
+      <div className="listing__img">
+        <img src={mainOffer.image} />
+      </div>
+      <div className="listing__content">
+        <ListingMeta offer={mainOffer} />
+        <BestOffer offer={mainOffer} />
+        <OtherOffers offers={otherOffers} />
+      </div>
+      <style jsx>{`
+        .listing {
+          display: grid;
+          grid-template-columns: 20% 80%;
+          background: #fff;
+          box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+          margin-bottom: 30px;
+          min-height: 200px;
+        }
+        .listing__content {
+          display: grid;
+          grid-template-columns: 1fr .9fr .8fr;
+        }
+        .listing__img {
+          padding: 20px;
+        }
+        .listing__img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      `}</style>
     </div>
-    <style jsx>{`
-      .listing__meta {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 25px 0;
-        border-right: 1px solid #E7E7E7;
-      }
-      .meta__name {
-        margin: 0;
-      }
-      .meta__cuisine {
-        color: #8F8F8F;
-        display: block;
-        font-weight: normal;
-        font-size: 16px;
-      }
-      .meta__costForTwo {
-        color: #D2D2D2;
-        font-weight: bold;
-        font-size: 14px;
-      }
-    `}</style>
-  </div>
-);
+  )
+};
 
-const BestOffer = () => (
-  <div className="bestOffer talabat">
+const ListingMeta = ({ offer }) => {
+  // TODO: FIX RATING
+  const numFromRating = offer.rating ? Number(offer.rating.match(/\d+/)) : null;
+  const initialRating = 1;
+  return (
+    <div className="listing__meta">
+      <h2 className="meta__name">
+        {offer.title}
+        <small className="meta__cuisine">{offer.cuisine}</small>
+      </h2>
+      {/* <div className="meta__costForTwo">{offer.cost_for_two}</div> */}
+      <div className="meta__rating">
+        <div className="rating__heading">Rating</div>
+        <Rating
+          className="rating__stars"
+          readonly
+          initialRating={initialRating}
+          emptySymbol={<Icon name="star" size="large" color="teal" />}
+          fullSymbol={<Icon name="star" size="large" color="yellow" />}
+        />
+      </div>
+      <style jsx>{`
+        .listing__meta {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 25px 0;
+          border-right: 1px solid #E7E7E7;
+        }
+        .meta__name {
+          margin: 0;
+        }
+        .meta__cuisine {
+          color: #8F8F8F;
+          display: block;
+          font-weight: normal;
+          font-size: 16px;
+        }
+        .meta__costForTwo {
+          color: #D2D2D2;
+          font-weight: bold;
+          font-size: 14px;
+        }
+      `}</style>
+    </div>
+  )
+};
+
+const BestOffer = ({ offer }) => (
+  <a href={offer.href} target="_blank" className={`bestOffer ${offer.source}`}>
     <div className="bestOffer__heading"></div>
     <div className="bestOffer__body">
       <div className="bestOffer__ribbon">Hottest Deal</div>
-      <h3 className="bestOffer__offer">30% Off on all orders</h3>
+      <h3 className="bestOffer__offer">{offer.offer}</h3>
     </div>
     <div className="bestOffer__footer">
       <div>Show this deal</div> 
@@ -97,13 +109,17 @@ const BestOffer = () => (
         grid-template-rows: 30px auto 30px;
         grid-row-gap: 0;
       }
-      .bestOffer.talabat {
-        border: 2px solid #FF6F00;
-      }
-      .bestOffer.talabat .bestOffer__heading {
-        background: #FF6400 url('/static/restaurant-banners/talabat.png') 0 0 no-repeat;
-        background-size: 133px 30px;
-      }
+      ${Object.entries(offerSources).map(([key, value], index) => (
+        `
+          .bestOffer.${key} {
+            border: 2px solid ${value.color};
+          }
+          .bestOffer.${key} .bestOffer__heading {
+            background: ${value.color} url(${value.logo}) 0 0 no-repeat;
+            background-size: 133px 30px;
+          }
+        `
+      )).join('')}
       .bestOffer__body {
         background: #FFF8F3;
         display: flex;
@@ -143,83 +159,85 @@ const BestOffer = () => (
         text-transform: uppercase;
       }
     `}</style>
-  </div>
+  </a>
 );
 
-const OtherOffers = () => (
-  <div className="otherOffers">
-    <div className="otherOffer deliveroo">
-      <div className="otherOffer__heading">View Deal</div>
-      <div className="otherOffer__body">20% Off on all orders</div>
+const OtherOffers = ({ offers }) => { 
+  const hasMore = offers.length > 2;
+
+  return (
+    <div className="otherOffers">
+      {offers.map((offer, index) => (
+        <a href={offer.href} target="_blank" key={index} className={`otherOffer ${offer.source}`}>
+          <div className="otherOffer__heading">View Deal</div>
+          <div className="otherOffer__body">{offer.offer}</div>
+        </a>
+      ))}
+      {hasMore && 
+        <div className="showMoreBtn">
+          <div>Show more deals</div> 
+          <div><Icon name="arrow alternate circle down outline" /></div>
+        </div>
+      }
+      <style jsx>{`
+        .otherOffers {
+          margin: 20px 20px 20px 0;
+          display: grid;
+          grid-template-rows: ${hasMore ? '3fr 3fr 1fr' : '1fr 1fr'};
+          grid-row-gap: 10px;
+        }
+        .otherOffer {
+          width: 100%;
+          display: grid;
+          grid-template-rows: 30px auto;
+          color: #333;
+        }
+        .otherOffer__heading {
+          font-size: 12px;
+          color: #fff;
+          font-weight: bold;
+          display: flex;
+          padding: 0 20px;
+          align-items: center;
+        }
+        ${Object.entries(offerSources).map(([key, value], index) => (
+          `
+            .otherOffer.${key} {
+              background-color: ${value.color};
+            }
+            .otherOffer.${key} .otherOffer__heading {
+              background: ${value.color} url(${value.logo}) 100% 0 no-repeat;
+              background-size: 120px 30px;
+            }
+          `
+        )).join('')}
+        .otherOffer__heading img {
+          height: 25px;
+        }
+        .otherOffer__body {
+          background: #fff;
+          margin: 2px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 14px;
+          text-transform: uppercase;
+          font-weight: bold;
+          text-align: center;
+        }
+        .showMoreBtn {
+          background: linear-gradient(270deg, #3ACA7C 16.26%, #88E0D0 98.03%);
+          font-weight: bold;
+          text-transform: uppercase;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 11px;
+        }
+      `}</style>
     </div>
-    <div className="otherOffer carriage">
-      <div className="otherOffer__heading">View Deal</div>
-      <div className="otherOffer__body">20% Off on all orders</div>
-    </div>
-    <div className="showMoreBtn">
-      <div>Show more deals</div> 
-      <div><Icon name="arrow alternate circle down outline" /></div>
-    </div>
-    <style jsx>{`
-      .otherOffers {
-        margin: 20px 20px 20px 0;
-        display: grid;
-        grid-template-rows: 3fr 3fr 1fr;
-        grid-row-gap: 10px;
-      }
-      .otherOffer {
-        width: 100%;
-        display: grid;
-        grid-template-rows: 25px 50px;
-      }
-      .otherOffer.deliveroo {
-        background-color: #00CCBC;
-      }
-      .otherOffer.carriage {
-        background-color: #E0513D;
-      }
-      .otherOffer__heading {
-        font-size: 12px;
-        color: #fff;
-        font-weight: bold;
-        display: flex;
-        padding: 0 20px;
-        align-items: center;
-      }
-      .otherOffer.deliveroo .otherOffer__heading {
-        background: #00CCBC url('/static/restaurant-banners/deliveroo.png') 100% 0 no-repeat;
-        background-size: 100px 25px;
-      }
-      .otherOffer.carriage .otherOffer__heading {
-        background: #E0513D url('/static/restaurant-banners/carriage.png') 100% 0 no-repeat;
-        background-size: 100px 25px;
-      }
-      .otherOffer__heading img {
-        height: 25px;
-      }
-      .otherOffer__body {
-        background: #fff;
-        margin: 2px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-        text-transform: uppercase;
-        font-weight: bold;
-        text-align: center;
-      }
-      .showMoreBtn {
-        background: linear-gradient(270deg, #3ACA7C 16.26%, #88E0D0 98.03%);
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 11px;
-      }
-    `}</style>
-  </div>
-);
+  )
+};
 
 export default Listing;

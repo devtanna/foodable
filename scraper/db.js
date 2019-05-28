@@ -59,48 +59,58 @@ function getMealTimeZoneForDateTime(datetime) {
   return offerMealZoneToTimeMapping[hours];
 }
 
-function getCurrentMealTimeDBCollection(offset = '+4') {
-  var currentdate = getCurrentDateTime(offset);
-  var datetimeNow =
-    currentdate.getDate() +
-    '_' +
-    (currentdate.getMonth() + 1) +
-    '_' +
-    currentdate.getFullYear();
-  var mealTimeZone = getMealTimeZoneForDateTime(currentdate);
-  return settings.MONGO_COLLECTION_NAME + datetimeNow + '_' + mealTimeZone;
+function getCurrentMealTimeDBCollection(offset='+4'){
+    var currentdate = getCurrentDateTime(offset);
+    var datetimeNow = currentdate.getDate() + "_"
+        + (currentdate.getMonth()+1)  + "_" 
+        + currentdate.getFullYear();
+    var mealTimeZone = getMealTimeZoneForDateTime(currentdate);
+    if (settings.ENABLE_MEAL_TIME_ZOME){
+        return settings.MONGO_COLLECTION_NAME + datetimeNow + "_" + mealTimeZone;
+    } else {
+        return settings.MONGO_COLLECTION_NAME + datetimeNow;
+    }
 }
 
-function getDBCollectionForMealTimeZone(mealTimeZone = 'z', offset = '+4') {
-  var currentdate = getCurrentDateTime(offset);
-  var datetimeNow =
-    currentdate.getDate() +
-    '_' +
-    (currentdate.getMonth() + 1) +
-    '_' +
-    currentdate.getFullYear();
-  return settings.MONGO_COLLECTION_NAME + datetimeNow + '_' + mealTimeZone;
+function getDBCollectionForMealTimeZone(mealTimeZone='z', offset='+4'){
+    var currentdate = getCurrentDateTime(offset);
+    var datetimeNow = currentdate.getDate() + "_"
+        + (currentdate.getMonth()+1)  + "_" 
+        + currentdate.getFullYear();
+    if (settings.ENABLE_MEAL_TIME_ZOME){
+        return settings.MONGO_COLLECTION_NAME + datetimeNow + "_" + mealTimeZone;
+    } else {
+        return settings.MONGO_COLLECTION_NAME + datetimeNow;
+    }
 }
 
-function getDBCollectionForMealTimeZoneAndDateTime(
-  datetime,
-  mealTimeZone = 'z',
-  offset = '+4'
-) {
-  var datetimeNow =
-    datetime.getDate() +
-    '_' +
-    (datetime.getMonth() + 1) +
-    '_' +
-    datetime.getFullYear();
-  return settings.MONGO_COLLECTION_NAME + datetimeNow + '_' + mealTimeZone;
+function checkDBhasActiveCollection(collections){
+    var activeCollection = getCurrentMealTimeDBCollection();
+    var found = collections.some(el => el.name === activeCollection);
+    if (found){
+        return true;
+    }
+    return false;
+}
+
+function getDBCollectionForMealTimeZoneAndDateTime(datetime, mealTimeZone='z', offset='+4'){
+    var datetimeNow = datetime.getDate() + "_"
+        + (datetime.getMonth()+1)  + "_" 
+        + datetime.getFullYear();
+    if (settings.ENABLE_MEAL_TIME_ZOME){
+        return settings.MONGO_COLLECTION_NAME + datetimeNow + "_" + mealTimeZone;
+    } else {
+        return settings.MONGO_COLLECTION_NAME + datetimeNow;
+    }
 }
 
 module.exports = {
-  getCurrentDateTime: getCurrentDateTime,
-  getCurrentMealTimeZone: getCurrentMealTimeZone,
-  getMealTimeZoneForDateTime: getMealTimeZoneForDateTime,
-  getCurrentMealTimeDBCollection: getCurrentMealTimeDBCollection,
-  getDBCollectionForMealTimeZone: getDBCollectionForMealTimeZone,
-  getDBCollectionForMealTimeZoneAndDateTime: getDBCollectionForMealTimeZoneAndDateTime,
-};
+    checkDBhasActiveCollection: checkDBhasActiveCollection,
+    getCurrentDateTime: getCurrentDateTime,
+    getCurrentMealTimeZone: getCurrentMealTimeZone,
+    getMealTimeZoneForDateTime: getMealTimeZoneForDateTime,
+    getCurrentMealTimeDBCollection: getCurrentMealTimeDBCollection,
+    getDBCollectionForMealTimeZone: getDBCollectionForMealTimeZone,
+    getDBCollectionForMealTimeZoneAndDateTime: getDBCollectionForMealTimeZoneAndDateTime
+}
+

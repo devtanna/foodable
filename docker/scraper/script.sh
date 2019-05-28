@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo "---starting script---" >> /var/log/cron.log
 date >> /var/log/cron.log
 node scraper/locations.js >> /var/log/cron.log

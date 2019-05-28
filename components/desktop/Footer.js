@@ -37,7 +37,7 @@ const Footer = () => (
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 30px;
-        padding: 15px 0;
+        padding: 15px;
       }
       .logoWrapper {
         display: flex;

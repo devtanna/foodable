@@ -4,14 +4,19 @@ var datetime = currentdate.getDate() + "_"
                 + (currentdate.getMonth()+1)  + "_" 
                 + currentdate.getFullYear();
 
-if(process.env.ENABLE_K8 && process.env.ENABLE_K8 == 'true') { 
-    ENABLE_K8 = true; 
+const isServerRequest = process && process.env && process.env.HOSTNAME != null;
+const backendEndpointForClient = 'http://foodable.local:8090/graphql';
+const backendEndpointForServer = 'http://foodable_back:4000/graphql';
+var DOCKER_BACKEND_ENDPOINT = isServerRequest!=null && isServerRequest == true ?  backendEndpointForServer: backendEndpointForClient;
+
+if(process && process.env && process.env.ENABLE_K8 != null && process.env.ENABLE_K8 == 'true') {
+    var ENABLE_K8 = true;
 }
 else { 
-    ENABLE_K8 = false; 
+    var ENABLE_K8 = false;
 }
 
-K8_settings = {
+var K8_settings = {
     DB_SERVICE_NAME: 'db-service',
     BACKEND_SERVICE_NAME: 'backend-service'
 }
@@ -34,7 +39,7 @@ function getDBsettings(){
     }
 }
 
-function getBackendEndpoint(){
+function get_K8_BackendEndpoint(){
     if (ENABLE_K8 == true){
         return 'http://backend-service:4000/'
     } else {
@@ -43,7 +48,8 @@ function getBackendEndpoint(){
 }
 
 module.exports = {
-    BACKEND_ENDPOINT: getBackendEndpoint(),
+    ENABLE_MEAL_TIME_ZOME: false,
+    BACKEND_ENDPOINT: ENABLE_K8 == true?getBackendEndpoint():DOCKER_BACKEND_ENDPOINT,
     DB: getDBsettings().DB,
     DB_CONNECT_URL: getDBsettings().DB_CONNECT_URL,
     DB_NAME: getDBsettings().DB_NAME,
@@ -58,6 +64,8 @@ module.exports = {
     PUPPETEER_BROWSER_ISHEADLESS: true,
     PUPPETEER_GOTO_PAGE_ARGS: {timeout: 35000, waitUntil: ['networkidle0', 'load']},
     MONGO_COLLECTION_NAME: 'collection_',
+    SUBSCRIPTION_MONGO_COLLECTION_NAME: 'subscriptions',
+    CONTACTUS_MONGO_COLLECTION_NAME: 'contactus',
     SCRAPER_COLLECTION_NAME: 'collection_' + datetime,
     MONGO_MODEL_NAME: 'Entity'
 }

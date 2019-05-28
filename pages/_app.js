@@ -38,6 +38,22 @@ class FoodableApp extends App {
             <Component {...pageProps} />
           </AppProvider>
         </Container>
+        <style jsx>{`
+          :global(#__next) {
+            height: 100%;
+          }
+          :global(input, button, select, .ui.fluid.dropdown) {
+            border-radius: 0 !important;
+          }
+          :global(.searchBtn) {
+            background: linear-gradient(270deg, #F34343 18.23%, #FF7E52 100%) !important;
+            color: #fff !important;
+            width: 100%;
+          }
+          :global(.fdbDropdown) {
+            font-size: 1.123em !important;
+          }
+        `}</style>
       </Fragment>
     );
   }

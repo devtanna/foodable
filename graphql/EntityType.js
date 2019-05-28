@@ -63,6 +63,17 @@ const offerObjectType = new GraphQLObjectType({
   },
 });
 
+exports.arrayLocationType = new GraphQLObjectType({
+    name: 'arrayLocationType',
+    fields: () =>{
+        return {
+            location: {
+                type: GraphQLString
+            }
+        }
+    }
+});
+
 exports.entityType = new GraphQLObjectType({
   name: 'entity',
   fields: () => {

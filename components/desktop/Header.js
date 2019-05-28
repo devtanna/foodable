@@ -1,7 +1,8 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
+import Link from 'next/link';
 
-const Header = () => {
+const Header = ({ location }) => {
   return (
     <header>
       <div className="wrapper">
@@ -16,13 +17,15 @@ const Header = () => {
                 <Icon name="map marker alternate" size="large" color="grey" /> 
                 <div>
                   <div className="addressHeading">Delivery address:</div>
-                  <div className="address">Dubai, Umm al Sheif</div>
+                  <div className="address">Dubai, {location.text}</div>
                 </div>
               </div>
             </li>
             <li>
               <div className="location__change">
-                <a href="#">Change Location</a>
+                <Link href="/select-area">
+                  <a>Change Location</a>
+                </Link>
               </div>
             </li>
           </ul>
@@ -30,7 +33,7 @@ const Header = () => {
       </div>
       <style jsx>{`
         header {
-          padding: 10px 0;
+          padding: 10px;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
           position: relative;
           z-index: 1;

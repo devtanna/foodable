@@ -5,6 +5,7 @@ var GraphQLNonNull = require('graphql').GraphQLNonNull;
 var GraphQLInt = require('graphql').GraphQLInt;
 var EntityModel = require('./Entity');
 var entityType = require('./EntityType').entityType;
+var arrayLocationType = require('./EntityType').arrayLocationType;
 
 function getProjection(fieldASTs) {
   return fieldASTs.fieldNodes[0].selectionSet.selections.reduce(
@@ -88,34 +89,139 @@ exports.EntityQuery = new GraphQLObjectType({
             throw new Error('Error while fetching random offers data.');
           }
           return items;
-        },
+        }
       },
-      // GET ALL OFFERS IN A LOCATION
-      offers: {
-        type: new GraphQLList(entityType),
-        args: {
-          pageSize: { type: GraphQLInt },
-          page: { type: GraphQLInt },
-          locationSlug: { type: GraphQLString },
-        },
-        resolve: async (root, args, context, info) => {
-          const { pageSize, page } = args;
-          // const projections = getProjection(info);
-          const items = await EntityModel.aggregate([
-            { $match: { type: 'offers', locationSlug: args.locationSlug } },
-            { $unwind: '$offers' },
-            { $sort: { 'offers.score': -1 } },
-            { $group: { _id: '$_id', offers: { $push: '$offers' } } },
-          ])
-            .skip(pageSize * (page - 1))
-            .limit(pageSize)
-            .exec();
-          if (!items) {
-            throw new Error('Error while fetching offers data.');
+        // GET ALL RESTAURANTS
+        allRestaurants: {
+          type: new GraphQLList(entityType),
+          args: {
+              pageSize: { type: GraphQLInt },
+              page: { type: GraphQLInt }
+            },
+          resolve:  async (root, args, context, info)=> {
+              const { pageSize, page } = args;
+              const projections = getProjection(info);
+              const items = await EntityModel.find({'type':'restaurant'}).select(projections).skip(pageSize * (page - 1))
+              .limit(pageSize)
+              .exec();
+              if (!items) {
+                  throw new Error('Error while fetching all data.')
+              }
+              return items
           }
-          return items;
         },
-      },
-    };
-  },
+        // GET ALL LOCATIONS
+        locations: {
+            type: new GraphQLList(entityType),
+            args: {
+                pageSize: { type: GraphQLInt },
+                page: { type: GraphQLInt }
+              },
+            resolve:  async (root, args, context, info)=> {
+                const { pageSize, page } = args;
+                const projections = getProjection(info);
+                const items = await EntityModel.find({'type':'location'}).select(projections).skip(pageSize * (page - 1))
+                .limit(pageSize)
+                .exec();
+                if (!items) {
+                    throw new Error('Error while fetching location data.')
+                }
+                return items
+            }
+        },
+        // GET ALL LOCATIONS WITH OFFERS
+        locationsWithOffers: {
+            type: new GraphQLList(arrayLocationType),
+            args: {},
+            resolve:  async (root, args, context, info)=> {
+                const projections = getProjection(info);
+                var items = [];
+                await EntityModel.find({'type':'restaurant'}).select(projections)
+                .distinct('locationSlug', function(error, ids) {
+                }).then((result) => {
+                    for (var j = 0; j < result.length; j++){
+                        items.push({location: result[j]});
+                    }
+                });
+                if (!items) {
+                    throw new Error('Error while fetching location data.')
+                }
+                return items
+            }
+        },
+        // GET A RANDOM SAMPLE OF OFFERS
+        randomOffers: {
+            type: new GraphQLList(entityType),
+            args: {
+                pageSize: { type: GraphQLInt },
+                page: { type: GraphQLInt },
+                locationSlug: { type: GraphQLString },
+                count: { type: GraphQLInt }
+              },
+            resolve:  async (root, args, context, info)=> {
+                const { pageSize, page,locationSlug,count } = args;
+                const projections = getProjection(info);
+                const items = await EntityModel.aggregate(
+                    [
+                        {$match:{'type':'restaurant', 'locationSlug': args.locationSlug}},
+                        {$sample: { size: args.count }}
+                    ]).skip(pageSize * (page - 1))
+                    .limit(pageSize)
+                    .exec();
+                if (!items) {
+                    throw new Error('Error while fetching random offers data.')
+                }
+                return items
+            }
+        },
+        // GET ALL OFFERS IN A LOCATION
+        offers: {
+            type: new GraphQLList(entityType),
+            args: {
+                pageSize: { type: GraphQLInt },
+                page: { type: GraphQLInt },
+                locationSlug: { type: GraphQLString },
+              },
+            resolve:  async (root, args, context, info)=> {
+                const { pageSize, page } = args;
+                // const projections = getProjection(info);
+                const items = await EntityModel.aggregate([
+                    {$match:{'type':'offers', 'locationSlug': args.locationSlug}},
+                    {$unwind: "$offers"},
+                    {$sort: {"offers.score":-1}},
+                    {$group: {_id:"$_id", offers: {$push:"$offers"}}}
+                    ]).skip(pageSize * (page - 1))
+                    .limit(pageSize)
+                    .exec();
+                if (!items) {
+                    throw new Error('Error while fetching offers data.')
+                }
+                return items
+            }
+        },
+        // GET ALL OFFERS
+        allOffers: {
+            type: new GraphQLList(entityType),
+            args: {
+                pageSize: { type: GraphQLInt },
+                page: { type: GraphQLInt }
+              },
+            resolve:  async (root, args, context, info)=> {
+                const { pageSize, page } = args;
+                const items = await EntityModel.aggregate([
+                    {$match:{'type':'offers'}},
+                    {$unwind: "$offers"},
+                    {$sort: {"offers.score":-1}},
+                    {$group: {_id:"$_id", offers: {$push:"$offers"}}}
+                    ]).skip(pageSize * (page - 1))
+                    .limit(pageSize)
+                    .exec();
+                if (!items) {
+                    throw new Error('Error while fetching offers data.')
+                }
+                return items
+            }
+        }
+    }
+  }
 });

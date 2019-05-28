@@ -4,7 +4,7 @@ const $ = require('cheerio');
 const settings = require('../settings');
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
-const dbutils = require('./db');
+const dbutils = require('../scraper/db');
 // ########## START DB STUFF ####################
 var db;
 var dbClient;

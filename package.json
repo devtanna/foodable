@@ -7,7 +7,7 @@
     "dev": "next -p 5000",
     "build": "next build",
     "start": "next start -p 5000",
-    "prod": "next -p 5000"
+    "prod": "NODE_ENV=production next -p 5000"
   },
   "repository": {
     "type": "git",
@@ -21,30 +21,39 @@
   "homepage": "https://gitlab.com/devtanna/foodable#readme",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "apollo-boost": "^0.3.1",
+    "apollo-cache-inmemory": "^1.5.1",
+    "apollo-client": "^2.5.1",
+    "apollo-link-http": "^1.5.14",
     "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.2",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-graphql": "^0.8.0",
     "file-loader": "^3.0.1",
+    "graphql": "^14.2.1",
     "isomorphic-unfetch": "^3.0.0",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.5",
     "next": "^8.0.3",
     "nprogress": "^0.2.0",
+    "objects-to-csv": "^1.2.1",
+    "puppeteer": "^1.15.0",
     "react": "^16.8.5",
+    "react-apollo": "^2.5.5",
     "react-dom": "^16.8.5",
     "react-rating": "^1.6.2",
     "react-toastify": "^4.5.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
-    "mongodb": "^3.2.3",
-    "objects-to-csv": "^1.2.1",
-    "puppeteer": "^1.15.0",
-    "express": "^4.16.4",
-    "express-graphql": "^0.8.0",
-    "graphql": "^14.2.1",
-    "mongoose": "^5.5.5"
+    "universal-cookie": "^4.0.0"
   },
   "devDependencies": {
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
-    "prettier": "1.17.1"
+    "prettier": "1.17.1",
+    "nodemon": "^1.19.1"
   },
   "husky": {
     "hooks": {

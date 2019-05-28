@@ -3,9 +3,8 @@ const $ = require('cheerio');
 
 const settings = require('../settings');
 const utils = require('./utils');
-const dbutils = require('./db');
+const dbutils = require('../scraper/db');
 // ########## START DB STUFF ####################
-// var scraper_name = 'Location script';
 var db;
 var dbClient;
 // Initialize connection once at the top of the scraper
@@ -65,14 +64,7 @@ const getLocations = async page => {
     if (urls.length > 0) {
       cleanupOldCollections(db);
 
-      // var currentdate = new Date();
-      // var datetime = currentdate.getDate() + "_"
-      //     + (currentdate.getMonth()+1)  + "_"
-      //     + currentdate.getFullYear();
-      // var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
-      // var locationCollection = db.collection(collectionName);
-
-      var collectionName = dbutils.getCurrentMealTimeDBCollection();
+      var collectionName = dbutils.getCurrentMealTimeDBCollection()
       var locationCollection = db.collection(collectionName);
 
       locationCollection
@@ -109,12 +101,6 @@ function cleanupOldCollections(db) {
       .drop()
       .catch(e => {});
 
-    // var datetime = date.getDate() + "_"
-    //         + (date.getMonth()+1)  + "_"
-    //         + date.getFullYear();
-    // var collectionName = settings.MONGO_COLLECTION_NAME + datetime;
-    // var locationCollection = db.collection(collectionName);
-    // locationCollection.drop().catch(e => console.error(''));
     console.log('Location script: Location collections cleaned up.');
   }
 }

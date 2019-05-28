@@ -11,8 +11,6 @@ Run this first to load the locations
 - ```node scraper/ubereats.js```
 
 
-This is the only subset of scrapers working for now. More will be added when availible here. You can run these in any order at any given time.
-
 - ```node scraper/reindex_offers.js```
 
 
@@ -39,6 +37,10 @@ Run this at any given time after any number of scraper runs to generate the offe
 4) Endpoints:
     - ```http://localhost:4000/graphql```
 
+### Docker nginx endpoints:
+
+Please add the line ```127.0.0.1 foodable.local``` to your /etc/hosts. Remember to edit the hosts file with sudo.
+
 ### Example Queries:
 Get all locations
 
@@ -48,7 +50,8 @@ Get all locations
     locationSlug,
     locationName
   }
-}`
+}
+`
 
 Get offers in a certain location input. Each offer item is sorted in descending order by score internally.
 
@@ -78,21 +81,49 @@ Get a list of X Random offers.
 query{
   randomOffers(count:4 page:1 pageSize:3 locationSlug:"al-karama"){
     _id,
-    offers{
-      title,
-      cuisine,
-      offer,
-      score,
-      source,
-      locationSlug,
-      rating,
-      cost_for_two,
-      votes,
-      image,
-      href
-    }
+    title,
+    cuisine,
+    offer,
+    score,
+    source,
+    locationSlug,
+    rating,
+    cost_for_two,
+    votes,
+    image,
+    href
   }
-}`
+}
+`
+
+Get list of locations with offers
+
+`
+query{
+  locationsWithOffers{
+    location
+  }
+}
+`
+
+ENDPOINT for contact us
+`http://foodable.local:8090/contactus`
+
+POST DATA Example for contact us
+`{
+  "email": "\"dev.tanna@gmail.com\"",
+  "message": "\"test message\""
+}
+`
+
+ENDPOINT for subscribe
+`http://foodable.local:8090/subscribe`
+
+POST DATA Example for subscribe
+`{
+  "email": "\"dev.tanna@gmail.com\""
+}
+`
 
 Please Note: 
     - You will need to run the scraper manually to poopulate the db with data.

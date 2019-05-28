@@ -1,5 +1,19 @@
-version: "2"
+version: "3"
 services:
+  nginx-proxy:
+    image: nginx:latest
+    ports:
+      - "8090:80"
+    volumes:
+      - ./docker/nginx/:/etc/nginx/conf.d/
+    depends_on:
+      - foodable_front
+      - foodable_back
+    links:
+      - foodable_back
+      - foodable_front
+      - mongo
+
   foodable_front:
     container_name: foodable_front
     restart: always
@@ -13,24 +27,32 @@ services:
       dockerfile: ./docker/front/Dockerfile
     ports:
       - "5000:5000"
+    depends_on:
+      - foodable_back
     links:
       - foodable_back
-  
+      - mongo
+
   foodable_back:
     container_name: foodable_back
     restart: always
+    volumes:
+      - .:/app
     build:
       context: .
       dockerfile: ./docker/back/Dockerfile
     ports:
       - "4000:4000"
+    depends_on:
+      - mongo
     links:
       - mongo
-      - scraper
   
   scraper:
     container_name: scraper
     restart: always
+    volumes:
+      - .:/app
     build:
       context: .
       dockerfile: ./docker/scraper/Dockerfile

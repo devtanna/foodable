@@ -26,69 +26,51 @@ let browser;
 let page;
 
 const scrapePage = async (pageNum = 1) => {
-  try {
-    const url = `https://www.zomato.com/dubai/restaurants?offers=1&page=${pageNum}`;
-    await page.goto(url, settings.PUPPETEER_GOTO_PAGE_ARGS);
-    const html = await page.content();
-    let result = [];
+    try {
+        const url = `https://www.zomato.com/dubai/restaurants?offers=1&page=${pageNum}`;
+        await page.goto(url, settings.PUPPETEER_GOTO_PAGE_ARGS);
+        const html = await page.content();
+        let result = [];
 
-    $('.search-result', html).each(function() {
-      let cuisine = [];
+        $('.search-result', html).each(function() {
+            let cuisine = [];
 
-      $('.search-page-text .nowrap a', this).each(function() {
-        cuisine.push($(this).text());
-      });
+            $('.search-page-text .nowrap a', this).each(function() {
+                cuisine.push($(this).text());
+            });
+            
+            var singleItem = {
+                title: $('.result-title', this).text().trim(),
+                href: $('.result-title', this).prop('href'),
+                image: cleanImg($('.feat-img', this).css('background-image')),
+                location: $('.search_result_subzone', this).text().trim(), 
+                address: $('.search-result-address', this).text().trim(), 
+                cuisine: cuisine.join(','),
+                offer: $('.res-offers .zgreen', this).text().trim(),
+                rating: $('.rating-popup', this).text().trim(),
+                votes: $('[class^="rating-votes-div"]', this).text().trim(),
+                cost_for_two: $('.res-cost span:nth-child(2)', this).text().trim(),
+                source: `${scraper_name}`,
+                slug: utils.slugify($('.result-title', this).text().trim()),
+                'type': 'restaurant'
+            };
 
-      var singleItem = {
-        title: $('.result-title', this)
-          .text()
-          .trim(),
-        href: $('.result-title', this).prop('href'),
-        image: $('.feat-img', this).css('background-image'),
-        location: $('.search_result_subzone', this)
-          .text()
-          .trim(),
-        address: $('.search-result-address', this)
-          .text()
-          .trim(),
-        cuisine: cuisine.join(','),
-        offer: $('.res-offers .zgreen', this)
-          .text()
-          .trim(),
-        rating: $('.rating-popup', this)
-          .text()
-          .trim(),
-        votes: $('[class^="rating-votes-div"]', this)
-          .text()
-          .trim(),
-        cost_for_two: $('.res-cost span:nth-child(2)', this)
-          .text()
-          .trim(),
-        source: `${scraper_name}`,
-        slug: utils.slugify(
-          $('.result-title', this)
-            .text()
-            .trim()
-        ),
-        type: 'restaurant',
-      };
+            // meta fields
+            singleItem['score'] = utils.calculateScore(singleItem);
+            
+            // if no offer, then skip
+            if (singleItem.offer.length > 0 ){
+                var index = result.indexOf(singleItem); // dont want to push duplicates
+                if (index === -1){
+                    result.push(singleItem);
+                }
+            }
+        });
 
-      // meta fields
-      singleItem['score'] = utils.calculateScore(singleItem);
-
-      // if no offer, then skip
-      if (singleItem.offer.length > 0) {
-        var index = result.indexOf(singleItem); // dont want to push duplicates
-        if (index === -1) {
-          result.push(singleItem);
-        }
-      }
-    });
-
-    return { result, goNext: $('.paginator_item.next.item', html).length > 0 };
-  } catch (error) {
-    console.log(error);
-  }
+        return { result, goNext: $('.paginator_item.next.item', html).length > 0 };
+    } catch(error) {
+        console.log(error);
+    }
 };
 
 let hasNext = true;
@@ -134,3 +116,20 @@ const run = async () => {
 };
 
 run();
+
+function cleanImg(img) {
+	let imgSrc = img;
+	let hasImg = imgSrc !== '';
+	
+	if (imgSrc) {
+		if (imgSrc.includes('url("')) {
+			imgSrc = imgSrc.replace('url("', "");
+  		imgSrc = imgSrc.slice(0, -2);
+		} else if(imgSrc.includes('url(')) {
+			imgSrc = imgSrc.replace('url(', "");
+  		imgSrc = imgSrc.slice(0, -1);
+		}
+	}
+
+  return imgSrc;
+}
