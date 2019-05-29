@@ -3,29 +3,29 @@ echo "---starting script---"
 date
 echo "---starting script---" >> /var/log/cron.log
 date >> /var/log/cron.log
-echo "-"
+echo "-", "(1/12)"
 node scraper/locations.js >> /var/log/cron.log
-echo "--"
+echo "--", "(2/12)"
 node scraper/talabat.js >> /var/log/cron.log
-echo "---"
+echo "---", "(3/12)"
 node scraper/reindex_offers.js >> /var/log/cron.log
-echo "----"
+echo "----", "(4/12)"
 node scraper/ubereats.js >> /var/log/cron.log
-echo "-----"
+echo "-----", "(5/12)"
 node scraper/reindex_offers.js >> /var/log/cron.log
-echo "------"
+echo "------", "(6/12)"
 node scraper/deliveroo.js >> /var/log/cron.log
-echo "-------"
+echo "-------", "(7/12)"
 node scraper/reindex_offers.js >> /var/log/cron.log
-echo "--------"
+echo "--------", "(8/12)"
 node scraper/carriage.js >> /var/log/cron.log
-echo "---------"
+echo "---------", "(9/12)"
 node scraper/reindex_offers.js >> /var/log/cron.log
-echo "----------"
+echo "----------", "(10/12)"
 node scraper/zomato.js >> /var/log/cron.log
-echo "-----------"
+echo "-----------", "(11/12)"
 node scraper/reindex_offers.js >> /var/log/cron.log
-echo "------------"
+echo "------------", "(12/12)"
 date >> /var/log/cron.log
 echo "---script done---" >> /var/log/cron.log
 echo "---script done---"

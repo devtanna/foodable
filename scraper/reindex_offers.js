@@ -81,6 +81,7 @@ async function reindex(db, dbClient) {
                   slug: current_restaturant_slug,
                   locationSlug: current_restaturant['locationSlug'],
                   locationId: current_restaturant['locationId'],
+                  locationName: current_restaturant['locationName'],
                 },
                 update: {
                   $addToSet: {
@@ -99,6 +100,7 @@ async function reindex(db, dbClient) {
                   slug: current_restaturant_slug,
                   locationSlug: current_restaturant['locationSlug'],
                   locationId: current_restaturant['locationId'],
+                  locationName: current_restaturant['locationName'],
                 },
                 update: {
                   $addToSet: {
@@ -124,6 +126,7 @@ async function reindex(db, dbClient) {
               slug: current_restaturant_slug,
               locationSlug: current_restaturant['locationSlug'],
               locationId: current_restaturant['locationId'],
+              locationName: current_restaturant['locationName'],
             },
             update: {
               $addToSet: {

@@ -32,6 +32,7 @@ async function process_results(
         if (cmp_score > 0.8) {
           mergedResults[i]['locationId'] = locations[j]['_id'];
           mergedResults[i]['locationSlug'] = locations[j]['locationSlug'];
+          mergedResults[i]['locationName'] = locations[j]['locationName'];
           mergedResults[i]['added'] = dbutils.getCurrentHour();
           ops.push({
             updateOne: {

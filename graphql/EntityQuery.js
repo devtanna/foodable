@@ -64,33 +64,6 @@ exports.EntityQuery = new GraphQLObjectType({
           return items;
         },
       },
-      // GET A RANDOM SAMPLE OF OFFERS
-      randomOffers: {
-        type: new GraphQLList(entityType),
-        args: {
-          pageSize: { type: GraphQLInt },
-          page: { type: GraphQLInt },
-          locationSlug: { type: GraphQLString },
-          count: { type: GraphQLInt },
-        },
-        resolve: async (root, args, context, info) => {
-          const { pageSize, page, locationSlug, count } = args;
-          const projections = getProjection(info);
-          const items = await EntityModel.aggregate([
-            {
-              $match: { type: 'restaurants', locationSlug: args.locationSlug },
-            },
-            { $sample: { size: args.count } },
-          ])
-            .skip(pageSize * (page - 1))
-            .limit(pageSize)
-            .exec();
-          if (!items) {
-            throw new Error('Error while fetching random offers data.');
-          }
-          return items;
-        },
-      },
       // GET ALL RESTAURANTS
       allRestaurants: {
         type: new GraphQLList(entityType),
@@ -107,7 +80,7 @@ exports.EntityQuery = new GraphQLObjectType({
             .limit(pageSize)
             .exec();
           if (!items) {
-            throw new Error('Error while fetching all data.');
+            throw new Error('Error while fetching all restaurants data.');
           }
           return items;
         },
@@ -128,28 +101,33 @@ exports.EntityQuery = new GraphQLObjectType({
             .limit(pageSize)
             .exec();
           if (!items) {
-            throw new Error('Error while fetching location data.');
+            throw new Error('Error while fetching all location data.');
           }
           return items;
         },
       },
       // GET ALL LOCATIONS WITH OFFERS
       locationsWithOffers: {
-        type: new GraphQLList(arrayLocationType),
+        type: new GraphQLList(entityType),
         args: {},
         resolve: async (root, args, context, info) => {
           const projections = getProjection(info);
-          var items = [];
-          await EntityModel.find({ type: 'restaurant' })
-            .select(projections)
-            .distinct('locationSlug', function(error, ids) {})
-            .then(result => {
-              for (var j = 0; j < result.length; j++) {
-                items.push({ location: result[j] });
-              }
-            });
+          const items = await EntityModel.aggregate([
+            { $match: { type: 'offers' } },
+            {
+              $group: {
+                _id: '$locationId',
+                locationSlug: {
+                  $first: '$locationSlug',
+                },
+                locationName: {
+                  $first: '$locationName',
+                },
+              },
+            },
+          ]).exec();
           if (!items) {
-            throw new Error('Error while fetching location data.');
+            throw new Error('Error while fetching locationWithOffers data.');
           }
           return items;
         },
@@ -224,7 +202,7 @@ exports.EntityQuery = new GraphQLObjectType({
             .limit(pageSize)
             .exec();
           if (!items) {
-            throw new Error('Error while fetching offers data.');
+            throw new Error('Error while fetching all offers data.');
           }
           return items;
         },
