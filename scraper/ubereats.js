@@ -147,6 +147,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     );
 
     // max number of pages to scroll through
+    // TESTING TODO
     let maxPage = 2;
     // Scroll and extract items from the page.
     let res = await scrapeInfiniteScrollItems(page, maxPage);

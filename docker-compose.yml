@@ -50,10 +50,13 @@ services:
   
   scraper:
     container_name: scraper
-    command: ["sh", "-c", "tail -f /dev/null"]
+    command: >
+      sh -c "sh ./run_all_scrapers_script.sh &&
+             tail -f /dev/null"
     restart: always
     volumes:
       - .:/app
+      - /app/node_modules/
     build:
       context: .
       dockerfile: ./docker/scraper/Dockerfile

@@ -15,12 +15,10 @@ COPY docker/scraper/scraper-cron /etc/cron.d/scraper-cron
 COPY docker/scraper/run_all_scrapers_script.sh .
 
 # Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/scraper-cron && chmod 777 run_all_scrapers_script.sh && touch /var/log/cron.log && npm install puppeteer
+RUN chmod 0644 /etc/cron.d/scraper-cron && chmod 777 ./run_all_scrapers_script.sh && touch /var/log/cron.log
 
 # Apply cron job
 # RUN crontab /etc/cron.d/scraper-cron
 
 # Run the command on container startup
 # CMD ["cron", "-f"]
-
-CMD ["sh", "run_all_scrapers_script.sh"]

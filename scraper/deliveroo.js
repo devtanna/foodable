@@ -145,6 +145,7 @@ const run = async () => {
   const links = await getLocations();
   console.log('Deliveroo: Number of locations: ' + links.length);
   for (let i = 0; i < links.length; i++) {
+    // TESTTING TODO
     if (links[i].url.indexOf('karama') < 0) {
       continue;
     }

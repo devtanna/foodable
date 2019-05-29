@@ -1,21 +1,33 @@
-import ApolloClient from "apollo-client";
-import { gql } from "apollo-boost";
+import ApolloClient from 'apollo-client';
+import { gql } from 'apollo-boost';
 import fetch from 'isomorphic-unfetch';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const settings = require('../settings');
 
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: 'no-cache',
+    errorPolicy: 'ignore',
+  },
+  query: {
+    fetchPolicy: 'no-cache',
+    errorPolicy: 'all',
+  },
+};
+
 const client = new ApolloClient({
   link: createHttpLink({
     uri: settings.BACKEND_ENDPOINT,
-    fetch: fetch
+    fetch: fetch,
   }),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  defaultOptions: defaultOptions,
 });
 
-export const getOffers = async (location) => {
-	try {
+export const getOffers = async location => {
+  try {
     const res = await client.query({
       query: gql`
         {
@@ -36,16 +48,16 @@ export const getOffers = async (location) => {
             }
           }
         }
-      `
+      `,
     });
 
     return res.data;
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   }
-}
+};
 
-export const getRandomOffers = async (location) => {
+export const getRandomOffers = async location => {
   try {
     const res = await client.query({
       query: gql`
@@ -65,30 +77,30 @@ export const getRandomOffers = async (location) => {
 				    href
 				  }
 				}
-      `
+      `,
     });
 
     return res.data;
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   }
-}
+};
 
 export const getLocations = async () => {
-    try {
+  try {
     const res = await client.query({
       query: gql`
         {
           locations {
-            key: _id,
-            value: locationSlug,
+            key: _id
+            value: locationSlug
             text: locationName
           }
         }
-      `
+      `,
     });
     return res.data;
-  } catch(e) {
+  } catch (e) {
     console.log(e);
-  } 
-}
+  }
+};
