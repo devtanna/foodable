@@ -42,6 +42,19 @@ Run this at any given time after any number of scraper runs to generate the offe
 
 Please add the line `127.0.0.1 foodable.local` to your /etc/hosts. Remember to edit the hosts file with sudo.
 
+### Database cleanup:
+
+`node scraper/cleanup/dbClean.js`
+
+### Running a test run of scrapers
+
+1. Build the scraper container (only has to be done once)
+2. Once built it will run a script to run all scrapers
+3. If you want to run the scrapers again
+   a) `docker stop scraper`
+   b) `docker start scraper`
+4. The scraper takes about 4min to complete (this is just a test run (subset) of all scraper results)
+
 ### Example Queries:
 
 Get all locations
@@ -72,4 +85,4 @@ ENDPOINT for subscribe
 POST DATA Example for subscribe
 `{ "email": "\"dev.tanna@gmail.com\"" }`
 
-Please Note: - You will need to run the scraper manually to poopulate the db with data.
+Please Note: - You will need to run the scraper manually to po pulate the db with data.
