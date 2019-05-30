@@ -1,6 +1,6 @@
-# Scrappers written in node
+# Foodable
 
-### Running the scrapers:
+### Running the scrapers locally:
 
 `node scraper/location.js`
 Run this first to load the locations
@@ -15,32 +15,32 @@ Run this first to load the locations
 
 Run this at any given time after any number of scraper runs to generate the offers.
 
-### Docker Commands:
+# Docker:
 
-1. Install Docker
+Install Docker
 
-2. Build and Run the containers
+#### Running the foodable stack:
 
-   - `docker-compose up --build foodable_front`
+_Build_ the stack like this
 
-   This is for the frontend. Port: `5000!`
+`docker-compose up --build scraper foodable_front foodable_back mongo nginx-proxy`
 
-   - `docker-compose up --build foodable_back`
+Then to _stop_ the stack
 
-   This is for the backend. Port: `4000!`
+`docker stop scraper foodable_front foodable_back mongo nginx-proxy`
 
-3. Stop the containers
+Then to _start_ the stack
 
-- `docker stop foodable_front`
-- `docker stop foodable_back`
-- `docker stop mongo`
+`docker-compose up scraper foodable_front foodable_back mongo nginx-proxy`
 
-4. Endpoints:
-   - `http://localhost:4000/graphql`
-
-### Docker nginx endpoints:
+#### Docker endpoints:
 
 Please add the line `127.0.0.1 foodable.local` to your /etc/hosts. Remember to edit the hosts file with sudo.
+
+Endpoints:
+
+- `http://foodable.local:8090/`
+- `http://foodable.local:8090/graphql`
 
 ### Database cleanup:
 
@@ -48,7 +48,7 @@ Please add the line `127.0.0.1 foodable.local` to your /etc/hosts. Remember to e
 
 ### Running a test run of scrapers
 
-1. Build the scraper container (only has to be done once)
+1. Build the scraper container (only has to be done once) or skip if you followed the docker setup above
 2. Once built it will run a script to run all scrapers
 3. If you want to run the scrapers again
    a) `docker stop scraper`
@@ -84,5 +84,3 @@ ENDPOINT for subscribe
 
 POST DATA Example for subscribe
 `{ "email": "\"dev.tanna@gmail.com\"" }`
-
-Please Note: - You will need to run the scraper manually to po pulate the db with data.
