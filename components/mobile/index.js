@@ -1,9 +1,10 @@
 import React, { Fragment, useContext } from 'react';
 import { Icon, Menu, Sidebar } from 'semantic-ui-react';
+import Link from 'next/link';
 import { AppContext } from '../../helpers/contexts';
 import Listings from './Listings';
 
-const Foodables = () => {
+const Foodables = ({ offers, randomOffers, location }) => {
   const { sidebarVisible, setSidebarVisible } = useContext(AppContext);
 
   return (
@@ -11,28 +12,36 @@ const Foodables = () => {
       <Sidebar.Pushable>
         <Sidebar
           as={Menu}
-          direction='right'
-          animation='overlay'
+          direction="right"
+          animation="overlay"
           onHide={() => setSidebarVisible(false)}
           vertical
           visible={sidebarVisible}
-          width='thin'
-        >
+          width="thin">
           <Menu.Item>
             <div className="location__current">
-              <Icon name="map marker alternate" size="big" color="grey" /> 
+              <Icon name="map marker alternate" size="big" color="grey" />
               <div>
                 <div className="addressHeading">Delivery address:</div>
-                <div className="address">Dubai, Umm al Sheif</div>
+                <div className="address">Dubai, {location.text}</div>
               </div>
             </div>
             <div className="location__change">
-              <a href="#"><Icon name="edit outline" /> Change Location</a>
+              <Link href="/select-area">
+                <a onClick={() => setSidebarVisible(false)}>
+                  <Icon name="edit outline" />
+                  Change Location
+                </a>
+              </Link>
             </div>
           </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher dimmed={sidebarVisible}>
-          <Listings />
+          <Listings
+            offers={offers}
+            randomOffers={randomOffers}
+            location={location}
+          />
         </Sidebar.Pusher>
       </Sidebar.Pushable>
       <style jsx>{`
@@ -55,6 +64,6 @@ const Foodables = () => {
       `}</style>
     </Fragment>
   );
-}
+};
 
 export default Foodables;

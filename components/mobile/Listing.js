@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { Icon, Accordion } from 'semantic-ui-react';
+import { offerSources } from '../../helpers/constants';
 
-const Listing = () => {
+const Listing = ({ offer }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
 
   const handleAccordion = (e, titleProps) => {
-    const { index } = titleProps
-    const newIndex = activeIndex === index ? -1 : index
+    const { index } = titleProps;
+    const newIndex = activeIndex === index ? -1 : index;
     setActiveIndex(newIndex);
-  }
+  };
+
+  const mainOffer = offer.offers[0];
+  const otherOffers = offer.offers.slice(1);
+  const hasImg = mainOffer.image !== '';
+  const imgSrc = hasImg ? mainOffer.image : '/static/placeholder.png';
 
   return (
     <div className="listing">
       <div className="listing__img">
-        <img src="/static/placeholder.png" />
+        <img src={imgSrc} />
       </div>
       <div className="listing__content">
         <div className="listing__meta">
           <div className="meta__name">
-            Hardees
-            <small className="meta__cuisine">Burger, Fast Food</small>
+            {mainOffer.title}
+            <small className="meta__cuisine">{mainOffer.cuisine}</small>
           </div>
-          <div className="meta__rating">
+          {/*<div className="meta__rating">
             <Rating
               className="rating__stars"
               readonly
@@ -30,62 +36,66 @@ const Listing = () => {
               emptySymbol={<Icon name="star" size="small" color="teal" />}
               fullSymbol={<Icon name="star" size="small" color="olive" />}
             />
-          </div>
+          </div>*/}
         </div>
-        <div className="bestOffer talabat">
-          <div className="bestOffer__heading"><span>Talabat</span></div>
-          <div className="bestOffer__offer">30% Off on all orders</div>
+        <div className="bestOffer">
+          <div className="bestOffer__heading">
+            <span>{mainOffer.source}</span>
+          </div>
+          <div className="bestOffer__offer">{mainOffer.offer}</div>
           <div className="bestOffer__footer">
-            <div>View Deal</div> 
-            <div><Icon size="small" name="arrow right" /></div>
+            <div>View Deal</div>
+            <div>
+              <Icon size="small" name="arrow right" />
+            </div>
           </div>
         </div>
       </div>
-      <div className="otherOffers">
-        <Accordion>
-          <Accordion.Title active={activeIndex === 0} index={0} onClick={handleAccordion} className="accordionTitle">
-            <div className="showMoreBtn">
-              Show more deals <Icon name="arrow alternate circle down outline" />
-            </div>
-          </Accordion.Title>
-          <Accordion.Content active={activeIndex === 0} className="accordionContent">
-            <ul className="otherOffers__list">
-              <li>
-                <a className="otherOffer__offer" href="#">
-                  <span>Zomato</span>
-                  <span>30% Off on all orders</span>
-                  <Icon name="angle right" />
-                </a>
-              </li>
-              <li>
-                <a className="otherOffer__offer" href="#">
-                  <span>Zomato</span>
-                  <span>30% Off on all orders</span>
-                  <Icon name="angle right" />
-                </a>
-              </li>
-              <li>
-                <a className="otherOffer__offer" href="#">
-                  <span>Zomato</span>
-                  <span>30% Off on all orders</span>
-                  <Icon name="angle right" />
-                </a>
-              </li>
-            </ul>
-          </Accordion.Content>
-        </Accordion>
-      </div>
+      {otherOffers.length > 0 && (
+        <div className="otherOffers">
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 0}
+              index={0}
+              onClick={handleAccordion}
+              className="accordionTitle">
+              <div className="showMoreBtn">
+                Show more deals{' '}
+                <Icon name="arrow alternate circle down outline" />
+              </div>
+            </Accordion.Title>
+            <Accordion.Content
+              active={activeIndex === 0}
+              className="accordionContent">
+              <ul className="otherOffers__list">
+                {otherOffers.map((otherOffer, index) => (
+                  <li key={index}>
+                    <a
+                      className="otherOffer__offer"
+                      href={otherOffer.href}
+                      target="_blank">
+                      <span>{otherOffer.source}</span>
+                      <span>{otherOffer.offer}</span>
+                      <Icon name="angle right" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Accordion.Content>
+          </Accordion>
+        </div>
+      )}
       <style jsx>{`
         .listing {
           display: grid;
           grid-template-columns: 35% 65%;
           background: #fff;
-          box-shadow: 0 1px 4px rgba(41, 51, 57, .3);
+          box-shadow: 0 1px 4px rgba(41, 51, 57, 0.3);
           margin-bottom: 15px;
         }
         .listing__content {
           display: block;
-          padding: 5px;
+          padding: 10px;
         }
         .listing__img {
           padding: 5px;
@@ -107,13 +117,13 @@ const Listing = () => {
           font-size: 16px;
         }
         .meta__cuisine {
-          color: #8F8F8F;
+          color: #8f8f8f;
           display: block;
           font-weight: normal;
           font-size: 13px;
         }
         .bestOffer__heading {
-          font-size: 14px;
+          font-size: 15px;
           font-weight: bold;
           color: #333;
         }
@@ -126,17 +136,17 @@ const Listing = () => {
           display: flex;
           justify-content: center;
           align-items: center;
-          background: linear-gradient(270deg, #F34343 18.23%, #FD7650 100%);
+          background: linear-gradient(270deg, #f34343 18.23%, #fd7650 100%);
           color: #fff;
           font-size: 11px;
           font-weight: bold;
           text-transform: uppercase;
           padding: 5px 0;
           margin-top: 5px;
+          border-radius: 4px;
         }
         .otherOffers {
           grid-column-end: span 2;
-          margin-top: 5px;
         }
         .showMoreBtn {
           border-top: 1px solid #eaeaea;
@@ -162,8 +172,8 @@ const Listing = () => {
           border-bottom: none;
         }
         .otherOffer__offer {
-          display: flex;
-          justify-content: space-between;
+          display: grid;
+          grid-template-columns: 1fr 2fr auto;
           color: #666;
         }
         :global(.accordionTitle, .accordionContent) {

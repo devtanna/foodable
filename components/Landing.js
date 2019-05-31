@@ -4,9 +4,7 @@ import { device } from '../helpers/device';
 import Cookies from 'universal-cookie';
 import Router from 'next/router';
 
-const CITIES = [
-  { key: 'dubai', text: 'Dubai', value: 'dubai' }
-];
+const CITIES = [{ key: 'dubai', text: 'Dubai', value: 'dubai' }];
 
 const cookies = new Cookies();
 
@@ -19,34 +17,38 @@ const Landing = ({ locations }) => {
     cookies.set('location', selectedLocation);
 
     Router.push('/');
-  }
+  };
 
   return (
     <main>
       <div className="wrapper">
         <img className="logo" src="/static/logo.svg" />
-        <h1>Discover and compare food deals from top local delivery services!</h1>
+        <h1>
+          Discover and compare food deals from top local delivery services!
+        </h1>
         <div className="ctaWrapper">
-          <Dropdown 
+          <Dropdown
             selection
-            placeholder='Choose your city' 
-            fluid 
-            options={CITIES} 
-            defaultValue='dubai'
+            placeholder="Choose your city"
+            fluid
+            options={CITIES}
+            defaultValue="dubai"
             disabled
             className="fdbDropdown"
           />
-          <Dropdown 
+          <Dropdown
             selection
-            placeholder='Select your area' 
-            fluid 
+            placeholder="Select your area"
+            fluid
             search
-            options={locations} 
+            options={locations}
             onChange={(e, { value }) => setSelectedLocation(value)}
             value={selectedLocation}
             className="fdbDropdown"
           />
-          <Button onClick={handleSubmit} size="large" className="searchBtn">Get offers!</Button>
+          <Button onClick={handleSubmit} size="large" className="searchBtn">
+            Get offers!
+          </Button>
         </div>
       </div>
       <style jsx>{`
@@ -70,7 +72,7 @@ const Landing = ({ locations }) => {
         }
         h1 {
           font-size: 20px;
-          color: #7C7C7C;
+          color: #7c7c7c;
           margin: 30px;
         }
         .ctaWrapper {
@@ -95,7 +97,7 @@ const Landing = ({ locations }) => {
         }
         @media ${device.tablet} {
           main {
-            background: #fff url('/static/lp-bg.svg') 0 100% no-repeat;
+            background: #fff url('/static/lp-bg.svg') 0 105% no-repeat;
             background-size: 100%;
           }
           .wrapper {
@@ -110,7 +112,7 @@ const Landing = ({ locations }) => {
         }
       `}</style>
     </main>
-  )
+  );
 };
 
 export default Landing;

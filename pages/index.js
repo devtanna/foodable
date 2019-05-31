@@ -10,24 +10,32 @@ const Index = ({ offers, randomOffers, selectedLocation = null }) => {
   return (
     <div className="wrapper">
       <div className="mobile">
-        <FoodablesMobile offers={offers} />
+        <FoodablesMobile
+          offers={offers}
+          randomOffers={randomOffers}
+          location={selectedLocation}
+        />
       </div>
       <div className="desktop">
-        <FoodablesDesktop offers={offers} randomOffers={randomOffers} location={selectedLocation} />
+        <FoodablesDesktop
+          offers={offers}
+          randomOffers={randomOffers}
+          location={selectedLocation}
+        />
       </div>
       <style jsx>{`
         .wrapper {
           height: 100%;
         }
         .desktop {
-          display: none; 
+          display: none;
         }
         @media ${device.tablet} {
           .mobile {
             display: none;
           }
           .desktop {
-            display: block; 
+            display: block;
           }
         }
       `}</style>
@@ -66,7 +74,7 @@ Index.getInitialProps = async ({ req, res }) => {
     } else {
       redirectToPage(res, '/select-area');
     }
-  } catch(e) {
+  } catch (e) {
     console.log(e);
     return {};
   }
