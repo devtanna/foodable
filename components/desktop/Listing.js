@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { Icon, Responsive } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
@@ -6,8 +6,11 @@ import { offerSources } from '../../helpers/constants';
 const Listing = ({ offer }) => {
   const mainOffer = offer.offers[0];
   const otherOffers = offer.offers.slice(1);
+  const moreOffers = otherOffers.slice(2);
   const hasImg = mainOffer.image !== '';
   const imgSrc = hasImg ? mainOffer.image : '/static/placeholder.png';
+
+  const [showMoreOffers, setShowMoreOffers] = useState(false);
 
   return (
     <div className="listing">
@@ -17,8 +20,13 @@ const Listing = ({ offer }) => {
       <div className="listing__content">
         <ListingMeta offer={mainOffer} />
         <BestOffer offer={mainOffer} />
-        <OtherOffers offers={otherOffers} />
+        <OtherOffers
+          offers={otherOffers}
+          isMoreOffersOpen={showMoreOffers}
+          toggleMore={setShowMoreOffers}
+        />
       </div>
+      <MoreOffers offers={moreOffers} isOpen={showMoreOffers} />
       <style jsx>{`
         .listing {
           display: grid;
@@ -169,8 +177,8 @@ const BestOffer = ({ offer }) => (
   </a>
 );
 
-const OtherOffers = ({ offers }) => {
-  if (offers.length === 0) return <div />;
+const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
+  if (offers.length === 0) return false;
 
   const hasMore = offers.length > 2;
 
@@ -187,12 +195,14 @@ const OtherOffers = ({ offers }) => {
         </a>
       ))}
       {hasMore && (
-        <div className="showMoreBtn">
+        <button
+          onClick={() => toggleMore(!isMoreOffersOpen)}
+          className="showMoreBtn">
           <div>Show more deals</div>
           <div>
             <Icon name="arrow alternate circle down outline" />
           </div>
-        </div>
+        </button>
       )}
       <style jsx>{`
         .otherOffers {
@@ -252,6 +262,69 @@ const OtherOffers = ({ offers }) => {
           justify-content: center;
           align-items: center;
           font-size: 11px;
+          border: 0;
+          outline: none;
+          cursor: pointer;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+const MoreOffers = ({ offers, isOpen }) => {
+  if (offers.length === 0 || !isOpen) return false;
+
+  return (
+    <div className="moreOffers">
+      <div />
+      <div />
+      <div className="otherOffers__listWrapper">
+        <ul className="otherOffers__list">
+          {offers.map((otherOffer, index) => (
+            <li key={index}>
+              <a
+                className="otherOffer__offer"
+                href={otherOffer.href}
+                target="_blank">
+                <span>{otherOffer.source}</span>
+                <span>{otherOffer.offer}</span>
+                <Icon name="angle right" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <style jsx>{`
+        .moreOffers {
+          grid-column: 2;
+          display: grid;
+          grid-template-columns: 1fr 0.9fr 0.8fr;
+        }
+        .otherOffers__listWrapper {
+          grid-column: 2 / span 3;
+          border-left: 1px solid #eaeaea;
+          margin: -1px;
+        }
+        .otherOffers__list {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          border-top: 1px solid #eaeaea;
+        }
+        .otherOffers__list li {
+          padding: 20px;
+          border-bottom: 1px solid #ddd;
+        }
+        .otherOffers__list li:hover {
+          background-color: #f5f5f5;
+        }
+        .otherOffers__list li:last-child {
+          border-bottom: none;
+        }
+        .otherOffer__offer {
+          display: grid;
+          grid-template-columns: 1fr 2fr auto;
+          color: #666;
         }
       `}</style>
     </div>
