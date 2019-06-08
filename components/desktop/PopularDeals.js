@@ -3,23 +3,31 @@ import { offerSources } from '../../helpers/constants';
 const PopularDeals = ({ deals }) => {
   return (
     <section className="wrapper">
-      {deals.map((deal, index) => {      	
-      	const hasNumber = deal.offer ? Number(deal.offer.match(/\d+/)) : false;
+      {deals.map((deal, index) => {
+        const hasNumber = deal.offer ? Number(deal.offer.match(/\d+/)) : false;
         const offerType = hasNumber ? 'offer--A' : 'offer--B';
         const hasImg = deal.image !== '';
-        let imgSrc = hasImg ? deal.image : '/static/placeholder.png';
+        const imgSrc = hasImg ? deal.image : '/static/placeholder.png';
         return (
-          <a href={deal.href} target="_blank" key={index} className={`deal ${deal.source}`}>
+          <a
+            href={deal.href}
+            target="_blank"
+            key={index}
+            className={`deal ${deal.source}`}>
             <div className="imgWrapper">
-              <img width={hasImg ? "100%" : "50%"} src={imgSrc} />
+              <img width={hasImg ? '100%' : '50%'} src={imgSrc} />
             </div>
             <div className="content">
-              <div className={`offer ${offerType}`}><span className="truncate">{deal.offer}</span></div>
-              <div className="title ">{deal.title}</div>
+              <div className={`offer ${offerType}`}>
+                <span className="truncate">{deal.offer}</span>
+              </div>
+              <div className="title">{deal.title}</div>
             </div>
-            <div className="footer"><span>Available on:</span></div>
+            <div className="footer">
+              <span>Available on:</span>
+            </div>
           </a>
-        )
+        );
       })}
       <style jsx>{`
         .wrapper {
@@ -37,21 +45,21 @@ const PopularDeals = ({ deals }) => {
           background: #fff;
         }
         .imgWrapper {
-        	display: flex;
-        	justify-content: center;
-        	align-items: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         .imgWrapper img {
           object-fit: scale-down;
           max-height: 100%;
         }
         .placeholderImg {
-        	display: flex;
-        	width: 100%;
-        	height: 100%;
-        	align-items: center;
-        	justify-content: center;
-        	background: #EAEAEA;
+          display: flex;
+          width: 100%;
+          height: 100%;
+          align-items: center;
+          justify-content: center;
+          background: #eaeaea;
         }
         .content {
           padding: 20px;
@@ -70,10 +78,10 @@ const PopularDeals = ({ deals }) => {
           margin-bottom: 15px;
         }
         .offer--A {
-          background: linear-gradient(270deg, #3ACA7C 18.23%, #88E0D0 100%);
+          background: linear-gradient(270deg, #3aca7c 18.23%, #88e0d0 100%);
         }
         .offer--B {
-          background: linear-gradient(270deg, #FF8A00 18.23%, #FFBA52 100%);
+          background: linear-gradient(270deg, #ff8a00 18.23%, #ffba52 100%);
         }
         .title {
           font-size: 20px;
@@ -93,14 +101,17 @@ const PopularDeals = ({ deals }) => {
           background-repeat: no-repeat;
           margin: 0 1px;
         }
-        ${Object.entries(offerSources).map(([key, value], index) => (
-	        `
+        ${Object.entries(offerSources)
+          .map(
+            ([key, value], index) =>
+              `
 	        	.deal.${key} .footer {
 	        		background-color: ${value.color};
 	        		background-image: url(${value.logo});
 	        	}
 	        `
-	      )).join('')}
+          )
+          .join('')}
         .truncate {
           white-space: nowrap;
           overflow: hidden;
@@ -109,7 +120,7 @@ const PopularDeals = ({ deals }) => {
         }
       `}</style>
     </section>
-  )
+  );
 };
 
 export default PopularDeals;

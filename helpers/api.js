@@ -63,17 +63,17 @@ export const getRandomOffers = async location => {
       query: gql`
         {
 				  randomOffers(count: 4, page: 1, pageSize: 4, locationSlug: "${location}") {
-				    _id
-				    title
-				    cuisine
-				    offer
-				    score
-				    source
-				    locationSlug
-				    rating
-				    cost_for_two
-				    votes
-				    image
+				    _id,
+				    title,
+				    cuisine,
+				    offer,
+				    score,
+				    source,
+				    locationSlug,
+				    rating,
+				    cost_for_two,
+				    votes,
+				    image,
 				    href
 				  }
 				}
@@ -91,7 +91,7 @@ export const getLocations = async () => {
     const res = await client.query({
       query: gql`
         {
-          locations {
+          locations: locationsWithOffers {
             key: _id
             value: locationSlug
             text: locationName

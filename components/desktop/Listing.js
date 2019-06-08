@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { Icon, Responsive } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
@@ -6,17 +6,27 @@ import { offerSources } from '../../helpers/constants';
 const Listing = ({ offer }) => {
   const mainOffer = offer.offers[0];
   const otherOffers = offer.offers.slice(1);
+  const moreOffers = otherOffers.slice(2);
+  const hasImg = mainOffer.image !== '';
+  const imgSrc = hasImg ? mainOffer.image : '/static/placeholder.png';
+
+  const [showMoreOffers, setShowMoreOffers] = useState(false);
 
   return (
     <div className="listing">
       <div className="listing__img">
-        <img src={mainOffer.image} />
+        <img src={imgSrc} />
       </div>
       <div className="listing__content">
         <ListingMeta offer={mainOffer} />
         <BestOffer offer={mainOffer} />
-        <OtherOffers offers={otherOffers} />
+        <OtherOffers
+          offers={otherOffers}
+          isMoreOffersOpen={showMoreOffers}
+          toggleMore={setShowMoreOffers}
+        />
       </div>
+      <MoreOffers offers={moreOffers} isOpen={showMoreOffers} />
       <style jsx>{`
         .listing {
           display: grid;
@@ -28,7 +38,7 @@ const Listing = ({ offer }) => {
         }
         .listing__content {
           display: grid;
-          grid-template-columns: 1fr .9fr .8fr;
+          grid-template-columns: 1fr 0.9fr 0.8fr;
         }
         .listing__img {
           padding: 20px;
@@ -40,13 +50,14 @@ const Listing = ({ offer }) => {
         }
       `}</style>
     </div>
-  )
+  );
 };
 
 const ListingMeta = ({ offer }) => {
   // TODO: FIX RATING
   const numFromRating = offer.rating ? Number(offer.rating.match(/\d+/)) : null;
   const initialRating = 1;
+
   return (
     <div className="listing__meta">
       <h2 className="meta__name">
@@ -70,37 +81,39 @@ const ListingMeta = ({ offer }) => {
           flex-direction: column;
           justify-content: space-between;
           padding: 25px 0;
-          border-right: 1px solid #E7E7E7;
+          border-right: 1px solid #e7e7e7;
         }
         .meta__name {
           margin: 0;
         }
         .meta__cuisine {
-          color: #8F8F8F;
+          color: #8f8f8f;
           display: block;
           font-weight: normal;
           font-size: 16px;
         }
         .meta__costForTwo {
-          color: #D2D2D2;
+          color: #d2d2d2;
           font-weight: bold;
           font-size: 14px;
         }
       `}</style>
     </div>
-  )
+  );
 };
 
 const BestOffer = ({ offer }) => (
   <a href={offer.href} target="_blank" className={`bestOffer ${offer.source}`}>
-    <div className="bestOffer__heading"></div>
+    <div className="bestOffer__heading" />
     <div className="bestOffer__body">
-      <div className="bestOffer__ribbon">Hottest Deal</div>
+      <div className="bestOffer__ribbon">Best Deal</div>
       <h3 className="bestOffer__offer">{offer.offer}</h3>
     </div>
     <div className="bestOffer__footer">
-      <div>Show this deal</div> 
-      <div><Icon size="small" name="arrow right" /></div>
+      <div>Show this deal</div>
+      <div>
+        <Icon size="small" name="arrow right" />
+      </div>
     </div>
     <style jsx>{`
       .bestOffer {
@@ -108,24 +121,26 @@ const BestOffer = ({ offer }) => (
         margin: 20px;
         grid-template-rows: 30px auto 30px;
         grid-row-gap: 0;
+        border: 1px solid #ddd;
       }
-      ${Object.entries(offerSources).map(([key, value], index) => (
-        `
-          .bestOffer.${key} {
-            border: 2px solid ${value.color};
-          }
+      ${Object.entries(offerSources)
+        .map(
+          ([key, value], index) =>
+            `
           .bestOffer.${key} .bestOffer__heading {
             background: ${value.color} url(${value.logo}) 0 0 no-repeat;
             background-size: 133px 30px;
           }
         `
-      )).join('')}
+        )
+        .join('')}
       .bestOffer__body {
-        background: #FFF8F3;
+        background: #fff8f3;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 0 10px;
       }
       .bestOffer__ribbon {
         background: url('/static/red-ribbon.svg') 0 0 no-repeat;
@@ -145,14 +160,14 @@ const BestOffer = ({ offer }) => (
         color: #7e8e12;
         font-size: 16px;
         text-align: center;
-        color: #4D4D4D;
+        color: #4d4d4d;
         text-transform: uppercase;
       }
       .bestOffer__footer {
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(270deg, #F34343 18.23%, #FD7650 100%);
+        background: linear-gradient(270deg, #f34343 18.23%, #fd7650 100%);
         color: #fff;
         font-size: 11px;
         font-weight: bold;
@@ -162,23 +177,33 @@ const BestOffer = ({ offer }) => (
   </a>
 );
 
-const OtherOffers = ({ offers }) => { 
+const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
+  if (offers.length === 0) return false;
+
   const hasMore = offers.length > 2;
 
   return (
     <div className="otherOffers">
-      {offers.map((offer, index) => (
-        <a href={offer.href} target="_blank" key={index} className={`otherOffer ${offer.source}`}>
+      {offers.slice(0, 2).map((offer, index) => (
+        <a
+          href={offer.href}
+          target="_blank"
+          key={index}
+          className={`otherOffer ${offer.source}`}>
           <div className="otherOffer__heading">View Deal</div>
           <div className="otherOffer__body">{offer.offer}</div>
         </a>
       ))}
-      {hasMore && 
-        <div className="showMoreBtn">
-          <div>Show more deals</div> 
-          <div><Icon name="arrow alternate circle down outline" /></div>
-        </div>
-      }
+      {hasMore && (
+        <button
+          onClick={() => toggleMore(!isMoreOffersOpen)}
+          className="showMoreBtn">
+          <div>Show more deals</div>
+          <div>
+            <Icon name="arrow alternate circle down outline" />
+          </div>
+        </button>
+      )}
       <style jsx>{`
         .otherOffers {
           margin: 20px 20px 20px 0;
@@ -200,8 +225,10 @@ const OtherOffers = ({ offers }) => {
           padding: 0 20px;
           align-items: center;
         }
-        ${Object.entries(offerSources).map(([key, value], index) => (
-          `
+        ${Object.entries(offerSources)
+          .map(
+            ([key, value], index) =>
+              `
             .otherOffer.${key} {
               background-color: ${value.color};
             }
@@ -210,7 +237,8 @@ const OtherOffers = ({ offers }) => {
               background-size: 120px 30px;
             }
           `
-        )).join('')}
+          )
+          .join('')}
         .otherOffer__heading img {
           height: 25px;
         }
@@ -226,7 +254,7 @@ const OtherOffers = ({ offers }) => {
           text-align: center;
         }
         .showMoreBtn {
-          background: linear-gradient(270deg, #3ACA7C 16.26%, #88E0D0 98.03%);
+          background: linear-gradient(270deg, #3aca7c 16.26%, #88e0d0 98.03%);
           font-weight: bold;
           text-transform: uppercase;
           color: #fff;
@@ -234,10 +262,73 @@ const OtherOffers = ({ offers }) => {
           justify-content: center;
           align-items: center;
           font-size: 11px;
+          border: 0;
+          outline: none;
+          cursor: pointer;
         }
       `}</style>
     </div>
-  )
+  );
+};
+
+const MoreOffers = ({ offers, isOpen }) => {
+  if (offers.length === 0 || !isOpen) return false;
+
+  return (
+    <div className="moreOffers">
+      <div />
+      <div />
+      <div className="otherOffers__listWrapper">
+        <ul className="otherOffers__list">
+          {offers.map((otherOffer, index) => (
+            <li key={index}>
+              <a
+                className="otherOffer__offer"
+                href={otherOffer.href}
+                target="_blank">
+                <span>{otherOffer.source}</span>
+                <span>{otherOffer.offer}</span>
+                <Icon name="angle right" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <style jsx>{`
+        .moreOffers {
+          grid-column: 2;
+          display: grid;
+          grid-template-columns: 1fr 0.9fr 0.8fr;
+        }
+        .otherOffers__listWrapper {
+          grid-column: 2 / span 3;
+          border-left: 1px solid #eaeaea;
+          margin: -1px;
+        }
+        .otherOffers__list {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          border-top: 1px solid #eaeaea;
+        }
+        .otherOffers__list li {
+          padding: 20px;
+          border-bottom: 1px solid #ddd;
+        }
+        .otherOffers__list li:hover {
+          background-color: #f5f5f5;
+        }
+        .otherOffers__list li:last-child {
+          border-bottom: none;
+        }
+        .otherOffer__offer {
+          display: grid;
+          grid-template-columns: 1fr 2fr auto;
+          color: #666;
+        }
+      `}</style>
+    </div>
+  );
 };
 
 export default Listing;
