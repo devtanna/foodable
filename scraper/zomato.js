@@ -93,9 +93,12 @@ const scrapePage = async (pageNum = 1) => {
 
 let hasNext = true;
 let pageNum = 1;
-// TESTTING TODO
-let maxPage = 2;
-// let maxPage = 25;
+if (settings.SCRAPER_TEST_MODE) {
+  var maxPage = 2;
+} else {
+  var maxPage = 25;
+}
+
 let data = [];
 
 const run = async () => {

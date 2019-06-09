@@ -1,32 +1,14 @@
 #!/usr/bin/env bash
-echo "---starting script---"
-date
-echo "---starting script---" >> /var/log/cron.log
-date >> /var/log/cron.log
-echo "-", "(1/12)"
-node scraper/locations.js >> /var/log/cron.log
-echo "--", "(2/12)"
-node scraper/talabat.js >> /var/log/cron.log
-echo "---", "(3/12)"
-node scraper/reindex_offers.js >> /var/log/cron.log
-echo "----", "(4/12)"
-node scraper/ubereats.js >> /var/log/cron.log
-echo "-----", "(5/12)"
-node scraper/reindex_offers.js >> /var/log/cron.log
-echo "------", "(6/12)"
-node scraper/deliveroo.js >> /var/log/cron.log
-echo "-------", "(7/12)"
-node scraper/reindex_offers.js >> /var/log/cron.log
-echo "--------", "(8/12)"
-node scraper/carriage.js >> /var/log/cron.log
-echo "---------", "(9/12)"
-node scraper/reindex_offers.js >> /var/log/cron.log
-echo "----------", "(10/12)"
-node scraper/zomato.js >> /var/log/cron.log
-echo "-----------", "(11/12)"
-node scraper/reindex_offers.js >> /var/log/cron.log
-echo "------------", "(12/12)"
-date >> /var/log/cron.log
-echo "---script done---" >> /var/log/cron.log
-echo "---script done---"
-date
+echo "---starting script---" && date && date >> /var/log/cron.log && echo "---starting script---" >> /var/log/cron.log &&
+echo "< locations..." && node scraper/locations.js >> /var/log/cron.log && echo "... locations >"
+wait
+
+echo "< talabat ..." && node scraper/talabat.js >> /var/log/cron.log && echo "... talabat >" && node scraper/reindex_offers.js >> /var/log/cron.log &
+echo "< ubereats ..." && node scraper/ubereats.js >> /var/log/cron.log && echo "... ubereats >" && node scraper/reindex_offers.js >> /var/log/cron.log &
+echo "< deliveroo ..." && node scraper/deliveroo.js >> /var/log/cron.log && echo "... deliveroo >" && node scraper/reindex_offers.js >> /var/log/cron.log &
+echo "< carriage ..." && node scraper/carriage.js >> /var/log/cron.log && echo "... carriage >" && node scraper/reindex_offers.js >> /var/log/cron.log &
+echo "< zomato ..." && node scraper/zomato.js >> /var/log/cron.log && echo "... zomato >" && node scraper/reindex_offers.js >> /var/log/cron.log &
+
+wait
+date && date >> /var/log/cron.log
+echo "---script done---" >> /var/log/cron.log && echo "---script done---"

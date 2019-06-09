@@ -132,9 +132,10 @@ async function scrapeInfiniteScrollItems(
 
   for (let i = 0; i < locations.length; i++) {
     try {
-      // TESTING TODO
-      if (locations[i].id != 924) {
-        continue;
+      if (settings.SCRAPER_TEST_MODE) {
+        if (locations[i].id != 924) {
+          continue;
+        }
       }
 
       // Navigate to the page.

@@ -161,9 +161,10 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   for (let i = 0; i < urls.length; i++) {
     let url = urls[i];
 
-    // // TESTING TODO
-    if (url['locationName'].toLowerCase() != 'al karama') {
-      continue;
+    if (settings.SCRAPER_TEST_MODE) {
+      if (url['locationName'].toLowerCase() != 'al karama') {
+        continue;
+      }
     }
 
     try {
@@ -175,7 +176,11 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       );
 
       // max number of pages to scroll through
-      let maxPage = 5;
+      if (settings.SCRAPER_TEST_MODE) {
+        let maxPage = 5;
+      } else {
+        let maxPage = 10;
+      }
       // Scroll and extract items from the page.
       let res = await scrapeInfiniteScrollItems(page, maxPage);
 
