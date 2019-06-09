@@ -154,6 +154,7 @@ exports.EntityQuery = new GraphQLObjectType({
           if (!items) {
             throw new Error('Error while fetching random offers data.');
           }
+
           return items;
         },
       },
@@ -167,12 +168,17 @@ exports.EntityQuery = new GraphQLObjectType({
         },
         resolve: async (root, args, context, info) => {
           const { pageSize, page } = args;
-          // const projections = getProjection(info);
           const items = await EntityModel.aggregate([
             { $match: { type: 'offers', locationSlug: args.locationSlug } },
             { $unwind: '$offers' },
-            { $sort: { added: -1, 'offers.score': -1 } },
-            { $group: { _id: '$_id', offers: { $push: '$offers' } } },
+            { $sort: { added: 1 } },
+            { $group: { _id: '$slug', offers: { $push: '$offers' } } },
+            {
+              $project: {
+                _id: 1,
+                offers: [{ $arrayElemAt: ['$offers', -1] }],
+              },
+            },
           ])
             .skip(pageSize * (page - 1))
             .limit(pageSize)
@@ -195,8 +201,14 @@ exports.EntityQuery = new GraphQLObjectType({
           const items = await EntityModel.aggregate([
             { $match: { type: 'offers' } },
             { $unwind: '$offers' },
-            { $sort: { added: -1, 'offers.score': -1 } },
-            { $group: { _id: '$_id', offers: { $push: '$offers' } } },
+            { $sort: { added: 1 } },
+            { $group: { _id: '$slug', offers: { $push: '$offers' } } },
+            {
+              $project: {
+                _id: 1,
+                offers: [{ $arrayElemAt: ['$offers', -1] }],
+              },
+            },
           ])
             .skip(pageSize * (page - 1))
             .limit(pageSize)
