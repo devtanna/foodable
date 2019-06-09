@@ -143,30 +143,32 @@ const run = async () => {
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
   const links = await getLocations();
-  console.log('Deliveroo: Number of locations: ' + links.length);
-  for (let i = 0; i < links.length; i++) {
-    if (settings.SCRAPER_TEST_MODE) {
-      if (links[i].url.indexOf('karama') < 0) {
-        continue;
+  if (links != null) {
+    console.log('Deliveroo: Number of locations received: ' + links.length);
+    for (let i = 0; i < links.length; i++) {
+      if (settings.SCRAPER_TEST_MODE) {
+        if (links[i].url.indexOf('karama') < 0) {
+          continue;
+        }
       }
+
+      console.log('Deliveroo: Scraping:', links[i].url);
+      let res = await scrapePage(links[i]);
+
+      //data.push(res);
+
+      var flatResults = [].concat.apply([], res);
+
+      // this is an async call
+      await parse.process_results(
+        flatResults,
+        db,
+        dbClient,
+        scraper_name,
+        (batch = true)
+      );
+      console.log('Deliveroo: Scraped deliveroo. Results count: ' + res.length);
     }
-
-    console.log('Deliveroo: Scraping:', links[i].url);
-    let res = await scrapePage(links[i]);
-
-    //data.push(res);
-
-    var flatResults = [].concat.apply([], res);
-
-    // this is an async call
-    await parse.process_results(
-      flatResults,
-      db,
-      dbClient,
-      scraper_name,
-      (batch = true)
-    );
-    console.log('Deliveroo: Scraped deliveroo. Results count: ' + res.length);
   }
 
   await browser.close();

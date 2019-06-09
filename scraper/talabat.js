@@ -156,48 +156,50 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
   const urls = await getLocations(page);
-  console.log('Talabat: Number of locations: ' + urls.length);
   let giantResultsObj = [];
-  for (let i = 0; i < urls.length; i++) {
-    let url = urls[i];
+  if (urls != null) {
+    console.log('Talabat: Number of locations: ' + urls.length);
+    for (let i = 0; i < urls.length; i++) {
+      let url = urls[i];
 
-    if (settings.SCRAPER_TEST_MODE) {
-      if (url['locationName'].toLowerCase() != 'al karama') {
-        continue;
-      }
-    }
-
-    try {
-      // Navigate to the page.
-      console.log('Talabat: Scraping location: ' + url.url);
-      await page.goto(
-        `https://www.talabat.com/${url.url}`,
-        settings.PUPPETEER_GOTO_PAGE_ARGS
-      );
-
-      // max number of pages to scroll through
       if (settings.SCRAPER_TEST_MODE) {
-        let maxPage = 5;
-      } else {
-        let maxPage = 10;
+        if (url['locationName'].toLowerCase() != 'al karama') {
+          continue;
+        }
       }
-      // Scroll and extract items from the page.
-      let res = await scrapeInfiniteScrollItems(page, maxPage);
 
-      var flatResults = [].concat.apply([], res);
+      try {
+        // Navigate to the page.
+        console.log('Talabat: Scraping location: ' + url.url);
+        await page.goto(
+          `https://www.talabat.com/${url.url}`,
+          settings.PUPPETEER_GOTO_PAGE_ARGS
+        );
 
-      // this is an async call
-      await parse.process_results(
-        flatResults,
-        db,
-        dbClient,
-        scraper_name,
-        (batch = true)
-      );
+        // max number of pages to scroll through
+        if (settings.SCRAPER_TEST_MODE) {
+          let maxPage = 5;
+        } else {
+          let maxPage = 10;
+        }
+        // Scroll and extract items from the page.
+        let res = await scrapeInfiniteScrollItems(page, maxPage);
 
-      console.log('Talabat: processed count:', res.length);
-    } catch (error) {
-      console.log('Talabat:', error);
+        var flatResults = [].concat.apply([], res);
+
+        // this is an async call
+        await parse.process_results(
+          flatResults,
+          db,
+          dbClient,
+          scraper_name,
+          (batch = true)
+        );
+
+        console.log('Talabat: processed count:', res.length);
+      } catch (error) {
+        console.log('Talabat:', error);
+      }
     }
   }
 

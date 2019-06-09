@@ -52,7 +52,7 @@ services:
     container_name: scraper
     command: >
       sh -c "sh ./run_all_scrapers_script.sh &&
-             tail -f /dev/null"
+             cron -f"
     restart: always
     volumes:
       - .:/app
