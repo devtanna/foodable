@@ -153,18 +153,29 @@ const run = async () => {
 
     console.log('Deliveroo: Scraping:', links[i].url);
     let res = await scrapePage(links[i]);
-    data.push(res);
+
+    //data.push(res);
+
+    var flatResults = [].concat.apply([], res);
+
+    // this is an async call
+    await parse.process_results(
+      flatResults,
+      db,
+      dbClient,
+      scraper_name,
+      (batch = true)
+    );
+    console.log('Deliveroo: Scraped deliveroo. Results count: ' + res.length);
   }
 
   await browser.close();
+  // close the dbclient
+  await dbClient.close();
 
   // merge all pages results into one array
-  var mergedResults = [].concat.apply([], data);
-  console.log(
-    'Deliveroo: Scraped deliveroo. Results count: ' + mergedResults.length
-  );
-
-  parse.process_results(mergedResults, db, dbClient, scraper_name);
+  // var mergedResults = [].concat.apply([], data);
+  // parse.process_results(mergedResults, db, dbClient, scraper_name);
 };
 
 run();

@@ -156,7 +156,19 @@ async function scrapeInfiniteScrollItems(
         locations[i]
       );
 
-      giantResultsObj.push(res);
+      // giantResultsObj.push(res);
+
+      var flatResults = [].concat.apply([], res);
+
+      // this is an async call
+      await parse.process_results(
+        flatResults,
+        db,
+        dbClient,
+        scraper_name,
+        (batch = true)
+      );
+      console.log('Carriage: Scraped Carriage. Results count: ' + res.length);
     } catch (error) {
       console.log('Carriage:', error);
     }
@@ -164,12 +176,14 @@ async function scrapeInfiniteScrollItems(
 
   // Close the browser.
   await browser.close();
+  // close the dbclient
+  await dbClient.close();
 
   // merge all pages results into one array
-  var mergedResults = [].concat.apply([], giantResultsObj);
-  console.log(
-    'Carriage: Scraped Carriage. Results count: ' + mergedResults.length
-  );
-
-  parse.process_results(mergedResults, db, dbClient, scraper_name);
+  // var mergedResults = [].concat.apply([], giantResultsObj);
+  // console.log(
+  //   'Carriage: Scraped Carriage. Results count: ' + mergedResults.length
+  // );
+  //
+  // parse.process_results(mergedResults, db, dbClient, scraper_name);
 })();

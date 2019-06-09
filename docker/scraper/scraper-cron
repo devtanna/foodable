@@ -1,7 +1,5 @@
-0 6 * * * node /app/scraper/locations.js >> /var/log/cron.log 2>&1
-0 7 * * * node /app/scraper/ubereats.js >> /var/log/cron.log 2>&1
-0 7 * * * node /app/scraper/deliveroo.js >> /var/log/cron.log 2>&1
-0 7 * * * node /app/scraper/talabat.js >> /var/log/cron.log 2>&1
-0 7 * * * node /app/scraper/zomato.js >> /var/log/cron.log 2>&1
-0 7 * * * node /app/scraper/carriage.js >> /var/log/cron.log 2>&1
-0 7 * * * node /app/scraper/reindex_offers.js >> /var/log/cron.log 2>&1
+0 0 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
+0 6 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
+0 11 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
+0 15 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
+0 19 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1

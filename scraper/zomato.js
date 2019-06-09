@@ -114,7 +114,24 @@ const run = async () => {
     console.log('zomato scraper: Starting page: ' + pageNum);
     let res = await scrapePage(pageNum);
     if (res != undefined) {
-      data.push(res.result);
+      // data.push(res.result);
+      var flatResults = [].concat.apply([], res.result);
+
+      // this is an async call
+      await parse.process_results(
+        flatResults,
+        db,
+        dbClient,
+        scraper_name,
+        (batch = true)
+      );
+      console.log(
+        'zomato scraper: Scraped ' +
+          pageNum +
+          ' pages. Results count: ' +
+          res.result.length
+      );
+
       if (res.goNext) {
         pageNum++;
       } else {
@@ -125,17 +142,13 @@ const run = async () => {
     }
   }
   // merge all pages results into one array
-  var mergedResults = [].concat.apply([], data);
+  // var mergedResults = [].concat.apply([], data);
 
   await browser.close();
-  console.log(
-    'zomato scraper: Scraped ' +
-      pageNum +
-      ' pages. Results count: ' +
-      mergedResults.length
-  );
+  // close the dbclient
+  await dbClient.close();
 
-  parse.process_results(mergedResults, db, dbClient, scraper_name);
+  // parse.process_results(mergedResults, db, dbClient, scraper_name);
 };
 
 run();
