@@ -64,7 +64,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
             )
               .text()
               .split('-')[1]
-              .trim(),
+              .trim(), // TODO sometimes this is undefined
             rating: $(
               'div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span > span',
               this
@@ -148,9 +148,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
     // max number of pages to scroll through
     if (settings.SCRAPER_TEST_MODE) {
-      let maxPage = 2;
+      var maxPage = 2;
     } else {
-      let maxPage = 25;
+      var maxPage = 25;
     }
     // Scroll and extract items from the page.
     let res = await scrapeInfiniteScrollItems(page, maxPage);

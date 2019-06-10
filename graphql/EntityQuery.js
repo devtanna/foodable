@@ -125,6 +125,7 @@ exports.EntityQuery = new GraphQLObjectType({
                 },
               },
             },
+            { $sort: { locationName: 1 } },
           ]).exec();
           if (!items) {
             throw new Error('Error while fetching locationWithOffers data.');
@@ -171,12 +172,17 @@ exports.EntityQuery = new GraphQLObjectType({
           const items = await EntityModel.aggregate([
             { $match: { type: 'offers', locationSlug: args.locationSlug } },
             { $unwind: '$offers' },
-            { $sort: { added: 1 } },
-            { $group: { _id: '$slug', offers: { $push: '$offers' } } },
+            { $sort: { 'offers.added': 1 } },
             {
               $project: {
-                _id: 1,
-                offers: [{ $arrayElemAt: ['$offers', -1] }],
+                added: 0,
+                'offers.added': 0,
+              },
+            },
+            {
+              $group: {
+                _id: { slug: '$slug' },
+                offers: { $addToSet: '$offers' },
               },
             },
           ])
@@ -199,14 +205,19 @@ exports.EntityQuery = new GraphQLObjectType({
         resolve: async (root, args, context, info) => {
           const { pageSize, page } = args;
           const items = await EntityModel.aggregate([
-            { $match: { type: 'offers' } },
+            { $match: { type: 'offers', locationSlug: args.locationSlug } },
             { $unwind: '$offers' },
-            { $sort: { added: 1 } },
-            { $group: { _id: '$slug', offers: { $push: '$offers' } } },
+            { $sort: { 'offers.added': 1 } },
             {
               $project: {
-                _id: 1,
-                offers: [{ $arrayElemAt: ['$offers', -1] }],
+                added: 0,
+                'offers.added': 0,
+              },
+            },
+            {
+              $group: {
+                _id: { slug: '$slug' },
+                offers: { $addToSet: '$offers' },
               },
             },
           ])

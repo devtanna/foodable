@@ -91,7 +91,7 @@ const scrapePage = async url => {
             .text()
             .trim()
         ),
-        href: $('a', this).prop('href'),
+        href: clean_deliveroo_href($('a', this).prop('href')),
         image: img,
         location: url.locationName,
         address: '',
@@ -146,38 +146,44 @@ const run = async () => {
   if (links != null) {
     console.log('Deliveroo: Number of locations received: ' + links.length);
     for (let i = 0; i < links.length; i++) {
-      if (settings.SCRAPER_TEST_MODE) {
-        if (links[i].url.indexOf('karama') < 0) {
-          continue;
+      try {
+        if (settings.SCRAPER_TEST_MODE) {
+          if (links[i].url.indexOf('karama') < 0) {
+            continue;
+          }
         }
+
+        console.log('Deliveroo: Scraping:', links[i].url);
+        let res = await scrapePage(links[i]);
+
+        if (res != null) {
+          var flatResults = [].concat.apply([], res);
+
+          // this is an async call
+          await parse.process_results(
+            flatResults,
+            db,
+            dbClient,
+            scraper_name,
+            (batch = true)
+          );
+          console.log(
+            'Deliveroo: Scraped deliveroo. Results count: ' + res.length
+          );
+        }
+      } catch (error) {
+        console.log('Deliveroo:', error);
       }
-
-      console.log('Deliveroo: Scraping:', links[i].url);
-      let res = await scrapePage(links[i]);
-
-      //data.push(res);
-
-      var flatResults = [].concat.apply([], res);
-
-      // this is an async call
-      await parse.process_results(
-        flatResults,
-        db,
-        dbClient,
-        scraper_name,
-        (batch = true)
-      );
-      console.log('Deliveroo: Scraped deliveroo. Results count: ' + res.length);
     }
   }
 
   await browser.close();
   // close the dbclient
   await dbClient.close();
-
-  // merge all pages results into one array
-  // var mergedResults = [].concat.apply([], data);
-  // parse.process_results(mergedResults, db, dbClient, scraper_name);
 };
 
 run();
+
+function clean_deliveroo_href(input) {
+  return input.replace(/time=[0-9]{4}$/, 'time=ASAP');
+}

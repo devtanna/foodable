@@ -68,7 +68,6 @@ function get_K8_BackendEndpoint() {
 
 module.exports = {
   SCRAPER_TEST_MODE: true, // important toggle to run just a subset of scrapes or all of them
-  ENABLE_MEAL_TIME_ZOME: false,
   BACKEND_ENDPOINT:
     ENABLE_K8 == true ? getBackendEndpoint() : DOCKER_BACKEND_ENDPOINT,
   DB: getDBsettings().DB,
@@ -84,12 +83,10 @@ module.exports = {
   PUPPETEER_VIEWPORT: { width: 1400, height: 800 },
   PUPPETEER_BROWSER_ISHEADLESS: true,
   PUPPETEER_GOTO_PAGE_ARGS: {
-    timeout: 35000,
+    timeout: 10000, // 10seconds
     waitUntil: ['networkidle0', 'load'],
   },
   MONGO_COLLECTION_NAME: 'collection_',
   SUBSCRIPTION_MONGO_COLLECTION_NAME: 'subscriptions',
   CONTACTUS_MONGO_COLLECTION_NAME: 'contactus',
-  SCRAPER_COLLECTION_NAME: 'collection_' + datetime,
-  MONGO_MODEL_NAME: 'Entity',
 };
