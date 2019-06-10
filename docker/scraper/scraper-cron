@@ -1,6 +1,6 @@
 # Times are in UTC as docker containers are UTC based
-0 0 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
-0 2 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
-0 7 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
-0 11 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
-0 15 * * * sh /app/run_all_scrapers_script.sh >> /var/log/cron.log 2>&1
+0 0 * * * sh /app/run_all_scrapers_script.sh
+0 2 * * * sh /app/run_all_scrapers_script.sh
+0 7 * * * sh /app/run_all_scrapers_script.sh
+0 11 * * * sh /app/run_all_scrapers_script.sh
+0 15 * * * sh /app/run_all_scrapers_script.sh
