@@ -5,6 +5,8 @@ const settings = require('../settings');
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 
+// logging init
+const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
 var scraper_name = 'deliveroo';
 var db;
@@ -18,7 +20,7 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    console.log('... Deliveroo:Connected to mongo! ...');
+    logger.info('... Connected to mongo! ...');
   }
 );
 // ########## END DB STUFF ####################
@@ -43,7 +45,7 @@ const getLocations = async () => {
 
     return links;
   } catch (error) {
-    console.log(error);
+    logger.info(error);
   }
 };
 
@@ -128,7 +130,7 @@ const scrapePage = async url => {
 
     return items;
   } catch (error) {
-    console.log(error);
+    logger.info(error);
   }
 };
 
@@ -144,8 +146,10 @@ const run = async () => {
 
   const links = await getLocations();
   if (links != null) {
-    console.log('Deliveroo: Number of locations received: ' + links.length);
+    logger.info('Number of locations received: ' + links.length);
     for (let i = 0; i < links.length; i++) {
+      logger.info('On scrape ' + i + ' / ' + links.length);
+
       try {
         if (settings.SCRAPER_TEST_MODE) {
           if (links[i].url.indexOf('karama') < 0) {
@@ -153,7 +157,7 @@ const run = async () => {
           }
         }
 
-        console.log('Deliveroo: Scraping:', links[i].url);
+        logger.info('Scraping: ' + links[i].url);
         let res = await scrapePage(links[i]);
 
         if (res != null) {
@@ -167,12 +171,10 @@ const run = async () => {
             scraper_name,
             (batch = true)
           );
-          console.log(
-            'Deliveroo: Scraped deliveroo. Results count: ' + res.length
-          );
+          logger.info('Scraped deliveroo. Results count: ' + res.length);
         }
       } catch (error) {
-        console.log('Deliveroo:', error);
+        logger.error(error);
       }
     }
   }

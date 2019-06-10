@@ -3,6 +3,10 @@ const $ = require('cheerio');
 const settings = require('../settings');
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+
+// logging init
+var path = require('path');
+const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
 var scraper_name = 'ubereats';
 var db;
@@ -16,7 +20,7 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    console.log('... Ubereats: Connected to mongo! ...');
+    logger.info('... Connected to mongo! ...');
   }
 );
 // ########## END DB STUFF ####################
@@ -27,13 +31,13 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   try {
     let previousHeight;
     while (pageNum < pageCount) {
-      console.log('Ubereats: Scraping page: ' + pageNum);
+      logger.info('Scraping page: ' + pageNum);
 
       const html = await page.content();
 
       const listingsWithOffers = $('.base_ > div a', html);
-      console.log(
-        'Ubereats: Number of offers on current page:',
+      logger.info(
+        'Number of offers on current page:',
         listingsWithOffers.length
       );
       try {
@@ -107,7 +111,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
           }
         });
       } catch (error) {
-        console.log('Ubereats::', error);
+        logger.error(error);
       }
 
       // scroll to next page
@@ -120,11 +124,11 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       await page.waitFor(scrollDelay);
       pageNum++;
     }
-  } catch (e) {
-    console.log('Ubereats', e);
+  } catch (error) {
+    logger.error(error);
   }
 
-  console.log('ubereats: Scraped total items:', items.length);
+  logger.info('Scraped total items:', items.length);
 
   return items;
 }
@@ -156,8 +160,6 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     // Scroll and extract items from the page.
     let res = await scrapeInfiniteScrollItems(page, maxPage);
 
-    // giantResultsObj.push(res);
-
     var flatResults = [].concat.apply([], res);
 
     // this is an async call
@@ -168,9 +170,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       scraper_name,
       (batch = true)
     );
-    console.log('Ubereats: Scraped ubereats. Results count: ' + res.length);
+    logger.info('Scraped ubereats. Results count: ' + res.length);
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 
   // Close the browser.

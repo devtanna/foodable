@@ -5,6 +5,14 @@ const settings = require('../settings');
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 const dbutils = require('../scraper/db');
+
+// logging init
+var path = require('path');
+var scriptName = module.filename.slice(
+  __filename.lastIndexOf(require('path').sep) + 1,
+  module.filename.length - 3
+);
+const logger = require('../helpers/logging').getLogger(scriptName);
 // ########## START DB STUFF ####################
 var db;
 var dbClient;
@@ -17,7 +25,7 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    console.log('... reindex:Connected to mongo! ...');
+    logger.info('... Connected to mongo! ...');
     reindex(db, dbClient);
   }
 );
@@ -63,11 +71,13 @@ async function reindex(db, dbClient) {
           );
 
           if (cmp_score > 0.8) {
-            console.log(
-              'found!',
-              cmp_score,
-              other_restaturant_slug,
-              current_restaturant_slug
+            logger.info(
+              'found! ' +
+                cmp_score +
+                ' ' +
+                other_restaturant_slug +
+                ' ' +
+                current_restaturant_slug
             );
 
             delete current_restaturant['_id'];
@@ -143,15 +153,15 @@ async function reindex(db, dbClient) {
 
   // insert to db
   if (ops.length > 0) {
-    console.log('Reindex offers: DB: Number of opertations', ops.length);
+    logger.info(' DB: Number of operations ' + ops.length);
     db.collection(locationCollectionName)
       .bulkWrite(ops, { ordered: false })
       .then(
         function(result) {
-          console.log('Reindex offers: Mongo Bulk Write Operation Complete');
+          logger.info('Mongo Bulk Write Operation Complete');
         },
         function(err) {
-          console.log('Reindex offers: Mongo Bulk Write: Promise: error', err);
+          logger.info('Mongo Bulk Write: Promise: error', err);
         }
       )
       .catch(e => console.error(e))

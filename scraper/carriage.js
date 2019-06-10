@@ -6,6 +6,9 @@ const locations = require('./carriage_locations.json');
 const settings = require('../settings');
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+
+// logging init
+const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
 var scraper_name = 'carriage';
 var db;
@@ -19,7 +22,7 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    console.log('... Carriage: Connected to mongo! ...');
+    logger.info('... Connected to mongo! ...');
   }
 );
 // ########## END DB STUFF ####################
@@ -30,7 +33,7 @@ async function scrapeInfiniteScrollItems(
   scrollDelay = 1000,
   location
 ) {
-  console.log('Carriage: Scraping location:', location.name.toUpperCase());
+  logger.info('Scraping location:', location.name.toUpperCase());
 
   let items = [];
   let pageNum = 0;
@@ -41,15 +44,13 @@ async function scrapeInfiniteScrollItems(
     await page.waitFor(4000);
 
     while (pageNum < pageCount) {
-      console.log('Carriage: Scraping page number: ' + pageNum);
+      logger.info('Scraping page number: ' + pageNum);
 
       const html = await page.content();
 
       const listingsWithOffers = $('.restaurant-item', html);
 
-      console.log(
-        'Carriage: Got number of offers: ' + listingsWithOffers.length
-      );
+      logger.info('Got number of offers: ' + listingsWithOffers.length);
 
       try {
         listingsWithOffers.each(function() {
@@ -97,7 +98,7 @@ async function scrapeInfiniteScrollItems(
           }
         });
       } catch (error) {
-        console.log(error);
+        logger.error(error);
       }
 
       // scroll to next page
@@ -113,9 +114,9 @@ async function scrapeInfiniteScrollItems(
       pageNum++;
     }
   } catch (e) {
-    console.log('Carriage:', e);
+    logger.error(e);
   }
-  console.log('Carriage: number of items scraped: ' + items.length);
+  logger.info('number of items scraped: ' + items.length);
   return items;
 }
 
@@ -172,9 +173,9 @@ async function scrapeInfiniteScrollItems(
         scraper_name,
         (batch = true)
       );
-      console.log('Carriage: Scraped Carriage. Results count: ' + res.length);
+      logger.info('Scraped Carriage. Results count: ' + res.length);
     } catch (error) {
-      console.log('Carriage:', error);
+      logger.info('', error);
     }
   }
 
@@ -185,8 +186,8 @@ async function scrapeInfiniteScrollItems(
 
   // merge all pages results into one array
   // var mergedResults = [].concat.apply([], giantResultsObj);
-  // console.log(
-  //   'Carriage: Scraped Carriage. Results count: ' + mergedResults.length
+  // logger.info(
+  //   'Scraped Carriage. Results count: ' + mergedResults.length
   // );
   //
   // parse.process_results(mergedResults, db, dbClient, scraper_name);

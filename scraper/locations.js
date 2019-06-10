@@ -4,6 +4,9 @@ const $ = require('cheerio');
 const settings = require('../settings');
 const utils = require('./utils');
 const dbutils = require('../scraper/db');
+
+// logging init
+const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
 var db;
 var dbClient;
@@ -16,7 +19,7 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    console.log('... Location script:Connected to mongo! ...');
+    logger.info('... Connected to mongo! ...');
   }
 );
 // ########## END DB STUFF ####################
@@ -42,7 +45,7 @@ const getLocations = async page => {
     }
     return ops;
   } catch (error) {
-    console.log(error);
+    logger.info(error);
   }
 };
 
@@ -56,7 +59,7 @@ const getLocations = async page => {
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
   const urls = await getLocations(page);
-  console.log('Location script: Number of locations: ' + urls.length);
+  logger.info('Number of locations: ' + urls.length);
 
   // Close the browser.
   await browser.close();
@@ -76,25 +79,22 @@ const getLocations = async page => {
       if (collectionFound == true) {
         var collectionStats = await locationCollection.stats();
         dataFound = collectionStats['count'] > 0 ? true : false;
-        console.log(
-          'Location script: Size of collection:',
-          collectionStats['count']
-        );
+        logger.info('Size of collection:', collectionStats['count']);
       }
 
       if (!collectionFound || !dataFound) {
-        console.log('Location script: Populating Collection.');
+        logger.info('Populating Collection.');
         locationCollection
           .insertMany(urls)
           .catch(e => console.error(e))
           .then(() => dbClient.close());
-        console.log('Location script: Mongo Bulk Write Operation Complete');
+        logger.info('Mongo Bulk Write Operation Complete');
       } else {
         dbClient.close();
       }
     }
   } catch (e) {
-    console.log(e);
+    logger.info(e);
   }
 })();
 
@@ -109,9 +109,6 @@ function cleanupOldCollections(db) {
       .drop()
       .catch(e => {});
 
-    console.log(
-      'Location script: Location collections cleaned up.',
-      collection_1
-    );
+    logger.info('Location collections cleaned up.', collection_1);
   }
 }

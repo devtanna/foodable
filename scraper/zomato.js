@@ -4,6 +4,9 @@ const $ = require('cheerio');
 const settings = require('../settings');
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+
+// logging init
+const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
 var scraper_name = 'zomato';
 var db;
@@ -17,7 +20,7 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    console.log('... Zomato: Connected to mongo! ...');
+    logger.info('... Connected to mongo! ...');
   }
 );
 // ########## END DB STUFF ####################
@@ -87,7 +90,7 @@ const scrapePage = async (pageNum = 1) => {
 
     return { result, goNext: $('.paginator_item.next.item', html).length > 0 };
   } catch (error) {
-    console.log(error);
+    logger.info(error);
   }
 };
 
@@ -111,7 +114,7 @@ const run = async () => {
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
   while (hasNext && pageNum <= maxPage) {
-    console.log('zomato scraper: Starting page: ' + pageNum);
+    logger.info('zomato scraper: Starting page: ' + pageNum);
     let res = await scrapePage(pageNum);
     if (res != undefined) {
       var flatResults = [].concat.apply([], res.result);
@@ -124,7 +127,7 @@ const run = async () => {
         scraper_name,
         (batch = true)
       );
-      console.log(
+      logger.info(
         'zomato scraper: Scraped ' +
           pageNum +
           ' pages. Results count: ' +

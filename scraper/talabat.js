@@ -4,6 +4,9 @@ const $ = require('cheerio');
 const settings = require('../settings');
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+
+// logging init
+const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
 var scraper_name = 'talabat';
 var db;
@@ -17,7 +20,7 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    console.log('... Talabat:Connected to mongo! ...');
+    logger.info('... Connected to mongo! ...');
   }
 );
 // ########## END DB STUFF ####################
@@ -37,7 +40,7 @@ const getLocations = async page => {
       });
     return links;
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 };
 
@@ -140,9 +143,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       await page.waitFor(scrollDelay);
     }
   } catch (e) {
-    console.log('Talabat:', e);
+    logger.info('', e);
   }
-  console.log('Talabat: number of items scraped: ' + items.length);
+  logger.info(' number of items scraped: ' + items.length);
   return items;
 }
 
@@ -158,8 +161,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   const urls = await getLocations(page);
   let giantResultsObj = [];
   if (urls != null) {
-    console.log('Talabat: Number of locations: ' + urls.length);
+    logger.info(' Number of locations: ' + urls.length);
     for (let i = 0; i < urls.length; i++) {
+      logger.info('Processing: ' + i + '/' + urls.length);
       let url = urls[i];
 
       if (settings.SCRAPER_TEST_MODE) {
@@ -170,7 +174,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
       try {
         // Navigate to the page.
-        console.log('Talabat: Scraping location: ' + url.url);
+        logger.info(' Scraping location: ' + url.url);
         await page.goto(
           `https://www.talabat.com/${url.url}`,
           settings.PUPPETEER_GOTO_PAGE_ARGS
@@ -196,9 +200,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
           (batch = true)
         );
 
-        console.log('Talabat: processed count:', res.length);
+        logger.info(' processed count: ' + res.length);
       } catch (error) {
-        console.log('Talabat:', error);
+        logger.info('', error);
       }
     }
   }

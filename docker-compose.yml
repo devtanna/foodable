@@ -21,7 +21,7 @@ services:
       - .:/src
     command:  ["npm", "run", "dev"]
     environment:
-      NODE_ENV: dev
+      NODE_ENV: development
     build:
       context: .
       dockerfile: ./docker/front/Dockerfile
