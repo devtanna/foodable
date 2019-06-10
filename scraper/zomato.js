@@ -44,7 +44,7 @@ const scrapePage = async (pageNum = 1) => {
           .text()
           .trim(),
         href: $('.result-title', this).prop('href'),
-        image: cleanImg($('.feat-img', this).css('background-image')),
+        image: cleanImg($('.feat-img', this).prop('data-original')),
         location: $('.search_result_subzone', this)
           .text()
           .trim(),
@@ -94,7 +94,7 @@ const scrapePage = async (pageNum = 1) => {
 let hasNext = true;
 let pageNum = 1;
 if (settings.SCRAPER_TEST_MODE) {
-  var maxPage = 2;
+  var maxPage = 5;
 } else {
   var maxPage = 25;
 }
@@ -114,7 +114,6 @@ const run = async () => {
     console.log('zomato scraper: Starting page: ' + pageNum);
     let res = await scrapePage(pageNum);
     if (res != undefined) {
-      // data.push(res.result);
       var flatResults = [].concat.apply([], res.result);
 
       // this is an async call
@@ -141,14 +140,10 @@ const run = async () => {
       process.exit(1);
     }
   }
-  // merge all pages results into one array
-  // var mergedResults = [].concat.apply([], data);
 
   await browser.close();
   // close the dbclient
   await dbClient.close();
-
-  // parse.process_results(mergedResults, db, dbClient, scraper_name);
 };
 
 run();

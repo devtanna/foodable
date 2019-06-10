@@ -107,14 +107,15 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
           }
         });
       } catch (error) {
-        console.log('Ubereats:', error);
+        console.log('Ubereats::', error);
       }
 
       // scroll to next page
       previousHeight = await page.evaluate('document.body.scrollHeight');
       await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
       await page.waitForFunction(
-        `document.body.scrollHeight > ${previousHeight}`
+        `document.body.scrollHeight > ${previousHeight}`,
+        { timeout: 3000 }
       );
       await page.waitFor(scrollDelay);
       pageNum++;
@@ -176,12 +177,4 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   await browser.close();
   // close the dbclient
   await dbClient.close();
-
-  // merge all pages results into one array
-  // var mergedResults = [].concat.apply([], giantResultsObj);
-  // console.log(
-  //   'Talabat: Scraped talabat. Results count: ' + mergedResults.length
-  // );
-  //
-  // parse.process_results(mergedResults, db, dbClient, scraper_name);
 })();

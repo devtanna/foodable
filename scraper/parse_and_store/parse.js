@@ -11,7 +11,7 @@ async function process_results(
 ) {
   // ============== DB Store section================================
   var locationCollectionName = dbutils.getCurrentDBCollection();
-
+  var location_cmp_score_threshold = 0.95;
   // find
   var locations = await db
     .collection(locationCollectionName)
@@ -29,7 +29,7 @@ async function process_results(
       for (var j = 0, lenll = locations.length; j < lenll; j++) {
         stored_location = locations[j]['locationSlug'];
         cmp_score = compare_strings(stored_location, item_location);
-        if (cmp_score > 0.8) {
+        if (cmp_score > location_cmp_score_threshold) {
           mergedResults[i]['locationId'] = locations[j]['_id'];
           mergedResults[i]['locationSlug'] = locations[j]['locationSlug'];
           mergedResults[i]['locationName'] = locations[j]['locationName'];

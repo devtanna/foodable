@@ -70,7 +70,7 @@ async function scrapeInfiniteScrollItems(
             image: $('.rest-cover', this)
               .css('background-image')
               .split(/"/)[1],
-            location: location.name,
+            location: utils.slugify(location.name),
             rating: null,
             cuisine: $('.rest-name-slogan p', this)
               .text()
@@ -133,7 +133,7 @@ async function scrapeInfiniteScrollItems(
   for (let i = 0; i < locations.length; i++) {
     try {
       if (settings.SCRAPER_TEST_MODE) {
-        if (locations[i].id != 924) {
+        if (locations[i].id != 833) {
           continue;
         }
       }
