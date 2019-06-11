@@ -182,6 +182,7 @@ const run = async () => {
   await browser.close();
   // close the dbclient
   await dbClient.close();
+  logger.info('Deliveroo Scrape Done!');
 };
 
 run();

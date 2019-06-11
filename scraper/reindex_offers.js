@@ -7,12 +7,7 @@ const parse = require('./parse_and_store/parse');
 const dbutils = require('../scraper/db');
 
 // logging init
-var path = require('path');
-var scriptName = module.filename.slice(
-  __filename.lastIndexOf(require('path').sep) + 1,
-  module.filename.length - 3
-);
-const logger = require('../helpers/logging').getLogger(scriptName);
+const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
 var db;
 var dbClient;
@@ -42,6 +37,25 @@ async function reindex(db, dbClient) {
   var ops = [];
   if (restaurants.length > 0) {
     for (var i = 0, lenr = restaurants.length; i < lenr; i++) {
+      // perform batch operations
+      if (ops.length > 100) {
+        logger.info('Starting BATCH Number of operations => ' + ops.length);
+        await db
+          .collection(locationCollectionName)
+          .bulkWrite(ops, { ordered: false })
+          .then(
+            function(result) {
+              logger.info('Mongo BATCH Write Operation Complete');
+            },
+            function(err) {
+              logger.error('Mongo BATCH Write: Promise: error ' + err);
+            }
+          )
+          .catch(e => logger.error(e))
+          .then(() => (ops = []));
+      }
+      // ==== END BATCH OPERATION
+
       current_restaturant = restaurants[i];
       current_restaturant_slug = restaurants[i]['slug'];
       current_source = restaurants[i]['source'];
@@ -71,7 +85,7 @@ async function reindex(db, dbClient) {
           );
 
           if (cmp_score > 0.8) {
-            logger.info(
+            logger.debug(
               'found! ' +
                 cmp_score +
                 ' ' +
@@ -154,17 +168,18 @@ async function reindex(db, dbClient) {
   // insert to db
   if (ops.length > 0) {
     logger.info(' DB: Number of operations ' + ops.length);
-    db.collection(locationCollectionName)
+    await db
+      .collection(locationCollectionName)
       .bulkWrite(ops, { ordered: false })
       .then(
         function(result) {
           logger.info('Mongo Bulk Write Operation Complete');
         },
         function(err) {
-          logger.info('Mongo Bulk Write: Promise: error', err);
+          logger.error('Mongo Bulk Write: Promise: error ' + err);
         }
       )
-      .catch(e => console.error(e))
+      .catch(e => logger.error(e))
       .then(() => dbClient.close());
   } else {
     dbClient.close();

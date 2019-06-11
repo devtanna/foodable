@@ -94,12 +94,12 @@ const getLocations = async page => {
       }
     }
   } catch (e) {
-    logger.info(e);
+    logger.error(e);
   }
 })();
 
 function cleanupOldCollections(db) {
-  for (let i = 1; i < 31; i++) {
+  for (let i = 3; i < 31; i++) {
     var date = new Date(
       new Date().setDate(dbutils.getCurrentDateTime().getDate() - i)
     );

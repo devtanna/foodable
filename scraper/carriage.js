@@ -105,7 +105,8 @@ async function scrapeInfiniteScrollItems(
       previousHeight = await page.evaluate('document.body.scrollHeight');
       await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
       await page.waitForFunction(
-        `document.body.scrollHeight > ${previousHeight}`
+        `document.body.scrollHeight > ${previousHeight}`,
+        { timeout: 3000 }
       );
       await page.waitFor(scrollDelay);
 
@@ -132,6 +133,7 @@ async function scrapeInfiniteScrollItems(
   let giantResultsObj = [];
 
   for (let i = 0; i < locations.length; i++) {
+    logger.info('On location ' + i + ' / ' + locations.length);
     try {
       if (settings.SCRAPER_TEST_MODE) {
         if (locations[i].id != 833) {
@@ -161,8 +163,6 @@ async function scrapeInfiniteScrollItems(
         locations[i]
       );
 
-      // giantResultsObj.push(res);
-
       var flatResults = [].concat.apply([], res);
 
       // this is an async call
@@ -183,12 +183,5 @@ async function scrapeInfiniteScrollItems(
   await browser.close();
   // close the dbclient
   await dbClient.close();
-
-  // merge all pages results into one array
-  // var mergedResults = [].concat.apply([], giantResultsObj);
-  // logger.info(
-  //   'Scraped Carriage. Results count: ' + mergedResults.length
-  // );
-  //
-  // parse.process_results(mergedResults, db, dbClient, scraper_name);
+  logger.info('Carriage Scrape Done!');
 })();

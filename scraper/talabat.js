@@ -138,12 +138,13 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       previousHeight = await page.evaluate('document.body.scrollHeight');
       await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
       await page.waitForFunction(
-        `document.body.scrollHeight > ${previousHeight}`
+        `document.body.scrollHeight > ${previousHeight}`,
+        { timeout: 3000 }
       );
       await page.waitFor(scrollDelay);
     }
   } catch (e) {
-    logger.info('', e);
+    logger.error('', e);
   }
   logger.info(' number of items scraped: ' + items.length);
   return items;
@@ -212,6 +213,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
   // close the dbclient
   await dbClient.close();
+  logger.info('Talabat Scrape Done!');
 })();
 
 function clean_talabat_title(title) {

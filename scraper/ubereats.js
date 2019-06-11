@@ -179,4 +179,5 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   await browser.close();
   // close the dbclient
   await dbClient.close();
+  logger.info('UberEats Scrape Done!');
 })();

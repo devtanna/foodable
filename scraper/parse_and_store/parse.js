@@ -1,6 +1,8 @@
 const utils = require('../utils');
 const settings = require('../../settings');
 const dbutils = require('../db');
+// logging init
+const logger = require('../../helpers/logging').getLogger();
 
 async function process_results(
   mergedResults,
@@ -24,6 +26,7 @@ async function process_results(
       if (mergedResults[i] == undefined) {
         continue;
       }
+      var found_match = false;
       // add the restaurant to the location
       item_location = clean_location(mergedResults[i]['location'], scraperName);
       for (var j = 0, lenll = locations.length; j < lenll; j++) {
@@ -43,8 +46,12 @@ async function process_results(
             },
           });
           // no need to traverse more locations
+          found_match = true;
           break;
         }
+      }
+      if (found_match == false) {
+        logger.debug('!!! NO MATCH FOUND FOR: ' + item_location);
       }
     }
   }
@@ -55,13 +62,13 @@ async function process_results(
         .bulkWrite(ops, { ordered: false })
         .then(
           function(result) {
-            console.log('Mongo Bulk Write Operation Complete');
+            logger.info('Mongo Bulk Write Operation Complete');
           },
           function(err) {
-            console.log('Mongo Bulk Write: Promise: error', err);
+            logger.error('Mongo Bulk Write: Promise: error', err);
           }
         )
-        .catch(e => console.error(e))
+        .catch(e => logger.error(e))
         .then(() => dbClient.close());
     } else {
       dbClient.close();
@@ -73,10 +80,10 @@ async function process_results(
         .bulkWrite(ops, { ordered: false })
         .then(
           function(result) {
-            console.log('Mongo Batch Write Operation Complete');
+            logger.info('Mongo Batch Write Operation Complete');
           },
           function(err) {
-            console.log('Mongo Batch Write: Promise: error', err);
+            logger.error('Mongo Batch Write: Promise: error', err);
           }
         )
         .catch(e => console.error(e));

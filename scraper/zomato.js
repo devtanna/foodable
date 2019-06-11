@@ -147,6 +147,7 @@ const run = async () => {
   await browser.close();
   // close the dbclient
   await dbClient.close();
+  logger.info('Zomato Scrape Done!');
 };
 
 run();
