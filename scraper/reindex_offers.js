@@ -29,17 +29,27 @@ MongoClient.connect(
 async function reindex(db, dbClient) {
   var locationCollectionName = dbutils.getCurrentDBCollection();
 
+  var find_threshold = dbutils.getCurrentHour() - 2;
+
   // find
   var restaurants = await db
     .collection(locationCollectionName)
-    .find({ type: 'restaurant' })
+    .find({ type: 'restaurant', added: { $gte: find_threshold } })
     .toArray();
+  logger.debug('Found entities to index: ' + restaurants.length);
   var ops = [];
   if (restaurants.length > 0) {
     for (var i = 0, lenr = restaurants.length; i < lenr; i++) {
       // perform batch operations
       if (ops.length > 100) {
-        logger.info('Starting BATCH Number of operations => ' + ops.length);
+        logger.info(
+          'Starting BATCH Number of operations => ' +
+            ops.length +
+            '. Progress: ' +
+            i +
+            ' / ' +
+            restaurants.length
+        );
         await db
           .collection(locationCollectionName)
           .bulkWrite(ops, { ordered: false })

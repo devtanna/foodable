@@ -139,7 +139,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
       await page.waitForFunction(
         `document.body.scrollHeight > ${previousHeight}`,
-        { timeout: 3000 }
+        { timeout: scrollDelay }
       );
       await page.waitFor(scrollDelay);
     }
@@ -183,9 +183,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
         // max number of pages to scroll through
         if (settings.SCRAPER_TEST_MODE) {
-          var maxPage = 5;
+          var maxPage = 2;
         } else {
-          var maxPage = 10;
+          var maxPage = 5;
         }
         // Scroll and extract items from the page.
         let res = await scrapeInfiniteScrollItems(page, maxPage);

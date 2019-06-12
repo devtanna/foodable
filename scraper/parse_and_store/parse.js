@@ -93,30 +93,114 @@ async function process_results(
 }
 
 function clean_location(location, scraperName) {
-  if (scraperName == 'zomato') {
-    return clean_zomato_location(location);
-  }
   return clean_generic_location(location);
 }
 
 function clean_generic_location(location) {
-  return utils.slugify(location);
-}
+  var item_location_slug = utils.slugify(location);
 
-function clean_zomato_location(location) {
-  location_zomato_map = {
-    ', Dubai': '',
-    'Dubai Mall': 'Dubai Mall Downtown Dubai',
-    'Marina Mall': 'Dubai Marina',
-    satwa: 'al-satwa',
-    BurJuman: 'Karama', // TODO: fix
+  var map_generic_location_to_talabat_location = {
+    'jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'downtown-dubai': 'downtown-burj-khalifa',
+    'festival-city': 'dubai-festival-city',
+    'meena-bazaar': '',
+    'dubai-investment-park': 'dubai-investments-park-1',
+    'trade-centre-area': 'dubai-world-trade-center-dwtc',
+    'european-business-centre-investment-park': 'dubai-investments-park-1',
+    'european-business-centre-dubai-investment-park':
+      'dubai-investments-park-1',
+    'marina-walk-marina': 'dubai-marina',
+    'jebel-ali-village': 'jebel-ali-1',
+    'al-barsha-park-1': 'al-barsha-1',
+    'al-khawaneej-east': 'al-khawaneej-1',
+    'al-khawaneej-west': 'al-khawaneej-1',
+    'al-quoz-pond-park': 'al-quoz-1',
+    'al-warqaa': 'al-warqa-1',
+    'american-university-of-dubai': 'dubai-media-city',
+    'city-walk': 'al-satwa',
+    'century-mall': '',
+    dafza: '',
+    'damac-hills': '',
+    'deira-city-centre': 'corniche-deira',
+    'dubai-international-city': '',
+    'dubai-creek': 'corniche-deira',
+    'dubai-mall': 'downtown-burj-khalifa',
+    'emirates-tower': 'dubai-world-trade-center-dwtc',
+    'emirates-golf-club': 'dubai-media-city',
+    'festival-city': 'dubai-festival-city',
+    'healthcare-city': 'dubai-healthcare-city',
+    'internet-city-2': 'dubai-internet-city-dic',
+    'ibn-battuta': 'ibn-batutta-mall',
+    'ibn-battuta-mall-jebel-ali-village': 'ibn-batutta-mall',
+    'jlt-west': 'jumeirah-lakes-towers-jlt',
+    'jlt-connector': 'jumeirah-lakes-towers-jlt',
+    jafilia: 'al-jaffiliya',
+    'jebel-ali-village': 'ibn-batutta-mall',
+    'madinat-al-jumeirah': 'jumeirah-3',
+    'the-mall-umm-suqeim': 'jumeirah-3',
+    'marina-mall': 'dubai-marina',
+    'marina-west': 'dubai-marina',
+    'nad-al-sheba': 'nad-al-sheba-1',
+    'outlet-mall': '',
+    'palm-residences': 'the-palm-jumeirah',
+    'sheikh-zayed-road': 'dubai-world-trade-center-dwtc',
+    'souk-al-bahar': 'downtown-burj-khalifa',
+    'the-palm': 'the-palm-jumeirah',
+    'umm-al-sheif': 'um-al-sheif',
+    zabeel: 'zaabeel-1',
+    'the-beach-jumeirah-beach-residence': 'jumeirah-beach-residence-jbr',
+    'the-dubai-mall-downtown-dubai': 'downtown-burj-khalifa',
+    'dubai-festival-city-mall-festival-city': 'dubai-festival-city',
+    'cluster-h-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'al-seef-umm-hurair': 'umm-hurair-1',
+    'hotel-ibis-world-trade-centre-trade-centre-area':
+      'dubai-world-trade-center-dwtc',
+    zabeel: 'the-dubai-mall-downtown-dubai',
+    'manzil-downtown-dubai': 'the-dubai-mall-downtown-dubai',
+    'cluster-a-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-b-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-c-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-i-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-r-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-d-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-q-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-e-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-w-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-t-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-j-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-m-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-q-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-f-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-o-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-y-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-g-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-x-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-n-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
+    'cluster-n-jumeirah-lake-towers-jlt': 'jumeirah-lakes-towers-jlt',
+    'cluster-m-jumeirah-lake-towers-jlt': 'jumeirah-lakes-towers-jlt',
+    'al-khail-mall-al-quoz': 'al-quoz',
+    'ramee-rose-hotel-barsha-heights': 'barsha-heights-tecom',
+    'mall-of-the-emirates-al-barsha': 'al-barsha',
+    'al-khail-gate-al-qouz': 'al-quoz',
+    'the-walk-jumeirah-beach-residence': 'jumeirah-beach-residence-jbr',
+    'first-avenue-mall-motor-city': 'dubai-motor-city',
+    'china-cluster-international-city': 'international-city',
+    'england-cluster-international-city': 'international-city',
+    'france-cluster-international-city': 'international-city',
+    'morocco-cluster-international-city': 'international-city',
+    'russia-cluster-international-city': 'international-city',
+    'spain-cluster-international-city': 'international-city',
+    'greece-cluster-international-city': 'international-city',
+    'persia-cluster-international-city': 'international-city',
+    'madina-mall-muhaisnah': 'al-muhaisnah',
+    'al-muhaisnah': 'al-muhaisnah',
   };
-  for (var key in location_zomato_map) {
-    location = location.replace(key, location_zomato_map[key]);
+
+  if (item_location_slug in map_generic_location_to_talabat_location) {
+    return map_generic_location_to_talabat_location[item_location_slug];
   }
-  location_array = location.split(',');
-  cleaned_location = location_array[location_array.length - 1];
-  return utils.slugify(cleaned_location);
+
+  return item_location_slug;
 }
 
 function compare_strings(base_string, scraped_string) {
