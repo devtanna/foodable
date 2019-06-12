@@ -25,12 +25,19 @@ mongoose.connect(
 
     // small check to see if the db has the current active collection
     client.db.listCollections().toArray(function(err, collections) {
+      var lastCollectionInDb = collections.sort()[collections.length - 1][
+        'name'
+      ];
       if (!scraperDbHelper.checkDBhasActiveCollection(collections)) {
         console.log(
           'BackendServer: << DB does NOT have the current active collection! :( >>'
         );
       } else {
-        console.log('BackendServer: << DB active collection exists! :) >>');
+        console.log(
+          'BackendServer: << DB active collection exists! :) >> "' +
+            lastCollectionInDb +
+            '"'
+        );
       }
     });
   }

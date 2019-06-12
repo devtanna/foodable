@@ -68,6 +68,7 @@ function get_K8_BackendEndpoint() {
 
 module.exports = {
   SCRAPER_TEST_MODE: true, // important toggle to run just a subset of scrapes or all of them
+  USE_ONE_GLOBAL_COLLECTION: true,
   BACKEND_ENDPOINT:
     ENABLE_K8 == true ? getBackendEndpoint() : DOCKER_BACKEND_ENDPOINT,
   DB: getDBsettings().DB,

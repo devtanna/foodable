@@ -21,6 +21,9 @@ function getCurrentDateTime(offset = '+4') {
 }
 
 function getCurrentDBCollection(offset = '+4') {
+  if (settings.USE_ONE_GLOBAL_COLLECTION) {
+    return settings.MONGO_COLLECTION_NAME + '99_99_99';
+  }
   var currentdate = getCurrentDateTime(offset);
   var datetimeNow =
     currentdate.getDate() +
