@@ -155,7 +155,7 @@ function clean_generic_location(location) {
     'al-seef-umm-hurair': 'umm-hurair-1',
     'hotel-ibis-world-trade-centre-trade-centre-area':
       'dubai-world-trade-center-dwtc',
-    zabeel: 'the-dubai-mall-downtown-dubai',
+    'dubai-world-trade-center-dwtc': 'dubai-world-trade-center-dwtc',
     'manzil-downtown-dubai': 'the-dubai-mall-downtown-dubai',
     'cluster-a-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',
     'cluster-b-jumeirah-lake-towers': 'jumeirah-lakes-towers-jlt',

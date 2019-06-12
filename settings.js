@@ -83,7 +83,7 @@ module.exports = {
   PUPPETEER_VIEWPORT: { width: 1400, height: 800 },
   PUPPETEER_BROWSER_ISHEADLESS: true,
   PUPPETEER_GOTO_PAGE_ARGS: {
-    timeout: 18000, // 15seconds
+    timeout: 15000, // 15seconds
     waitUntil: ['networkidle0', 'load'],
   },
   MONGO_COLLECTION_NAME: 'collection_',
