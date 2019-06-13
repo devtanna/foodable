@@ -51,7 +51,9 @@ async function process_results(
         }
       }
       if (found_match == false) {
-        logger.debug('!!! NO MATCH FOUND FOR: ' + item_location);
+        logger.error(
+          '!!! NO MATCH FOUND FOR: ' + item_location + ' Please normalize.'
+        );
       }
     }
   }
@@ -197,7 +199,12 @@ function clean_generic_location(location) {
   };
 
   if (item_location_slug in map_generic_location_to_talabat_location) {
-    return map_generic_location_to_talabat_location[item_location_slug];
+    if (
+      map_generic_location_to_talabat_location[item_location_slug] != null &&
+      map_generic_location_to_talabat_location[item_location_slug].length > 0
+    ) {
+      return map_generic_location_to_talabat_location[item_location_slug];
+    }
   }
 
   return item_location_slug;

@@ -82,6 +82,7 @@ async function reindex(db, dbClient) {
         .toArray();
 
       if (otherRestaurants.length > 0) {
+        var matchFound = false;
         for (var j = 0, lenor = otherRestaurants.length; j < lenor; j++) {
           if (otherRestaurants[j] == undefined) {
             continue;
@@ -103,7 +104,7 @@ async function reindex(db, dbClient) {
                 ' ' +
                 current_restaturant_slug
             );
-
+            matchFound = true;
             delete current_restaturant['_id'];
             delete other_restaturant['_id'];
 
@@ -149,7 +150,32 @@ async function reindex(db, dbClient) {
             break;
           }
         }
+        if (!matchFound) {
+          logger.error('NOT FOUND :: ' + current_restaturant_slug);
+          // no comparisons
+          delete current_restaturant['_id'];
+          ops.push({
+            updateOne: {
+              filter: {
+                type: 'offers',
+                added: dbutils.getCurrentHour(),
+                slug: current_restaturant_slug,
+                locationSlug: current_restaturant['locationSlug'],
+                locationId: current_restaturant['locationId'],
+                locationName: current_restaturant['locationName'],
+              },
+              update: {
+                $addToSet: {
+                  offers: current_restaturant,
+                },
+              },
+              upsert: true,
+              new: true,
+            },
+          });
+        }
       } else {
+        logger.error('NOT FOUND >> ' + current_restaturant_slug);
         // no other restaurant. lets add it to its own offer
         delete current_restaturant['_id'];
         ops.push({

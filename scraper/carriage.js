@@ -136,7 +136,7 @@ async function scrapeInfiniteScrollItems(
     logger.info('On location ' + i + ' / ' + locations.length);
     try {
       if (settings.SCRAPER_TEST_MODE) {
-        if (locations[i].id != 833) {
+        if (locations[i].id != 924) {
           continue;
         }
       }
