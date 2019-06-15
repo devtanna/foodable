@@ -312,8 +312,10 @@ const MoreOffers = ({ offers, isOpen }) => {
           border-top: 1px solid #eaeaea;
         }
         .otherOffers__list li {
-          padding: 20px;
           border-bottom: 1px solid #ddd;
+        }
+        .otherOffers__list li a {
+          padding: 20px;
         }
         .otherOffers__list li:hover {
           background-color: #f5f5f5;

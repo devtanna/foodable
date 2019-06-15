@@ -165,8 +165,10 @@ const Listing = ({ offer }) => {
           border-top: 1px solid #eaeaea;
         }
         .otherOffers__list li {
-          padding: 10px 20px;
           border-bottom: 1px solid #ddd;
+        }
+        .otherOffers__list li a {
+          padding: 10px 20px;
         }
         .otherOffers__list li:last-child {
           border-bottom: none;

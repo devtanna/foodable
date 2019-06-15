@@ -1,34 +1,39 @@
-import React from 'react';
-import { Input } from 'semantic-ui-react';
+import SubscribeField from '../SubscribeField';
 
 const Footer = () => (
   <footer>
     <div className="wrapper">
-      <div className="subscribe">
-        <p>Get everyday&#39;s top food promotions in your inbox, subscribe to our newsletter!</p>
-        <Input 
-          fluid
-          action={{ color: 'orange', content: 'Subscribe' }} 
-          placeholder="Email address" />
-      </div>
+      <SubscribeField />
       <div className="nav">
         <div className="navHeading">About Foodable</div>
         <ul className="linksList">
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">How does Foodable work</a></li>
-          <li><a href="#">Our Culture</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li>
+            <a href="#">Contact Us</a>
+          </li>
+          <li>
+            <a href="#">How does Foodable work</a>
+          </li>
+          <li>
+            <a href="#">Our Culture</a>
+          </li>
+          <li>
+            <a href="#">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#">Terms &amp; Conditions</a>
+          </li>
         </ul>
       </div>
       <div className="logoWrapper">
         <img className="logo" src="/static/logo-white.svg" alt="Foodable.com" />
-        <div className="copyrights">Copyright 2019 foodable.com | All rights reserved.</div>
+        <div className="copyrights">
+          Copyright 2019 foodable.com | All rights reserved.
+        </div>
       </div>
     </div>
     <style jsx>{`
       footer {
-        background-color: #1F2021;
+        background-color: #1f2021;
         color: #fff;
       }
       .wrapper {
@@ -45,7 +50,7 @@ const Footer = () => (
       }
       .copyrights {
         font-size: 11px;
-        color: #CCC;
+        color: #ccc;
       }
       .navHeading {
         font-weight: bold;

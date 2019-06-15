@@ -104,3 +104,65 @@ export const getLocations = async () => {
     console.log(e);
   }
 };
+
+// Fetch Queries
+const TIMEOUT_MS = 10000;
+
+const endpoints = {
+  subscribe: '/subscribe',
+};
+
+function getHeaders() {
+  return {
+    Accept: 'application/json',
+    'Content-type': 'application/json',
+  };
+}
+
+function timeoutPromise(promise) {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error('promise timeout'));
+    }, TIMEOUT_MS);
+    promise.then(
+      res => {
+        clearTimeout(timeoutId);
+        resolve(res);
+      },
+      err => {
+        clearTimeout(timeoutId);
+        reject(err);
+      }
+    );
+  });
+}
+
+async function request(path, method = 'GET', body = {}) {
+  const options = {
+    method: method,
+    headers: getHeaders(),
+    credentials: 'same-origin',
+  };
+
+  if (method !== 'GET') {
+    options.body = JSON.stringify(body);
+  }
+
+  try {
+    let res = await timeoutPromise(fetch(path, options));
+    let data = await res.json();
+    if (!res.ok) {
+      let message = data.message || 'Something went wrong, please try again.';
+      return Promise.reject({ message });
+    }
+    return data;
+  } catch (error) {
+    return Promise.reject({
+      message: 'Something went wrong, please try again.',
+    });
+  }
+}
+
+export function subscribe(email) {
+  return request(endpoints['subscribe'], 'POST', { email });
+}
