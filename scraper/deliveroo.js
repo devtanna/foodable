@@ -55,19 +55,24 @@ const scrapePage = async url => {
       `https://deliveroo.ae${url.url}?offer=all+offers`,
       settings.PUPPETEER_GOTO_PAGE_ARGS
     );
+    await page.waitForSelector(
+      'li[class*=HomeFeedGrid]:first-child span:first-child > div[style]'
+    );
+
+    await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
+    await page.waitFor(1000);
+
     const html = await page.content();
     let items = [];
     $('li[class*="HomeFeedGrid"]', html).each(function() {
       let img;
       try {
-        img = $('div', this)
-          .first()
-          .children('a')
-          .first()
-          .children('span')
-          .first()
+        img = $(this)
           .children('div')
-          .first()
+          .children('div')
+          .children('a')
+          .children('span')
+          .children('div')
           .css('background-image');
       } catch (err) {
         img = '';
