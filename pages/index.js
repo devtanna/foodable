@@ -6,7 +6,7 @@ import FoodablesDesktop from '../components/desktop/';
 import { getOffers, getRandomOffers, getLocations } from '../helpers/api';
 import Cookies from 'universal-cookie';
 
-const Index = ({ offers, randomOffers, selectedLocation = null }) => {
+const Index = ({ offers, randomOffers, selectedLocation = null, page = 1 }) => {
   return (
     <div className="wrapper">
       <div className="mobile">
@@ -14,6 +14,7 @@ const Index = ({ offers, randomOffers, selectedLocation = null }) => {
           offers={offers}
           randomOffers={randomOffers}
           location={selectedLocation}
+          page={page}
         />
       </div>
       <div className="desktop">
@@ -21,6 +22,7 @@ const Index = ({ offers, randomOffers, selectedLocation = null }) => {
           offers={offers}
           randomOffers={randomOffers}
           location={selectedLocation}
+          page={page}
         />
       </div>
       <style jsx>{`
@@ -43,7 +45,7 @@ const Index = ({ offers, randomOffers, selectedLocation = null }) => {
   );
 };
 
-Index.getInitialProps = async ({ req, res }) => {
+Index.getInitialProps = async ({ req, res, query }) => {
   let cookies;
 
   if (res) {
@@ -52,6 +54,7 @@ Index.getInitialProps = async ({ req, res }) => {
     cookies = new Cookies();
   }
 
+  const page = query.page ? query.page : 1;
   const deliveryLocation = cookies.get('location');
   const isLocationSet = deliveryLocation !== undefined;
 
@@ -60,14 +63,14 @@ Index.getInitialProps = async ({ req, res }) => {
 
     if (isLocationSet) {
       if (locations.find(location => location.value === deliveryLocation)) {
-        const { offers } = await getOffers(deliveryLocation);
+        const { offers } = await getOffers(deliveryLocation, page);
         const { randomOffers } = await getRandomOffers(deliveryLocation);
 
         const selectedLocation = locations.find(
           location => location.value === deliveryLocation
         );
 
-        return { offers, randomOffers, selectedLocation };
+        return { offers, randomOffers, selectedLocation, page };
       } else {
         redirectToPage(res, '/select-area');
       }

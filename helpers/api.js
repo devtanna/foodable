@@ -26,12 +26,12 @@ const client = new ApolloClient({
   defaultOptions: defaultOptions,
 });
 
-export const getOffers = async location => {
+export const getOffers = async (location, page) => {
   try {
     const res = await client.query({
       query: gql`
         {
-          offers(page: 1, pageSize: 20, locationSlug: "${location}") {
+          offers(page: ${page}, pageSize: 20, locationSlug: "${location}") {
             _id
             offers {
               title,

@@ -57,7 +57,7 @@ const PopularDeals = ({ deals }) => (
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
         color: #333;
         display: grid;
-        grid-template-rows: 175px 1fr 40px;
+        grid-template-rows: 150px 1fr 40px;
         background: #fff;
       }
       .imgWrapper {

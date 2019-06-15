@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AppContext } from '../../helpers/contexts';
 import Listings from './Listings';
 
-const Foodables = ({ offers, randomOffers, location }) => {
+const Foodables = ({ offers, randomOffers, location, page }) => {
   const { sidebarVisible, setSidebarVisible } = useContext(AppContext);
 
   return (
@@ -41,6 +41,7 @@ const Foodables = ({ offers, randomOffers, location }) => {
             offers={offers}
             randomOffers={randomOffers}
             location={location}
+            page={page}
           />
         </Sidebar.Pusher>
       </Sidebar.Pushable>

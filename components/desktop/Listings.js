@@ -3,8 +3,9 @@ import Footer from './Footer';
 import Search from './Search';
 import PopularDeals from './PopularDeals';
 import Listing from './Listing';
+import Pagination from '../Pagination';
 
-const Listings = ({ offers, randomOffers, location }) => {
+const Listings = ({ offers, randomOffers, location, page }) => {
   return (
     <div>
       <Header location={location} />
@@ -18,18 +19,19 @@ const Listings = ({ offers, randomOffers, location }) => {
               <Listing offer={offer} key={index} />
             ))}
           </div>
+          <Pagination page={page} />
         </div>
       </main>
       <Footer />
       <style jsx>{`
         main {
           height: 100%;
-          background-color: #FAFAFA;
+          background-color: #fafafa;
           padding: 30px 15px;
         }
         .sectionHeading {
           text-align: center;
-          color: #3B3B3B;
+          color: #3b3b3b;
           margin: 0;
           font-size: 24px;
           padding: 0;

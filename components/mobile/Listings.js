@@ -2,8 +2,9 @@ import Header from './Header';
 import Footer from './Footer';
 import PopularDeals from './PopularDeals';
 import Listing from './Listing';
+import Pagination from '../Pagination';
 
-const Listings = ({ offers, randomOffers, location }) => {
+const Listings = ({ offers, randomOffers, location, page }) => {
   return (
     <div>
       <Header />
@@ -16,6 +17,7 @@ const Listings = ({ offers, randomOffers, location }) => {
               <Listing offer={offer} key={index} />
             ))}
           </div>
+          <Pagination page={page} />
         </div>
       </main>
       <Footer />
@@ -32,6 +34,7 @@ const Listings = ({ offers, randomOffers, location }) => {
         }
         .mainWrapper {
           padding: 0 10px;
+          margin-bottom: 30px;
         }
         .listingsWrapper {
           margin-bottom: 30px;
