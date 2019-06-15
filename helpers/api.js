@@ -110,6 +110,7 @@ const TIMEOUT_MS = 10000;
 
 const endpoints = {
   subscribe: '/subscribe',
+  contactus: '/contactus',
 };
 
 function getHeaders() {
@@ -165,4 +166,8 @@ async function request(path, method = 'GET', body = {}) {
 
 export function subscribe(email) {
   return request(endpoints['subscribe'], 'POST', { email });
+}
+
+export function contactUs(email, message) {
+  return request(endpoints['contactus'], 'POST', { email, message });
 }

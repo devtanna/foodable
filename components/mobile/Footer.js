@@ -1,4 +1,5 @@
 import SubscribeField from '../SubscribeField';
+import ContactUsModal from '../ContactUsModal';
 
 const Footer = () => (
   <footer>
@@ -8,7 +9,9 @@ const Footer = () => (
         <div className="navHeading">About Foodable</div>
         <ul className="linksList">
           <li>
-            <a href="#">Contact Us</a>
+            <a>
+              <ContactUsModal />
+            </a>
           </li>
           <li>
             <a href="#">How does Foodable work</a>
@@ -67,6 +70,7 @@ const Footer = () => (
       }
       .linksList li a {
         color: #eaeaea;
+        cursor: pointer;
       }
       .linksList li a:hover {
         text-decoration: underline;
