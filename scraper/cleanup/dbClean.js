@@ -24,21 +24,16 @@ MongoClient.connect(
 // ########## END DB STUFF ####################
 
 function cleanupOldCollections(db) {
-  for (let i = 0; i < 31; i++) {
-    var date = new Date(
-      new Date().setDate(dbutils.getCurrentDateTime().getDate() - i)
-    );
-    collectionName = dbutils.getDBCollectionForDateTime(date);
+  var collectionName = dbutils.getCurrentDBCollection();
+  db.collection(collectionName)
+    .drop()
+    .catch(e => {});
 
-    db.collection(collectionName)
-      .drop()
-      .catch(e => {});
+  console.log(
+    'Location script: Location collections cleaned up.',
+    collectionName
+  );
 
-    console.log(
-      'Location script: Location collections cleaned up.',
-      collectionName
-    );
-  }
   db.collection(settings.SUBSCRIPTION_MONGO_COLLECTION_NAME)
     .drop()
     .catch(e => {});

@@ -150,6 +150,12 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   return items;
 }
 
+function sleep(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
 (async () => {
   browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
@@ -160,60 +166,67 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
   const urls = await getLocations(page);
-  let giantResultsObj = [];
+  page.close();
   if (urls != null) {
-    logger.info(' Number of locations: ' + urls.length);
+    logger.info('Number of locations: ' + urls.length);
+    var count = urls.length - 1;
     for (let i = 0; i < urls.length; i++) {
-      logger.info('Processing: ' + i + '/' + urls.length);
+      logger.info('Locations processed: ' + i + '/' + urls.length);
       let url = urls[i];
 
-      if (settings.SCRAPER_TEST_MODE) {
-        if (url['locationName'].toLowerCase() != 'al karama') {
-          continue;
-        }
+      if (i > 0 && i % 5 == 0) {
+        await sleep(8000);
       }
 
-      try {
-        // Navigate to the page.
-        logger.info(' Scraping location: ' + url.url);
-        await page.goto(
-          `https://www.talabat.com/${url.url}`,
-          settings.PUPPETEER_GOTO_PAGE_ARGS
-        );
+      browser.newPage().then(page => {
+        page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-        // max number of pages to scroll through
-        if (settings.SCRAPER_TEST_MODE) {
-          var maxPage = 2;
-        } else {
-          var maxPage = 5;
+        try {
+          page
+            .goto(
+              `https://www.talabat.com/${url.url}`,
+              settings.PUPPETEER_GOTO_PAGE_ARGS
+            )
+            .then(() => {
+              logger.info('Scraping location: ' + url.url);
+              if (settings.SCRAPER_TEST_MODE) {
+                var maxPage = 2;
+              } else {
+                var maxPage = 5;
+              }
+
+              scrapeInfiniteScrollItems(page, maxPage).then(res => {
+                var flatResults = [].concat.apply([], res);
+                parse
+                  .process_results(
+                    flatResults,
+                    db,
+                    dbClient,
+                    scraper_name,
+                    (batch = true)
+                  )
+                  .then(() => {
+                    count -= 1;
+                    if (count < 0) {
+                      logger.info('Closing browser');
+                      // Close the browser.
+                      browser.close();
+                      logger.info('Closing client');
+                      // close the dbclient
+                      dbClient.close();
+                      logger.info('Talabat Scrape Done!');
+                    } else {
+                      page.close();
+                    }
+                  });
+              });
+            });
+        } catch (error) {
+          logger.info('', error);
         }
-        // Scroll and extract items from the page.
-        let res = await scrapeInfiniteScrollItems(page, maxPage);
-
-        var flatResults = [].concat.apply([], res);
-
-        // this is an async call
-        await parse.process_results(
-          flatResults,
-          db,
-          dbClient,
-          scraper_name,
-          (batch = true)
-        );
-
-        logger.info(' processed count: ' + res.length);
-      } catch (error) {
-        logger.info('', error);
-      }
+      });
     }
   }
-
-  // Close the browser.
-  await browser.close();
-
-  // close the dbclient
-  await dbClient.close();
-  logger.info('Talabat Scrape Done!');
 })();
 
 function clean_talabat_title(title) {

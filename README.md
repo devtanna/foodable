@@ -11,7 +11,7 @@ Run this first to load the locations
 - `node scraper/carriage.js`
 - `node scraper/ubereats.js`
 
-* `node scraper/reindex_offers.js`
+* `node scraper/reindex2.js`
 
 Run this at any given time after any number of scraper runs to generate the offers.
 
@@ -72,6 +72,10 @@ Get a list of X Random offers.
 Get list of locations with offers
 
 `query{ locationsWithOffers{ _id locationSlug, locationName } }`
+
+Get list of Restaurants by keyword
+
+`query{ findByKeyword(page:1 pageSize:10 keyword:"pizza"){ title, cuisine, offer, score, source, locationSlug, rating, cost_for_two, votes, image, href }}`
 
 ENDPOINT for contact us
 `http://foodable.local:8090/contactus`

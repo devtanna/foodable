@@ -45,7 +45,7 @@ const getLocations = async () => {
 
     return links;
   } catch (error) {
-    logger.info(error);
+    logger.error('Error in sitemap fetch: ' + error);
   }
 };
 
@@ -135,7 +135,7 @@ const scrapePage = async url => {
 
     return items;
   } catch (error) {
-    logger.info(error);
+    logger.error('Error in data extract: ' + error);
   }
 };
 
@@ -179,7 +179,7 @@ const run = async () => {
           logger.info('Scraped deliveroo. Results count: ' + res.length);
         }
       } catch (error) {
-        logger.error(error);
+        logger.error('Error in overall fetch: ' + error);
       }
     }
   }

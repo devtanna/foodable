@@ -27,14 +27,18 @@ MongoClient.connect(
 );
 // ########## END DB STUFF ####################
 
+function sleep(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
 async function scrapeInfiniteScrollItems(
   page,
   pageCount,
   scrollDelay = 1000,
   location
 ) {
-  logger.info('Scraping location:', location.name.toUpperCase());
-
   let items = [];
   let pageNum = 0;
   try {
@@ -130,58 +134,61 @@ async function scrapeInfiniteScrollItems(
   const page = await browser.newPage();
   page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-  let giantResultsObj = [];
-
+  var count = locations.length - 1;
   for (let i = 0; i < locations.length; i++) {
     logger.info('On location ' + i + ' / ' + locations.length);
     try {
-      if (settings.SCRAPER_TEST_MODE) {
-        if (locations[i].id != 924) {
-          continue;
-        }
+      if (i > 0 && i % 5 == 0) {
+        await sleep(8000);
       }
 
-      // Navigate to the page.
-      await page.goto(
-        `https://www.trycarriage.com/en/ae/restaurants?area_id=${
-          locations[i].id
-        }`,
-        { waitUntil: 'load' }
-      );
-
-      // max number of pages to scroll through
-      if (settings.SCRAPER_TEST_MODE) {
-        var maxPage = 10;
-      } else {
-        var maxPage = 25;
-      }
-      // Scroll and extract items from the page.
-      let res = await scrapeInfiniteScrollItems(
-        page,
-        maxPage,
-        1000,
-        locations[i]
-      );
-
-      var flatResults = [].concat.apply([], res);
-
-      // this is an async call
-      await parse.process_results(
-        flatResults,
-        db,
-        dbClient,
-        scraper_name,
-        (batch = true)
-      );
-      logger.info('Scraped Carriage. Results count: ' + res.length);
+      browser.newPage().then(page => {
+        page.setViewport(settings.PUPPETEER_VIEWPORT);
+        page
+          .goto(
+            `https://www.trycarriage.com/en/ae/restaurants?area_id=${
+              locations[i].id
+            }`,
+            { waitUntil: 'load' }
+          )
+          .then(() => {
+            if (settings.SCRAPER_TEST_MODE) {
+              var maxPage = 10;
+            } else {
+              var maxPage = 25;
+            }
+            logger.info('Scraping location:', locations[i].name);
+            scrapeInfiniteScrollItems(page, maxPage, 1000, locations[i]).then(
+              res => {
+                var flatResults = [].concat.apply([], res);
+                parse
+                  .process_results(
+                    flatResults,
+                    db,
+                    dbClient,
+                    scraper_name,
+                    (batch = true)
+                  )
+                  .then(() => {
+                    count -= 1;
+                    if (count < 0) {
+                      logger.info('Closing browser');
+                      // Close the browser.
+                      browser.close();
+                      logger.info('Closing client');
+                      // close the dbclient
+                      dbClient.close();
+                      logger.info('Carriage Scrape Done!');
+                    } else {
+                      page.close();
+                    }
+                  });
+              }
+            );
+          });
+      });
     } catch (error) {
       logger.info('', error);
     }
   }
-
-  // Close the browser.
-  await browser.close();
-  // close the dbclient
-  await dbClient.close();
-  logger.info('Carriage Scrape Done!');
 })();

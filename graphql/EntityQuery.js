@@ -22,90 +22,6 @@ exports.EntityQuery = new GraphQLObjectType({
   name: 'Query',
   fields: () => {
     return {
-      // GET ALL ENTITIES
-      entities: {
-        type: new GraphQLList(entityType),
-        args: {
-          pageSize: { type: GraphQLInt },
-          page: { type: GraphQLInt },
-        },
-        resolve: async (root, args, context, info) => {
-          const { pageSize, page } = args;
-          const projections = getProjection(info);
-          const items = await EntityModel.find()
-            .select(projections)
-            .skip(pageSize * (page - 1))
-            .limit(pageSize)
-            .exec();
-          if (!items) {
-            throw new Error('Error while fetching all data.');
-          }
-          return items;
-        },
-      },
-      // GET ALL LOCATIONS
-      locations: {
-        type: new GraphQLList(entityType),
-        args: {
-          pageSize: { type: GraphQLInt },
-          page: { type: GraphQLInt },
-        },
-        resolve: async (root, args, context, info) => {
-          const { pageSize, page } = args;
-          const projections = getProjection(info);
-          const items = await EntityModel.find({ type: 'location' })
-            .select(projections)
-            .skip(pageSize * (page - 1))
-            .limit(pageSize)
-            .exec();
-          if (!items) {
-            throw new Error('Error while fetching location data.');
-          }
-          return items;
-        },
-      },
-      // GET ALL RESTAURANTS
-      allRestaurants: {
-        type: new GraphQLList(entityType),
-        args: {
-          pageSize: { type: GraphQLInt },
-          page: { type: GraphQLInt },
-        },
-        resolve: async (root, args, context, info) => {
-          const { pageSize, page } = args;
-          const projections = getProjection(info);
-          const items = await EntityModel.find({ type: 'restaurant' })
-            .select(projections)
-            .skip(pageSize * (page - 1))
-            .limit(pageSize)
-            .exec();
-          if (!items) {
-            throw new Error('Error while fetching all restaurants data.');
-          }
-          return items;
-        },
-      },
-      // GET ALL LOCATIONS
-      locations: {
-        type: new GraphQLList(entityType),
-        args: {
-          pageSize: { type: GraphQLInt },
-          page: { type: GraphQLInt },
-        },
-        resolve: async (root, args, context, info) => {
-          const { pageSize, page } = args;
-          const projections = getProjection(info);
-          const items = await EntityModel.find({ type: 'location' })
-            .select(projections)
-            .skip(pageSize * (page - 1))
-            .limit(pageSize)
-            .exec();
-          if (!items) {
-            throw new Error('Error while fetching all location data.');
-          }
-          return items;
-        },
-      },
       // GET ALL LOCATIONS WITH OFFERS
       locationsWithOffers: {
         type: new GraphQLList(entityType),
@@ -139,8 +55,8 @@ exports.EntityQuery = new GraphQLObjectType({
         args: {
           pageSize: { type: GraphQLInt },
           page: { type: GraphQLInt },
-          locationSlug: { type: GraphQLString },
-          count: { type: GraphQLInt },
+          locationSlug: { type: GraphQLNonNull(GraphQLString) },
+          count: { type: GraphQLNonNull(GraphQLInt) },
         },
         resolve: async (root, args, context, info) => {
           const { pageSize, page, locationSlug, count } = args;
@@ -165,26 +81,27 @@ exports.EntityQuery = new GraphQLObjectType({
         args: {
           pageSize: { type: GraphQLInt },
           page: { type: GraphQLInt },
-          locationSlug: { type: GraphQLString },
+          locationSlug: { type: GraphQLNonNull(GraphQLString) },
         },
         resolve: async (root, args, context, info) => {
           const { pageSize, page } = args;
           const items = await EntityModel.aggregate([
             { $match: { type: 'offers', locationSlug: args.locationSlug } },
             { $unwind: '$offers' },
-            { $sort: { 'offers.added': 1 } },
+            // { $sort: { 'added': 1 } },
             {
               $project: {
                 added: 0,
-                'offers.added': 0,
               },
             },
             {
               $group: {
                 _id: { slug: '$slug' },
                 offers: { $addToSet: '$offers' },
+                count: { $sum: 1 },
               },
             },
+            { $sort: { count: -1 } },
           ])
             .skip(pageSize * (page - 1))
             .limit(pageSize)
@@ -227,7 +144,7 @@ exports.EntityQuery = new GraphQLObjectType({
           if (!items) {
             throw new Error('Error while fetching all offers data.');
           }
-          return items;
+          return restaurants;
         },
       },
     };

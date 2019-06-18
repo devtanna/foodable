@@ -29,17 +29,23 @@ MongoClient.connect(
 async function reindex(db, dbClient) {
   var locationCollectionName = dbutils.getCurrentDBCollection();
 
-  var find_threshold = dbutils.getCurrentHour() - 2;
+  var find_threshold = dbutils.getCurrentHour() - 1;
 
   // find
   var restaurants = await db
     .collection(locationCollectionName)
-    .find({ type: 'restaurant', added: { $gte: find_threshold } })
+    .find({
+      type: 'restaurant',
+      added: {
+        $gte: find_threshold,
+      },
+    })
     .toArray();
   logger.debug('Found entities to index: ' + restaurants.length);
   var ops = [];
   if (restaurants.length > 0) {
     for (var i = 0, lenr = restaurants.length; i < lenr; i++) {
+      // ==== START BATCH OPERATION
       // perform batch operations
       if (ops.length > 100) {
         logger.info(
@@ -55,7 +61,11 @@ async function reindex(db, dbClient) {
           .bulkWrite(ops, { ordered: false })
           .then(
             function(result) {
-              logger.info('Mongo BATCH Write Operation Complete');
+              logger.info(
+                'Mongo BATCH Write Operation Complete: ' +
+                  ops.length +
+                  ' operations.'
+              );
             },
             function(err) {
               logger.error('Mongo BATCH Write: Promise: error ' + err);
@@ -96,14 +106,14 @@ async function reindex(db, dbClient) {
           );
 
           if (cmp_score > 0.8) {
-            logger.debug(
-              'found! ' +
-                cmp_score +
-                ' ' +
-                other_restaturant_slug +
-                ' ' +
-                current_restaturant_slug
-            );
+            // logger.debug(
+            //   'found! ' +
+            //     cmp_score +
+            //     ' ' +
+            //     other_restaturant_slug +
+            //     ' ' +
+            //     current_restaturant_slug
+            // );
             matchFound = true;
             delete current_restaturant['_id'];
             delete other_restaturant['_id'];
@@ -151,7 +161,7 @@ async function reindex(db, dbClient) {
           }
         }
         if (!matchFound) {
-          logger.error('NOT FOUND :: ' + current_restaturant_slug);
+          // logger.error('NOT FOUND :: ' + current_restaturant_slug);
           // no comparisons
           delete current_restaturant['_id'];
           ops.push({
@@ -175,7 +185,7 @@ async function reindex(db, dbClient) {
           });
         }
       } else {
-        logger.error('NOT FOUND >> ' + current_restaturant_slug);
+        // logger.error('NOT FOUND >> ' + current_restaturant_slug);
         // no other restaurant. lets add it to its own offer
         delete current_restaturant['_id'];
         ops.push({
