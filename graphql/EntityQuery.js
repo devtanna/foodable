@@ -112,36 +112,27 @@ exports.EntityQuery = new GraphQLObjectType({
           return items;
         },
       },
-      // GET ALL OFFERS
-      allOffers: {
+      // Find By Keyword
+      findByKeyword: {
         type: new GraphQLList(entityType),
         args: {
+          keyword: { type: GraphQLNonNull(GraphQLString) },
           pageSize: { type: GraphQLInt },
           page: { type: GraphQLInt },
         },
         resolve: async (root, args, context, info) => {
-          const { pageSize, page } = args;
-          const items = await EntityModel.aggregate([
-            { $match: { type: 'offers', locationSlug: args.locationSlug } },
-            { $unwind: '$offers' },
-            { $sort: { 'offers.added': 1 } },
-            {
-              $project: {
-                added: 0,
-                'offers.added': 0,
-              },
-            },
-            {
-              $group: {
-                _id: { slug: '$slug' },
-                offers: { $addToSet: '$offers' },
-              },
-            },
-          ])
-            .skip(pageSize * (page - 1))
+          const { keyword, locationSlug, pageSize, page } = args;
+          const projections = getProjection(info);
+          var restaurants = await EntityModel.find({ type: 'restaurant' })
+            .select(projections)
+            .or([
+              { cuisine: { $regex: keyword, $options: 'i' } },
+              { title: { $regex: keyword, $options: 'i' } },
+            ])
+            .skip(page * pageSize)
             .limit(pageSize)
             .exec();
-          if (!items) {
+          if (!restaurants) {
             throw new Error('Error while fetching all offers data.');
           }
           return restaurants;
