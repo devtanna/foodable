@@ -20,7 +20,7 @@ const Listing = ({ offer }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <img src={imgSrc} />
+        <img src={imgSrc} alt={mainOffer.title} />
       </div>
       <div className="listing__content">
         <div className="listing__meta">
@@ -28,7 +28,7 @@ const Listing = ({ offer }) => {
             {mainOffer.title}
             <small className="meta__cuisine">{mainOffer.cuisine}</small>
           </div>
-          {/*<div className="meta__rating">
+          <div className="meta__rating">
             <Rating
               className="rating__stars"
               readonly
@@ -36,19 +36,22 @@ const Listing = ({ offer }) => {
               emptySymbol={<Icon name="star" size="small" color="teal" />}
               fullSymbol={<Icon name="star" size="small" color="olive" />}
             />
-          </div>*/}
+          </div>
         </div>
         <div className="bestOffer">
           <div className="bestOffer__heading">
             <span>{mainOffer.source}</span>
           </div>
           <div className="bestOffer__offer">{mainOffer.offer}</div>
-          <div className="bestOffer__footer">
+          <a
+            href={mainOffer.href}
+            target="_blank"
+            className="bestOffer__footer">
             <div>View Deal</div>
             <div>
               <Icon size="small" name="arrow right" />
             </div>
-          </div>
+          </a>
         </div>
       </div>
       {otherOffers.length > 0 && (

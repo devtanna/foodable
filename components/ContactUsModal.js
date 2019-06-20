@@ -41,8 +41,8 @@ const ContactUsModal = () => {
       size="tiny"
       dimmer="blurring"
       closeIcon
-      trigger={<span>Contact Us</span>}>
-      <Modal.Header>Contact Us</Modal.Header>
+      trigger={<span>Give us Feedback</span>}>
+      <Modal.Header>We would love to hear your feedback!</Modal.Header>
       {success ? (
         <Modal.Content>
           <Modal.Description>
@@ -75,7 +75,7 @@ const ContactUsModal = () => {
                   <TextArea
                     value={message}
                     onChange={e => setMessage(e.target.value)}
-                    placeholder="Your message*"
+                    placeholder="Your message...be nice?*"
                   />
                 </Form.Field>
               </Form>

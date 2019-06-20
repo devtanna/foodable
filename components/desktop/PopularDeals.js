@@ -15,7 +15,11 @@ const PopularDeals = ({ deals }) => {
             key={index}
             className={`deal ${deal.source}`}>
             <div className="imgWrapper">
-              <img width={hasImg ? '100%' : '50%'} src={imgSrc} />
+              <img
+                width={hasImg ? '100%' : '50%'}
+                src={imgSrc}
+                alt={deal.title}
+              />
             </div>
             <div className="content">
               <div className={`offer ${offerType}`}>
@@ -24,7 +28,8 @@ const PopularDeals = ({ deals }) => {
               <div className="title">{deal.title}</div>
             </div>
             <div className="footer">
-              <span>Available on:</span>
+              <div>Available on:</div>
+              <img src={offerSources[deal.source].logo} alt={deal.source} />
             </div>
           </a>
         );
@@ -96,10 +101,10 @@ const PopularDeals = ({ deals }) => {
           display: flex;
           padding: 10px 20px;
           align-items: center;
-          background-size: 140px 36px;
-          background-position: 100% 2px;
-          background-repeat: no-repeat;
-          margin: 0 1px;
+          justify-content: space-between;
+        }
+        .footer img {
+          height: 25px;
         }
         ${Object.entries(offerSources)
           .map(
@@ -107,7 +112,6 @@ const PopularDeals = ({ deals }) => {
               `
 	        	.deal.${key} .footer {
 	        		background-color: ${value.color};
-	        		background-image: url(${value.logo});
 	        	}
 	        `
           )

@@ -15,7 +15,7 @@ const Listing = ({ offer }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <img src={imgSrc} />
+        <img src={imgSrc} alt={mainOffer.title} />
       </div>
       <div className="listing__content">
         <ListingMeta offer={mainOffer} />
@@ -54,7 +54,7 @@ const Listing = ({ offer }) => {
 };
 
 const ListingMeta = ({ offer }) => {
-  // TODO: FIX RATING
+  // TODO: GET STARS RATING
   const numFromRating = offer.rating ? Number(offer.rating.match(/\d+/)) : null;
   const initialRating = 1;
 
@@ -64,7 +64,6 @@ const ListingMeta = ({ offer }) => {
         {offer.title}
         <small className="meta__cuisine">{offer.cuisine}</small>
       </h2>
-      {/* <div className="meta__costForTwo">{offer.cost_for_two}</div> */}
       <div className="meta__rating">
         <div className="rating__heading">Rating</div>
         <Rating
@@ -104,15 +103,16 @@ const ListingMeta = ({ offer }) => {
 
 const BestOffer = ({ offer }) => (
   <a href={offer.href} target="_blank" className={`bestOffer ${offer.source}`}>
-    <div className="bestOffer__heading" />
+    <div className="bestOffer__heading">
+      <img src={offerSources[offer.source].logo} alt={offer.source} />
+    </div>
     <div className="bestOffer__body">
       <div className="bestOffer__ribbon">Best Deal</div>
       <h3 className="bestOffer__offer">{offer.offer}</h3>
     </div>
     <div className="bestOffer__footer">
-      <div>Show this deal</div>
       <div>
-        <Icon size="small" name="arrow right" />
+        Show this deal <Icon size="small" name="arrow right" />
       </div>
     </div>
     <style jsx>{`
@@ -123,13 +123,19 @@ const BestOffer = ({ offer }) => (
         grid-row-gap: 0;
         border: 1px solid #ddd;
       }
+      .bestOffer__heading {
+        display: flex;
+        align-items: center;
+      }
+      .bestOffer__heading img {
+        height: 30px;
+      }
       ${Object.entries(offerSources)
         .map(
           ([key, value], index) =>
             `
           .bestOffer.${key} .bestOffer__heading {
-            background: ${value.color} url(${value.logo}) 0 0 no-repeat;
-            background-size: 133px 30px;
+            background-color: ${value.color};
           }
         `
         )
@@ -157,7 +163,6 @@ const BestOffer = ({ offer }) => (
       }
       .bestOffer__offer {
         margin: 0;
-        color: #7e8e12;
         font-size: 16px;
         text-align: center;
         color: #4d4d4d;
@@ -167,11 +172,12 @@ const BestOffer = ({ offer }) => (
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(270deg, #f34343 18.23%, #fd7650 100%);
-        color: #fff;
+        background: #fff8f3;
+        color: #4d4d4d;
         font-size: 11px;
         font-weight: bold;
         text-transform: uppercase;
+        border-top: 1px solid #ddd;
       }
     `}</style>
   </a>
@@ -190,7 +196,10 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
           target="_blank"
           key={index}
           className={`otherOffer ${offer.source}`}>
-          <div className="otherOffer__heading">View Deal</div>
+          <div className="otherOffer__heading">
+            <div>View Deal</div>
+            <img src={offerSources[offer.source].logo} alt={offer.source} />
+          </div>
           <div className="otherOffer__body">{offer.offer}</div>
         </a>
       ))}
@@ -224,6 +233,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
           display: flex;
           padding: 0 20px;
           align-items: center;
+          justify-content: space-between;
         }
         ${Object.entries(offerSources)
           .map(
@@ -233,8 +243,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
               background-color: ${value.color};
             }
             .otherOffer.${key} .otherOffer__heading {
-              background: ${value.color} url(${value.logo}) 100% 0 no-repeat;
-              background-size: 120px 30px;
+              background-color: ${value.color};
             }
           `
           )
@@ -244,7 +253,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
         }
         .otherOffer__body {
           background: #fff;
-          margin: 2px;
+          margin: 1px;
           display: flex;
           justify-content: center;
           align-items: center;
