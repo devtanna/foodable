@@ -12,17 +12,19 @@ var scraper_name = 'ubereats';
 var db;
 var dbClient;
 // Initialize connection once at the top of the scraper
-var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(
-  settings.DB_CONNECT_URL,
-  { useNewUrlParser: true },
-  function(err, client) {
-    if (err) throw err;
-    db = client.db(settings.DB_NAME);
-    dbClient = client;
-    logger.info('... Connected to mongo! ...');
-  }
-);
+if (settings.ENABLE_UBEREATS) {
+  var MongoClient = require('mongodb').MongoClient;
+  MongoClient.connect(
+    settings.DB_CONNECT_URL,
+    { useNewUrlParser: true },
+    function(err, client) {
+      if (err) throw err;
+      db = client.db(settings.DB_NAME);
+      dbClient = client;
+      logger.info('... Connected to mongo! ...');
+    }
+  );
+}
 // ########## END DB STUFF ####################
 
 async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
@@ -134,6 +136,11 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 }
 
 (async () => {
+  if (!settings.ENABLE_UBEREATS) {
+    logger.info('Ubereats scraper is DISABLED. EXITING.');
+    process.exit();
+  }
+
   // Set up browser and page.
   const browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
@@ -152,11 +159,8 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     );
 
     // max number of pages to scroll through
-    if (settings.SCRAPER_TEST_MODE) {
-      var maxPage = 2;
-    } else {
-      var maxPage = 25;
-    }
+    var maxPage = settings.SCRAPER_MAX_PAGE('ubereats');
+
     // Scroll and extract items from the page.
     let res = await scrapeInfiniteScrollItems(page, maxPage);
 

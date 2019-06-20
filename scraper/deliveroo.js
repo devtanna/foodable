@@ -11,18 +11,20 @@ const logger = require('../helpers/logging').getLogger();
 var scraper_name = 'deliveroo';
 var db;
 var dbClient;
-// Initialize connection once at the top of the scraper
-var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(
-  settings.DB_CONNECT_URL,
-  { useNewUrlParser: true },
-  function(err, client) {
-    if (err) throw err;
-    db = client.db(settings.DB_NAME);
-    dbClient = client;
-    logger.info('... Connected to mongo! ...');
-  }
-);
+if (settings.ENABLE_DELIVEROO) {
+  // Initialize connection once at the top of the scraper
+  var MongoClient = require('mongodb').MongoClient;
+  MongoClient.connect(
+    settings.DB_CONNECT_URL,
+    { useNewUrlParser: true },
+    function(err, client) {
+      if (err) throw err;
+      db = client.db(settings.DB_NAME);
+      dbClient = client;
+      logger.info('... Connected to mongo! ...');
+    }
+  );
+}
 // ########## END DB STUFF ####################
 
 let browser;
@@ -142,6 +144,11 @@ const scrapePage = async url => {
 let data = [];
 
 const run = async () => {
+  if (!settings.ENABLE_DELIVEROO) {
+    logger.info('Deliveroo scraper is DISABLED. EXITING.');
+    process.exit();
+  }
+
   browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: settings.PUPPETEER_BROWSER_ARGS,
@@ -149,19 +156,17 @@ const run = async () => {
   page = await browser.newPage();
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-  const links = await getLocations();
+  var links = await getLocations();
   if (links != null) {
+    if (settings.SCRAPER_TEST_MODE) {
+      links = links.slice(0, 2);
+    }
+
     logger.info('Number of locations received: ' + links.length);
     for (let i = 0; i < links.length; i++) {
       logger.info('On scrape ' + i + ' / ' + links.length);
 
       try {
-        if (settings.SCRAPER_TEST_MODE) {
-          if (links[i].url.indexOf('karama') < 0) {
-            continue;
-          }
-        }
-
         logger.info('Scraping: ' + links[i].url);
         let res = await scrapePage(links[i]);
 

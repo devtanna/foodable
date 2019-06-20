@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
 const ObjectsToCsv = require('objects-to-csv');
-const locations = require('./carriage_locations.json');
+var locations = require('./carriage_locations.json');
 
 const settings = require('../settings');
 const utils = require('./utils');
@@ -14,17 +14,19 @@ var scraper_name = 'carriage';
 var db;
 var dbClient;
 // Initialize connection once at the top of the scraper
-var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(
-  settings.DB_CONNECT_URL,
-  { useNewUrlParser: true },
-  function(err, client) {
-    if (err) throw err;
-    db = client.db(settings.DB_NAME);
-    dbClient = client;
-    logger.info('... Connected to mongo! ...');
-  }
-);
+if (settings.ENABLE_CARRIAGE) {
+  var MongoClient = require('mongodb').MongoClient;
+  MongoClient.connect(
+    settings.DB_CONNECT_URL,
+    { useNewUrlParser: true },
+    function(err, client) {
+      if (err) throw err;
+      db = client.db(settings.DB_NAME);
+      dbClient = client;
+      logger.info('... Connected to mongo! ...');
+    }
+  );
+}
 // ########## END DB STUFF ####################
 
 function sleep(ms) {
@@ -126,6 +128,11 @@ async function scrapeInfiniteScrollItems(
 }
 
 (async () => {
+  if (!settings.ENABLE_CARRIAGE) {
+    logger.info('Carriage scraper is DISABLED. EXITING.');
+    process.exit();
+  }
+
   // Set up browser and page.
   const browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
@@ -134,12 +141,16 @@ async function scrapeInfiniteScrollItems(
   const page = await browser.newPage();
   page.setViewport(settings.PUPPETEER_VIEWPORT);
 
+  if (settings.SCRAPER_TEST_MODE) {
+    locations = locations.slice(0, 2);
+  }
+
   var count = locations.length - 1;
   for (let i = 0; i < locations.length; i++) {
-    logger.info('On location ' + i + ' / ' + locations.length);
+    logger.info('On location ' + i + ' / ' + count);
     try {
-      if (i > 0 && i % 5 == 0) {
-        await sleep(8000);
+      if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
+        await sleep(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
       }
 
       browser.newPage().then(page => {
@@ -152,12 +163,10 @@ async function scrapeInfiniteScrollItems(
             { waitUntil: 'load' }
           )
           .then(() => {
-            if (settings.SCRAPER_TEST_MODE) {
-              var maxPage = 10;
-            } else {
-              var maxPage = 25;
-            }
-            logger.info('Scraping location:', locations[i].name);
+            var maxPage = settings.SCRAPER_MAX_PAGE('talabat');
+
+            logger.info('Scraping location: ' + locations[i].name);
+
             scrapeInfiniteScrollItems(page, maxPage, 1000, locations[i]).then(
               res => {
                 var flatResults = [].concat.apply([], res);

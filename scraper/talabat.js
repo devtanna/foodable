@@ -13,16 +13,19 @@ var db;
 var dbClient;
 // Initialize connection once at the top of the scraper
 var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(
-  settings.DB_CONNECT_URL,
-  { useNewUrlParser: true },
-  function(err, client) {
-    if (err) throw err;
-    db = client.db(settings.DB_NAME);
-    dbClient = client;
-    logger.info('... Connected to mongo! ...');
-  }
-);
+
+if (settings.ENABLE_TALABAT) {
+  MongoClient.connect(
+    settings.DB_CONNECT_URL,
+    { useNewUrlParser: true },
+    function(err, client) {
+      if (err) throw err;
+      db = client.db(settings.DB_NAME);
+      dbClient = client;
+      logger.info('... Connected to mongo! ...');
+    }
+  );
+}
 // ########## END DB STUFF ####################
 
 const getLocations = async page => {
@@ -157,6 +160,11 @@ function sleep(ms) {
 }
 
 (async () => {
+  if (!settings.ENABLE_TALABAT) {
+    logger.info('Talabat scraper is DISABLED. EXITING.');
+    process.exit();
+  }
+
   browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: settings.PUPPETEER_BROWSER_ARGS,
@@ -165,17 +173,21 @@ function sleep(ms) {
   const page = await browser.newPage();
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-  const urls = await getLocations(page);
+  var urls = await getLocations(page);
   page.close();
   if (urls != null) {
+    if (settings.SCRAPER_TEST_MODE) {
+      urls = urls.slice(0, 2);
+    }
+
     logger.info('Number of locations: ' + urls.length);
     var count = urls.length - 1;
     for (let i = 0; i < urls.length; i++) {
       logger.info('Locations processed: ' + i + '/' + urls.length);
       let url = urls[i];
 
-      if (i > 0 && i % 5 == 0) {
-        await sleep(8000);
+      if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
+        await sleep(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
       }
 
       browser.newPage().then(page => {
@@ -189,11 +201,8 @@ function sleep(ms) {
             )
             .then(() => {
               logger.info('Scraping location: ' + url.url);
-              if (settings.SCRAPER_TEST_MODE) {
-                var maxPage = 2;
-              } else {
-                var maxPage = 5;
-              }
+
+              var maxPage = settings.SCRAPER_MAX_PAGE('talabat');
 
               scrapeInfiniteScrollItems(page, maxPage).then(res => {
                 var flatResults = [].concat.apply([], res);

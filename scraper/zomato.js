@@ -12,17 +12,19 @@ var scraper_name = 'zomato';
 var db;
 var dbClient;
 // Initialize connection once at the top of the scraper
-var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(
-  settings.DB_CONNECT_URL,
-  { useNewUrlParser: true },
-  function(err, client) {
-    if (err) throw err;
-    db = client.db(settings.DB_NAME);
-    dbClient = client;
-    logger.info('... Connected to mongo! ...');
-  }
-);
+if (settings.ENABLE_ZOMATO) {
+  var MongoClient = require('mongodb').MongoClient;
+  MongoClient.connect(
+    settings.DB_CONNECT_URL,
+    { useNewUrlParser: true },
+    function(err, client) {
+      if (err) throw err;
+      db = client.db(settings.DB_NAME);
+      dbClient = client;
+      logger.info('... Connected to mongo! ...');
+    }
+  );
+}
 // ########## END DB STUFF ####################
 
 let browser;
@@ -96,15 +98,15 @@ const scrapePage = async (pageNum = 1) => {
 
 let hasNext = true;
 let pageNum = 1;
-if (settings.SCRAPER_TEST_MODE) {
-  var maxPage = 5;
-} else {
-  var maxPage = 25;
-}
-
 let data = [];
+var maxPage = settings.SCRAPER_MAX_PAGE;
 
 const run = async () => {
+  if (!settings.ENABLE_ZOMATO) {
+    logger.info('Zomato scraper is DISABLED. EXITING.');
+    process.exit();
+  }
+
   browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: settings.PUPPETEER_BROWSER_ARGS,
