@@ -49,6 +49,7 @@ const getLocations = async page => {
 
 async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   let items = [];
+  let itemsMap = {};
   let pageNum = 0;
   try {
     let previousHeight;
@@ -71,7 +72,12 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
         $('.cuisShow .ng-binding', this).each(function() {
           cuisine.push($(this).text());
         });
-
+        let title = clean_talabat_title(
+          $('.media-heading', this)
+            .text()
+            .trim()
+            .replace(/['"]+/g, '')
+        );
         let result = {
           title: clean_talabat_title(
             $('.media-heading', this)
@@ -134,9 +140,16 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
         // if no offer, then skip
         if (result.offer.length > 0) {
+          if (title in itemsMap) {
+            if (result['score'] > itemsMap[title]['score']) {
+              itemsMap[title] = result;
+            }
+            return;
+          }
           var index = items.indexOf(result); // dont want to push duplicates
           if (index === -1) {
             items.push(result);
+            itemsMap[title] = result;
           }
         }
       });
@@ -151,9 +164,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       await page.waitFor(scrollDelay);
     }
   } catch (e) {
-    logger.error('', e);
+    logger.error('Error during infinte page scrape: ' + e);
   }
-  logger.info(' number of items scraped: ' + items.length);
+  logger.info('Number of items scraped: ' + items.length);
   return items;
 }
 
