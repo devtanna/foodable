@@ -54,9 +54,7 @@ const Listing = ({ offer }) => {
 };
 
 const ListingMeta = ({ offer }) => {
-  // TODO: GET STARS RATING
-  const numFromRating = offer.rating ? Number(offer.rating.match(/\d+/)) : null;
-  const initialRating = 1;
+  const initialRating = offer.rating;
 
   return (
     <div className="listing__meta">
@@ -64,16 +62,18 @@ const ListingMeta = ({ offer }) => {
         {offer.title}
         <small className="meta__cuisine">{offer.cuisine}</small>
       </h2>
-      <div className="meta__rating">
-        <div className="rating__heading">Rating</div>
-        <Rating
-          className="rating__stars"
-          readonly
-          initialRating={initialRating}
-          emptySymbol={<Icon name="star" size="large" color="teal" />}
-          fullSymbol={<Icon name="star" size="large" color="yellow" />}
-        />
-      </div>
+      {initialRating && (
+        <div className="meta__rating">
+          <div className="rating__heading">Rating</div>
+          <Rating
+            className="rating__stars"
+            readonly
+            initialRating={Number(initialRating)}
+            emptySymbol={<Icon name="star" size="large" color="teal" />}
+            fullSymbol={<Icon name="star" size="large" color="yellow" />}
+          />
+        </div>
+      )}
       <style jsx>{`
         .listing__meta {
           display: flex;

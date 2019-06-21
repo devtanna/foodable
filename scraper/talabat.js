@@ -63,6 +63,10 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       });
 
       $('.rest-link', html).each(function() {
+        let $ratingImgSrc = $('.rating-img > img', this).attr('src');
+        let starRating = $ratingImgSrc.match(
+          new RegExp('rating-' + '(.*)' + '.svg')
+        )[1];
         let cuisine = [];
         $('.cuisShow .ng-binding', this).each(function() {
           cuisine.push($(this).text());
@@ -96,7 +100,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
             .split('?')
             .shift(),
           location: location.trim(),
-          rating: clean_talabat_rating($('.rating-num', this).prev().src),
+          rating: starRating,
           cuisine: clean_talabat_cuisine(cuisine.join('')),
           offer: $("div[ng-if='rest.offersnippet']", this)
             .text()

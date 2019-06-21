@@ -17,6 +17,8 @@ const Listing = ({ offer }) => {
   const hasImg = mainOffer.image !== '';
   const imgSrc = hasImg ? mainOffer.image : '/static/placeholder.png';
 
+  const initialRating = mainOffer.rating;
+
   return (
     <div className="listing">
       <div className="listing__img">
@@ -28,15 +30,17 @@ const Listing = ({ offer }) => {
             {mainOffer.title}
             <small className="meta__cuisine">{mainOffer.cuisine}</small>
           </div>
-          <div className="meta__rating">
-            <Rating
-              className="rating__stars"
-              readonly
-              initialRating={3}
-              emptySymbol={<Icon name="star" size="small" color="teal" />}
-              fullSymbol={<Icon name="star" size="small" color="olive" />}
-            />
-          </div>
+          {initialRating && (
+            <div className="meta__rating">
+              <Rating
+                className="rating__stars"
+                readonly
+                initialRating={Number(initialRating)}
+                emptySymbol={<Icon name="star" size="small" color="teal" />}
+                fullSymbol={<Icon name="star" size="small" color="olive" />}
+              />
+            </div>
+          )}
         </div>
         <div className="bestOffer">
           <div className="bestOffer__heading">
