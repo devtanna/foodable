@@ -99,7 +99,7 @@ const scrapePage = async (pageNum = 1) => {
 let hasNext = true;
 let pageNum = 1;
 let data = [];
-var maxPage = settings.SCRAPER_MAX_PAGE;
+var maxPage = settings.SCRAPER_MAX_PAGE('zomato');
 
 const run = async () => {
   if (!settings.ENABLE_ZOMATO) {

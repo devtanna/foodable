@@ -1,6 +1,7 @@
 version: "3"
 services:
   nginx-proxy:
+    container_name: foodable_nginx
     image: nginx:latest
     ports:
       - "8090:80"

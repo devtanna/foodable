@@ -73,6 +73,10 @@ Get list of locations with offers
 
 `query{ locationsWithOffers{ _id locationSlug, locationName } }`
 
+Get list of cuisines indexed by scraper so far
+
+`query{fetchCuisine{type,tags}}`
+
 Get list of Restaurants by keyword
 
 `query{ findByKeyword(page:1 pageSize:10 keyword:"pizza"){ title, cuisine, offer, score, source, locationSlug, rating, cost_for_two, votes, image, href }}`

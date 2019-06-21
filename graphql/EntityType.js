@@ -66,12 +66,21 @@ const offerObjectType = new GraphQLObjectType({
   },
 });
 
-exports.arrayLocationType = new GraphQLObjectType({
-  name: 'arrayLocationType',
+exports.tagType = new GraphQLObjectType({
+  name: 'tagType',
   fields: () => {
     return {
-      location: {
+      _id: {
+        type: GraphQLID,
+      },
+      type: {
         type: GraphQLString,
+      },
+      tags: {
+        type: GraphQLList(GraphQLString),
+      },
+      offers: {
+        type: GraphQLList(GraphQLString),
       },
     };
   },
