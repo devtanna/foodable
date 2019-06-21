@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { Icon, Responsive } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
+import { trackEvent } from '../../helpers/utils';
 
 const Listing = ({ offer }) => {
   const mainOffer = offer.offers[0];
@@ -101,87 +102,97 @@ const ListingMeta = ({ offer }) => {
   );
 };
 
-const BestOffer = ({ offer }) => (
-  <a href={offer.href} target="_blank" className={`bestOffer ${offer.source}`}>
-    <div className="bestOffer__heading">
-      <img src={offerSources[offer.source].logo} alt={offer.source} />
-    </div>
-    <div className="bestOffer__body">
-      <div className="bestOffer__ribbon">Best Deal</div>
-      <h3 className="bestOffer__offer">{offer.offer}</h3>
-    </div>
-    <div className="bestOffer__footer">
-      <div>
-        Show this deal <Icon size="small" name="arrow right" />
+const BestOffer = ({ offer }) => {
+  const track = () => {
+    trackEvent('offer_click', 'main', offer.source, offer.title);
+  };
+
+  return (
+    <a
+      href={offer.href}
+      target="_blank"
+      onClick={track}
+      className={`bestOffer ${offer.source}`}>
+      <div className="bestOffer__heading">
+        <img src={offerSources[offer.source].logo} alt={offer.source} />
       </div>
-    </div>
-    <style jsx>{`
-      .bestOffer {
-        display: grid;
-        margin: 20px;
-        grid-template-rows: 30px auto 30px;
-        grid-row-gap: 0;
-        border: 1px solid #ddd;
-      }
-      .bestOffer__heading {
-        display: flex;
-        align-items: center;
-      }
-      .bestOffer__heading img {
-        height: 30px;
-      }
-      ${Object.entries(offerSources)
-        .map(
-          ([key, value], index) =>
-            `
-          .bestOffer.${key} .bestOffer__heading {
-            background-color: ${value.color};
-          }
-        `
-        )
-        .join('')}
-      .bestOffer__body {
-        background: #fff8f3;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0 10px;
-      }
-      .bestOffer__ribbon {
-        background: url('/static/red-ribbon.svg') 0 0 no-repeat;
-        width: 170px;
-        height: 33px;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-transform: uppercase;
-        font-weight: bold;
-        margin-bottom: 10px;
-        font-size: 12px;
-      }
-      .bestOffer__offer {
-        margin: 0;
-        font-size: 16px;
-        text-align: center;
-        color: #4d4d4d;
-        text-transform: uppercase;
-      }
-      .bestOffer__footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #fff8f3;
-        color: #4d4d4d;
-        font-size: 11px;
-        font-weight: bold;
-        text-transform: uppercase;
-        border-top: 1px solid #ddd;
-      }
-    `}</style>
-  </a>
-);
+      <div className="bestOffer__body">
+        <div className="bestOffer__ribbon">Best Deal</div>
+        <h3 className="bestOffer__offer">{offer.offer}</h3>
+      </div>
+      <div className="bestOffer__footer">
+        <div>
+          Show this deal <Icon size="small" name="arrow right" />
+        </div>
+      </div>
+      <style jsx>{`
+        .bestOffer {
+          display: grid;
+          margin: 20px;
+          grid-template-rows: 30px auto 30px;
+          grid-row-gap: 0;
+          border: 1px solid #ddd;
+        }
+        .bestOffer__heading {
+          display: flex;
+          align-items: center;
+        }
+        .bestOffer__heading img {
+          height: 30px;
+        }
+        ${Object.entries(offerSources)
+          .map(
+            ([key, value], index) =>
+              `
+            .bestOffer.${key} .bestOffer__heading {
+              background-color: ${value.color};
+            }
+          `
+          )
+          .join('')}
+        .bestOffer__body {
+          background: #fff8f3;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 0 10px;
+        }
+        .bestOffer__ribbon {
+          background: url('/static/red-ribbon.svg') 0 0 no-repeat;
+          width: 170px;
+          height: 33px;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-transform: uppercase;
+          font-weight: bold;
+          margin-bottom: 10px;
+          font-size: 12px;
+        }
+        .bestOffer__offer {
+          margin: 0;
+          font-size: 16px;
+          text-align: center;
+          color: #4d4d4d;
+          text-transform: uppercase;
+        }
+        .bestOffer__footer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #fff8f3;
+          color: #4d4d4d;
+          font-size: 11px;
+          font-weight: bold;
+          text-transform: uppercase;
+          border-top: 1px solid #ddd;
+        }
+      `}</style>
+    </a>
+  );
+};
 
 const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
   if (offers.length === 0) return false;
@@ -195,6 +206,9 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
           href={offer.href}
           target="_blank"
           key={index}
+          onClick={() =>
+            trackEvent('offer_click', 'others', offer.source, offer.title)
+          }
           className={`otherOffer ${offer.source}`}>
           <div className="otherOffer__heading">
             <div>View Deal</div>
@@ -205,7 +219,10 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
       ))}
       {hasMore && (
         <button
-          onClick={() => toggleMore(!isMoreOffersOpen)}
+          onClick={() => {
+            trackEvent('show_more', 'others');
+            toggleMore(!isMoreOffersOpen);
+          }}
           className="showMoreBtn">
           <div>Show more deals</div>
           <div>

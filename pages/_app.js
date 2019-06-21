@@ -16,7 +16,7 @@ Router.events.on('routeChangeError', (err, url) => {
 
 const PageHead = () => (
   <Head>
-    <title>Foodable.com</title>
+    <title>Foodable.ae</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
@@ -46,7 +46,11 @@ class FoodableApp extends App {
             border-radius: 0 !important;
           }
           :global(.searchBtn) {
-            background: linear-gradient(270deg, #F34343 18.23%, #FF7E52 100%) !important;
+            background: linear-gradient(
+              270deg,
+              #f34343 18.23%,
+              #ff7e52 100%
+            ) !important;
             color: #fff !important;
             width: 100%;
           }

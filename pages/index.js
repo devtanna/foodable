@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { device } from '../helpers/device';
-import { redirectToPage } from '../helpers/utils';
+import { redirectToPage, trackPageView } from '../helpers/utils';
 import FoodablesMobile from '../components/mobile/';
 import FoodablesDesktop from '../components/desktop/';
 import { getOffers, getRandomOffers, getLocations } from '../helpers/api';
 import Cookies from 'universal-cookie';
 
 const Index = ({ offers, randomOffers, selectedLocation = null, page = 1 }) => {
+  useEffect(() => {
+    trackPageView('homepage', '/', `/loc=${selectedLocation.value}`);
+  }, []);
+
   return (
     <div className="wrapper">
       <div className="mobile">

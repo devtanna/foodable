@@ -1,4 +1,5 @@
 import { offerSources } from '../../helpers/constants';
+import { trackEvent } from '../../helpers/utils';
 
 const PopularDeals = ({ deals }) => (
   <section className="scroller">
@@ -13,6 +14,9 @@ const PopularDeals = ({ deals }) => (
             href={deal.href}
             target="_blank"
             key={index}
+            onClick={() =>
+              trackEvent('offer_click', 'popular', deal.source, deal.title)
+            }
             className={`deal ${deal.source}`}>
             <div className="imgWrapper">
               <img
