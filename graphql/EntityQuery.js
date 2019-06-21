@@ -5,7 +5,7 @@ var GraphQLNonNull = require('graphql').GraphQLNonNull;
 var GraphQLInt = require('graphql').GraphQLInt;
 var EntityModel = require('./Entity');
 var entityType = require('./EntityType').entityType;
-var arrayLocationType = require('./EntityType').arrayLocationType;
+var tagType = require('./EntityType').tagType;
 
 function getProjection(fieldASTs) {
   return fieldASTs.fieldNodes[0].selectionSet.selections.reduce(
@@ -136,6 +136,20 @@ exports.EntityQuery = new GraphQLObjectType({
             throw new Error('Error while fetching all offers data.');
           }
           return restaurants;
+        },
+      },
+      // Fetch all cuisine tags
+      fetchCuisine: {
+        type: new GraphQLList(tagType),
+        args: {},
+        resolve: async (root, args, context, info) => {
+          const projections = getProjection(info);
+          var tags = await EntityModel.find({ type: 'cuisine' }).exec();
+          console.log(tags);
+          if (!tags) {
+            throw new Error('Error while fetching all offers data.');
+          }
+          return tags;
         },
       },
     };

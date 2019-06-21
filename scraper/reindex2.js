@@ -126,9 +126,26 @@ async function reindex(db, dbClient, todayDateStr) {
         current_res_slug = restaurants[i]['slug'],
         current_res_id = current_res['_id'],
         current_source = restaurants[i]['source'],
-        current_location_slug = restaurants[i]['locationSlug'];
+        current_location_slug = restaurants[i]['locationSlug'],
+        cuisineTags = current_res['cuisine'].split(',').map(s => s.trim());
       delete current_res['_id'];
 
+      if (cuisineTags.length) {
+        ops.push({
+          updateOne: {
+            filter: {
+              type: 'cuisine',
+            },
+            update: {
+              $addToSet: {
+                tags: { $each: cuisineTags },
+              },
+            },
+            upsert: true,
+            new: true,
+          },
+        });
+      }
       // step 2) find all offers in the same location
       var allOffers = await db
         .collection(collectionName)

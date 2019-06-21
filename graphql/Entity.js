@@ -229,6 +229,12 @@ var EnityModelSchema = new Schema({
     required: false,
     default: [],
   },
+  tags: {
+    type: [String],
+    index: false,
+    required: false,
+    default: [],
+  },
 });
 
 // Define the indexes
