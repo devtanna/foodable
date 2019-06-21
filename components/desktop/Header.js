@@ -1,12 +1,13 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import Link from 'next/link';
+import { trackEvent } from '../../helpers/utils';
 
 const Header = ({ location }) => {
   return (
     <header>
       <div className="wrapper">
-        <div></div>
+        <div />
         <div className="logoWrapper">
           <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
         </div>
@@ -14,7 +15,7 @@ const Header = ({ location }) => {
           <ul className="navLinks">
             <li>
               <div className="location__current">
-                <Icon name="map marker alternate" size="large" color="grey" /> 
+                <Icon name="map marker alternate" size="large" color="grey" />
                 <div>
                   <div className="addressHeading">Delivery address:</div>
                   <div className="address">Dubai, {location.text}</div>
@@ -24,7 +25,9 @@ const Header = ({ location }) => {
             <li>
               <div className="location__change">
                 <Link href="/select-area">
-                  <a>Change Location</a>
+                  <a onClick={() => trackEvent('change_location', 'generic')}>
+                    Change Location
+                  </a>
                 </Link>
               </div>
             </li>
@@ -45,7 +48,7 @@ const Header = ({ location }) => {
           margin: 0 auto;
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
-          align-items: center;  
+          align-items: center;
           justify-content: center;
         }
         .logoWrapper {
@@ -66,7 +69,7 @@ const Header = ({ location }) => {
         .navLinks li {
           display: inline-flex;
           align-items: center;
-          border-right: 1px solid #CCC;
+          border-right: 1px solid #ccc;
           padding: 0 10px;
         }
         .navLinks li:last-child {

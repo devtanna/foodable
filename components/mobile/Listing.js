@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { Icon, Accordion } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
+import { trackEvent } from '../../helpers/utils';
 
 const Listing = ({ offer }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -10,6 +11,7 @@ const Listing = ({ offer }) => {
     const { index } = titleProps;
     const newIndex = activeIndex === index ? -1 : index;
     setActiveIndex(newIndex);
+    trackEvent('show_more', 'others');
   };
 
   const mainOffer = offer.offers[0];
@@ -50,6 +52,14 @@ const Listing = ({ offer }) => {
           <a
             href={mainOffer.href}
             target="_blank"
+            onClick={() =>
+              trackEvent(
+                'offer_click',
+                'main',
+                mainOffer.source,
+                mainOffer.title
+              )
+            }
             className="bestOffer__footer">
             <div>View Deal</div>
             <div>
@@ -80,6 +90,14 @@ const Listing = ({ offer }) => {
                     <a
                       className="otherOffer__offer"
                       href={otherOffer.href}
+                      onClick={() =>
+                        trackEvent(
+                          'offer_click',
+                          'others',
+                          otherOffer.source,
+                          otherOffer.title
+                        )
+                      }
                       target="_blank">
                       <span>{otherOffer.source}</span>
                       <span>{otherOffer.offer}</span>
