@@ -24,6 +24,12 @@ const offerObjectType = new GraphQLObjectType({
     score: {
       type: GraphQLFloat,
     },
+    scoreLevel: {
+      type: GraphQLFloat,
+    },
+    scoreValue: {
+      type: GraphQLFloat,
+    },
     image: {
       type: GraphQLString,
     },
@@ -103,6 +109,12 @@ exports.entityType = new GraphQLObjectType({
         type: GraphQLString,
       },
       score: {
+        type: GraphQLFloat,
+      },
+      scoreLevel: {
+        type: GraphQLFloat,
+      },
+      scoreValue: {
         type: GraphQLFloat,
       },
       image: {

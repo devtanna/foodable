@@ -1,3 +1,6 @@
+// logging init
+const logger = require('../helpers/logging').getLogger();
+
 function slugify(string) {
   const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;';
   const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------';
@@ -56,72 +59,66 @@ function editDistance(s1, s2) {
 }
 
 function calculateScore(item) {
-  score = 0;
-  rating = item['rating'];
-  offer = item['offer'];
-  offer_map = {
-    Special: 10,
-    Offer: 10,
-    Discount: 5,
-    Special: 5,
+  var score = 0,
+    rating = item['rating'],
+    offer = item['offer'],
+    source = item['source'];
+
+  if (!offer) return;
+
+  var offerMapping = {
+    11: [
+      /^(\d+)% off all orders$/im,
+      /^(\d+)% off$/im,
+      /^(\d+)% off on all orders$/im,
+      /^(\d+)% off on your first order$/im,
+      /^(\d+)% discount on food and beverage$/im,
+      /^(\d+)% off on all dine-in and home-delivery orders$/im,
+      /^discount of (\d+)% on your total bill$/im,
+    ],
+    10: [/^(\d+)% off selected items$/im],
+    9: [
+      /^(\d+)% off orders above aed\s*(\d+(.\d+)*)$/im,
+      /^(\d+)% off on all orders above\s*(\d+(.\d+)*)$/im,
+      /^(\d+)% off on all orders above aed\s*(\d+(.\d+)*)$/im,
+    ],
+    8: [/^2 for 1$/im, /^bogo$/im, /^buy 1 get 1 free$/im],
+    7: [/^aed (\d+(.\d+)*) off all orders$/im],
+
+    6: [/^(\d+) aed meals$/im],
+
+    5: [/^aed (\d+(.\d+)*) off selected items$/im],
+
+    4: [/^free item with orders over aed (\d+(.\d+)*)$/im],
+
+    3: [/^special offers on menu items$/im, /^special offer$/im],
+
+    2: [/^(feel good)*\s*meal deals$/im],
+
+    1: [/^free delivery$/im],
   };
+  let scoreLevel, scoreValue;
+  let foundMatch = false;
+  Object.entries(offerMapping).some(([mapScore, regexes]) => {
+    regexes.some(regex => {
+      let regexMatchObject = offer.match(regex);
+      scoreLevel = regexMatchObject ? mapScore : -1;
+      scoreValue =
+        regexMatchObject && regexMatchObject[1] ? regexMatchObject[1] : -1;
 
-  // offer is defined - 10 points
-  if (offer != undefined) {
-    if (offer.trim() != '') {
-      score += 10;
-    }
-
-    // get number from string
-    match = offer.match(/\d+/);
-    if (match != null) number = match[0];
-    else number = null;
-
-    // extract % offer from offer string
-    if (offer.indexOf('%') > -1) {
-      if (number != undefined || number != null) {
-        // we have a percentage number
-        // !! higher is better !!
-        score += parseFloat(number);
+      if (regexMatchObject) {
+        foundMatch = true;
+        return true;
       }
-    } else {
-      if (number != undefined || number != null) {
-        // we have an amount of discount number
-        // !! lower is better !! So subtract from 100 to reflect this.
-        score += 100 - parseFloat(number);
-      }
-    }
+    });
+    if (foundMatch) return true;
+  });
 
-    // Add up the string scores
-    for (key in offer_map) {
-      if (
-        offer
-          .toString()
-          .toLowerCase()
-          .indexOf(key.toString().toLowerCase()) != -1
-      ) {
-        score += offer_map[key];
-      }
-    }
+  if (!foundMatch || scoreLevel <= 0) {
+    logger.error('NO SCORE ASSIGNED FOR: ' + offer);
   }
 
-  // rating is defined - 10 points
-  if (rating != undefined) {
-    if (rating.trim() != '') {
-      score += 10;
-    }
-    // add the rating
-    // get number from string
-    match = rating.match(/\d+/);
-    if (match != null) number = match[0];
-    else number = null;
-
-    if (number != undefined || number != null) {
-      score += parseFloat(number);
-    }
-  }
-
-  return parseFloat(score);
+  return { scoreLevel, scoreValue };
 }
 
 module.exports = {

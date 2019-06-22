@@ -122,11 +122,12 @@ const scrapePage = async url => {
         type: 'restaurant',
       };
 
-      // meta fields
-      result['score'] = utils.calculateScore(result);
-
       // if no offer, then skip
       if (result.offer.length > 0) {
+        let { scoreLevel, scoreValue } = utils.calculateScore(result);
+        result['scoreLevel'] = scoreLevel;
+        result['scoreValue'] = scoreValue;
+
         let obj = items.find(o => o.slug === result.slug);
         if (obj == undefined) {
           // dont want to push duplicates

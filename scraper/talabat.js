@@ -78,6 +78,14 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
             .trim()
             .replace(/['"]+/g, '')
         );
+        let rest_slug = utils.slugify(
+          clean_talabat_title(
+            $('.media-heading', this)
+              .text()
+              .trim()
+              .replace(/['"]+/g, '')
+          )
+        );
         let result = {
           title: clean_talabat_title(
             $('.media-heading', this)
@@ -91,14 +99,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
               .trim()
               .replace(/['"]+/g, '')
           ),
-          slug: utils.slugify(
-            clean_talabat_title(
-              $('.media-heading', this)
-                .text()
-                .trim()
-                .replace(/['"]+/g, '')
-            )
-          ),
+          slug: rest_slug,
           href: 'https://www.talabat.com' + $(this).attr('href'),
           image: $('.valign-helper', this)
             .next()
@@ -135,21 +136,14 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
           type: 'restaurant',
         };
 
-        // meta fields
-        result['score'] = utils.calculateScore(result);
-
         // if no offer, then skip
         if (result.offer.length > 0) {
-          if (title in itemsMap) {
-            if (result['score'] > itemsMap[title]['score']) {
-              itemsMap[title] = result;
-            }
-            return;
-          }
+          let { scoreLevel, scoreValue } = utils.calculateScore(result);
+          result['scoreLevel'] = scoreLevel;
+          result['scoreValue'] = scoreValue;
           var index = items.indexOf(result); // dont want to push duplicates
           if (index === -1) {
-            items.push(result);
-            itemsMap[title] = result;
+            items.push(result); // write to db
           }
         }
       });
@@ -194,7 +188,7 @@ function sleep(ms) {
   page.close();
   if (urls != null) {
     if (settings.SCRAPER_TEST_MODE) {
-      urls = urls.slice(0, 2);
+      urls = urls.slice(17, 19);
     }
 
     logger.info('Number of locations: ' + urls.length);

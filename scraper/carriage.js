@@ -93,10 +93,11 @@ async function scrapeInfiniteScrollItems(
             address: location.name,
           };
 
-          // meta fields
-          result['score'] = utils.calculateScore(result);
-
           if (result.offer.length > 0) {
+            let { scoreLevel, scoreValue } = utils.calculateScore(result);
+            result['scoreLevel'] = scoreLevel;
+            result['scoreValue'] = scoreValue;
+
             var index = items.indexOf(result); // dont want to push duplicates
             if (index === -1) {
               items.push(result);

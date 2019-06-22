@@ -6,6 +6,7 @@ var GraphQLInt = require('graphql').GraphQLInt;
 var EntityModel = require('./Entity');
 var entityType = require('./EntityType').entityType;
 var tagType = require('./EntityType').tagType;
+var _ = require('lodash');
 
 function getProjection(fieldASTs) {
   return fieldASTs.fieldNodes[0].selectionSet.selections.reduce(
@@ -109,6 +110,24 @@ exports.EntityQuery = new GraphQLObjectType({
           if (!items) {
             throw new Error('Error while fetching offers data.');
           }
+
+          items.forEach(item => {
+            if (item.offers.length > 1) {
+              // sort them
+              item.offers = item.offers.sort((a, b) => {
+                return (
+                  Number(b.scoreLevel) - Number(a.scoreLevel) ||
+                  parseFloat(b.scoreValue) - parseFloat(a.scoreValue)
+                );
+              });
+
+              // remove dups by key {offer}-{source}
+              item.offers = _.uniqBy(item.offers, offer =>
+                [offer.offer, offer.source].join()
+              );
+            }
+          });
+
           return items;
         },
       },

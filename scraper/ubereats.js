@@ -101,11 +101,12 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
               .split('-')[1],
           };
 
-          // meta fields
-          result['score'] = utils.calculateScore(result);
-
           // if no offer, then skip
           if (result.offer.length > 0) {
+            let { scoreLevel, scoreValue } = utils.calculateScore(result);
+            result['scoreLevel'] = scoreLevel;
+            result['scoreValue'] = scoreValue;
+
             var index = items.indexOf(result); // dont want to push duplicates
             if (index === -1) {
               items.push(result);
