@@ -72,6 +72,7 @@ function calculateScore(item) {
       /^(\d+)% off$/im,
       /^(\d+)% off on all orders$/im,
       /^(\d+)% off on your first order$/im,
+      /^(\d+)% off on your first order from/im,
       /^(\d+)% discount on food and beverage$/im,
       /^(\d+)% off on all dine-in and home-delivery orders$/im,
       /^discount of (\d+)% on your total bill$/im,
@@ -80,6 +81,7 @@ function calculateScore(item) {
     9: [
       /^(\d+)% off orders above aed\s*(\d+(.\d+)*)$/im,
       /^(\d+)% off on all orders above\s*(\d+(.\d+)*)$/im,
+      /^(\d+)% off on all orders above\s*(\d+(.\d+)*)/im,
       /^(\d+)% off on all orders above aed\s*(\d+(.\d+)*)$/im,
     ],
     8: [/^2 for 1$/im, /^bogo$/im, /^buy 1 get 1 free$/im],

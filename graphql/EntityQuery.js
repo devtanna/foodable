@@ -86,24 +86,11 @@ exports.EntityQuery = new GraphQLObjectType({
         },
         resolve: async (root, args, context, info) => {
           const { pageSize, page } = args;
-          const items = await EntityModel.aggregate([
-            { $match: { type: 'offers', locationSlug: args.locationSlug } },
-            { $unwind: '$offers' },
-            // { $sort: { 'added': 1 } },
-            {
-              $project: {
-                added: 0,
-              },
-            },
-            {
-              $group: {
-                _id: { slug: '$slug' },
-                offers: { $addToSet: '$offers' },
-                count: { $sum: 1 },
-              },
-            },
-            { $sort: { count: -1 } },
-          ])
+
+          const items = await EntityModel.find({
+            type: 'offers',
+            locationSlug: args.locationSlug,
+          })
             .skip(pageSize * (page - 1))
             .limit(pageSize)
             .exec();
@@ -126,6 +113,11 @@ exports.EntityQuery = new GraphQLObjectType({
                 [offer.offer, offer.source].join()
               );
             }
+          });
+
+          // sort by count of offers list length. can only be done after removing duplicates above.
+          items.sort(function(one, other) {
+            return other['offers'].length - one['offers'].length;
           });
 
           return items;

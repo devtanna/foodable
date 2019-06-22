@@ -51,7 +51,7 @@ MongoClient.connect(
 // ########## END DB STUFF ####################
 
 async function cleanUpOldRestaurants(db, dbClient) {
-  logger.info('Starting clean up process for Restaurants');
+  logger.info('Starting Restaurant clean up process');
   var collectionName = dbutils.getCurrentDBCollection();
   var bulk = db.collection(collectionName).initializeUnorderedBulkOp();
   bulk.find({ type: 'restaurants', indexed: 1 }).remove();
@@ -60,7 +60,7 @@ async function cleanUpOldRestaurants(db, dbClient) {
 }
 
 async function cleanUpOldOffers(db, dbClient, date) {
-  logger.info('Starting clean up process');
+  logger.info('Starting offer clean up process');
   var collectionName = dbutils.getCurrentDBCollection();
   var bulk = db.collection(collectionName).initializeUnorderedBulkOp();
   bulk.find({ type: 'offers', added: date }).remove();
