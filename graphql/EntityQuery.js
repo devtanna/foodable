@@ -87,10 +87,24 @@ exports.EntityQuery = new GraphQLObjectType({
         resolve: async (root, args, context, info) => {
           const { pageSize, page } = args;
 
-          const items = await EntityModel.find({
-            type: 'offers',
-            locationSlug: args.locationSlug,
-          })
+          const items = await EntityModel.aggregate([
+            { $match: { type: 'offers', locationSlug: args.locationSlug } },
+            { $unwind: '$offers' },
+            // { $sort: { 'added': 1 } },
+            {
+              $project: {
+                added: 0,
+              },
+            },
+            {
+              $group: {
+                _id: { slug: '$slug' },
+                offers: { $addToSet: '$offers' },
+                count: { $sum: 1 },
+              },
+            },
+            { $sort: { count: -1 } },
+          ])
             .skip(pageSize * (page - 1))
             .limit(pageSize)
             .exec();
