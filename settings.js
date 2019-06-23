@@ -59,16 +59,12 @@ function getDBsettings() {
 }
 
 function get_K8_BackendEndpoint() {
-  if (ENABLE_K8 == true) {
-    if (isServerRequest) {
-      return 'http://backend-service:4000/';
-    } else {
-      return 'http://192.168.64.3:30004/graphql';
-    }
-    return 'http://backend-service:4000/';
+  if (isServerRequest) {
+    return 'http://backend-service:4000/graphql';
   } else {
-    return 'http://localhost:4000/';
+    return 'http://192.168.64.3:30004/graphql';
   }
+  return 'http://backend-service:4000/graphql';
 }
 
 var puppeteerSettings = {
