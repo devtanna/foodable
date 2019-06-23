@@ -11,7 +11,7 @@ before_script:
   - docker login -u devtanna -p @EPngztg%5S0
 
 build:
-  stage: build and push
+  stage: build
   script:
     - docker pull devtanna/foodable_front:v1.0 || true
     - docker build --cache-from devtanna/foodable_front:v1.0 -t devtanna/foodable_front:v1.0 -f docker/front/Dockerfile .
