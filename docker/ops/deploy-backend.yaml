@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
       - name: backend
-        image: foodable_back:latest
-        imagePullPolicy: Never
+        image: devtanna/foodable_back:v1.0
+        imagePullPolicy: Always
         env:
         - name: ENABLE_K8
           value: 'true'

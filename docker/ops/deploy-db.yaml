@@ -18,12 +18,12 @@ spec:
     spec:
       containers:
       - name: mongo
-        image: mongo
-        imagePullPolicy: Never
+        image: devtanna/foodable_db:v1.0
+        imagePullPolicy: Always
         env:
         - name: MONGO_DATA_DIR
           value: /data/db
-        command: ["mongod", "--bind_ip_all", "--smallfiles", "--logpath=/dev/null"]
+        command: ["mongod", "--bind_ip_all", "--smallfiles", "--logpath=/tmp/mongod.log"]
         ports:
         - containerPort: 27017
         volumeMounts:

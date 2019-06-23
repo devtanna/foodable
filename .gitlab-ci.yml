@@ -1,0 +1,18 @@
+image: docker:stable
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - docker login -u devtanna -p @EPngztg%5S0
+
+build:
+  stage: build and push
+  script:
+    - docker pull devtanna/foodable_front:v1.0 || true
+    - docker build --cache-from devtanna/foodable_front:v1.0 -t devtanna/foodable_front:v1.0 -f docker/front/Dockerfile .
+    - docker push devtanna/foodable_front:v1.0

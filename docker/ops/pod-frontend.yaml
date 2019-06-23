@@ -7,11 +7,13 @@ metadata:
 spec:
   containers:
     - name: frontend
-      image: foodable_front
-      imagePullPolicy: Never
+      image: devtanna/foodable_front:v1.0
+      imagePullPolicy: Always
       env:
       - name: ENABLE_K8
         value: 'true'
+      - name: NODE_ENV
+        value: 'development'
       ports:
         - containerPort: 5000
-      command: ["npm", "run", "prod"]
+      command: ["npm", "run", "dev"]

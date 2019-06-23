@@ -60,6 +60,11 @@ function getDBsettings() {
 
 function get_K8_BackendEndpoint() {
   if (ENABLE_K8 == true) {
+    if (isServerRequest) {
+      return 'http://backend-service:4000/';
+    } else {
+      return 'http://192.168.64.3:30004/graphql';
+    }
     return 'http://backend-service:4000/';
   } else {
     return 'http://localhost:4000/';
@@ -118,7 +123,7 @@ var scraperSettings = {
 };
 var systemSettings = {
   BACKEND_ENDPOINT:
-    ENABLE_K8 == true ? getBackendEndpoint() : DOCKER_BACKEND_ENDPOINT,
+    ENABLE_K8 == true ? get_K8_BackendEndpoint() : DOCKER_BACKEND_ENDPOINT,
   PORT: 4000,
 };
 

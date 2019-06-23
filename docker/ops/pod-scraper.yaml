@@ -7,9 +7,13 @@ metadata:
 spec:
   containers:
   - name: scraper
-    image: scraper
-    imagePullPolicy: Never
+    image: devtanna/foodable_scraper:v1.0
+    imagePullPolicy: Always
     env:
     - name: ENABLE_K8
       value: true
-    command: ["sh", "-c", "tail -f /dev/null"]
+    command: [
+             "sh", "-c",
+             "sh ./run_all_scrapers_script.sh &&
+             cron -f"
+        ]
