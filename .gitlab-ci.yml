@@ -22,6 +22,6 @@ build:
 #    - docker pull devtanna/foodable_scraper:v1.0 || true
 #    - docker build --cache-from devtanna/foodable_scraper:v1.0 -t devtanna/foodable_scraper:v1.0 -f docker/scraper/Dockerfile .
 #    - docker push devtanna/foodable_scraper:v1.0
-  only:
-    variables:
-      - $CI_COMMIT_MESSAGE == /build images/
+#  only:
+#    variables:
+#      - $CI_COMMIT_MESSAGE == /build images/
