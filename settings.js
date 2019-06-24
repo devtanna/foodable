@@ -58,15 +58,6 @@ function getDBsettings() {
   }
 }
 
-function get_K8_BackendEndpoint() {
-  if (isServerRequest) {
-    return 'http://backend-service:4000/graphql';
-  } else {
-    return 'http://192.168.64.3:30004/graphql';
-  }
-  return 'http://backend-service:4000/graphql';
-}
-
 var puppeteerSettings = {
   PUPPETEER_BROWSER_ISHEADLESS: true,
   PUPPETEER_BROWSER_ARGS: [
@@ -80,6 +71,7 @@ var puppeteerSettings = {
     waitUntil: ['networkidle0', 'load'],
   },
 };
+
 var mongoSettings = {
   USE_ONE_GLOBAL_COLLECTION: true,
   DB: getDBsettings().DB,
@@ -90,6 +82,7 @@ var mongoSettings = {
   SUBSCRIPTION_MONGO_COLLECTION_NAME: 'subscriptions',
   CONTACTUS_MONGO_COLLECTION_NAME: 'contactus',
 };
+
 var scraperSettings = {
   // TEST MODE TOGGLE - this runs only a subset of results
   SCRAPER_TEST_MODE: true,
@@ -117,16 +110,54 @@ var scraperSettings = {
   ENABLE_DELIVEROO: true,
   ENABLE_CARRIAGE: true,
 };
+
 var systemSettings = {
   BACKEND_ENDPOINT:
     ENABLE_K8 == true ? get_K8_BackendEndpoint() : DOCKER_BACKEND_ENDPOINT,
   PORT: 4000,
 };
 
-module.exports = Object.assign(
+var devSettings = Object.assign(
   {},
   puppeteerSettings,
   mongoSettings,
   scraperSettings,
   systemSettings
 );
+
+////////////////////////////////////////////////////////////////
+////////// Warning!! These are production settings ////////////
+////////////////////////////////////////////////////////////////
+function get_K8_BackendEndpoint() {
+  if (isServerRequest) {
+    return 'http://backend-service:4000/graphql';
+  } else {
+    return 'http://192.168.64.3:30004/graphql'; // TODO: change this to the foodable.ae domain
+  }
+  return 'http://backend-service:4000/graphql';
+}
+
+var prodSettings = Object.assign(
+  {},
+  devSettings,
+  {
+    BACKEND_ENDPOINT: get_K8_BackendEndpoint(),
+    SCRAPER_TEST_MODE: true, // TODO: make it false when going live
+  },
+  scraperSettings
+);
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+module.exports = function() {
+  switch (process.env.NODE_ENV) {
+    case 'development':
+      return devSettings;
+
+    case 'production':
+      return prodSettings;
+
+    default:
+      return prodSettings;
+  }
+};

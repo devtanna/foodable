@@ -4,7 +4,7 @@
   "description": "Disrupting food delivery since 2019",
   "main": "",
   "scripts": {
-    "dev": "next -p 5000",
+    "dev": "NODE_ENV=development next -p 5000",
     "build": "next build",
     "start": "next start -p 5000",
     "prod": "NODE_ENV=production next -p 5000"

@@ -3,7 +3,7 @@ const $ = require('cheerio');
 const ObjectsToCsv = require('objects-to-csv');
 var locations = require('./carriage_locations.json');
 
-const settings = require('../settings');
+const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 

@@ -1,6 +1,6 @@
 // mongo schema file
 var mongoose = require('mongoose');
-var settings = require('../settings');
+var settings = require('../settings')();
 const dbutils = require('../scraper/db');
 
 var Schema = mongoose.Schema;

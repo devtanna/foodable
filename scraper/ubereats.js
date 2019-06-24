@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-const settings = require('../settings');
+const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 

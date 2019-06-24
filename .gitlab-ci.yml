@@ -16,12 +16,12 @@ build:
     - docker pull devtanna/foodable_front:v1.0 || true
     - docker build --cache-from devtanna/foodable_front:v1.0 -t devtanna/foodable_front:v1.0 -f docker/front/Dockerfile .
     - docker push devtanna/foodable_front:v1.0
-#    - docker pull devtanna/foodable_back:v1.0 || true
-#    - docker build --cache-from devtanna/foodable_back:v1.0 -t devtanna/foodable_back:v1.0 -f docker/back/Dockerfile .
-#    - docker push devtanna/foodable_back:v1.0
-#    - docker pull devtanna/foodable_scraper:v1.0 || true
-#    - docker build --cache-from devtanna/foodable_scraper:v1.0 -t devtanna/foodable_scraper:v1.0 -f docker/scraper/Dockerfile .
-#    - docker push devtanna/foodable_scraper:v1.0
+    - docker pull devtanna/foodable_back:v1.0 || true
+    - docker build --cache-from devtanna/foodable_back:v1.0 -t devtanna/foodable_back:v1.0 -f docker/back/Dockerfile .
+    - docker push devtanna/foodable_back:v1.0
+    - docker pull devtanna/foodable_scraper:v1.0 || true
+    - docker build --cache-from devtanna/foodable_scraper:v1.0 -t devtanna/foodable_scraper:v1.0 -f docker/scraper/Dockerfile .
+    - docker push devtanna/foodable_scraper:v1.0
   only:
     refs:
     - master

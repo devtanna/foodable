@@ -1,5 +1,5 @@
 const utils = require('../utils');
-const settings = require('../../settings');
+const settings = require('../../settings')();
 const dbutils = require('../db');
 const fs = require('fs');
 // logging init

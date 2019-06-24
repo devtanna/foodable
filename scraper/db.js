@@ -1,4 +1,4 @@
-const settings = require('../settings');
+const settings = require('../settings')();
 
 function getCurrentHour() {
   return new Date().getHours();

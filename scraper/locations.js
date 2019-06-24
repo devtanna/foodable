@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
 
-const settings = require('../settings');
+const settings = require('../settings')();
 const utils = require('./utils');
 const dbutils = require('../scraper/db');
 

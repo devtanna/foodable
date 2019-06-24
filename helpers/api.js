@@ -4,7 +4,7 @@ import fetch from 'isomorphic-unfetch';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-const settings = require('../settings');
+const settings = require('../settings')();
 
 const defaultOptions = {
   watchQuery: {
