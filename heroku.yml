@@ -1,6 +1,11 @@
 build:
   docker:
-    front: docker/front/
-    back: docker/back/
-    nginx: docker/nginx/
-    db: docker/db
+    front: docker/front/Dockerfile
+    back: docker/back/Dockerfile
+    nginx: docker/nginx/Dockerfile
+  config:
+    NODE_ENV: production
+  run:
+    front:
+      command:
+        - npm run prod
