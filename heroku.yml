@@ -5,7 +5,7 @@ build:
     nginx: docker/nginx/Dockerfile
   config:
     NODE_ENV: production
-  run:
-    front:
-      command:
-        - npm run prod
+run:
+  front:
+    command:
+      - npm run prod
