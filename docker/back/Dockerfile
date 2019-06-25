@@ -7,7 +7,7 @@ COPY package.json /app
 #copy all your files under the working directory
 COPY . /app
 # install all the dependencies
-RUN npm install && npm install nodemon -g && apt-get update && apt-get install -y vim-tiny
+RUN npm install && npm install nodemon -g && apt-get update && apt-get install -y vim
 # expose the port 4000
 EXPOSE 4000
 # start nodejs server

@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: scraper-pod
-  replicas: 1
+  replicas: 0
   revisionHistoryLimit: 1
   template:
     metadata:
@@ -23,11 +23,6 @@ spec:
         env:
         - name: ENABLE_K8
           value: 'true'
-        command: [
-             "sh", "-c",
-             "sh ./run_all_scrapers_script.sh &&
-             cron -f"
-        ]
         volumeMounts:
         - name: tz-config
           mountPath: /etc/localtime
