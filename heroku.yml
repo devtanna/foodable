@@ -5,6 +5,7 @@ build:
     nginx: Dockerfile.nginx
   config:
     NODE_ENV: production
+    ENABLE_HEROKU: true
 run:
   front:
     command:
