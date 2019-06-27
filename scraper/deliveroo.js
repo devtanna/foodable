@@ -32,7 +32,10 @@ let page;
 
 const getLocations = async () => {
   try {
-    await page.goto('https://deliveroo.ae/sitemap');
+    await page.goto(
+      'https://deliveroo.ae/sitemap',
+      settings.PUPPETEER_GOTO_PAGE_ARGS
+    );
     const html = await page.content();
     const links = $("h3:contains('Dubai')", html)
       .next('.sitemap--zones')
@@ -57,13 +60,9 @@ const scrapePage = async url => {
       `https://deliveroo.ae${url.url}?offer=all+offers`,
       settings.PUPPETEER_GOTO_PAGE_ARGS
     );
-    await page.waitForSelector(
-      'li[class*=HomeFeedGrid]:first-child span:first-child > div[style]'
-    );
-
+    // await page.waitForSelector('li[class*=HomeFeedGrid]:first-child span:first-child > div[style]');
     await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
     await page.waitFor(1000);
-
     const html = await page.content();
     let items = [];
     $('li[class*="HomeFeedGrid"]', html).each(function() {
@@ -81,42 +80,52 @@ const scrapePage = async url => {
       }
 
       let cuisine = [];
-      $('span[class*="TagList"]', this).each(function() {
-        cuisine.push(
-          $(this)
+      let rating = null;
+      let votes = null;
+      $('li[class*="HomeFeedUICard"]', this)
+        .eq(1)
+        .children('span span')
+        .each(function() {
+          let el = $(this)
             .text()
-            .trim()
-        );
-      });
+            .trim();
+
+          if (el === '' || el === '·') return;
+
+          if (el.match(/\((\d+(.\d+)*)[+]*\)/g)) {
+            votes = el.match(/(\d+(.\d+)*)/g);
+          } else if (el.match(/(\d+(.\d+)*)/g)) {
+            rating = el.match(/(\d+(.\d+)*)/g)[0];
+          } else if (el !== '' && el !== '·') {
+            cuisine.push(el);
+          }
+        });
 
       let result = {
-        title: $('div[class*="RestaurantCard"] span p', this)
+        title: $('li[class*="HomeFeedUICard"] span p', this)
           .eq(0)
           .text()
           .trim(),
         slug: utils.slugify(
-          $('div[class*="RestaurantCard"] span p', this)
+          $('li[class*="HomeFeedUICard"] span p', this)
             .eq(0)
             .text()
             .trim()
         ),
         href: clean_deliveroo_href($('a', this).prop('href')),
-        image: img,
+        image: cleanImg(img),
         location: url.locationName,
         address: '',
-        cuisine: cuisine.join(','),
-        offer: $('div[class*="RestaurantCard"] span p', this)
-          .eq(3)
-          .text()
-          .trim(),
-        rating: $('span[class*="StarRating"]', this)
+        cuisine: cuisine.join(', '),
+        offer: $('li[class*="HomeFeedUICard"]', this)
           .eq(2)
+          .children('span')
+          .eq(2)
+          .children('span')
           .text()
           .trim(),
-        votes: $('span[class*="RestaurantStarRating"]', this)
-          .eq(4)
-          .text()
-          .trim(),
+        rating: rating,
+        votes: votes,
         source: `${scraper_name}`,
         cost_for_two: '',
         type: 'restaurant',
@@ -200,4 +209,20 @@ run();
 
 function clean_deliveroo_href(input) {
   return input.replace(/time=[0-9]{4}$/, 'time=ASAP');
+}
+
+function cleanImg(img) {
+  let imgSrc = img;
+
+  if (imgSrc) {
+    if (imgSrc.includes('url("')) {
+      imgSrc = imgSrc.replace('url("', '');
+      imgSrc = imgSrc.slice(0, -2);
+    } else if (imgSrc.includes('url(')) {
+      imgSrc = imgSrc.replace('url(', '');
+      imgSrc = imgSrc.slice(0, -1);
+    }
+  }
+
+  return imgSrc;
 }
