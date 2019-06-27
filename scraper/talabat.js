@@ -188,7 +188,7 @@ function sleep(ms) {
   page.close();
   if (urls != null) {
     if (settings.SCRAPER_TEST_MODE) {
-      urls = urls.slice(17, 19);
+      urls = urls.slice(0, 2);
     }
 
     logger.info('Number of locations: ' + urls.length);

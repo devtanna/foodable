@@ -87,7 +87,7 @@ function calculateScore(item) {
     8: [/^2 for 1$/im, /^bogo$/im, /^buy 1 get 1 free$/im],
     7: [/^aed (\d+(.\d+)*) off all orders$/im],
 
-    6: [/^(\d+) aed meals$/im],
+    6: [/^(\d+) aed meals$/im, /^(\d+) aed meal$/im],
 
     5: [/^aed (\d+(.\d+)*) off selected items$/im],
 
@@ -97,7 +97,7 @@ function calculateScore(item) {
 
     2: [/^(feel good)*\s*meal deals$/im],
 
-    1: [/^free delivery$/im],
+    1: [/^free delivery$/im, /^(\d+)% off on dine-in$/im],
   };
   let scoreLevel, scoreValue;
   let foundMatch = false;

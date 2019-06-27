@@ -35,11 +35,11 @@ const Listing = ({ offer }) => {
           background: #fff;
           box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
           margin-bottom: 30px;
-          min-height: 200px;
         }
         .listing__content {
           display: grid;
           grid-template-columns: 1fr 0.9fr 0.8fr;
+          min-height: 200px;
         }
         .listing__img {
           padding: 20px;
@@ -70,7 +70,9 @@ const ListingMeta = ({ offer }) => {
             className="rating__stars"
             readonly
             initialRating={Number(initialRating)}
-            emptySymbol={<Icon name="star" size="large" color="teal" />}
+            emptySymbol={
+              <Icon name="star" size="large" className="blankStar" />
+            }
             fullSymbol={<Icon name="star" size="large" color="yellow" />}
           />
         </div>
@@ -97,6 +99,9 @@ const ListingMeta = ({ offer }) => {
           font-weight: bold;
           font-size: 14px;
         }
+        :global(.rating__stars i.icon) {
+          color: #ddd;
+        }
       `}</style>
     </div>
   );
@@ -117,7 +122,7 @@ const BestOffer = ({ offer }) => {
         <img src={offerSources[offer.source].logo} alt={offer.source} />
       </div>
       <div className="bestOffer__body">
-        <div className="bestOffer__ribbon">Best Deal</div>
+        <div className="bestOffer__ribbon">Great Deal!</div>
         <h3 className="bestOffer__offer">{offer.offer}</h3>
       </div>
       <div className="bestOffer__footer">

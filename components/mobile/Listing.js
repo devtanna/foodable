@@ -38,7 +38,7 @@ const Listing = ({ offer }) => {
                 className="rating__stars"
                 readonly
                 initialRating={Number(initialRating)}
-                emptySymbol={<Icon name="star" size="small" color="teal" />}
+                emptySymbol={<Icon name="star" size="small" />}
                 fullSymbol={<Icon name="star" size="small" color="olive" />}
               />
             </div>
@@ -147,6 +147,9 @@ const Listing = ({ offer }) => {
           font-weight: normal;
           font-size: 13px;
         }
+        :global(.rating__stars i.icon) {
+          color: #ddd;
+        }
         .bestOffer__heading {
           font-size: 15px;
           font-weight: bold;
@@ -154,7 +157,7 @@ const Listing = ({ offer }) => {
         }
         .bestOffer__offer {
           color: #7e8e12;
-          font-size: 13px;
+          font-size: 16px;
           font-weight: bold;
         }
         .bestOffer__footer {
