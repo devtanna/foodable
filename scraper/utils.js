@@ -84,7 +84,12 @@ function calculateScore(item) {
       /^(\d+)% off on all orders above\s*(\d+(.\d+)*)/im,
       /^(\d+)% off on all orders above aed\s*(\d+(.\d+)*)$/im,
     ],
-    8: [/^2 for 1$/im, /^bogo$/im, /^buy 1 get 1 free$/im],
+    8: [
+      /^2 for 1$/im,
+      /^bogo$/im,
+      /^buy 1 get 1 free$/im,
+      /^special offer: buy one get one free!$/im,
+    ],
     7: [/^aed (\d+(.\d+)*) off all orders$/im],
 
     6: [/^(\d+) aed meals$/im, /^(\d+) aed meal$/im],
