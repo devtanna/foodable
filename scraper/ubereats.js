@@ -28,6 +28,9 @@ if (settings.ENABLE_UBEREATS) {
 // ########## END DB STUFF ####################
 
 async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
+  await page.waitForSelector('div.base_');
+  await page.waitFor(1000);
+
   let items = [];
   let pageNum = 0;
   try {
@@ -37,68 +40,66 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
       const html = await page.content();
 
-      const listingsWithOffers = $('.base_ > div a', html);
-      logger.info(
+      const listingsWithOffers = $('a.base_', html);
+
+      console.log(
         'Number of offers on current page:',
         listingsWithOffers.length
       );
+
       try {
         listingsWithOffers.each(function() {
-          if (
-            $(this).find('.truncatedText_.ue-bz.ue-cq.ue-cp.ue-cr').length < 1
-          )
-            return;
+          let offer = $('span.truncatedText_', this)
+            .text()
+            .trim();
+
+          if (!offer) return;
+
+          let title = $('div', this)
+            .children('div')
+            .eq(1)
+            .text()
+            .trim();
+          let cuisine = $('div', this)
+            .children('div')
+            .eq(2)
+            .children('div')
+            .eq(0)
+            .text()
+            .replace(/\$/g, '')
+            .trim()
+            .split('•')
+            .filter(el => el !== '')
+            .join(',')
+            .trim();
+          let location = title.split('-')[1] || '';
 
           let result = {
-            type: 'restaurant',
-            source: `${scraper_name}`,
-            slug: utils.slugify(
-              $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this)
-                .text()
-                .split('-')[0]
-                .trim()
-            ),
-            title: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this)
-              .text()
-              .split('-')[0]
-              .trim(),
+            title: title.split('-')[0].trim(),
+            slug: utils.slugify(title.split('-')[0]).trim(),
             href: 'https://www.ubereats.com' + $(this).attr('href'),
-            image: null,
-            location: $(
-              '.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec',
-              this
-            )
-              .text()
-              .split('-')[1]
-              .trim(), // TODO sometimes this is undefined
-            rating: $(
-              'div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span > span',
-              this
-            )
-              .text()
-              .trim(),
-            cuisine: $('div.ue-bz.ue-cq.ue-cp.ue-cr', this)
+            image: cleanImg(
+              $('div', this)
+                .children('div')
+                .eq(0)
+                .css('background-image') || ''
+            ),
+            location: location.trim(),
+            address: location.trim(),
+            cuisine: cuisine,
+            offer: offer,
+            rating: $("span[style*='font-family']", this)
+              .eq(0)
               .text()
               .trim(),
-            offer: $('.truncatedText_.ue-bz.ue-cq.ue-cp.ue-cr', this)
+            votes: $("span[style*='font-family']", this)
+              .eq(1)
               .text()
+              .replace(/\(|\)/g, '')
               .trim(),
-            deliveryTime: $(
-              'div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div.ue-a6ue-ab',
-              this
-            )
-              .text()
-              .trim(),
-            minimumOrder: null,
-            deliveryCharge: null,
-            cost_for_two: null,
-            votes: $(
-              'div.ue-ei.ue-aj.ue-ej.ue-bc.ue-ek > div > span:nth-child(2)',
-              this
-            ).text(),
-            address: $('.ue-ba.ue-bb.ue-bc.ue-bd.ue-c0.ue-c1.ue-ah.ue-ec', this)
-              .text()
-              .split('-')[1],
+            source: `${scraper_name}`,
+            cost_for_two: '',
+            type: 'restaurant',
           };
 
           // if no offer, then skip
@@ -114,7 +115,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
           }
         });
       } catch (error) {
-        logger.error(error);
+        console.log('Error in getting result:', error);
       }
 
       // scroll to next page
@@ -128,7 +129,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       pageNum++;
     }
   } catch (error) {
-    logger.error(error);
+    console.log('Scraping page error:', error);
   }
 
   logger.info('Scraped total items:', items.length);
@@ -177,7 +178,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     );
     logger.info('Scraped ubereats. Results count: ' + res.length);
   } catch (error) {
-    logger.error(error);
+    console.log('Setup and scrape entry error:', error);
   }
 
   // Close the browser.
@@ -186,3 +187,19 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   await dbClient.close();
   logger.info('UberEats Scrape Done!');
 })();
+
+function cleanImg(img) {
+  let imgSrc = img;
+
+  if (imgSrc) {
+    if (imgSrc.includes('url("')) {
+      imgSrc = imgSrc.replace('url("', '');
+      imgSrc = imgSrc.slice(0, -2);
+    } else if (imgSrc.includes('url(')) {
+      imgSrc = imgSrc.replace('url(', '');
+      imgSrc = imgSrc.slice(0, -1);
+    }
+  }
+
+  return imgSrc;
+}

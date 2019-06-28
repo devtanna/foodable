@@ -15,6 +15,10 @@ export const offerSources = {
     color: '#CB202D',
     logo: '/static/restaurant-banners/zomato.png',
   },
+  ubereats: {
+    color: '#000',
+    logo: '/static/restaurant-banners/uber-eats.png',
+  },
 };
 
 export const TRACKING_ID = 'UA-142540848-1';
