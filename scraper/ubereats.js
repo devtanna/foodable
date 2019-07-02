@@ -28,7 +28,7 @@ if (settings.ENABLE_UBEREATS) {
 // ########## END DB STUFF ####################
 
 async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
-  await page.waitForSelector('div.base_');
+  // await page.waitForSelector('div.base_');
   await page.waitFor(1000);
 
   let items = [];

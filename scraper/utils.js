@@ -96,7 +96,11 @@ function calculateScore(item) {
 
     5: [/^aed (\d+(.\d+)*) off selected items$/im],
 
-    4: [/^free item with orders over aed (\d+(.\d+)*)$/im],
+    4: [
+      /^free item with orders over aed (\d+(.\d+)*)$/im,
+      /^free [\w\s]+ with orders over aed (\d+(.\d+)*)$/im,
+      /^spend aed (\d+(.\d+)*), get (\d+)% off$/im,
+    ],
 
     3: [/^special offers on menu items$/im, /^special offer$/im],
 
