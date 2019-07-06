@@ -150,7 +150,7 @@ const scrapePage = async url => {
         result['scoreValue'] = scoreValue;
 
         let obj = items.find(o => o.slug === result.slug);
-        if (obj == undefined) {
+        if (obj == undefined && scoreLevel !== -1) {
           // dont want to push duplicates
           items.push(result);
         }
