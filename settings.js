@@ -88,7 +88,7 @@ var scraperSettings = {
   SCRAPER_TEST_MODE: true,
   // MAX PAGES TO SCRAPE
   SCRAPER_MAX_PAGE: function(scraperName) {
-    if (this.SCRAPER_TEST_MODE) return 2;
+    if (this.SCRAPER_TEST_MODE) return 5;
     if (scraperName == 'zomato') return 25;
     if (scraperName == 'talabat') return 5;
     if (scraperName == 'carriage') return 25;

@@ -60,11 +60,19 @@ const scrapePage = async url => {
       `https://deliveroo.ae${url.url}?offer=all+offers`,
       settings.PUPPETEER_GOTO_PAGE_ARGS
     );
-    // await page.waitForSelector('li[class*=HomeFeedGrid]:first-child span:first-child > div[style]');
-    await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-    await page.waitFor(1000);
+
+    var maxPage = settings.SCRAPER_MAX_PAGE('deliveroo');
+    for (let i = 0; i < maxPage; i++) {
+      await page.evaluate('window.scrollBy(0, window.innerHeight);');
+      await page.waitFor(1000);
+    }
+
     const html = await page.content();
     let items = [];
+    let offersCount = $('li[class*="HomeFeedGrid"]', html).length;
+
+    logger.info(`Number of available offers: ${offersCount}`);
+
     $('li[class*="HomeFeedGrid"]', html).each(function() {
       let img;
       try {
@@ -101,11 +109,21 @@ const scrapePage = async url => {
           }
         });
 
+      let title = $('li[class*="HomeFeedUICard"] span p', this)
+        .eq(0)
+        .text()
+        .trim();
+
+      let offer = $('li[class*="HomeFeedUICard"]', this)
+        .eq(2)
+        .children('span')
+        .eq(2)
+        .children('span')
+        .text()
+        .trim();
+
       let result = {
-        title: $('li[class*="HomeFeedUICard"] span p', this)
-          .eq(0)
-          .text()
-          .trim(),
+        title,
         slug: utils.slugify(
           $('li[class*="HomeFeedUICard"] span p', this)
             .eq(0)
@@ -117,15 +135,9 @@ const scrapePage = async url => {
         location: url.locationName,
         address: '',
         cuisine: cuisine.join(', '),
-        offer: $('li[class*="HomeFeedUICard"]', this)
-          .eq(2)
-          .children('span')
-          .eq(2)
-          .children('span')
-          .text()
-          .trim(),
-        rating: rating,
-        votes: votes,
+        offer,
+        rating,
+        votes,
         source: `${scraper_name}`,
         cost_for_two: '',
         type: 'restaurant',
@@ -178,6 +190,7 @@ const run = async () => {
 
       try {
         logger.info('Scraping: ' + links[i].url);
+
         let res = await scrapePage(links[i]);
 
         if (res != null) {
