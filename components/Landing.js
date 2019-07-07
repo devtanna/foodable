@@ -24,7 +24,7 @@ const Landing = ({ locations }) => {
       <div className="wrapper">
         <img className="logo" src="/static/logo.svg" />
         <h1>
-          Discover and compare food deals from top local delivery services!
+          Discover and compare great food deals from top food delivery websites!
         </h1>
         <div className="ctaWrapper">
           <Dropdown

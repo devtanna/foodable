@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import Head from 'next/head';
 import { device } from '../helpers/device';
 import { redirectToPage, trackPageView } from '../helpers/utils';
 import FoodablesMobile from '../components/mobile/';
@@ -6,46 +7,58 @@ import FoodablesDesktop from '../components/desktop/';
 import { getOffers, getRandomOffers, getLocations } from '../helpers/api';
 import Cookies from 'universal-cookie';
 
+const PageHead = ({ page }) => (
+  <Head>
+    <title>
+      Discover & compare great food deals in UAE | Foodable.ae
+      {page > 1 ? ` - Page ${page}` : null}
+    </title>
+  </Head>
+);
+
 const Index = ({ offers, randomOffers, selectedLocation = null, page = 1 }) => {
   useEffect(() => {
     trackPageView('homepage', '/', `/loc=${selectedLocation.value}`);
   }, []);
 
   return (
-    <div className="wrapper">
-      <div className="mobile">
-        <FoodablesMobile
-          offers={offers}
-          randomOffers={randomOffers}
-          location={selectedLocation}
-          page={page}
-        />
-      </div>
-      <div className="desktop">
-        <FoodablesDesktop
-          offers={offers}
-          randomOffers={randomOffers}
-          location={selectedLocation}
-          page={page}
-        />
-      </div>
-      <style jsx>{`
-        .wrapper {
-          height: 100%;
-        }
-        .desktop {
-          display: none;
-        }
-        @media ${device.tablet} {
-          .mobile {
-            display: none;
+    <Fragment>
+      <PageHead page={page} />
+      <div className="wrapper">
+        <div className="mobile">
+          <FoodablesMobile
+            offers={offers}
+            randomOffers={randomOffers}
+            location={selectedLocation}
+            page={page}
+          />
+        </div>
+        <div className="desktop">
+          <FoodablesDesktop
+            offers={offers}
+            randomOffers={randomOffers}
+            location={selectedLocation}
+            page={page}
+          />
+        </div>
+        <style jsx>{`
+          .wrapper {
+            height: 100%;
           }
           .desktop {
-            display: block;
+            display: none;
           }
-        }
-      `}</style>
-    </div>
+          @media ${device.tablet} {
+            .mobile {
+              display: none;
+            }
+            .desktop {
+              display: block;
+            }
+          }
+        `}</style>
+      </div>
+    </Fragment>
   );
 };
 
