@@ -84,20 +84,29 @@ function calculateScore(item) {
       /^(\d+)% off on all orders above\s*(\d+(.\d+)*)/im,
       /^(\d+)% off on all orders above aed\s*(\d+(.\d+)*)$/im,
     ],
-    8: [/^2 for 1$/im, /^bogo$/im, /^buy 1 get 1 free$/im],
+    8: [
+      /^2 for 1$/im,
+      /^bogo$/im,
+      /^buy 1 get 1 free$/im,
+      /^special offer: buy one get one free!$/im,
+    ],
     7: [/^aed (\d+(.\d+)*) off all orders$/im],
 
-    6: [/^(\d+) aed meals$/im],
+    6: [/^(\d+) aed meals$/im, /^(\d+) aed meal$/im],
 
     5: [/^aed (\d+(.\d+)*) off selected items$/im],
 
-    4: [/^free item with orders over aed (\d+(.\d+)*)$/im],
+    4: [
+      /^free item with orders over aed (\d+(.\d+)*)$/im,
+      /^free [\w\s]+ with orders over aed (\d+(.\d+)*)$/im,
+      /^spend aed (\d+(.\d+)*), get (\d+)% off$/im,
+    ],
 
     3: [/^special offers on menu items$/im, /^special offer$/im],
 
     2: [/^(feel good)*\s*meal deals$/im],
 
-    1: [/^free delivery$/im],
+    1: [/^free delivery$/im, /^(\d+)% off on dine-in$/im],
   };
   let scoreLevel, scoreValue;
   let foundMatch = false;

@@ -68,7 +68,7 @@ var puppeteerSettings = {
   PUPPETEER_VIEWPORT: { width: 1400, height: 800 },
   PUPPETEER_GOTO_PAGE_ARGS: {
     timeout: 35000, // 15seconds
-    waitUntil: ['networkidle0', 'load'],
+    waitUntil: ['load'],
   },
 };
 
@@ -88,7 +88,7 @@ var scraperSettings = {
   SCRAPER_TEST_MODE: true,
   // MAX PAGES TO SCRAPE
   SCRAPER_MAX_PAGE: function(scraperName) {
-    if (this.SCRAPER_TEST_MODE) return 2;
+    if (this.SCRAPER_TEST_MODE) return 5;
     if (scraperName == 'zomato') return 25;
     if (scraperName == 'talabat') return 5;
     if (scraperName == 'carriage') return 25;
@@ -105,7 +105,7 @@ var scraperSettings = {
 
   // SCRAPER INDIVIDUAL TOGGLE
   ENABLE_TALABAT: true,
-  ENABLE_UBEREATS: false,
+  ENABLE_UBEREATS: true,
   ENABLE_ZOMATO: true,
   ENABLE_DELIVEROO: true,
   ENABLE_CARRIAGE: true,
