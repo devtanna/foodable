@@ -61,6 +61,10 @@ function getDBsettings() {
 var puppeteerSettings = {
   PUPPETEER_BROWSER_ISHEADLESS: true,
   PUPPETEER_BROWSER_ARGS: [
+    '--disable-gpu',
+    '--disable-dev-shm-usage',
+    '--no-zygote',
+    '--no-first-run',
     '--no-sandbox',
     '--disable-setuid-sandbox',
     '--user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36',

@@ -243,6 +243,18 @@ function sleep(ms) {
             });
         } catch (error) {
           logger.info('', error);
+          count -= 1;
+          if (count < 0) {
+            logger.info('Closing browser');
+            // Close the browser.
+            browser.close();
+            logger.info('Closing client');
+            // close the dbclient
+            dbClient.close();
+            logger.info('Talabat Scrape Done!');
+          } else {
+            page.close();
+          }
         }
       });
     }

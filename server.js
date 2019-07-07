@@ -47,7 +47,10 @@ mongoose.connect(
 app.set('port', settings.PORT);
 app.listen(app.get('port'), () => {
   console.log(
-    'BackendServer: Server is running at localhost:' + app.get('port')
+    'BackendServer: Server is running at localhost:',
+    app.get('port'),
+    ' for NODE_ENV: ',
+    process.env.NODE_ENV
   );
 });
 
