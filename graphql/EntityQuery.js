@@ -148,19 +148,36 @@ exports.EntityQuery = new GraphQLObjectType({
         resolve: async (root, args, context, info) => {
           const { keyword, locationSlug, pageSize, page } = args;
           const projections = getProjection(info);
-          var restaurants = await EntityModel.find({ type: 'restaurant' })
-            .select(projections)
-            .or([
-              { cuisine: { $regex: keyword, $options: 'i' } },
-              { title: { $regex: keyword, $options: 'i' } },
-            ])
-            .skip(page * pageSize)
-            .limit(pageSize)
-            .exec();
-          if (!restaurants) {
-            throw new Error('Error while fetching all offers data.');
+          var final = [];
+          var totalCount = 0;
+          var countDone = false;
+          var keySplit = keyword.split(' ');
+          for (var key in keySplit) {
+            var restaurants = await EntityModel.find({ type: 'restaurant' })
+              .select(projections)
+              .or([
+                { cuisine: { $regex: keySplit[key], $options: 'i' } },
+                { title: { $regex: keySplit[key], $options: 'i' } },
+              ])
+              .skip(page * pageSize)
+              .limit(pageSize)
+              .exec();
+            if (!restaurants) {
+              throw new Error('Error while fetching all offers data.');
+            }
+            restaurants.forEach(function(entity) {
+              final.push(entity);
+              totalCount += 1;
+              if (totalCount >= pageSize) {
+                countDone = true;
+              }
+            });
+            if (countDone) {
+              break;
+            }
           }
-          return restaurants;
+          console.log(final);
+          return final;
         },
       },
       // Fetch all cuisine tags
