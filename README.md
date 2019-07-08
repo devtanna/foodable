@@ -65,6 +65,9 @@ Get offers in a certain location input. Each offer item is sorted in descending 
 
 `query{ offers(page:1 pageSize:3, locationSlug:"al-karama"){ _id, offers{ title, cuisine, offer, score, source, locationSlug, rating, cost_for_two, votes, image, href } } }`
 
+Get offers in a certain location input with keyword and cuisine search
+`{ offers(page: 1, pageSize: 2, locationSlug: "al-karama", keywords: "cafe", cuisine: "indian chinese") { _id offers { title cuisine offer score source locationSlug rating cost_for_two votes image href } } }`
+
 Get a list of X Random offers.
 
 `query{ randomOffers(count:4 page:1 pageSize:3 locationSlug:"al-karama"){ _id, title, cuisine, offer, score, source, locationSlug, rating, cost_for_two, votes, image, href } }`

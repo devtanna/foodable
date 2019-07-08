@@ -76,41 +76,91 @@ exports.EntityQuery = new GraphQLObjectType({
           return items;
         },
       },
-      // GET ALL OFFERS IN A LOCATION
+      // OFFERS: GET ALL OFFERS IN A LOCATION
       offers: {
         type: new GraphQLList(entityType),
         args: {
           pageSize: { type: GraphQLInt },
           page: { type: GraphQLInt },
           locationSlug: { type: GraphQLNonNull(GraphQLString) },
+          keywords: { type: GraphQLString },
+          cuisine: { type: GraphQLString },
         },
         resolve: async (root, args, context, info) => {
-          const { pageSize, page } = args;
+          const { pageSize, page, locationSlug, keywords, cuisine } = args;
 
-          const items = await EntityModel.aggregate([
-            { $match: { type: 'offers', locationSlug: args.locationSlug } },
-            { $unwind: '$offers' },
-            // { $sort: { 'added': 1 } },
-            {
-              $project: {
-                added: 0,
+          var results = [];
+          if (cuisine || keywords) {
+            var orFilter = [];
+            if (cuisine) {
+              cuisine.split(' ').forEach(function(item, index) {
+                orFilter.push({
+                  'offers.cuisine': { $regex: item, $options: 'gi' },
+                });
+              });
+            }
+            if (keywords) {
+              keywords.split(' ').forEach(function(item, index) {
+                orFilter.push({
+                  'offers.title': { $regex: item, $options: 'gi' },
+                });
+              });
+            }
+            var items = await EntityModel.aggregate([
+              {
+                $match: {
+                  type: 'offers',
+                  locationSlug: args.locationSlug,
+                  $or: orFilter,
+                },
               },
-            },
-            {
-              $group: {
-                _id: { slug: '$slug' },
-                offers: { $addToSet: '$offers' },
-                count: { $sum: 1 },
+              { $unwind: '$offers' },
+              {
+                $project: {
+                  added: 0,
+                },
               },
-            },
-            { $sort: { count: -1 } },
-          ])
-            .skip(pageSize * (page - 1))
-            .limit(pageSize)
-            .exec();
-          if (!items) {
-            throw new Error('Error while fetching offers data.');
-          }
+              {
+                $group: {
+                  _id: '$slug',
+                  offers: { $addToSet: '$offers' },
+                  count: { $sum: 1 },
+                },
+              },
+              { $sort: { count: -1 } },
+            ])
+              .skip(pageSize * (page - 1))
+              .limit(pageSize)
+              .exec();
+            if (!items) {
+              throw new Error('Error while fetching "all" offers data.');
+            }
+          } else {
+            // DEFAULT
+            var items = await EntityModel.aggregate([
+              { $match: { type: 'offers', locationSlug: args.locationSlug } },
+              { $unwind: '$offers' },
+              {
+                $project: {
+                  added: 0,
+                },
+              },
+              {
+                $group: {
+                  _id: '$slug',
+                  offers: { $addToSet: '$offers' },
+                  count: { $sum: 1 },
+                },
+              },
+              { $sort: { count: -1 } },
+            ])
+              .skip(pageSize * (page - 1))
+              .limit(pageSize)
+              .exec();
+            if (!items) {
+              throw new Error('Error while fetching "all" offers data.');
+            }
+          } // close else
 
           items.forEach(item => {
             if (item.offers.length > 1) {
@@ -176,7 +226,6 @@ exports.EntityQuery = new GraphQLObjectType({
               break;
             }
           }
-          console.log(final);
           return final;
         },
       },
