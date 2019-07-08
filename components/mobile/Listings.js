@@ -4,10 +4,17 @@ import PopularDeals from './PopularDeals';
 import Listing from './Listing';
 import Pagination from '../Pagination';
 
-const Listings = ({ offers, randomOffers, location, page }) => {
+const Listings = ({
+  offers,
+  randomOffers,
+  location,
+  page,
+  cuisines,
+  filters,
+}) => {
   return (
     <div>
-      <Header />
+      <Header cuisines={cuisines} filters={filters} />
       <main>
         <div className="mainWrapper">
           <h1 className="sectionHeading">Top deals for today!</h1>

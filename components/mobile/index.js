@@ -5,7 +5,14 @@ import { AppContext } from '../../helpers/contexts';
 import { trackEvent } from '../../helpers/utils';
 import Listings from './Listings';
 
-const Foodables = ({ offers, randomOffers, location, page }) => {
+const Foodables = ({
+  offers,
+  randomOffers,
+  location,
+  page,
+  cuisines,
+  filters,
+}) => {
   const { sidebarVisible, setSidebarVisible } = useContext(AppContext);
 
   return (
@@ -46,6 +53,8 @@ const Foodables = ({ offers, randomOffers, location, page }) => {
             offers={offers}
             randomOffers={randomOffers}
             location={location}
+            cuisines={cuisines}
+            filters={filters}
             page={page}
           />
         </Sidebar.Pusher>
