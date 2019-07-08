@@ -9,7 +9,15 @@ const Header = ({ location }) => {
       <div className="wrapper">
         <div />
         <div className="logoWrapper">
-          <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
+          <Link href="/">
+            <a>
+              <img
+                className="logo"
+                src="/static/logo.svg"
+                alt="Foodable logo"
+              />
+            </a>
+          </Link>
         </div>
         <nav>
           <ul className="navLinks">

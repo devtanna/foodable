@@ -4,32 +4,67 @@ import { device } from '../helpers/device';
 import { redirectToPage, trackPageView } from '../helpers/utils';
 import FoodablesMobile from '../components/mobile/';
 import FoodablesDesktop from '../components/desktop/';
-import { getOffers, getRandomOffers, getLocations } from '../helpers/api';
+import {
+  getOffers,
+  getRandomOffers,
+  getLocations,
+  getCuisines,
+} from '../helpers/api';
 import Cookies from 'universal-cookie';
+import qs from 'qs';
 
-const PageHead = ({ page }) => (
+const PageHead = ({ page, filters }) => (
   <Head>
     <title>
-      Discover & compare great food deals in UAE | Foodable.ae
+      Discover & compare great
+      {filters.cuisine.length > 0
+        ? ` ${filters.cuisine.join(' and ')} cuisine`
+        : null}{' '}
+      food deals in UAE
+      {filters.keywords !== ''
+        ? ` matching keywords '${filters.keywords}'`
+        : null}{' '}
+      | Foodable.ae
       {page > 1 ? ` - Page ${page}` : null}
     </title>
+    <meta
+      name="description"
+      content={`Compare food promotions and discover great deals from top food delivery websites. Search by restaurant name or your favorite cuisine and find great food deals in your area.${
+        filters.cuisine.length > 0
+          ? ' ' + filters.cuisine.join(' and ') + ' restaurants in UAE.'
+          : ''
+      }${
+        filters.keywords !== ''
+          ? " Restaurants matching keyword '" + filters.keywords + "' in UAE."
+          : ''
+      }`}
+    />
   </Head>
 );
 
-const Index = ({ offers, randomOffers, selectedLocation = null, page = 1 }) => {
+const Index = ({
+  offers,
+  randomOffers,
+  selectedLocation = null,
+  page = 1,
+  cuisines = [],
+  searchFilters = null,
+}) => {
   useEffect(() => {
     trackPageView('homepage', '/', `/loc=${selectedLocation.value}`);
   }, []);
 
   return (
     <Fragment>
-      <PageHead page={page} />
+      <PageHead page={page} filters={searchFilters} />
       <div className="wrapper">
         <div className="mobile">
           <FoodablesMobile
             offers={offers}
             randomOffers={randomOffers}
             location={selectedLocation}
+            cuisines={cuisines}
+            filters={searchFilters}
             page={page}
           />
         </div>
@@ -38,6 +73,8 @@ const Index = ({ offers, randomOffers, selectedLocation = null, page = 1 }) => {
             offers={offers}
             randomOffers={randomOffers}
             location={selectedLocation}
+            cuisines={cuisines}
+            filters={searchFilters}
             page={page}
           />
         </div>
@@ -80,14 +117,30 @@ Index.getInitialProps = async ({ req, res, query }) => {
 
     if (isLocationSet) {
       if (locations.find(location => location.value === deliveryLocation)) {
-        const { offers } = await getOffers(deliveryLocation, page);
+        let searchFilters = { keywords: '', cuisine: [] };
+        searchFilters = Object.assign(searchFilters, qs.parse(query.q));
+
+        const { offers } = await getOffers(
+          deliveryLocation,
+          page,
+          searchFilters
+        );
         const { randomOffers } = await getRandomOffers(deliveryLocation);
 
         const selectedLocation = locations.find(
           location => location.value === deliveryLocation
         );
 
-        return { offers, randomOffers, selectedLocation, page };
+        const { cuisines } = await getCuisines();
+
+        return {
+          offers,
+          randomOffers,
+          selectedLocation,
+          page,
+          cuisines,
+          searchFilters,
+        };
       } else {
         redirectToPage(res, '/select-area');
       }

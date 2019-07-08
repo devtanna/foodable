@@ -1,66 +1,50 @@
 import React, { useContext } from 'react';
+import Link from 'next/link';
 import { Icon, Modal, Button, Input, Dropdown } from 'semantic-ui-react';
 import { AppContext } from '../../helpers/contexts';
+import Search from '../Search';
 
-const cuisines = [
-  { key: 'angular', text: 'Angular', value: 'angular' },
-  { key: 'css', text: 'CSS', value: 'css' },
-  { key: 'design', text: 'Graphic Design', value: 'design' },
-]
-
-const SearchModal = () => {
+const SearchModal = ({ cuisines, filters }) => {
   const { searchModalOpen, setSearchModalOpen } = useContext(AppContext);
 
   return (
-    <Modal dimmer="blurring" closeIcon basic centered={false} open={searchModalOpen} onClose={() => setSearchModalOpen(false)}>
+    <Modal
+      dimmer="blurring"
+      closeIcon
+      basic
+      centered={false}
+      open={searchModalOpen}
+      onClose={() => setSearchModalOpen(false)}>
       <Modal.Content>
-        <section className="wrapper">
-          <div>
-            <Input 
-              fluid
-              icon="search" 
-              iconPosition="left" 
-              size="large"
-              placeholder="Search for restaurant" 
-            />
-          </div>
-          <div>
-            <Dropdown 
-              placeholder='Cuisine' 
-              fluid 
-              multiple 
-              search
-              selection 
-              options={cuisines} 
-              className="fdbDropdown"
-            />
-          </div>
-          <Button size="large" className="searchBtn">Search</Button>
-        </section>
+        <Search
+          cuisines={cuisines}
+          filters={filters}
+          onSearch={() => setSearchModalOpen(false)}
+        />
       </Modal.Content>
-      <style jsx>{`
-        .wrapper {
-          margin: 50px 0 30px 0;
-          display: grid;
-          grid-row-gap: 15px;
-        }
-        .actions {
-          text-align: center;
-        }
-      `}</style>
     </Modal>
   );
 };
 
-const Header = () => {
+const Header = ({ cuisines, filters }) => {
   const { setSidebarVisible, setSearchModalOpen } = useContext(AppContext);
 
   return (
     <header>
       <div className="wrapper">
-        <div><Icon name="search" onClick={() => setSearchModalOpen(true)} /></div>
+        <div>
+          <Icon name="search" onClick={() => setSearchModalOpen(true)} />
+        </div>
         <div className="logoWrapper">
-          <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
+          <Link href="/">
+            <a>
+              <img
+                className="logo"
+                src="/static/logo.svg"
+                alt="Foodable logo"
+              />
+            </a>
+          </Link>
         </div>
         <nav>
           <div className="menuToggle">
@@ -68,7 +52,7 @@ const Header = () => {
           </div>
         </nav>
       </div>
-      <SearchModal />
+      <SearchModal cuisines={cuisines} filters={filters} />
       <style jsx>{`
         header {
           padding: 10px 0;
@@ -80,7 +64,7 @@ const Header = () => {
           padding: 0 15px;
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
-          align-items: center;  
+          align-items: center;
           justify-content: center;
         }
         .logoWrapper {

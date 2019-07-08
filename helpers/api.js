@@ -26,12 +26,27 @@ const client = new ApolloClient({
   defaultOptions: defaultOptions,
 });
 
-export const getOffers = async (location, page) => {
+const pageSize = 20;
+
+export const getOffers = async (location, page, searchFilters) => {
   try {
+    const queryParams = [];
+    queryParams.push(`page: ${page}`);
+    queryParams.push(`pageSize: ${pageSize}`);
+    queryParams.push(`locationSlug: "${location}"`);
+
+    if (searchFilters.keywords !== '') {
+      queryParams.push(`keywords: "${searchFilters.keywords}"`);
+    }
+
+    if (searchFilters.cuisine.length > 0) {
+      queryParams.push(`cuisine: "${searchFilters.cuisine.join(' ')}"`);
+    }
+
     const res = await client.query({
       query: gql`
         {
-          offers(page: ${page}, pageSize: 20, locationSlug: "${location}") {
+          offers(${queryParams.join(',')}) {
             _id
             offers {
               title,
@@ -100,6 +115,23 @@ export const getLocations = async () => {
       `,
     });
     return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCuisines = async () => {
+  try {
+    const res = await client.query({
+      query: gql`
+        {
+          cuisines: fetchCuisine {
+            tags
+          }
+        }
+      `,
+    });
+    return { cuisines: res.data.cuisines[0].tags };
   } catch (e) {
     console.log(e);
   }
