@@ -59,6 +59,7 @@ const Search = ({ cuisines, filters, onSearch }) => {
         <Input
           value={keywords}
           onChange={e => setKeywords(e.target.value)}
+          onKeyPress={e => e.key === 'Enter' && handleSearch()}
           fluid
           icon="search"
           iconPosition="left"
@@ -70,6 +71,7 @@ const Search = ({ cuisines, filters, onSearch }) => {
         <Dropdown
           value={selectedCuisine}
           onChange={(e, { value }) => setSelectedCuisine(value)}
+          onKeyPress={e => e.key === 'Enter' && handleSearch()}
           placeholder="Cuisine"
           fluid
           multiple
