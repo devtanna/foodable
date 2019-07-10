@@ -236,7 +236,6 @@ exports.EntityQuery = new GraphQLObjectType({
         resolve: async (root, args, context, info) => {
           const projections = getProjection(info);
           var tags = await EntityModel.find({ type: 'cuisine' }).exec();
-          console.log(tags);
           if (!tags) {
             throw new Error('Error while fetching all offers data.');
           }

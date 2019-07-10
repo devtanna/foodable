@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: foodable-deployment
   labels:
-    app: frontend-deployment
+    app: foodable-deployment
 spec:
   selector:
     matchLabels:
-      app: frontend-pod 
-  replicas: 1
+      app: foodable-pod
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,19 +17,21 @@ spec:
   revisionHistoryLimit: 1
   template:
     metadata:
-      name: frontend-pod
+      name: foodable-pod
       labels:
-        app: frontend-pod
+        app: foodable-pod
     spec:
       containers:
-      - name: frontend
-        image: devtanna/foodable_front:v1.0
+      - name: foodable
+        image: devtanna/foodable:v1.0
         imagePullPolicy: Always
         env:
         - name: ENABLE_K8
           value: 'true'
         - name: NODE_ENV
           value: 'production'
+        - name: MONGO_ENV
+          value: 'atlas'
         ports:
-          - containerPort: 5000
-        command: ["npm", "run", "prod"]
+          - containerPort: 4000
+        command: ["npm","run","start"]

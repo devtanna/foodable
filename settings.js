@@ -9,7 +9,7 @@ var datetime =
 
 const isServerRequest = process && process.env && process.env.HOSTNAME != null;
 const backendEndpointForClient = 'http://foodable.local:8090/graphql';
-const backendEndpointForServer = 'http://foodable_back:4000/graphql';
+const backendEndpointForServer = 'http://foodable:4000/graphql';
 var DOCKER_BACKEND_ENDPOINT =
   isServerRequest != null && isServerRequest == true
     ? backendEndpointForServer
@@ -26,12 +26,22 @@ if (
   var ENABLE_K8 = false;
 }
 
-var K8_settings = {
-  DB_SERVICE_NAME: 'db-service',
-  BACKEND_SERVICE_NAME: 'backend-service',
-};
-
 function getDBsettings() {
+  if (
+    process.env &&
+    process.env.MONGO_ENV != null &&
+    process.env.MONGO_ENV == 'atlas'
+  ) {
+    var atlasConnection =
+      'mongodb+srv://devtanna:K4eh5Ds2MrDkAk5I@foodable-cluster0-zyyjg.gcp.mongodb.net/test?retryWrites=true&w=majority';
+    return {
+      DB: atlasConnection + '/foodabledb',
+      DB_CONNECT_URL: atlasConnection,
+      DB_NAME: 'foodabledb',
+      DB_FULL_URL: atlasConnection + '/foodlabdb',
+    };
+  }
+
   if (ENABLE_K8 == true) {
     return {
       DB: 'mongodb://db-service/foodabledb',
@@ -134,11 +144,11 @@ var devSettings = Object.assign(
 ////////////////////////////////////////////////////////////////
 function get_K8_BackendEndpoint() {
   if (isServerRequest) {
-    return 'http://backend-service:4000/graphql';
+    return 'http://localhost:4000/graphql';
   } else {
-    return 'http://192.168.64.3:30004/graphql'; // TODO: change this to the foodable.ae domain
+    return 'http://foodable.ae/graphql';
   }
-  return 'http://backend-service:4000/graphql';
+  return 'http://localhost:4000/graphql';
 }
 
 var prodSettings = Object.assign(

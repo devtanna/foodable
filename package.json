@@ -4,10 +4,9 @@
   "description": "Disrupting food delivery since 2019",
   "main": "",
   "scripts": {
-    "dev": "NODE_ENV=development next -p 5000",
+    "dev": "nodemon server.js",
     "build": "next build",
-    "start": "next start -p 5000",
-    "prod": "NODE_ENV=production next -p 5000"
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -41,7 +40,7 @@
     "next": "^8.0.3",
     "nprogress": "^0.2.0",
     "objects-to-csv": "^1.2.1",
-    "puppeteer": "^1.17.0",
+    "puppeteer": "^1.18.1",
     "qs": "^6.7.0",
     "react": "^16.8.5",
     "react-apollo": "^2.5.5",

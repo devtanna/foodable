@@ -19,9 +19,6 @@ async function process_results(
     var locations = JSON.parse(
       fs.readFileSync('./fixtures/locations.json', 'utf8')
     );
-    logger.debug(
-      'Loaded location fixtures: ' + locations.length + ' locations.'
-    );
 
     for (var i = 0, lenmr = mergedResults.length; i < lenmr; i++) {
       if (mergedResults[i] == undefined) {

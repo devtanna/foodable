@@ -8,42 +8,24 @@ services:
     volumes:
       - ./docker/nginx/:/etc/nginx/conf.d/
     depends_on:
-      - foodable_front
-      - foodable_back
+      - foodable
     links:
-      - foodable_back
-      - foodable_front
+      - foodable
       - mongo
 
-  foodable_front:
-    container_name: foodable_front
+  foodable:
+    container_name: foodable
     restart: always
     volumes:
       - .:/src
     command:  ["npm", "run", "dev"]
+    ports:
+      - "4000:4000"
     environment:
       NODE_ENV: development
     build:
       context: .
-      dockerfile: ./docker/front/Dockerfile
-    ports:
-      - "5000:5000"
-    depends_on:
-      - foodable_back
-    links:
-      - foodable_back
-      - mongo
-
-  foodable_back:
-    container_name: foodable_back
-    restart: always
-    volumes:
-      - .:/app
-    build:
-      context: .
-      dockerfile: ./docker/back/Dockerfile
-    ports:
-      - "4000:4000"
+      dockerfile: ./docker/app/Dockerfile
     depends_on:
       - mongo
     links:
