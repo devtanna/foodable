@@ -33,7 +33,7 @@ exports.EntityQuery = new GraphQLObjectType({
             { $match: { type: 'offers' } },
             {
               $group: {
-                _id: '$locationId',
+                _id: '$locationSlug',
                 locationSlug: {
                   $first: '$locationSlug',
                 },
