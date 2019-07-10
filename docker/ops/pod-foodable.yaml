@@ -19,3 +19,15 @@ spec:
       ports:
         - containerPort: 4000
       command: ["npm","run","start"]
+      livenessProbe:
+        httpGet:
+          path: /public/hc
+          port: 4000
+        initialDelaySeconds: 3
+        periodSeconds: 3
+      readinessProbe:
+        httpGet:
+          path: /public/hc
+          port: 4000
+        initialDelaySeconds: 3
+        periodSeconds: 3

@@ -33,12 +33,12 @@ function getDBsettings() {
     process.env.MONGO_ENV == 'atlas'
   ) {
     var atlasConnection =
-      'mongodb+srv://devtanna:K4eh5Ds2MrDkAk5I@foodable-cluster0-zyyjg.gcp.mongodb.net/test?retryWrites=true&w=majority';
+      'mongodb+srv://devtanna:K4eh5Ds2MrDkAk5I@foodable-cluster0-zyyjg.gcp.mongodb.net';
     return {
-      DB: atlasConnection + '/foodabledb',
+      DB: atlasConnection + '/foodabledb?retryWrites=true&w=majority',
       DB_CONNECT_URL: atlasConnection,
       DB_NAME: 'foodabledb',
-      DB_FULL_URL: atlasConnection + '/foodlabdb',
+      DB_FULL_URL: atlasConnection + '/foodlabdb?retryWrites=true&w=majority',
     };
   }
 
