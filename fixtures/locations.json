@@ -1636,5 +1636,11 @@
     "locationName": "Ramee Rose Hotel Barsha Heights",
     "locationSlug": "ramee-rose-hotel-barsha-heights",
     "type": "location"
+  },
+  {
+    "_id": "a5416c8f-fc7e-0001-a351-959e6e00834f",
+    "locationName": "Bur Dubai",
+    "locationSlug": "bur-dubai-zabeel",
+    "type": "location"
   }
 ]

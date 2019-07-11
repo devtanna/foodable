@@ -42,6 +42,19 @@ function getDBsettings() {
     };
   }
 
+  if (
+    process.env &&
+    process.env.ENV != null &&
+    process.env.ENV == 'localhost'
+  ) {
+    return {
+      DB: 'mongodb://localhost/foodabledb',
+      DB_CONNECT_URL: 'mongodb://localhost/',
+      DB_NAME: 'foodabledb',
+      DB_FULL_URL: 'mongodb://localhost/foodlabdb',
+    };
+  }
+
   if (ENABLE_K8 == true) {
     return {
       DB: 'mongodb://db-service/foodabledb',
