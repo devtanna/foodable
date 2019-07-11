@@ -16,7 +16,7 @@ const Landing = ({ locations }) => {
 
     cookies.set('location', selectedLocation);
 
-    Router.push('/');
+    window.location.pathname = '/';
   };
 
   return (
