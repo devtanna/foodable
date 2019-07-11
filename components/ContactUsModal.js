@@ -37,11 +37,7 @@ const ContactUsModal = () => {
   };
 
   return (
-    <Modal
-      size="tiny"
-      dimmer="blurring"
-      closeIcon
-      trigger={<span>Give us Feedback</span>}>
+    <Modal size="tiny" closeIcon trigger={<span>Give us Feedback</span>}>
       <Modal.Header>We would love to hear your feedback!</Modal.Header>
       {success ? (
         <Modal.Content>

@@ -9,7 +9,6 @@ const SearchModal = ({ cuisines, filters }) => {
 
   return (
     <Modal
-      dimmer="blurring"
       closeIcon
       basic
       centered={false}
