@@ -253,9 +253,8 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
           color: #fff;
           font-weight: bold;
           display: flex;
-          padding: 0 20px;
           align-items: center;
-          justify-content: space-between;
+          justify-content: space-around;
         }
         ${Object.entries(offerSources)
           .map(

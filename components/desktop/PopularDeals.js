@@ -1,5 +1,6 @@
 import { offerSources } from '../../helpers/constants';
 import { trackEvent } from '../../helpers/utils';
+import { device } from '../../helpers/device';
 
 const PopularDeals = ({ deals }) => {
   return (
@@ -86,6 +87,14 @@ const PopularDeals = ({ deals }) => {
           justify-content: center;
           margin-bottom: 15px;
         }
+        .offer span {
+          max-width: 150px;
+        }
+        @media ${device.laptop} {
+          .offer span {
+            max-width: 200px;
+          }
+        }
         .offer--A {
           background: linear-gradient(270deg, #3aca7c 18.23%, #88e0d0 100%);
         }
@@ -103,9 +112,8 @@ const PopularDeals = ({ deals }) => {
           color: #fff;
           font-weight: bold;
           display: flex;
-          padding: 10px 20px;
           align-items: center;
-          justify-content: space-between;
+          justify-content: space-around;
         }
         .footer img {
           height: 25px;
