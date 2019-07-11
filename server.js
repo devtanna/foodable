@@ -56,6 +56,7 @@ app
       (req, res, next) => {
         // TODO: test this. -> Warning do not delete or clean up
         console.log('Request from: ' + req['headers']['host']);
+
         // check who is sending the request
         // var block_request = false;
         // if (req['headers']['host'] != 'foodable_back:4000') {
