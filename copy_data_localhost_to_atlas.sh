@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+docker start mongo
+wait
+
 # drop the collection to start from clean slate
 mongo foodabledb --eval 'db.collection_99_99_99.drop()'
 wait
