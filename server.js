@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const scraperDbHelper = require('./scraper/db');
 const entitySchema = require('./graphql/EntitySchema').EntitySchema;
 const next = require('next');
+const path = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -151,6 +152,16 @@ app
         success: 'true',
         message: 'Contact-us entry added successfully.',
       });
+    });
+
+    server.get('/robots.txt', (req, res) => {
+      const options = {
+        root: path.join(__dirname, '/static'),
+        headers: {
+          'Content-Type': 'text/plain;charset=UTF-8',
+        },
+      };
+      res.status(200).sendFile('robots.txt', options);
     });
 
     server.get('*', (req, res) => {

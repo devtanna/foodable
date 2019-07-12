@@ -97,7 +97,7 @@ const Landing = ({ locations }) => {
         }
         @media ${device.tablet} {
           main {
-            background: #fff url('/static/lp-bg.svg') 0 105% no-repeat;
+            background: #fff url('/static/lp-bg.svg') 0 110% no-repeat;
             background-size: 100%;
           }
           .wrapper {

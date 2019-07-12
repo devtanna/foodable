@@ -19,7 +19,7 @@ const Listings = ({
       <main>
         <div className="mainWrapper">
           <Search cuisines={cuisines} filters={filters} />
-          <h1 className="sectionHeading">Top deals for today!</h1>
+          <h1 className="sectionHeading">Popular deals for today!</h1>
           <PopularDeals deals={randomOffers} />
           <div className="listingsWrapper">
             {offers.map((offer, index) => (
