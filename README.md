@@ -95,3 +95,47 @@ ENDPOINT for subscribe
 
 POST DATA Example for subscribe
 `{ "email": "\"dev.tanna@gmail.com\"" }`
+
+### Production How-To Run Full Scrape
+
+Running a full scrape to update data on Production involves these steps:
+
+- Run `npm install` to make sure your local node_modules is up to date
+
+- Make sure mongo is running locally `docker start mongo`
+
+- Make sure test_mode is set to `false` in settings.py
+
+- Clean up local db collection so we start from clean state
+    
+   `mongo foodabledb --eval 'db.collection_99_99_99.drop()'`
+    
+   You should see a `true` at the end once the command is executed
+- Run all scrapers for your localhost environment
+    
+   `sh ./docker_run_all_scrapers_script.sh`
+- Export data from mongo localhost into json file
+    
+   `mongoexport --host localhost:27017,localhost:27017 --db foodabledb --collection collection_99_99_99 --type json --out datadump.json`
+- Check file is created.
+
+- Import the file onto Mongo atlas which is production db
+  `mongoimport --host foodable-Cluster0-shard-0/foodable-cluster0-shard-00-00-zyyjg.gcp.mongodb.net:27017,foodable-cluster0-shard-00-01-zyyjg.gcp.mongodb.net:27017,foodable-cluster0-shard-00-02-zyyjg.gcp.mongodb.net:27017 --ssl --username devtanna --password K4eh5Ds2MrDkAk5I --authenticationDatabase admin --db foodabledb --collection collection_99_99_99 --drop --type json --file datadump.json`
+
+- Once uploaded clean up by deleting the json file created
+  `rm datadump.json 2> /dev/null`
+
+### Deploying to production involves two things
+
+1. Building the image - This is done when all changes are commited and now we want to start deploying to production.
+   So we make a commit into `master` branch with the following commit message `Triggering image build [image-build]`
+   This exact message will start a CI pipeline on gitlab to build and push the images to DockerHub
+
+2. Rolling out new image to GKE
+
+   WARNING: Please do this only after the CI pipeline is finished on gitlab.
+
+   For this step you will need your correct GCP credentials on the foodable cluster. You will also need kubectl linked to the foodable cluster on GCP. Once this is done you run the following two commands.
+   a) `kubectl scale --replicas=0 deployments/foodable-deployment`
+
+   b) `kubectl scale --replicas=1 deployments/foodable-deployment`
