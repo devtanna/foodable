@@ -1,5 +1,6 @@
 import SubscribeField from '../SubscribeField';
 import ContactUsModal from '../ContactUsModal';
+import Link from 'next/link';
 
 const Footer = () => (
   <footer>
@@ -14,23 +15,26 @@ const Footer = () => (
             </a>
           </li>
           <li>
-            <a href="#">How does Foodable work</a>
+            <Link href="/about-us">
+              <a>About Us</a>
+            </Link>
           </li>
           <li>
-            <a href="#">Our Culture</a>
+            <Link href="/privacy-policy">
+              <a>Privacy Policy</a>
+            </Link>
           </li>
           <li>
-            <a href="#">Privacy Policy</a>
-          </li>
-          <li>
-            <a href="#">Terms &amp; Conditions</a>
+            <Link href="/terms">
+              <a>Terms &amp; Conditions</a>
+            </Link>
           </li>
         </ul>
       </div>
       <div className="logoWrapper">
-        <img className="logo" src="/static/logo-white.svg" alt="Foodable.com" />
+        <img className="logo" src="/static/logo-white.svg" alt="Foodable.ae" />
         <div className="copyrights">
-          Copyright 2019 foodable.com | All rights reserved.
+          Copyright 2019 foodable.ae | All rights reserved.
         </div>
       </div>
     </div>
