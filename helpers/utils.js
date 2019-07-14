@@ -34,6 +34,7 @@ export const trackPageView = (
   page_location = null,
   page_path = null
 ) => {
+  if (!window.gtag) return;
   try {
     window.gtag('config', TRACKING_ID, {
       page_title,
@@ -51,6 +52,7 @@ export const trackEvent = (
   event_label = null,
   value = null
 ) => {
+  if (!window.gtag) return;
   try {
     window.gtag('event', action, {
       event_category,

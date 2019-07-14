@@ -3,12 +3,14 @@
 
 // ./pages/_document.js
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { Fragment } from 'react';
 import { TRACKING_ID } from '../helpers/constants';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    const isProduction = process.env.NODE_ENV === 'production';
+    return { ...initialProps, isProduction };
   }
 
   setGoogleTags() {
@@ -23,14 +25,19 @@ class MyDocument extends Document {
   }
 
   render() {
+    const { isProduction } = this.props;
     return (
       <Html>
         <Head>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
-          />
-          <script dangerouslySetInnerHTML={this.setGoogleTags()} />
+          {isProduction && (
+            <Fragment>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
+              />
+              <script dangerouslySetInnerHTML={this.setGoogleTags()} />
+            </Fragment>
+          )}
         </Head>
         <body className="custom_class">
           <Main />

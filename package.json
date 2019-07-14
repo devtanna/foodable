@@ -4,7 +4,7 @@
   "description": "Disrupting food delivery since 2019",
   "main": "",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "start-azure": "pm2 start ecosystem.config.js",
@@ -50,7 +50,6 @@
     "react-apollo": "^2.5.5",
     "react-dom": "^16.8.6",
     "react-rating": "^1.6.2",
-    "react-toastify": "^4.5.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
     "universal-cookie": "^4.0.0",
