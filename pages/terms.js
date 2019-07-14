@@ -24,10 +24,9 @@ const Terms = () => {
         <h3>Welcome to Foodable!</h3>
         <p>
           Please read these Terms of Use carefully before using the website and
-          services offered by foodable.ae (operated by The Garage Events FZ
-          LLE). They set forth the legally binding Agreement for your use of the
-          website at http://www.foodable.ae (the “website”) and all services
-          provided by Foodable (The Garage Events FZ LLE).
+          services offered by Foodable. They set forth the legally binding
+          Agreement for your use of the website at http://www.foodable.ae (the
+          “website”) and all services provided by Foodable.
         </p>
 
         <h3>TL;DR</h3>
