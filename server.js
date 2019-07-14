@@ -55,25 +55,23 @@ app
     server.use(
       '/graphql',
       (req, res, next) => {
-        // TODO: test this. -> Warning do not delete or clean up
         console.log('Request from: ' + req['headers']['host']);
-
         // check who is sending the request
-        // var block_request = false;
-        // if (req['headers']['host'] != 'foodable_back:4000') {
-        //   block_request = true;
-        //   // could be a browser request
-        //   if (
-        //     req['headers']['origin'] != null &&
-        //     req['headers']['origin'].indexOf('foodable') > 0
-        //   ) {
-        //     block_request = false;
-        //   }
-        // }
-        //
-        // if (block_request == true) {
-        //   return res.sendStatus(404);
-        // }
+        var block_request = false;
+        if (req['headers']['host'] != 'localhost:4000') {
+          block_request = true;
+          // could be a browser request
+          if (
+            req['headers']['origin'] != null &&
+            req['headers']['origin'].indexOf('foodable') > 0
+          ) {
+            block_request = false;
+          }
+        }
+
+        if (block_request == true) {
+          return res.sendStatus(404);
+        }
 
         res.header('Access-Control-Allow-Credentials', true);
         res.header(
