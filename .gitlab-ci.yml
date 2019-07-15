@@ -34,14 +34,9 @@ deploy_azure_production:
     variables:
     - $CI_COMMIT_MESSAGE =~ /\[azure-deploy\]/
   script:
-    - rm ./package-lock.json
-    - npm install
-    - npm run build
-    - ls
-    - sshpass -V
-    - export SSHPASS=$USER_PASS
-    - echo $USER_PASS
-    - sshpass -p $USER_PASS scp -o stricthostkeychecking=no -r $(pwd) foodableae@$AZURE_IP:/foodable
+    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'cd ~/foodable && git checkout . && git reset HEAD && git pull origin master'
+    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'npm install'
+    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'npm run build'
     - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'npm run start-azure'
     - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'sudo systemctl restart nginx'
     - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'sudo systemctl status nginx'
