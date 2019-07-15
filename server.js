@@ -163,7 +163,17 @@ app
           'Content-Type': 'text/plain;charset=UTF-8',
         },
       };
-      res.status(200).sendFile('robots.txt', options);
+      res.status(200).sendFile(req.url, options);
+    });
+
+    server.get('/service-worker.js', (req, res) => {
+      const options = {
+        root: path.join(__dirname, '.next'),
+        headers: {
+          'Content-Type': 'text/javascript',
+        },
+      };
+      res.status(200).sendFile(req.url, options);
     });
 
     server.get('*', (req, res) => {
