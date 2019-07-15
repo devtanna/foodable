@@ -55,19 +55,23 @@ app
     server.use(
       '/graphql',
       (req, res, next) => {
-        console.log('Request from: ' + req['headers']['host']);
+        console.log(
+          'Request from: ' + req['headers']['host'],
+          ' and origin ',
+          req['headers']['origin']
+        );
         // check who is sending the request
         var block_request = false;
-        if (req['headers']['host'].indexOf('localhost') < 0) {
-          block_request = true;
-          // could be a browser request
-          if (
-            req['headers']['origin'] != null &&
-            req['headers']['origin'].indexOf('foodable') > 0
-          ) {
-            block_request = false;
-          }
-        }
+        // if (req['headers']['host'].indexOf('localhost') < 0) {
+        //   block_request = true;
+        //   // could be a browser request
+        //   if (
+        //     req['headers']['origin'] != null &&
+        //     req['headers']['origin'].indexOf('foodable') > 0
+        //   ) {
+        //     block_request = false;
+        //   }
+        // }
 
         if (block_request == true) {
           return res.sendStatus(404);
