@@ -1,8 +1,9 @@
 const { parsed: localEnv } = require('dotenv').config();
 const webpack = require('webpack');
 const withCSS = require('@zeit/next-css');
+const withOffline = require('next-offline');
 
-module.exports = Object.assign(
+const nextConfig = Object.assign(
   withCSS({
     cssModules: false,
     webpack(config, options) {
@@ -19,3 +20,5 @@ module.exports = Object.assign(
     },
   })
 );
+
+module.exports = withOffline(nextConfig);
