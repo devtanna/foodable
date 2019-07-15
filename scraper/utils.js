@@ -89,6 +89,8 @@ function calculateScore(item) {
     8: [
       /^2 for 1$/im,
       /^bogo$/im,
+      /^Cheap Eats$/im,
+      /^Free Dessert$/im,
       /^buy 1 get 1 free$/im,
       /^special offer: buy one get one free!$/im,
     ],

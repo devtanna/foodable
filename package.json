@@ -7,7 +7,7 @@
     "dev": "nodemon server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "start-azure": "NODE_ENV=production pm2 start server.js --watch"
+    "start-azure": "pm2 start ecosystem.config.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   "homepage": "https://gitlab.com/devtanna/foodable#readme",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
-    "apollo-boost": "^0.3.1",
+    "apollo-boost": "^0.4.3",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "apollo-link-http": "^1.5.14",

@@ -125,7 +125,7 @@ var scraperSettings = {
   },
   // Max number of multi tabs to open at a time
   get SCRAPER_NUMBER_OF_MULTI_TABS() {
-    return this.SCRAPER_TEST_MODE ? 1 : 1;
+    return this.SCRAPER_TEST_MODE ? 1 : 3;
   },
 
   SCRAPER_SLEEP_BETWEEN_TAB_BATCH: 8000,
@@ -139,8 +139,7 @@ var scraperSettings = {
 };
 
 var systemSettings = {
-  BACKEND_ENDPOINT:
-    ENABLE_K8 == true ? get_K8_BackendEndpoint() : DOCKER_BACKEND_ENDPOINT,
+  BACKEND_ENDPOINT: get_backendEndpoint(),
   PORT: 4000,
 };
 
@@ -155,6 +154,24 @@ var devSettings = Object.assign(
 ////////////////////////////////////////////////////////////////
 ////////// Warning!! These are production settings ////////////
 ////////////////////////////////////////////////////////////////
+function get_backendEndpoint() {
+  if (process.env.ENABLE_AZURE == 'true') {
+    return get_Azure_BackendEndpoint();
+  }
+  if (ENABLE_K8 == true) {
+    return get_K8_BackendEndpoint();
+  }
+  return DOCKER_BACKEND_ENDPOINT;
+}
+function get_Azure_BackendEndpoint() {
+  if (isServerRequest) {
+    return 'http://localhost:4000/graphql';
+  } else {
+    return 'http://40.123.213.16/graphql';
+  }
+  return 'http://localhost:4000/graphql';
+}
+
 function get_K8_BackendEndpoint() {
   if (isServerRequest) {
     return 'http://localhost:4000/graphql';
