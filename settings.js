@@ -167,7 +167,7 @@ function get_Azure_BackendEndpoint() {
   if (isServerRequest) {
     return 'http://localhost:4000/graphql';
   } else {
-    return 'http://40.123.213.16/graphql';
+    return 'http://foodable.ae/graphql';
   }
   return 'http://localhost:4000/graphql';
 }
