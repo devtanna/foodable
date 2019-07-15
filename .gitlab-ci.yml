@@ -40,7 +40,7 @@ deploy_azure_production:
     - ls
     - sshpass -V
     - export SSHPASS=$USER_PASS
-    - sshpass -e scp -o stricthostkeychecking=no -r . foodableae@$AZURE_IP:/foodable
+    - sshpass -e scp -o stricthostkeychecking=no -r $(pwd) foodableae@$AZURE_IP:/foodable
     - sshpass -e ssh foodableae@$AZURE_IP 'npm run start-azure'
     - sshpass -e ssh foodableae@$AZURE_IP 'sudo systemctl restart nginx'
     - sshpass -e ssh foodableae@$AZURE_IP 'sudo systemctl status nginx'
