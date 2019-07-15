@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export ENV="localhost" && export NODE_PATH="/src/node_modules"
+export ENV="localhost" && export NODE_PATH="$PWD/node_modules"
 echo "---starting script---" && date
 
 echo "< talabat ..." && /usr/local/bin/node scraper/talabat.js && echo "... talabat >" &&

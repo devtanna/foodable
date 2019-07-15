@@ -107,16 +107,19 @@ Running a full scrape to update data on Production involves these steps:
 - Make sure test_mode is set to `false` in settings.py
 
 - Clean up local db collection so we start from clean state
-    
-   `mongo foodabledb --eval 'db.collection_99_99_99.drop()'`
-    
-   You should see a `true` at the end once the command is executed
+
+  `mongo foodabledb --eval 'db.collection_99_99_99.drop()'`
+
+  You should see a `true` at the end once the command is executed
+
 - Run all scrapers for your localhost environment
-    
-   `sh ./docker_run_all_scrapers_script.sh`
+
+  `sh ./docker_run_all_scrapers_script.sh`
+
 - Export data from mongo localhost into json file
-    
-   `mongoexport --host localhost:27017,localhost:27017 --db foodabledb --collection collection_99_99_99 --type json --out datadump.json`
+
+  `mongoexport --host localhost:27017,localhost:27017 --db foodabledb --collection collection_99_99_99 --type json --out datadump.json`
+
 - Check file is created.
 
 - Import the file onto Mongo atlas which is production db
@@ -125,7 +128,11 @@ Running a full scrape to update data on Production involves these steps:
 - Once uploaded clean up by deleting the json file created
   `rm datadump.json 2> /dev/null`
 
-### Deploying to production involves two things
+### Deploying to production on Azure involves:
+
+1. Trigger a deployment via a commit message that contains `[azure-deploy]`
+
+### Deploying to production on Kubernetes involves two things
 
 1. Building the image - This is done when all changes are commited and now we want to start deploying to production.
    So we make a commit into `master` branch with the following commit message `Triggering image build [image-build]`

@@ -16,7 +16,10 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    console.log('... Location script:Connected to mongo! ...');
+    console.log(
+      '... Location script:Connected to mongo! ... at: ' +
+        settings.DB_CONNECT_URL
+    );
     cleanupOldCollections(db);
     dbClient.close();
   }

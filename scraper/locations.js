@@ -19,7 +19,7 @@ MongoClient.connect(
     if (err) throw err;
     db = client.db(settings.DB_NAME);
     dbClient = client;
-    logger.info('... Connected to mongo! ...');
+    logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
   }
 );
 // ########## END DB STUFF ####################
