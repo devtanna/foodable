@@ -125,7 +125,7 @@ var scraperSettings = {
   },
   // Max number of multi tabs to open at a time
   get SCRAPER_NUMBER_OF_MULTI_TABS() {
-    return this.SCRAPER_TEST_MODE ? 1 : 5;
+    return this.SCRAPER_TEST_MODE ? 1 : 1;
   },
 
   SCRAPER_SLEEP_BETWEEN_TAB_BATCH: 8000,

@@ -58,7 +58,7 @@ app
         console.log('Request from: ' + req['headers']['host']);
         // check who is sending the request
         var block_request = false;
-        if (req['headers']['host'] != 'localhost:4000') {
+        if (req['headers']['host'].indexOf('localhost') < 0) {
           block_request = true;
           // could be a browser request
           if (

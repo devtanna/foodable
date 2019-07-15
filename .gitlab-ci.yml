@@ -1,17 +1,14 @@
-image: docker:stable
-
-services:
-  - docker:dind
-
-variables:
-  DOCKER_HOST: tcp://docker:2375
-  DOCKER_DRIVER: overlay2
-
-before_script:
-  - docker login -u devtanna -p @EPngztg%5S0
-
 build:
   stage: build
+  environment: Docker
+  image: docker:stable
+  before_script:
+    - docker login -u devtanna -p $DOCKER_PASS
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
   script:
     - docker pull devtanna/foodable:v1.0 || true
     - docker build --cache-from devtanna/foodable:v1.0 -t devtanna/foodable:v1.0 -f docker/app/Dockerfile .
@@ -22,3 +19,27 @@ build:
     variables:
     - $CI_COMMIT_MESSAGE =~ /\[image-build\]/
 
+deploy_azure_production:
+  stage: deploy
+  environment: Production
+  image: trion/ng-cli-karma
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq sshpass
+  cache:
+    paths:
+      - node_modules/
+  only:
+    refs:
+    - master
+    variables:
+    - $CI_COMMIT_MESSAGE =~ /\[azure-deploy\]/
+  script:
+    - rm ./package-lock.json
+    - npm install
+    - npm run build
+    - ls
+    - sshpass -V
+    - export SSHPASS=$USER_PASS
+    - sshpass -e scp -o stricthostkeychecking=no -r . foodableae@$AZURE_IP:/foodable
+    - sshpass -e ssh foodableae@$AZURE_IP 'sudo systemctl restart nginx'
+    - sshpass -e ssh foodableae@$AZURE_IP 'sudo systemctl status nginx'

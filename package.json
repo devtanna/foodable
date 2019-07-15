@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "start-azure": "NODE_ENV=production pm2 start server.js --watch"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "nprogress": "^0.2.0",
     "objects-to-csv": "^1.2.1",
     "path": "^0.12.7",
+    "pm2": "^3.5.1",
     "puppeteer": "^1.18.1",
     "qs": "^6.7.0",
     "react": "^16.8.6",
