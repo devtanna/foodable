@@ -34,10 +34,10 @@ deploy_azure_production:
     variables:
     - $CI_COMMIT_MESSAGE =~ /\[azure-deploy\]/
   script:
-    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'cd ~/foodable && git checkout . && git clean -f -d && git reset HEAD && git pull origin master'
-    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'cd ~/foodable && sudo npm install'
-    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'cd ~/foodable && npm run build'
-    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'cd ~/foodable && npm run stop-azure && npm run start-azure'
-    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'sudo nginx -t'
-    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'sudo systemctl restart nginx'
-    - sshpass -p $USER_PASS ssh foodableae@$AZURE_IP 'sudo systemctl status nginx'
+    - sshpass -p '$USER_PASS' ssh foodableae@$AZURE_IP 'cd ~/foodable && git checkout . && git clean -f -d && git reset HEAD && git pull origin master'
+    - sshpass -p '$USER_PASS' ssh foodableae@$AZURE_IP 'cd ~/foodable && sudo npm install'
+    - sshpass -p '$USER_PASS' ssh foodableae@$AZURE_IP 'cd ~/foodable && npm run build'
+    - sshpass -p '$USER_PASS' ssh foodableae@$AZURE_IP 'cd ~/foodable && npm run stop-azure && npm run start-azure'
+    - sshpass -p '$USER_PASS' ssh foodableae@$AZURE_IP 'sudo nginx -t'
+    - sshpass -p '$USER_PASS' ssh foodableae@$AZURE_IP 'sudo systemctl restart nginx'
+    - sshpass -p '$USER_PASS' ssh foodableae@$AZURE_IP 'sudo systemctl status nginx'
