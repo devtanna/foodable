@@ -155,6 +155,9 @@ var devSettings = Object.assign(
 ////////// Warning!! These are production settings ////////////
 ////////////////////////////////////////////////////////////////
 function get_backendEndpoint() {
+  if (process.env.NODE_ENV == 'production') {
+    return get_Azure_BackendEndpoint();
+  }
   if (process.env.ENABLE_AZURE == 'true') {
     return get_Azure_BackendEndpoint();
   }
