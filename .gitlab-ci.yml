@@ -61,8 +61,6 @@ deploy_azure_production:
     variables:
     - $CI_COMMIT_MESSAGE =~ /\[azure-deploy\]/
   script:
-    - echo $SSH_PRIVATE_KEY
-    - echo $AZURE_IP
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && git checkout . && git clean -f -d && git reset HEAD && git pull origin master'
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && sudo npm install'
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && npm run build'
