@@ -184,10 +184,7 @@ function get_K8_BackendEndpoint() {
 var prodSettings = Object.assign(
   {},
   devSettings,
-  {
-    BACKEND_ENDPOINT: get_K8_BackendEndpoint(),
-    SCRAPER_TEST_MODE: true, // TODO: make it false when going live
-  },
+  systemSettings,
   scraperSettings
 );
 ////////////////////////////////////////////////////////////////

@@ -7,7 +7,8 @@
     "dev": "nodemon server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "start-azure": "pm2 start ecosystem.config.js"
+    "start-azure": "pm2 start ecosystem.config.js",
+    "stop-azure": "pm2 stop ecosystem.config.js"
   },
   "repository": {
     "type": "git",
