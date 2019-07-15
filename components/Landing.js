@@ -59,7 +59,7 @@ const Landing = ({ locations }) => {
         .wrapper {
           max-width: 800px;
           margin: 0 auto;
-          padding-top: 50px;
+          padding-top: 30px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -101,10 +101,10 @@ const Landing = ({ locations }) => {
             background-size: 100%;
           }
           .wrapper {
-            padding-top: 100px;
+            padding-top: 75px;
           }
           h1 {
-            margin: 50px 30px 100px;
+            margin: 50px 30px 75px;
           }
           .ctaWrapper {
             grid-template-columns: 1fr 2fr auto;
