@@ -181,6 +181,7 @@ app
     });
 
     server.get('*', (req, res) => {
+      res.cookie('fdb_device', req.device.type);
       return handle(req, res);
     });
 

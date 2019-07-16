@@ -99,7 +99,8 @@ Index.getInitialProps = async ({ req, res, query }) => {
   }
 
   const page = query.page ? query.page : 1;
-  const deliveryLocation = cookies.get('location');
+  const device = cookies.get('fdb_device');
+  const deliveryLocation = cookies.get('fdb_location');
   const isLocationSet = deliveryLocation !== undefined;
 
   try {
@@ -130,7 +131,7 @@ Index.getInitialProps = async ({ req, res, query }) => {
           page,
           cuisines,
           searchFilters,
-          device: req.device.type,
+          device,
         };
       } else {
         redirectToPage(res, '/select-area');

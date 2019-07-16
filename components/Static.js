@@ -7,11 +7,9 @@ const Static = props => (
   <div>
     <header>
       <div className="logoWrapper">
-        <Link href="/">
-          <a>
-            <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
-          </a>
-        </Link>
+        <a href="/">
+          <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
+        </a>
       </div>
     </header>
     <main>

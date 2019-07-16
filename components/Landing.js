@@ -14,7 +14,7 @@ const Landing = ({ locations }) => {
   const handleSubmit = () => {
     if (!selectedLocation) return;
 
-    cookies.set('location', selectedLocation);
+    cookies.set('fdb_location', selectedLocation);
 
     window.location.pathname = '/';
   };
