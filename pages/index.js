@@ -49,6 +49,7 @@ const Index = ({
   page = 1,
   cuisines = [],
   searchFilters = null,
+  device = 'phone',
 }) => {
   useEffect(() => {
     trackPageView('homepage', '/', `/loc=${selectedLocation.value}`);
@@ -58,7 +59,7 @@ const Index = ({
     <Fragment>
       <PageHead page={page} filters={searchFilters} />
       <div className="wrapper">
-        <div className="mobile">
+        {device === 'phone' && (
           <FoodablesMobile
             offers={offers}
             randomOffers={randomOffers}
@@ -67,8 +68,8 @@ const Index = ({
             filters={searchFilters}
             page={page}
           />
-        </div>
-        <div className="desktop">
+        )}
+        {device === 'desktop' && (
           <FoodablesDesktop
             offers={offers}
             randomOffers={randomOffers}
@@ -77,21 +78,10 @@ const Index = ({
             filters={searchFilters}
             page={page}
           />
-        </div>
+        )}
         <style jsx>{`
           .wrapper {
             height: 100%;
-          }
-          .desktop {
-            display: none;
-          }
-          @media ${device.tablet} {
-            .mobile {
-              display: none;
-            }
-            .desktop {
-              display: block;
-            }
           }
         `}</style>
       </div>
@@ -140,6 +130,7 @@ Index.getInitialProps = async ({ req, res, query }) => {
           page,
           cuisines,
           searchFilters,
+          device: req.device.type,
         };
       } else {
         redirectToPage(res, '/select-area');

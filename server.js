@@ -10,6 +10,7 @@ const entitySchema = require('./graphql/EntitySchema').EntitySchema;
 const next = require('next');
 const path = require('path');
 const compression = require('compression');
+const device = require('express-device');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -47,6 +48,7 @@ app
     const server = express();
 
     server.use(compression());
+    server.use(device.capture());
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
 
