@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { AppProvider } from '../helpers/contexts';
+import '../static/nprogress.css';
+import '../static/semantic.min.css';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -25,8 +27,6 @@ const PageHead = () => (
     />
     <link rel="icon" href="/static/favicon.png" />
     <link rel="manifest" href="/static/manifest.json" />
-    <link rel="stylesheet" href="/static/nprogress.css" />
-    <link rel="stylesheet" href="/static/semantic.min.css" />
   </Head>
 );
 
