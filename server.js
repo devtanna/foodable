@@ -9,6 +9,7 @@ const scraperDbHelper = require('./scraper/db');
 const entitySchema = require('./graphql/EntitySchema').EntitySchema;
 const next = require('next');
 const path = require('path');
+const compression = require('compression');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -45,6 +46,7 @@ app
   .then(() => {
     const server = express();
 
+    server.use(compression());
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
 

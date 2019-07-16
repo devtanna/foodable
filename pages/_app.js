@@ -3,7 +3,6 @@ import App, { Container } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import 'semantic-ui-css/semantic.min.css';
 import { AppProvider } from '../helpers/contexts';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -22,11 +21,12 @@ const PageHead = () => (
     />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
     />
     <link rel="icon" href="/static/favicon.png" />
     <link rel="manifest" href="/static/manifest.json" />
     <link rel="stylesheet" href="/static/nprogress.css" />
+    <link rel="stylesheet" href="/static/semantic.min.css" />
   </Head>
 );
 

@@ -2,7 +2,7 @@
 // Event handlers like onClick can't be added to this file
 
 // ./pages/_document.js
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Head, Main, NextScript } from 'next/document';
 import { Fragment } from 'react';
 import { TRACKING_ID } from '../helpers/constants';
 
@@ -27,7 +27,7 @@ class MyDocument extends Document {
   render() {
     const { isProduction } = this.props;
     return (
-      <Html>
+      <html lang="en">
         <Head>
           {isProduction && (
             <Fragment>
@@ -43,7 +43,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </Html>
+      </html>
     );
   }
 }

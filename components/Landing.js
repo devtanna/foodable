@@ -22,7 +22,7 @@ const Landing = ({ locations }) => {
   return (
     <main>
       <div className="wrapper">
-        <img className="logo" src="/static/logo.svg" />
+        <img className="logo" src="/static/logo.svg" alt="Foodable.ae" />
         <h1>
           Discover and compare great food deals from top food delivery websites!
         </h1>
