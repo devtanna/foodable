@@ -6,6 +6,8 @@ sudo ufw allow 'Nginx HTTP'
 systemctl status nginx
 sudo apt install npm
 cd foodable
+# so we dont have to run sudo on npm i
+sudo chown -R $USER:$(id -gn $USER) /home/foodableae/.config
 npm install
 npm run build
 sudo mkdir /etc/nginx/conf.d/
