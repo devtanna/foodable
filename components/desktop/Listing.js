@@ -3,6 +3,7 @@ import Rating from 'react-rating';
 import { Icon, Responsive } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
 import { trackEvent } from '../../helpers/utils';
+import LazyLoad from 'react-lazyload';
 
 const Listing = ({ offer }) => {
   const mainOffer = offer.offers[0];
@@ -16,7 +17,9 @@ const Listing = ({ offer }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <img src={imgSrc} alt={mainOffer.title} />
+        <LazyLoad height={200}>
+          <img src={imgSrc} alt={mainOffer.title} />
+        </LazyLoad>
       </div>
       <div className="listing__content">
         <ListingMeta offer={mainOffer} />
