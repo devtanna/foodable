@@ -99,7 +99,7 @@ Index.getInitialProps = async ({ req, res, query }) => {
   }
 
   const page = query.page ? query.page : 1;
-  const device = cookies.get('fdb_device');
+  const device = res ? req.device.type : cookies.get('fdb_device');
   const deliveryLocation = cookies.get('fdb_location');
   const isLocationSet = deliveryLocation !== undefined;
 
