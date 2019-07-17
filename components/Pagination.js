@@ -1,5 +1,4 @@
 import { Icon } from 'semantic-ui-react';
-import Link from 'next/link';
 import { device } from '../helpers/device';
 
 const Pagination = ({ page }) => {
@@ -10,19 +9,15 @@ const Pagination = ({ page }) => {
   return (
     <div className="wrapper">
       {prevPage > 0 ? (
-        <Link href={`/?page=${prevPage}`} prefetch>
-          <a>
-            <Icon name="angle left" /> Previous Page
-          </a>
-        </Link>
+        <a href={`/?page=${prevPage}`}>
+          <Icon name="angle left" /> Previous Page
+        </a>
       ) : (
         <div />
       )}
-      <Link href={`/?page=${nextPage}`} prefetch>
-        <a>
-          Next Page <Icon name="angle right" />
-        </a>
-      </Link>
+      <a href={`/?page=${nextPage}`}>
+        Next Page <Icon name="angle right" />
+      </a>
       <style jsx>{`
         .wrapper {
           display: flex;
