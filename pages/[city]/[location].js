@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import Head from 'next/head';
 import { device } from '../../helpers/device';
-import { redirectToPage, trackPageView, deslugify, capitalizeFirstLetter } from '../../helpers/utils';
+import { redirectToPage, trackPageView, deslugify, capitalizeFirstLetter, removeObjEmpty } from '../../helpers/utils';
 import FoodablesMobile from '../../components/mobile/';
 import FoodablesDesktop from '../../components/desktop/';
 import {
@@ -55,7 +55,12 @@ const Location = ({
   device = 'phone',
 }) => {
   useEffect(() => {
-    trackPageView('homepage', '/', `/loc=${selectedLocation.value}`);
+    let _filters = qs.stringify(removeObjEmpty(searchFilters));
+    if (_filters) {
+      trackPageView('search', `/${selectedLocation.city}/${selectedLocation.slug}/?${_filters}`);  
+    } else {
+      trackPageView('homepage', `/${selectedLocation.city}/${selectedLocation.slug}/`);
+    }
   }, []);
 
   return (
