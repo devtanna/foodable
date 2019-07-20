@@ -53,6 +53,7 @@ const Listings = ({
           margin-bottom: 30px;
         }
         .listingsWrapper {
+          margin-top: 15px;
           margin-bottom: 30px;
         }
       `}</style>

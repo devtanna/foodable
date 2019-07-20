@@ -49,7 +49,6 @@ const PopularDeals = ({ deals }) => (
         -ms-scroll-snap-type: mandatory;
         scroll-snap-type: mandatory;
         -webkit-overflow-scrolling: touch;
-        margin-bottom: 15px;
         margin-right: -15px;
         margin-left: -10px;
       }
