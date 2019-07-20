@@ -4,6 +4,7 @@ import Footer from './Footer';
 import PopularDeals from './PopularDeals';
 import Listing from './Listing';
 import Pagination from '../Pagination';
+import NoResults from '../NoResults';
 import { removeObjEmpty } from '../../helpers/utils';
 import _isEmpty from 'lodash/isEmpty';
 
@@ -16,6 +17,7 @@ const Listings = ({
   filters,
 }) => {
   let isSearchPage = !_isEmpty(removeObjEmpty(filters));
+  let hasOffers = offers.length > 0;
 
   return (
     <div>
@@ -28,12 +30,18 @@ const Listings = ({
               <PopularDeals deals={randomOffers} />
             </Fragment>
           )}
-          <div className="listingsWrapper">
-            {offers.map((offer, index) => (
-              <Listing offer={offer} key={index} />
-            ))}
-          </div>
-          <Pagination filters={filters} page={page} />
+          {hasOffers ? (
+            <Fragment>
+              <div className="listingsWrapper">
+                {offers.map((offer, index) => (
+                  <Listing offer={offer} key={index} />
+                ))}
+              </div>
+              <Pagination filters={filters} page={page} />
+            </Fragment>
+          ) : (
+            <NoResults />
+          )}
         </div>
       </main>
       <Footer />
