@@ -108,23 +108,15 @@ Location.getInitialProps = async ({ req, res, query }) => {
     redirectToPage(res, '/select-area');
   }
 
-  // Whenever /city/location page is called, update fdb_location cookie with the current
-  // city and area, in case of errors, redirect to select-area page
-	let selectedLocation;
-	try {
-    selectedLocation = {
-  		city,
-  		slug: location,
-  		text: deslugify(location)
-  	};
-
-  	res.cookie('fdb_location', base64.encode(JSON.stringify(selectedLocation)));
-  } catch(e) {
-  	redirectToPage(res, '/select-area');
-  	return;
-  }
-
   try {
+    // Whenever /city/location page is called, update fdb_location cookie with the current
+    // city and area, in case of errors, redirect to select-area page
+    let selectedLocation = {
+      city,
+      slug: location,
+      text: deslugify(location)
+    };
+    
     // Let's start getting offers data, first, check if any search filters or page params are set
     let searchFilters = { keywords: '', cuisine: [] };
     searchFilters = Object.assign(searchFilters, _pick(qs.parse(query), ['keywords', 'cuisine']));
@@ -147,6 +139,8 @@ Location.getInitialProps = async ({ req, res, query }) => {
       redirectToPage(res, '/select-area');
       return;
     }
+
+    res.cookie('fdb_location', base64.encode(JSON.stringify(selectedLocation)));
 
     // All good so far? get cuisines and send back the needed information
     const { cuisines } = await getCuisines();
