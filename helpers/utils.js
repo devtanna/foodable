@@ -63,3 +63,40 @@ export const trackEvent = (
     console.log('Tracking error:', error);
   }
 };
+
+export const deslugify = slug => {
+  var words = slug.split('-');
+
+  for (var i = 0; i < words.length; i++) {
+    var word = words[i];
+    words[i] = word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+  return words.join(' ');
+};
+
+export const removeObjEmpty = obj => {
+  let _obj = Object.assign({}, obj);
+
+  Object.keys(_obj).forEach(
+    key =>
+      (!_obj[key] || _obj[key].length === 0 || _obj[key] === '') &&
+      delete _obj[key]
+  );
+
+  return _obj;
+};
+
+export const capitalizeFirstLetter = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+export const hideVirtualKeyboard = () => {
+  if (
+    document.activeElement &&
+    document.activeElement.blur &&
+    typeof document.activeElement.blur === 'function'
+  ) {
+    document.activeElement.blur();
+  }
+};

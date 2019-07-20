@@ -1,6 +1,5 @@
 import React, { Fragment, useContext } from 'react';
 import { Icon, Menu, Sidebar } from 'semantic-ui-react';
-import Link from 'next/link';
 import { AppContext } from '../../helpers/contexts';
 import { trackEvent } from '../../helpers/utils';
 import Listings from './Listings';
@@ -35,16 +34,15 @@ const Foodables = ({
               </div>
             </div>
             <div className="location__change">
-              <Link href="/select-area">
-                <a
-                  onClick={() => {
-                    trackEvent('change_location', 'generic');
-                    setSidebarVisible(false);
-                  }}>
-                  <Icon name="edit outline" />
-                  Change Location
-                </a>
-              </Link>
+              <a
+                href="/select-area"
+                onClick={() => {
+                  trackEvent('change_location', 'generic');
+                  setSidebarVisible(false);
+                }}>
+                <Icon name="edit outline" />
+                Change Location
+              </a>
             </div>
           </Menu.Item>
         </Sidebar>

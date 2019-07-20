@@ -24,7 +24,7 @@ const Listing = ({ offer }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <img src={imgSrc} alt={mainOffer.title} />
+        <img src={imgSrc} alt={mainOffer.title} loading="lazy" />
       </div>
       <div className="listing__content">
         <div className="listing__meta">

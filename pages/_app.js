@@ -16,10 +16,10 @@ Router.events.on('routeChangeError', (err, url) => {
 
 const PageHead = () => (
   <Head>
-    <title>Discover & compare great food deals in UAE | Foodable.ae</title>
+    <title>Discover & compare food deals in UAE | Foodable.ae</title>
     <meta
       name="description"
-      content="Compare food promotions and discover great deals from top food delivery websites. Search by restaurant name or your favorite cuisine and find great food deals in your area."
+      content="Compare food promotions and discover great deals from top food delivery websites in United Arab Emirates (UAE). Search by restaurant name or your favorite cuisine and find great food deals in your area."
     />
     <meta
       name="viewport"

@@ -1,9 +1,12 @@
+import React, { Fragment } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import Search from '../Search';
 import PopularDeals from './PopularDeals';
 import Listing from './Listing';
 import Pagination from '../Pagination';
+import { removeObjEmpty } from '../../helpers/utils';
+import _isEmpty from 'lodash/isEmpty';
 
 const Listings = ({
   offers,
@@ -13,20 +16,26 @@ const Listings = ({
   cuisines,
   filters,
 }) => {
+  let isSearchPage = !_isEmpty(removeObjEmpty(filters));
+
   return (
     <div>
       <Header location={location} />
       <main>
         <div className="mainWrapper">
           <Search cuisines={cuisines} filters={filters} />
-          <h1 className="sectionHeading">Popular deals for today!</h1>
-          <PopularDeals deals={randomOffers} />
+          {!isSearchPage && (
+            <Fragment>
+              <h1 className="sectionHeading">Popular deals for today!</h1>
+              <PopularDeals deals={randomOffers} />
+            </Fragment>
+          )}
           <div className="listingsWrapper">
             {offers.map((offer, index) => (
               <Listing offer={offer} key={index} />
             ))}
           </div>
-          <Pagination page={page} />
+          <Pagination filters={filters} page={page} />
         </div>
       </main>
       <Footer />

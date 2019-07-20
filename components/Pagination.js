@@ -1,21 +1,29 @@
 import { Icon } from 'semantic-ui-react';
 import { device } from '../helpers/device';
+import { removeObjEmpty } from '../helpers/utils';
+import qs from 'qs';
 
-const Pagination = ({ page }) => {
+const getPageUrl = (page, filters) => {
+  let params = Object.assign({}, filters, { page });
+  return `?${qs.stringify(params)}`;
+};
+
+const Pagination = ({ filters, page }) => {
   let current = Number(page);
   let prevPage = current - 1;
   let nextPage = current + 1;
+  let _filters = removeObjEmpty(filters);
 
   return (
     <div className="wrapper">
       {prevPage > 0 ? (
-        <a href={`/?page=${prevPage}`}>
+        <a href={getPageUrl(prevPage, _filters)}>
           <Icon name="angle left" /> Previous Page
         </a>
       ) : (
         <div />
       )}
-      <a href={`/?page=${nextPage}`}>
+      <a href={getPageUrl(nextPage, _filters)}>
         Next Page <Icon name="angle right" />
       </a>
       <style jsx>{`
