@@ -40,7 +40,10 @@ const Landing = ({ locations }) => {
             fluid
             search
             options={locations}
-            onChange={(e, { value }) => setSelectedLocation(value)}
+            onChange={(e, { value }) => {
+              hideVirtualKeyboard();
+              setSelectedLocation(value);
+            }}
             value={selectedLocation}
             className="fdbDropdown"
           />
