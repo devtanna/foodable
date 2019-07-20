@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { Dropdown, Button } from 'semantic-ui-react';
 import { device } from '../helpers/device';
-import Cookies from 'universal-cookie';
-import Router from 'next/router';
-
-const CITIES = [{ key: 'dubai', text: 'Dubai', value: 'dubai' }];
-
-const cookies = new Cookies();
+import { hideVirtualKeyboard } from '../helpers/utils';
+import { CITIES } from '../helpers/constants';
 
 const Landing = ({ locations }) => {
+  const [selectedCity, setSelectedCity] = useState('dubai');
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handleSubmit = () => {
     if (!selectedLocation) return;
-
-    cookies.set('fdb_location', selectedLocation);
-
-    window.location.pathname = '/';
+    window.location.pathname = `/${selectedCity}/${selectedLocation}/`;
   };
 
   return (
@@ -32,7 +26,11 @@ const Landing = ({ locations }) => {
             placeholder="Choose your city"
             fluid
             options={CITIES}
-            defaultValue="dubai"
+            value={selectedCity}
+            onChange={(e, { value }) => {
+              hideVirtualKeyboard();
+              setSelectedCity(value);
+            }}
             disabled
             className="fdbDropdown"
           />

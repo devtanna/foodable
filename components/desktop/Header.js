@@ -1,6 +1,5 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
-import Link from 'next/link';
 import { trackEvent } from '../../helpers/utils';
 
 const Header = ({ location }) => {
@@ -26,11 +25,11 @@ const Header = ({ location }) => {
             </li>
             <li>
               <div className="location__change">
-                <Link href="/select-area">
-                  <a onClick={() => trackEvent('change_location', 'generic')}>
-                    Change Location
-                  </a>
-                </Link>
+                <a
+                  href="/select-area"
+                  onClick={() => trackEvent('change_location', 'generic')}>
+                  Change Location
+                </a>
               </div>
             </li>
           </ul>

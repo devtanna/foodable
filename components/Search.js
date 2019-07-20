@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Dropdown, Button } from 'semantic-ui-react';
-import Router from 'next/router';
 import { slugify, trackEvent } from '../helpers/utils';
 import { device } from '../helpers/device';
 import qs from 'qs';
@@ -10,11 +9,14 @@ const Search = ({ cuisines, filters, onSearch }) => {
 
   cuisines.forEach(cuisine => {
     let key = slugify(cuisine);
+
     if (
       cuisinesOptions.filter(option => option.key === key).length > 0 ||
       key === ''
-    )
+    ) {
       return false;
+    }
+
     cuisinesOptions.push({
       key: slugify(cuisine),
       text: cuisine,
@@ -38,16 +40,9 @@ const Search = ({ cuisines, filters, onSearch }) => {
     trackEvent('search', 'generic', query.keywords, query.cuisine);
 
     if (keywords === '' && selectedCuisine.length === 0) {
-      Router.push({
-        pathname: '/',
-      });
+      window.location.pathname = '/';
     } else {
-      Router.push({
-        pathname: '/',
-        query: {
-          q: qs.stringify(query),
-        },
-      });
+      window.location.search = `${qs.stringify(query)}`;
     }
 
     onSearch && onSearch();

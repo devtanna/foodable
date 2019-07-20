@@ -51,7 +51,7 @@ const PopularDeals = ({ deals }) => {
           box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
           color: #333;
           display: grid;
-          grid-template-rows: 225px 1fr 40px;
+          grid-template-rows: 200px 1fr 40px;
           background: #fff;
         }
         .imgWrapper {
@@ -60,7 +60,7 @@ const PopularDeals = ({ deals }) => {
           align-items: center;
         }
         .imgWrapper img {
-          object-fit: scale-down;
+          object-fit: cover;
           max-height: 100%;
         }
         .placeholderImg {
@@ -72,7 +72,7 @@ const PopularDeals = ({ deals }) => {
           background: #eaeaea;
         }
         .content {
-          padding: 20px;
+          padding: 10px 20px;
         }
         .offer {
           background: #333;

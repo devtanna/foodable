@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import Link from 'next/link';
 import { Icon, Modal, Button, Input, Dropdown } from 'semantic-ui-react';
 import { AppContext } from '../../helpers/contexts';
 import Search from '../Search';
@@ -35,15 +34,9 @@ const Header = ({ cuisines, filters }) => {
           <Icon name="search" onClick={() => setSearchModalOpen(true)} />
         </div>
         <div className="logoWrapper">
-          <Link href="/">
-            <a>
-              <img
-                className="logo"
-                src="/static/logo.svg"
-                alt="Foodable logo"
-              />
-            </a>
-          </Link>
+          <a href="/">
+            <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
+          </a>
         </div>
         <nav>
           <div className="menuToggle">
