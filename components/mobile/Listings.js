@@ -24,7 +24,7 @@ const Listings = ({
       <Header cuisines={cuisines} filters={filters} />
       <main>
         <div className="mainWrapper">
-          {!isSearchPage && (
+          {!isSearchPage && hasOffers && (
             <Fragment>
               <h1 className="sectionHeading">Popular deals for today!</h1>
               <PopularDeals deals={randomOffers} />
@@ -40,7 +40,7 @@ const Listings = ({
               <Pagination filters={filters} page={page} />
             </Fragment>
           ) : (
-            <NoResults />
+            <NoResults isSearch={isSearchPage} />
           )}
         </div>
       </main>

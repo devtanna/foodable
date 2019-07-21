@@ -1,11 +1,18 @@
 import { Button, Icon } from 'semantic-ui-react';
 
-const NoResults = () => (
+const NoResults = ({ isSearch }) => (
   <div className="wrapper">
-    <h2>
-      Oops, No results found
-      <small>We can't seem to find any offers that matches your search</small>
-    </h2>
+    {isSearch ? (
+      <h2>
+        Oops, No results found
+        <small>We can't seem to find any offers that matches your search</small>
+      </h2>
+    ) : (
+      <h2>
+        Oops, No more pages
+        <small>Seems like you've reached the end of the line</small>
+      </h2>
+    )}
     <p>But fear not, we have more deals!</p>
     <a href="/" className="btn">
       <span className="flex">
