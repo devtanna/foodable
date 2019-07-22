@@ -92,27 +92,30 @@ exports.EntityQuery = new GraphQLObjectType({
           var results = [];
           if (cuisine || keywords) {
             var orFilter = [];
+            var andFilter = [];
+            var matchObj = {
+              type: 'offers',
+              locationSlug: args.locationSlug,
+            };
             if (cuisine) {
               cuisine.split(' ').forEach(function(item, index) {
                 orFilter.push({
                   'offers.cuisine': { $regex: item, $options: 'gi' },
                 });
               });
+              matchObj['$or'] = orFilter;
             }
             if (keywords) {
               keywords.split(' ').forEach(function(item, index) {
-                orFilter.push({
+                andFilter.push({
                   'offers.title': { $regex: item, $options: 'gi' },
                 });
               });
+              matchObj['$and'] = andFilter;
             }
             var items = await EntityModel.aggregate([
               {
-                $match: {
-                  type: 'offers',
-                  locationSlug: args.locationSlug,
-                  $or: orFilter,
-                },
+                $match: matchObj,
               },
               { $unwind: '$offers' },
               {
