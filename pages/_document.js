@@ -32,10 +32,10 @@ class MyDocument extends Document {
           {isProduction && (
             <Fragment>
               <script
-                async
+                defer
                 src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
               />
-              <script dangerouslySetInnerHTML={this.setGoogleTags()} />
+              <script defer dangerouslySetInnerHTML={this.setGoogleTags()} />
             </Fragment>
           )}
         </Head>

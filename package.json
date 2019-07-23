@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "start-azure": "pm2 start ecosystem.config.js",
-    "stop-azure": "pm2 stop ecosystem.config.js"
+    "stop-azure": "pm2 stop ecosystem.config.js",
+    "report": "lighthouse http://foodable.ae/dubai/al-mamzar --budget-path=./budget.json --output-path=./reports/report.html --view"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,7 @@
     "file-loader": "^3.0.1",
     "graphql": "^14.2.1",
     "isomorphic-unfetch": "^3.0.0",
-    "lodash": "^4.17.11",
+    "lodash-es": "^4.17.15",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.5",
     "next": "^9.0.0",
@@ -53,9 +54,9 @@
     "react": "^16.8.6",
     "react-apollo": "^2.5.5",
     "react-dom": "^16.8.6",
-    "react-rating": "^1.6.2",
     "semantic-ui-react": "^0.86.0",
     "universal-cookie": "^4.0.0",
+    "vanilla-lazyload": "^12.0.0",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^3.9.0"
   },
