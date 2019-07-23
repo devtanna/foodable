@@ -63,6 +63,15 @@ class FoodableApp extends App {
           .fdbDropdown {
             font-size: 1.123em !important;
           }
+          .loaderWrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            max-width: 100%;
+            max-height: 100%;
+          }
         `}</style>
       </Fragment>
     );

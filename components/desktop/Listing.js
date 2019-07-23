@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { Icon, Responsive, Rating } from 'semantic-ui-react';
+import { Icon, Responsive, Rating, Loader } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
 import { trackEvent } from '../../helpers/utils';
 import dynamic from 'next/dynamic';
-const LazyImage = dynamic(() => import('../LazyImage'));
+const LazyImage = dynamic(() => import('../LazyImage'), {
+  ssr: false,
+  loading: () => (
+    <div className="loaderWrapper">
+      <Loader active inline="centered" size="small" />
+    </div>
+  ),
+});
 
 const Listing = ({ offer }) => {
   const mainOffer = offer.offers[0];
