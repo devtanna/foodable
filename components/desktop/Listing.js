@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import Rating from 'react-rating';
-import { Icon, Responsive } from 'semantic-ui-react';
+import { Icon, Responsive, Rating } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
 import { trackEvent } from '../../helpers/utils';
+import dynamic from 'next/dynamic';
+const LazyImage = dynamic(() => import('../LazyImage'));
 
 const Listing = ({ offer }) => {
   const mainOffer = offer.offers[0];
@@ -16,7 +17,12 @@ const Listing = ({ offer }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <img src={imgSrc} alt={mainOffer.title} loading="lazy" />
+        <LazyImage
+          src={imgSrc}
+          alt={mainOffer.title}
+          width="200"
+          height="200"
+        />
       </div>
       <div className="listing__content">
         <ListingMeta offer={mainOffer} />
@@ -44,11 +50,6 @@ const Listing = ({ offer }) => {
         .listing__img {
           padding: 20px;
         }
-        .listing__img img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
       `}</style>
     </div>
   );
@@ -67,13 +68,11 @@ const ListingMeta = ({ offer }) => {
         <div className="meta__rating">
           <div className="rating__heading">Rating</div>
           <Rating
-            className="rating__stars"
-            readonly
-            initialRating={Number(initialRating)}
-            emptySymbol={
-              <Icon name="star" size="large" className="blankStar" />
-            }
-            fullSymbol={<Icon name="star" size="large" color="yellow" />}
+            size="large"
+            icon="star"
+            disabled
+            defaultRating={Number(initialRating)}
+            maxRating={5}
           />
         </div>
       )}
@@ -99,8 +98,8 @@ const ListingMeta = ({ offer }) => {
           font-weight: bold;
           font-size: 14px;
         }
-        :global(.rating__stars i.icon) {
-          color: #ddd;
+        .rating__heading {
+          margin-bottom: 5px;
         }
       `}</style>
     </div>

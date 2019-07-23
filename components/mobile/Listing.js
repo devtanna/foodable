@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import Rating from 'react-rating';
-import { Icon, Accordion } from 'semantic-ui-react';
+import { Icon, Accordion, Rating } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
 import { trackEvent } from '../../helpers/utils';
+import dynamic from 'next/dynamic';
+const LazyImage = dynamic(() => import('../LazyImage'));
 
 const Listing = ({ offer }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -24,7 +25,12 @@ const Listing = ({ offer }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <img src={imgSrc} alt={mainOffer.title} loading="lazy" />
+        <LazyImage
+          src={imgSrc}
+          alt={mainOffer.title}
+          width="200"
+          height="200"
+        />
       </div>
       <div className="listing__content">
         <div className="listing__meta">
@@ -35,11 +41,11 @@ const Listing = ({ offer }) => {
           {initialRating && (
             <div className="meta__rating">
               <Rating
-                className="rating__stars"
-                readonly
-                initialRating={Number(initialRating)}
-                emptySymbol={<Icon name="star" size="small" />}
-                fullSymbol={<Icon name="star" size="small" color="olive" />}
+                size="small"
+                icon="star"
+                disabled
+                defaultRating={Number(initialRating)}
+                maxRating={5}
               />
             </div>
           )}
@@ -125,10 +131,6 @@ const Listing = ({ offer }) => {
         .listing__img {
           padding: 5px;
         }
-        .listing__img img {
-          width: 100%;
-          object-fit: cover;
-        }
         .listing__meta {
           display: flex;
           flex-direction: column;
@@ -146,9 +148,6 @@ const Listing = ({ offer }) => {
           display: block;
           font-weight: normal;
           font-size: 13px;
-        }
-        :global(.rating__stars i.icon) {
-          color: #ddd;
         }
         .bestOffer__heading {
           font-size: 15px;
