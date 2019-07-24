@@ -1,24 +1,3 @@
-# build:
-#   stage: build
-#   environment: Docker
-#   image: docker:stable
-#   before_script:
-#     - docker login -u devtanna -p $DOCKER_PASS
-#   services:
-#     - docker:dind
-#   variables:
-#     DOCKER_HOST: tcp://docker:2375
-#     DOCKER_DRIVER: overlay2
-#   script:
-#     - docker pull devtanna/foodable:v1.0 || true
-#     - docker build --cache-from devtanna/foodable:v1.0 -t devtanna/foodable:v1.0 -f docker/app/Dockerfile .
-#     - docker push devtanna/foodable:v1.0
-#   only:
-#     refs:
-#     - master
-#     variables:
-#     - $CI_COMMIT_MESSAGE =~ /\[image-build\]/
-
 deploy_azure_production:
   stage: deploy
   environment: Production

@@ -186,6 +186,7 @@ const run = async () => {
 
     logger.info('Number of locations received: ' + links.length);
     for (let i = 0; i < links.length; i++) {
+      await utils.delay(2000);
       logger.info('On scrape ' + i + ' / ' + links.length);
 
       try {

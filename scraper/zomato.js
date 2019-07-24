@@ -108,15 +108,23 @@ const run = async () => {
     process.exit();
   }
 
+  let args = settings.PUPPETEER_BROWSER_ARGS;
+  const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
+  if (myProxy && myProxy.length > 0) {
+    args.push(`--proxy-server=${myProxy}`);
+  }
+  console.log('Browser args:', args);
+
   browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
-    args: settings.PUPPETEER_BROWSER_ARGS,
+    args: args,
   });
 
   page = await browser.newPage();
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
   while (hasNext && pageNum <= maxPage) {
+    await utils.delay(3000);
     logger.info('zomato scraper: Starting page: ' + pageNum);
     let res = await scrapePage(pageNum);
     if (res != undefined) {

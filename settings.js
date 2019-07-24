@@ -1,12 +1,4 @@
 // Global app settings
-var currentdate = new Date();
-var datetime =
-  currentdate.getDate() +
-  '_' +
-  (currentdate.getMonth() + 1) +
-  '_' +
-  currentdate.getFullYear();
-
 const isServerRequest = process && process.env && process.env.HOSTNAME != null;
 const backendEndpointForClient = 'http://foodable.local:8090/graphql';
 const backendEndpointForServer = 'http://foodable:4000/graphql';
@@ -14,17 +6,6 @@ var DOCKER_BACKEND_ENDPOINT =
   isServerRequest != null && isServerRequest == true
     ? backendEndpointForServer
     : backendEndpointForClient;
-
-if (
-  process &&
-  process.env &&
-  process.env.ENABLE_K8 != null &&
-  process.env.ENABLE_K8 == 'true'
-) {
-  var ENABLE_K8 = true;
-} else {
-  var ENABLE_K8 = false;
-}
 
 function getDBsettings() {
   if (
@@ -41,7 +22,6 @@ function getDBsettings() {
       DB_FULL_URL: atlasConnection + '/foodlabdb?retryWrites=true&w=majority',
     };
   }
-
   if (
     process.env &&
     process.env.ENV != null &&
@@ -54,30 +34,20 @@ function getDBsettings() {
       DB_FULL_URL: 'mongodb://localhost/foodlabdb',
     };
   }
-
-  if (ENABLE_K8 == true) {
+  if (process.env && process.env.ENV != null && process.env.ENV == 'docker') {
     return {
-      DB: 'mongodb://db-service/foodabledb',
-      DB_CONNECT_URL: 'mongodb://db-service:27017/',
+      DB: 'mongodb://mongo/foodabledb',
+      DB_CONNECT_URL: 'mongodb://mongo/',
       DB_NAME: 'foodabledb',
-      DB_FULL_URL: 'mongodb://db-service:27017/foodlabdb',
+      DB_FULL_URL: 'mongodb://mongo/foodlabdb',
     };
   } else {
-    if (process.env && process.env.ENV != null && process.env.ENV == 'docker') {
-      return {
-        DB: 'mongodb://mongo/foodabledb',
-        DB_CONNECT_URL: 'mongodb://mongo/',
-        DB_NAME: 'foodabledb',
-        DB_FULL_URL: 'mongodb://mongo/foodlabdb',
-      };
-    } else {
-      return {
-        DB: 'mongodb://mongo/foodabledb',
-        DB_CONNECT_URL: 'mongodb://localhost:27017/',
-        DB_NAME: 'foodabledb',
-        DB_FULL_URL: 'mongodb://localhost:27017/foodlabdb',
-      };
-    }
+    return {
+      DB: 'mongodb://mongo/foodabledb',
+      DB_CONNECT_URL: 'mongodb://localhost:27017/',
+      DB_NAME: 'foodabledb',
+      DB_FULL_URL: 'mongodb://localhost:27017/foodlabdb',
+    };
   }
 }
 
@@ -161,21 +131,9 @@ function get_backendEndpoint() {
   if (process.env.ENABLE_AZURE == 'true') {
     return get_Azure_BackendEndpoint();
   }
-  if (ENABLE_K8 == true) {
-    return get_K8_BackendEndpoint();
-  }
   return DOCKER_BACKEND_ENDPOINT;
 }
 function get_Azure_BackendEndpoint() {
-  if (isServerRequest) {
-    return 'http://localhost:4000/graphql';
-  } else {
-    return 'http://foodable.ae/graphql';
-  }
-  return 'http://localhost:4000/graphql';
-}
-
-function get_K8_BackendEndpoint() {
   if (isServerRequest) {
     return 'http://localhost:4000/graphql';
   } else {

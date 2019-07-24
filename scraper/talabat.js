@@ -164,12 +164,6 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
   return items;
 }
 
-function sleep(ms) {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms);
-  });
-}
-
 (async () => {
   if (!settings.ENABLE_TALABAT) {
     logger.info('Talabat scraper is DISABLED. EXITING.');
@@ -187,18 +181,24 @@ function sleep(ms) {
   var urls = await getLocations(page);
   page.close();
   if (urls != null) {
+    let start, end;
     if (settings.SCRAPER_TEST_MODE) {
-      urls = urls.slice(0, 2);
+      start = 0;
+      end = 8;
+    } else {
+      start = process.argv[2];
+      end = Math.min(process.argv[3], 184);
     }
+    let count = end - start; // to know when to terminate the db connection
+    console.log('Number of locations: ' + urls.length);
 
-    logger.info('Number of locations: ' + urls.length);
-    var count = urls.length - 1;
     for (let i = 0; i < urls.length; i++) {
+      await utils.delay(5000); // ! 5 second sleep so we dont trigger cloudflare.
       logger.info('Locations processed: ' + i + '/' + urls.length);
       let url = urls[i];
 
       if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
-        await sleep(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
+        await utils.delay(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
       }
 
       browser.newPage().then(page => {

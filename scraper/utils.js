@@ -1,3 +1,16 @@
+const fetch = require('node-fetch');
+
+function getProxy() {
+  const url =
+    'https://gimmeproxy.com/api/getProxy?protocol=socks5&supportsHttps=true';
+  return fetch(url)
+    .then(res => res.json())
+    .then(json => {
+      console.log('Got proxy: ', json.curl);
+      return json.curl;
+    });
+}
+
 // logging init
 const logger = require('../helpers/logging').getLogger();
 
@@ -136,8 +149,17 @@ function calculateScore(item) {
   return { scoreLevel, scoreValue };
 }
 
+function delay(ms) {
+  console.log('+', ms);
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
 module.exports = {
   slugify: slugify,
   stringDistance: similarity,
   calculateScore: calculateScore,
+  getProxy: getProxy,
+  delay: delay,
 };
