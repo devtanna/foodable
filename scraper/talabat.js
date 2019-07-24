@@ -192,9 +192,9 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     let count = end - start; // to know when to terminate the db connection
     console.log('Number of locations: ' + urls.length);
 
-    for (let i = 0; i < urls.length; i++) {
+    for (let i = start; i <= end; i++) {
       await utils.delay(5000); // ! 5 second sleep so we dont trigger cloudflare.
-      logger.info('Locations processed: ' + i + '/' + urls.length);
+      logger.info('Locations processed: ' + i + '/' + end);
       let url = urls[i];
 
       if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
