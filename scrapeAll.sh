@@ -30,7 +30,7 @@ wait
 echo "< talabat ..." && node scraper/talabat.js 93 184 && echo "... talabat >" &&
 wait
 
-node scraper/reindex.js
+node scraper/reindex2.js
 wait
 
 mongoexport --host localhost:27017,localhost:27017 --db foodabledb --collection collection_99_99_99 --type json --out datadump.json
