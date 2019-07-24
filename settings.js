@@ -82,7 +82,7 @@ var mongoSettings = {
 
 var scraperSettings = {
   // TEST MODE TOGGLE - this runs only a subset of results
-  SCRAPER_TEST_MODE: true,
+  SCRAPER_TEST_MODE: false,
   // MAX PAGES TO SCRAPE
   SCRAPER_MAX_PAGE: function(scraperName) {
     if (this.SCRAPER_TEST_MODE) return 5;
