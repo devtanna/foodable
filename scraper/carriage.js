@@ -31,10 +31,7 @@ if (settings.ENABLE_CARRIAGE) {
 
 async function scrapeInfiniteScrollItems(page, location) {
   let items = [];
-  let pageNum = 0;
   try {
-    let previousHeight;
-
     await page.evaluate('$("#specialoffers").click()');
     await page.waitFor(4000);
 

@@ -47,116 +47,130 @@ const getLocations = async page => {
   }
 };
 
-async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
+async function scrapeInfiniteScrollItems(page) {
   let items = [];
-  let itemsMap = {};
-  let pageNum = 0;
-  try {
-    let previousHeight;
-    while (pageNum < pageCount) {
-      const html = await page.content();
-      // we get the location from the url
-      const location = page.url().split('/')[6];
-      await page.evaluate(() => {
-        Array.from(document.querySelectorAll('span'))
-          .filter(element => element.textContent === 'Offers')[0]
-          .click();
-      });
 
-      $('.rest-link', html).each(function() {
-        let $ratingImgSrc = $('.rating-img > img', this).attr('src');
-        let starRating = $ratingImgSrc.match(
-          new RegExp('rating-' + '(.*)' + '.svg')
-        )[1];
-        let cuisine = [];
-        $('.cuisShow .ng-binding', this).each(function() {
-          cuisine.push($(this).text());
-        });
-        let title = clean_talabat_title(
+  // we get the location from the url
+  const location = page.url().split('/')[6];
+
+  try {
+    await page.evaluate(() => {
+      Array.from(document.querySelectorAll('span'))
+        .filter(element => element.textContent === 'Offers')[0]
+        .click();
+    });
+
+    await page.waitFor(4000);
+
+    let keepGoing = true;
+    let index = 0;
+    const MAX = 100;
+
+    while (keepGoing && index < MAX) {
+      logger.info('Scraping page number: ' + index + ' in ' + location);
+      let htmlBefore = await page.content();
+      let offersCount = $('.rest-link', htmlBefore).length;
+      await page.evaluate(
+        'window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});'
+      );
+      await page.waitFor(4000);
+      let htmlAfter = await page.content();
+      let updatedOffersCount = $('.rest-link', htmlAfter).length;
+      if (updatedOffersCount === offersCount) {
+        keepGoing = false;
+        break;
+      }
+      index++;
+    }
+
+    await page.waitFor(1000);
+
+    const html = await page.content();
+
+    $('.rest-link', html).each(function() {
+      let $ratingImgSrc = $('.rating-img > img', this).attr('src');
+      let starRating = $ratingImgSrc.match(
+        new RegExp('rating-' + '(.*)' + '.svg')
+      )[1];
+      let cuisine = [];
+      $('.cuisShow .ng-binding', this).each(function() {
+        cuisine.push($(this).text());
+      });
+      let title = clean_talabat_title(
+        $('.media-heading', this)
+          .text()
+          .trim()
+          .replace(/['"]+/g, '')
+      );
+      let rest_slug = utils.slugify(
+        clean_talabat_title(
           $('.media-heading', this)
             .text()
             .trim()
             .replace(/['"]+/g, '')
-        );
-        let rest_slug = utils.slugify(
-          clean_talabat_title(
-            $('.media-heading', this)
-              .text()
-              .trim()
-              .replace(/['"]+/g, '')
-          )
-        );
-        let result = {
-          title: clean_talabat_title(
-            $('.media-heading', this)
-              .text()
-              .trim()
-              .replace(/['"]+/g, '')
-          ),
-          branch: clean_talabat_branch(
-            $('.media-heading', this)
-              .text()
-              .trim()
-              .replace(/['"]+/g, '')
-          ),
-          slug: rest_slug,
-          href: 'https://www.talabat.com' + $(this).attr('href'),
-          image: $('.valign-helper', this)
-            .next()
-            .prop('lazy-img')
-            .split('?')
-            .shift(),
-          location: location.trim(),
-          rating: starRating,
-          cuisine: clean_talabat_cuisine(cuisine.join('')),
-          offer: $("div[ng-if='rest.offersnippet']", this)
-            .text()
-            .trim(),
-          deliveryTime: $(
-            'span[ng-if="!showDeliveryRange || rest.dtim >= 120"]',
-            this
-          )
-            .text()
-            .trim(),
-          minimumOrder: $('span:contains("Min:")', this)
-            .next()
-            .text()
-            .trim(),
-          deliveryCharge: $('span[ng-switch-when="0"]', this)
-            .text()
-            .trim(),
-          cost_for_two: '', // no info on talabat
-          votes: clean_talabat_votes(
-            $('.rating-num', this)
-              .text()
-              .trim()
-          ),
-          source: `${scraper_name}`,
-          address: '', // no info on talabat
-          type: 'restaurant',
-        };
-
-        // if no offer, then skip
-        if (result.offer.length > 0) {
-          let { scoreLevel, scoreValue } = utils.calculateScore(result);
-          result['scoreLevel'] = scoreLevel;
-          result['scoreValue'] = scoreValue;
-          var index = items.indexOf(result); // dont want to push duplicates
-          if (index === -1) {
-            items.push(result); // write to db
-          }
-        }
-      });
-      pageNum++;
-      // scroll to next page
-      previousHeight = await page.evaluate('document.body.scrollHeight');
-      await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-      await page.waitForFunction(
-        `document.body.scrollHeight > ${previousHeight}`,
-        { timeout: scrollDelay }
+        )
       );
-      await page.waitFor(scrollDelay);
-    }
+      let result = {
+        title: clean_talabat_title(
+          $('.media-heading', this)
+            .text()
+            .trim()
+            .replace(/['"]+/g, '')
+        ),
+        branch: clean_talabat_branch(
+          $('.media-heading', this)
+            .text()
+            .trim()
+            .replace(/['"]+/g, '')
+        ),
+        slug: rest_slug,
+        href: 'https://www.talabat.com' + $(this).attr('href'),
+        image: $('.valign-helper', this)
+          .next()
+          .prop('lazy-img')
+          .split('?')
+          .shift(),
+        location: location.trim(),
+        rating: starRating,
+        cuisine: clean_talabat_cuisine(cuisine.join('')),
+        offer: $("div[ng-if='rest.offersnippet']", this)
+          .text()
+          .trim(),
+        deliveryTime: $(
+          'span[ng-if="!showDeliveryRange || rest.dtim >= 120"]',
+          this
+        )
+          .text()
+          .trim(),
+        minimumOrder: $('span:contains("Min:")', this)
+          .next()
+          .text()
+          .trim(),
+        deliveryCharge: $('span[ng-switch-when="0"]', this)
+          .text()
+          .trim(),
+        cost_for_two: '', // no info on talabat
+        votes: clean_talabat_votes(
+          $('.rating-num', this)
+            .text()
+            .trim()
+        ),
+        source: `${scraper_name}`,
+        address: '', // no info on talabat
+        type: 'restaurant',
+      };
+
+      // if no offer, then skip
+      if (result.offer.length > 0) {
+        let { scoreLevel, scoreValue } = utils.calculateScore(result);
+        result['scoreLevel'] = scoreLevel;
+        result['scoreValue'] = scoreValue;
+        var index = items.indexOf(result); // dont want to push duplicates
+        if (index === -1) {
+          items.push(result); // write to db
+        }
+      }
+    });
   } catch (e) {
     logger.error('Error during infinte page scrape: ' + e);
   }
@@ -213,9 +227,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
             .then(() => {
               logger.info('Scraping location: ' + url.url);
 
-              var maxPage = settings.SCRAPER_MAX_PAGE('talabat');
-
-              scrapeInfiniteScrollItems(page, maxPage).then(res => {
+              scrapeInfiniteScrollItems(page).then(res => {
                 var flatResults = [].concat.apply([], res);
                 parse
                   .process_results(
