@@ -2,10 +2,10 @@
   {
     "resourceSizes": [
       { "resourceType": "document", "budget": 20 },
-      { "resourceType": "stylesheet", "budget": 50 },
-      { "resourceType": "font", "budget": 50 },
+      { "resourceType": "stylesheet", "budget": 70 },
+      { "resourceType": "font", "budget": 60 },
       { "resourceType": "image", "budget": 300 },
-      { "resourceType": "script", "budget": 150 }
+      { "resourceType": "script", "budget": 175 }
     ]
   }
 ]

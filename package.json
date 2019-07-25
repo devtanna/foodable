@@ -9,7 +9,7 @@
     "start": "NODE_ENV=production node server.js",
     "start-azure": "pm2 start ecosystem.config.js",
     "stop-azure": "pm2 stop ecosystem.config.js",
-    "report": "lighthouse http://foodable.ae/dubai/al-mamzar --budget-path=./budget.json --output-path=./reports/report.html --view"
+    "report": "lighthouse http://foodable.ae/dubai/al-mamzar --budget-path=./budget.json --output-path=./reports/report.html --view --quiet --chrome-flags=\"--headless\""
   },
   "repository": {
     "type": "git",
