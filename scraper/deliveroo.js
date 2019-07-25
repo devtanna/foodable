@@ -61,11 +61,28 @@ const scrapePage = async url => {
       settings.PUPPETEER_GOTO_PAGE_ARGS
     );
 
-    var maxPage = settings.SCRAPER_MAX_PAGE('deliveroo');
-    for (let i = 0; i < maxPage; i++) {
-      await page.evaluate('window.scrollBy(0, window.innerHeight);');
-      await page.waitFor(1000);
+    let keepGoing = true;
+    let index = 0;
+    const MAX = 100;
+
+    while (keepGoing && index < MAX) {
+      logger.info('Scraping page number: ' + index + ' in ' + url.url);
+      let htmlBefore = await page.content();
+      let offersCount = $('li[class*="HomeFeedGrid"]', htmlBefore).length;
+      await page.evaluate(
+        'window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});'
+      );
+      await page.waitFor(4000);
+      let htmlAfter = await page.content();
+      let updatedOffersCount = $('li[class*="HomeFeedGrid"]', htmlAfter).length;
+      if (updatedOffersCount === offersCount) {
+        keepGoing = false;
+        break;
+      }
+      index++;
     }
+
+    await page.waitFor(1000);
 
     const html = await page.content();
     let items = [];
