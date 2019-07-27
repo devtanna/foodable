@@ -4,6 +4,7 @@ const $ = require('cheerio');
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+const urls = require('./talabat_locations.json');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -27,25 +28,6 @@ if (settings.ENABLE_TALABAT) {
   );
 }
 // ########## END DB STUFF ####################
-
-const getLocations = async page => {
-  try {
-    await page.goto('https://www.talabat.com/uae/sitemap');
-    const html = await page.content();
-    const links = $("h4:contains('Dubai')", html)
-      .next('.row')
-      .find('a')
-      .map((i, link) => {
-        return {
-          locationName: $(link).text(),
-          url: $(link).prop('href'),
-        };
-      });
-    return links;
-  } catch (error) {
-    logger.error(error);
-  }
-};
 
 async function scrapeInfiniteScrollItems(page) {
   let items = [];
@@ -189,16 +171,11 @@ async function scrapeInfiniteScrollItems(page) {
     args: settings.PUPPETEER_BROWSER_ARGS,
   });
 
-  const page = await browser.newPage();
-  await page.setViewport(settings.PUPPETEER_VIEWPORT);
-
-  var urls = await getLocations(page);
-  page.close();
   if (urls != null) {
     let start, end;
     if (settings.SCRAPER_TEST_MODE) {
       start = 0;
-      end = 8;
+      end = 4;
     } else {
       start = process.argv[2];
       end = Math.min(process.argv[3], 184);

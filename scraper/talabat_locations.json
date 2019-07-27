@@ -1,0 +1,738 @@
+[
+  {
+    "locationName": "Abu Hail",
+    "url": "/uae/restaurants/1169/abu-hail"
+  },
+  {
+    "locationName": "Academic City",
+    "url": "/uae/restaurants/1170/academic-city"
+  },
+  {
+    "locationName": "Al Awir",
+    "url": "/uae/restaurants/1171/al-awir"
+  },
+  {
+    "locationName": "Al Bada'a",
+    "url": "/uae/restaurants/1172/al-badaa"
+  },
+  {
+    "locationName": "Al Baraha",
+    "url": "/uae/restaurants/1173/al-baraha"
+  },
+  {
+    "locationName": "Al Barari",
+    "url": "/uae/restaurants/4057/al-barari"
+  },
+  {
+    "locationName": "Al Barsha 1",
+    "url": "/uae/restaurants/1174/al-barsha-1"
+  },
+  {
+    "locationName": "Al Barsha 2",
+    "url": "/uae/restaurants/1175/al-barsha-2"
+  },
+  {
+    "locationName": "Al Barsha 3",
+    "url": "/uae/restaurants/1176/al-barsha-3"
+  },
+  {
+    "locationName": "Al Barsha South",
+    "url": "/uae/restaurants/1177/al-barsha-south"
+  },
+  {
+    "locationName": "Al Dhagaya",
+    "url": "/uae/restaurants/1179/al-dhagaya"
+  },
+  {
+    "locationName": "Al Furjan",
+    "url": "/uae/restaurants/1181/al-furjan"
+  },
+  {
+    "locationName": "Al Garhoud",
+    "url": "/uae/restaurants/1182/al-garhoud"
+  },
+  {
+    "locationName": "Al Hamriya",
+    "url": "/uae/restaurants/1183/al-hamriya"
+  },
+  {
+    "locationName": "Al Hudaiba",
+    "url": "/uae/restaurants/1184/al-hudaiba"
+  },
+  {
+    "locationName": "Al Jaddaf",
+    "url": "/uae/restaurants/1185/al-jaddaf"
+  },
+  {
+    "locationName": "Al Jaffiliya",
+    "url": "/uae/restaurants/1186/al-jaffiliya"
+  },
+  {
+    "locationName": "Al Karama",
+    "url": "/uae/restaurants/1187/al-karama"
+  },
+  {
+    "locationName": "Al Khabaisi",
+    "url": "/uae/restaurants/1188/al-khabaisi"
+  },
+  {
+    "locationName": "Al Khawaneej 1",
+    "url": "/uae/restaurants/4158/al-khawaneej-1"
+  },
+  {
+    "locationName": "Al Khawaneej 2",
+    "url": "/uae/restaurants/4159/al-khawaneej-2"
+  },
+  {
+    "locationName": "Al Mamzar",
+    "url": "/uae/restaurants/1191/al-mamzar"
+  },
+  {
+    "locationName": "Al Manara",
+    "url": "/uae/restaurants/1192/al-manara"
+  },
+  {
+    "locationName": "Al Mankhool",
+    "url": "/uae/restaurants/1193/al-mankhool"
+  },
+  {
+    "locationName": "Al Mina",
+    "url": "/uae/restaurants/1195/al-mina"
+  },
+  {
+    "locationName": "Al Mizhar 1",
+    "url": "/uae/restaurants/1198/al-mizhar-1"
+  },
+  {
+    "locationName": "Al Mizhar 2",
+    "url": "/uae/restaurants/1199/al-mizhar-2"
+  },
+  {
+    "locationName": "Al Muraqqabat",
+    "url": "/uae/restaurants/1200/al-muraqqabat"
+  },
+  {
+    "locationName": "Al Murar",
+    "url": "/uae/restaurants/1201/al-murar"
+  },
+  {
+    "locationName": "Al Mushrif",
+    "url": "/uae/restaurants/1202/al-mushrif"
+  },
+  {
+    "locationName": "Al Muteena",
+    "url": "/uae/restaurants/1203/al-muteena"
+  },
+  {
+    "locationName": "Al Nahda 1",
+    "url": "/uae/restaurants/1204/al-nahda-1"
+  },
+  {
+    "locationName": "Al Nahda 2",
+    "url": "/uae/restaurants/1205/al-nahda-2"
+  },
+  {
+    "locationName": "Al Quoz 1",
+    "url": "/uae/restaurants/1207/al-quoz-1"
+  },
+  {
+    "locationName": "Al Quoz 2",
+    "url": "/uae/restaurants/1208/al-quoz-2"
+  },
+  {
+    "locationName": "Al Quoz 3",
+    "url": "/uae/restaurants/1209/al-quoz-3"
+  },
+  {
+    "locationName": "Al Quoz 4",
+    "url": "/uae/restaurants/1210/al-quoz-4"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 1",
+    "url": "/uae/restaurants/1211/al-quoz-industrial-area-1"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 2",
+    "url": "/uae/restaurants/1212/al-quoz-industrial-area-2"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 3",
+    "url": "/uae/restaurants/1213/al-quoz-industrial-area-3"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 4",
+    "url": "/uae/restaurants/1214/al-quoz-industrial-area-4"
+  },
+  {
+    "locationName": "Al Qusais 1",
+    "url": "/uae/restaurants/1215/al-qusais-1"
+  },
+  {
+    "locationName": "Al Qusais 2",
+    "url": "/uae/restaurants/1216/al-qusais-2"
+  },
+  {
+    "locationName": "Al Qusais 3",
+    "url": "/uae/restaurants/1217/al-qusais-3"
+  },
+  {
+    "locationName": "Al Qusais Industrial Area 1",
+    "url": "/uae/restaurants/1218/al-qusais-industrial-area-1"
+  },
+  {
+    "locationName": "Al Qusais Industrial Area 2",
+    "url": "/uae/restaurants/1219/al-qusais-industrial-area-2"
+  },
+  {
+    "locationName": "Al Qusais Industrial Area 3",
+    "url": "/uae/restaurants/1220/al-qusais-industrial-area-3"
+  },
+  {
+    "locationName": "Al Qusais Industrial Area 4",
+    "url": "/uae/restaurants/1221/al-qusais-industrial-area-4"
+  },
+  {
+    "locationName": "Al Qusais Industrial Area 5",
+    "url": "/uae/restaurants/1222/al-qusais-industrial-area-5"
+  },
+  {
+    "locationName": "Al Raffa",
+    "url": "/uae/restaurants/1223/al-raffa"
+  },
+  {
+    "locationName": "Al Ras",
+    "url": "/uae/restaurants/1224/al-ras"
+  },
+  {
+    "locationName": "Al Rashidiya",
+    "url": "/uae/restaurants/1225/al-rashidiya"
+  },
+  {
+    "locationName": "Al Rigga",
+    "url": "/uae/restaurants/1226/al-rigga"
+  },
+  {
+    "locationName": "Al Sabkha",
+    "url": "/uae/restaurants/1227/al-sabkha"
+  },
+  {
+    "locationName": "Al Safa 2",
+    "url": "/uae/restaurants/1230/al-safa-2"
+  },
+  {
+    "locationName": "Al Safa",
+    "url": "/uae/restaurants/1228/al-safa"
+  },
+  {
+    "locationName": "Al Satwa",
+    "url": "/uae/restaurants/1233/al-satwa"
+  },
+  {
+    "locationName": "Al Shindagha",
+    "url": "/uae/restaurants/1234/al-shindagha"
+  },
+  {
+    "locationName": "Al Souq Al Kabeer",
+    "url": "/uae/restaurants/1236/al-souq-al-kabeer"
+  },
+  {
+    "locationName": "Al Sufouh 1",
+    "url": "/uae/restaurants/1231/al-sufouh-1"
+  },
+  {
+    "locationName": "Al Sufouh 2",
+    "url": "/uae/restaurants/1232/al-sufouh-2"
+  },
+  {
+    "locationName": "Al Twar 1",
+    "url": "/uae/restaurants/1237/al-twar-1"
+  },
+  {
+    "locationName": "Al Twar 2",
+    "url": "/uae/restaurants/1238/al-twar-2"
+  },
+  {
+    "locationName": "Al Twar 3",
+    "url": "/uae/restaurants/1239/al-twar-3"
+  },
+  {
+    "locationName": "Al Waheda",
+    "url": "/uae/restaurants/1240/al-waheda"
+  },
+  {
+    "locationName": "Al Warqa 1",
+    "url": "/uae/restaurants/1241/al-warqa-1"
+  },
+  {
+    "locationName": "Al Warqa 2",
+    "url": "/uae/restaurants/1242/al-warqa-2"
+  },
+  {
+    "locationName": "Al Warqa 3",
+    "url": "/uae/restaurants/4058/al-warqa-3"
+  },
+  {
+    "locationName": "Al Warqa 4",
+    "url": "/uae/restaurants/4059/al-warqa-4"
+  },
+  {
+    "locationName": "Al Warqa 5",
+    "url": "/uae/restaurants/4060/al-warqa-5"
+  },
+  {
+    "locationName": "Al Wasl",
+    "url": "/uae/restaurants/1244/al-wasl"
+  },
+  {
+    "locationName": "Arabian Ranches 2",
+    "url": "/uae/restaurants/5550/arabian-ranches-2"
+  },
+  {
+    "locationName": "Arabian Ranches",
+    "url": "/uae/restaurants/1246/arabian-ranches"
+  },
+  {
+    "locationName": "Arjan",
+    "url": "/uae/restaurants/6474/arjan"
+  },
+  {
+    "locationName": "Barsha Heights - TECOM",
+    "url": "/uae/restaurants/1350/barsha-heights-tecom"
+  },
+  {
+    "locationName": "Bukadra",
+    "url": "/uae/restaurants/1249/bukadra"
+  },
+  {
+    "locationName": "Business Bay",
+    "url": "/uae/restaurants/1252/business-bay"
+  },
+  {
+    "locationName": "Corniche Deira",
+    "url": "/uae/restaurants/1253/corniche-deira"
+  },
+  {
+    "locationName": "DIFC",
+    "url": "/uae/restaurants/1256/difc"
+  },
+  {
+    "locationName": "Discovery Gardens",
+    "url": "/uae/restaurants/1257/discovery-gardens"
+  },
+  {
+    "locationName": "Downtown Burj Khalifa",
+    "url": "/uae/restaurants/1258/downtown-burj-khalifa"
+  },
+  {
+    "locationName": "Downtown Jabel Ali",
+    "url": "/uae/restaurants/1259/downtown-jabel-ali"
+  },
+  {
+    "locationName": "Dubai Airport Freezone",
+    "url": "/uae/restaurants/1260/dubai-airport-freezone"
+  },
+  {
+    "locationName": "Dubai Cargo Village",
+    "url": "/uae/restaurants/1261/dubai-cargo-village"
+  },
+  {
+    "locationName": "Dubai Design District",
+    "url": "/uae/restaurants/4577/dubai-design-district"
+  },
+  {
+    "locationName": "Dubai Falcon City",
+    "url": "/uae/restaurants/1262/dubai-falcon-city"
+  },
+  {
+    "locationName": "Dubai Festival City",
+    "url": "/uae/restaurants/1263/dubai-festival-city"
+  },
+  {
+    "locationName": "Dubai Healthcare City",
+    "url": "/uae/restaurants/1264/dubai-healthcare-city"
+  },
+  {
+    "locationName": "Dubai International Airport",
+    "url": "/uae/restaurants/1265/dubai-international-airport"
+  },
+  {
+    "locationName": "Dubai Internet City - DIC",
+    "url": "/uae/restaurants/1266/dubai-internet-city-dic"
+  },
+  {
+    "locationName": "Dubai Investments Park 1",
+    "url": "/uae/restaurants/1268/dubai-investments-park-1"
+  },
+  {
+    "locationName": "Dubai Investments Park 2",
+    "url": "/uae/restaurants/1269/dubai-investments-park-2"
+  },
+  {
+    "locationName": "Dubai Lifestyle City",
+    "url": "/uae/restaurants/6784/dubai-lifestyle-city"
+  },
+  {
+    "locationName": "Dubai Marina",
+    "url": "/uae/restaurants/1272/dubai-marina"
+  },
+  {
+    "locationName": "Dubai Maritime City",
+    "url": "/uae/restaurants/1273/dubai-maritime-city"
+  },
+  {
+    "locationName": "Dubai Media City",
+    "url": "/uae/restaurants/1274/dubai-media-city"
+  },
+  {
+    "locationName": "Dubai Motor City",
+    "url": "/uae/restaurants/1276/dubai-motor-city"
+  },
+  {
+    "locationName": "Dubai Silicon Oasis",
+    "url": "/uae/restaurants/1277/dubai-silicon-oasis"
+  },
+  {
+    "locationName": "Dubai Sports City",
+    "url": "/uae/restaurants/1278/dubai-sports-city"
+  },
+  {
+    "locationName": "Dubai Studio City",
+    "url": "/uae/restaurants/1349/dubai-studio-city"
+  },
+  {
+    "locationName": "Dubai Techno Park",
+    "url": "/uae/restaurants/1279/dubai-techno-park"
+  },
+  {
+    "locationName": "Dubai World Central - DWC",
+    "url": "/uae/restaurants/4067/dubai-world-central-dwc"
+  },
+  {
+    "locationName": "Dubai World Trade Center - DWTC",
+    "url": "/uae/restaurants/1280/dubai-world-trade-center-dwtc"
+  },
+  {
+    "locationName": "Emirates Hills",
+    "url": "/uae/restaurants/1282/emirates-hills"
+  },
+  {
+    "locationName": "Gardens",
+    "url": "/uae/restaurants/1283/gardens"
+  },
+  {
+    "locationName": "Global Village",
+    "url": "/uae/restaurants/1284/global-village"
+  },
+  {
+    "locationName": "Green Community Motor City",
+    "url": "/uae/restaurants/4007/green-community-motor-city"
+  },
+  {
+    "locationName": "Green Community",
+    "url": "/uae/restaurants/1285/green-community"
+  },
+  {
+    "locationName": "Hor Al Anz East",
+    "url": "/uae/restaurants/1289/hor-al-anz-east"
+  },
+  {
+    "locationName": "Hor Al Anz",
+    "url": "/uae/restaurants/1288/hor-al-anz"
+  },
+  {
+    "locationName": "Ibn Batutta Mall",
+    "url": "/uae/restaurants/1290/ibn-batutta-mall"
+  },
+  {
+    "locationName": "IMPZ",
+    "url": "/uae/restaurants/1291/impz"
+  },
+  {
+    "locationName": "International City 2",
+    "url": "/uae/restaurants/6801/international-city-2"
+  },
+  {
+    "locationName": "International City",
+    "url": "/uae/restaurants/1292/international-city"
+  },
+  {
+    "locationName": "Jebel Ali 1",
+    "url": "/uae/restaurants/1293/jebel-ali-1"
+  },
+  {
+    "locationName": "Jebel Ali 2",
+    "url": "/uae/restaurants/1294/jebel-ali-2"
+  },
+  {
+    "locationName": "Jebel Ali Freezone Extension",
+    "url": "/uae/restaurants/4061/jebel-ali-freezone-extension"
+  },
+  {
+    "locationName": "Jebel Ali Freezone",
+    "url": "/uae/restaurants/1295/jebel-ali-freezone"
+  },
+  {
+    "locationName": "Jebel Ali Industrial Area",
+    "url": "/uae/restaurants/1298/jebel-ali-industrial-area"
+  },
+  {
+    "locationName": "Jumeirah 1",
+    "url": "/uae/restaurants/1302/jumeirah-1"
+  },
+  {
+    "locationName": "Jumeirah 2",
+    "url": "/uae/restaurants/1303/jumeirah-2"
+  },
+  {
+    "locationName": "Jumeirah 3",
+    "url": "/uae/restaurants/1304/jumeirah-3"
+  },
+  {
+    "locationName": "Jumeirah Beach Residence - JBR",
+    "url": "/uae/restaurants/1305/jumeirah-beach-residence-jbr"
+  },
+  {
+    "locationName": "Jumeirah Golf Estates",
+    "url": "/uae/restaurants/1306/jumeirah-golf-estates"
+  },
+  {
+    "locationName": "Jumeirah Heights",
+    "url": "/uae/restaurants/4009/jumeirah-heights"
+  },
+  {
+    "locationName": "Jumeirah Islands",
+    "url": "/uae/restaurants/1307/jumeirah-islands"
+  },
+  {
+    "locationName": "Jumeirah Lakes Towers - JLT",
+    "url": "/uae/restaurants/1308/jumeirah-lakes-towers-jlt"
+  },
+  {
+    "locationName": "Jumeirah Park",
+    "url": "/uae/restaurants/2598/jumeirah-park"
+  },
+  {
+    "locationName": "Jumeirah Village Circle - JVC",
+    "url": "/uae/restaurants/1310/jumeirah-village-circle-jvc"
+  },
+  {
+    "locationName": "Jumeirah Village Triangle - JVT",
+    "url": "/uae/restaurants/1311/jumeirah-village-triangle-jvt"
+  },
+  {
+    "locationName": "Knowledge Village",
+    "url": "/uae/restaurants/1270/knowledge-village"
+  },
+  {
+    "locationName": "Layan Community",
+    "url": "/uae/restaurants/1312/layan-community"
+  },
+  {
+    "locationName": "Legends",
+    "url": "/uae/restaurants/6822/legends"
+  },
+  {
+    "locationName": "Liwan",
+    "url": "/uae/restaurants/5553/liwan"
+  },
+  {
+    "locationName": "Majan",
+    "url": "/uae/restaurants/6821/majan"
+  },
+  {
+    "locationName": "MBR- Al Merkad",
+    "url": "/uae/restaurants/1194/mbr-al-merkad"
+  },
+  {
+    "locationName": "Meadows",
+    "url": "/uae/restaurants/1313/meadows"
+  },
+  {
+    "locationName": "Meydan South",
+    "url": "/uae/restaurants/5645/meydan-south"
+  },
+  {
+    "locationName": "Mira Community",
+    "url": "/uae/restaurants/5662/mira-community"
+  },
+  {
+    "locationName": "Mirdif",
+    "url": "/uae/restaurants/1315/mirdif"
+  },
+  {
+    "locationName": "Mudon",
+    "url": "/uae/restaurants/5552/mudon"
+  },
+  {
+    "locationName": "Muhaisnah 1",
+    "url": "/uae/restaurants/1316/muhaisnah-1"
+  },
+  {
+    "locationName": "Muhaisnah 2",
+    "url": "/uae/restaurants/1317/muhaisnah-2"
+  },
+  {
+    "locationName": "Muhaisnah 3",
+    "url": "/uae/restaurants/2793/muhaisnah-3"
+  },
+  {
+    "locationName": "Muhaisnah 4",
+    "url": "/uae/restaurants/2794/muhaisnah-4"
+  },
+  {
+    "locationName": "Nad Al Sheba 1",
+    "url": "/uae/restaurants/4010/nad-al-sheba-1"
+  },
+  {
+    "locationName": "Nad Al Sheba 2",
+    "url": "/uae/restaurants/1322/nad-al-sheba-2"
+  },
+  {
+    "locationName": "Nad Al Sheba 3",
+    "url": "/uae/restaurants/1323/nad-al-sheba-3"
+  },
+  {
+    "locationName": "Nad Al Sheba 4",
+    "url": "/uae/restaurants/1324/nad-al-sheba-4"
+  },
+  {
+    "locationName": "Nadd Al Hamar",
+    "url": "/uae/restaurants/1320/nadd-al-hamar"
+  },
+  {
+    "locationName": "Nadd Al Shamma",
+    "url": "/uae/restaurants/1321/nadd-al-shamma"
+  },
+  {
+    "locationName": "Naif",
+    "url": "/uae/restaurants/1325/naif"
+  },
+  {
+    "locationName": "Oud Al Muteena",
+    "url": "/uae/restaurants/1328/oud-al-muteena"
+  },
+  {
+    "locationName": "Oud Metha",
+    "url": "/uae/restaurants/1329/oud-metha"
+  },
+  {
+    "locationName": "Port Rashid",
+    "url": "/uae/restaurants/1334/port-rashid"
+  },
+  {
+    "locationName": "Port Saeed",
+    "url": "/uae/restaurants/1335/port-saeed"
+  },
+  {
+    "locationName": "Ras Al Khor Indsutrial Area 1",
+    "url": "/uae/restaurants/1337/ras-al-khor-indsutrial-area-1"
+  },
+  {
+    "locationName": "Ras Al Khor Indsutrial Area 2",
+    "url": "/uae/restaurants/1338/ras-al-khor-indsutrial-area-2"
+  },
+  {
+    "locationName": "Ras Al Khor Indsutrial Area 3",
+    "url": "/uae/restaurants/1339/ras-al-khor-indsutrial-area-3"
+  },
+  {
+    "locationName": "Ras Al Khor",
+    "url": "/uae/restaurants/1336/ras-al-khor"
+  },
+  {
+    "locationName": "Remraam",
+    "url": "/uae/restaurants/2444/remraam"
+  },
+  {
+    "locationName": "Rigga Al Buteen",
+    "url": "/uae/restaurants/1340/rigga-al-buteen"
+  },
+  {
+    "locationName": "Springs",
+    "url": "/uae/restaurants/1348/springs"
+  },
+  {
+    "locationName": "The Greens",
+    "url": "/uae/restaurants/1286/the-greens"
+  },
+  {
+    "locationName": "The Lakes",
+    "url": "/uae/restaurants/1281/the-lakes"
+  },
+  {
+    "locationName": "The Palm Deira",
+    "url": "/uae/restaurants/1331/the-palm-deira"
+  },
+  {
+    "locationName": "The Palm Jebel Ali",
+    "url": "/uae/restaurants/1332/the-palm-jebel-ali"
+  },
+  {
+    "locationName": "The Palm Jumeirah",
+    "url": "/uae/restaurants/1333/the-palm-jumeirah"
+  },
+  {
+    "locationName": "The Skycourts",
+    "url": "/uae/restaurants/1347/the-skycourts"
+  },
+  {
+    "locationName": "The Sustainable City",
+    "url": "/uae/restaurants/5551/the-sustainable-city"
+  },
+  {
+    "locationName": "The Villa",
+    "url": "/uae/restaurants/1352/the-villa"
+  },
+  {
+    "locationName": "Um Al Sheif",
+    "url": "/uae/restaurants/1353/um-al-sheif"
+  },
+  {
+    "locationName": "Umm Hurair 1",
+    "url": "/uae/restaurants/2747/umm-hurair-1"
+  },
+  {
+    "locationName": "Umm Hurair 2",
+    "url": "/uae/restaurants/2748/umm-hurair-2"
+  },
+  {
+    "locationName": "Umm Ramool",
+    "url": "/uae/restaurants/1355/umm-ramool"
+  },
+  {
+    "locationName": "Umm Suqeim 1",
+    "url": "/uae/restaurants/1357/umm-suqeim-1"
+  },
+  {
+    "locationName": "Umm Suqeim 2",
+    "url": "/uae/restaurants/1358/umm-suqeim-2"
+  },
+  {
+    "locationName": "Umm Suqeim 3",
+    "url": "/uae/restaurants/1359/umm-suqeim-3"
+  },
+  {
+    "locationName": "Wadi Alamardi",
+    "url": "/uae/restaurants/1361/wadi-alamardi"
+  },
+  {
+    "locationName": "Warsan 1",
+    "url": "/uae/restaurants/1363/warsan-1"
+  },
+  {
+    "locationName": "Warsan 2",
+    "url": "/uae/restaurants/1364/warsan-2"
+  },
+  {
+    "locationName": "Waterfront",
+    "url": "/uae/restaurants/1365/waterfront"
+  },
+  {
+    "locationName": "Za'abeel 1",
+    "url": "/uae/restaurants/1366/zaabeel-1"
+  },
+  {
+    "locationName": "Za'abeel 2",
+    "url": "/uae/restaurants/1367/zaabeel-2"
+  }
+]
