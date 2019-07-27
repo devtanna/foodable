@@ -41,7 +41,7 @@ deploy_azure_production:
     - $CI_COMMIT_MESSAGE =~ /\[azure-deploy\]/
   script:
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && git checkout . && git clean -f -d && git reset HEAD && git pull origin master'
-    - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && sudo npm install'
+    - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && npm install'
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && npm run build'
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && npm run stop-azure && npm run start-azure'
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'sudo nginx -t'
