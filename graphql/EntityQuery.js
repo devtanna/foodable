@@ -127,10 +127,8 @@ exports.EntityQuery = new GraphQLObjectType({
                 $group: {
                   _id: '$slug',
                   offers: { $addToSet: '$offers' },
-                  count: { $sum: 1 },
                 },
               },
-              { $sort: { count: -1 } },
             ])
               .skip(pageSize * (page - 1))
               .limit(pageSize)
@@ -152,10 +150,8 @@ exports.EntityQuery = new GraphQLObjectType({
                 $group: {
                   _id: '$slug',
                   offers: { $addToSet: '$offers' },
-                  count: { $sum: 1 },
                 },
               },
-              { $sort: { count: -1 } },
             ])
               .skip(pageSize * (page - 1))
               .limit(pageSize)
@@ -182,11 +178,15 @@ exports.EntityQuery = new GraphQLObjectType({
             }
           });
 
-          // sort by count of offers list length. can only be done after removing duplicates above.
-          items.sort(function(one, other) {
-            return other['offers'].length - one['offers'].length;
+          // sort by offer score over all items.
+          items.sort(function(a, b) {
+            return (
+              Number(b.offers[0].scoreLevel) - Number(a.offers[0].scoreLevel) ||
+              parseFloat(b.offers[0].scoreValue) -
+                parseFloat(a.offers[0].scoreValue) ||
+              b.offers.length - a.offers.length
+            );
           });
-
           return items;
         },
       },
