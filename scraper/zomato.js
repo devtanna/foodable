@@ -5,6 +5,8 @@ const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 
+let locations = require('./zomato_locations.json');
+
 // logging init
 const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
@@ -28,11 +30,10 @@ if (settings.ENABLE_ZOMATO) {
 // ########## END DB STUFF ####################
 
 let browser;
-let page;
 
-const scrapePage = async (pageNum = 1) => {
+const scrapePage = async (location, page, pageNum = 1) => {
   try {
-    const url = `https://www.zomato.com/dubai/restaurants?offers=1&page=${pageNum}`;
+    const url = `${location.url}&page=${pageNum}`;
     await page.goto(url, settings.PUPPETEER_GOTO_PAGE_ARGS);
     const html = await page.content();
     let result = [];
@@ -50,9 +51,7 @@ const scrapePage = async (pageNum = 1) => {
           .trim(),
         href: $('.result-title', this).prop('href'),
         image: cleanImg($('.feat-img', this).prop('data-original')),
-        location: $('.search_result_subzone', this)
-          .text()
-          .trim(),
+        location: location.name,
         address: $('.search-result-address', this)
           .text()
           .trim(),
@@ -97,10 +96,7 @@ const scrapePage = async (pageNum = 1) => {
   }
 };
 
-let hasNext = true;
-let pageNum = 1;
-let data = [];
-var maxPage = settings.SCRAPER_MAX_PAGE('zomato');
+const maxPage = settings.SCRAPER_MAX_PAGE('zomato');
 
 const run = async () => {
   if (!settings.ENABLE_ZOMATO) {
@@ -109,10 +105,14 @@ const run = async () => {
   }
 
   let args = settings.PUPPETEER_BROWSER_ARGS;
-  const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
-  if (myProxy && myProxy.length > 0) {
-    args.push(`--proxy-server=${myProxy}`);
+
+  if (!settings.SCRAPER_TEST_MODE) {
+    const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
+    if (myProxy && myProxy.length > 0) {
+      args.push(`--proxy-server=${myProxy}`);
+    }
   }
+
   console.log('Browser args:', args);
 
   browser = await puppeteer.launch({
@@ -120,40 +120,71 @@ const run = async () => {
     args: args,
   });
 
-  page = await browser.newPage();
-  await page.setViewport(settings.PUPPETEER_VIEWPORT);
-
-  while (hasNext && pageNum <= maxPage) {
-    await utils.delay(3000);
-    logger.info('zomato scraper: Starting page: ' + pageNum);
-    let res = await scrapePage(pageNum);
-    if (res != undefined) {
-      var flatResults = [].concat.apply([], res.result);
-
-      // this is an async call
-      await parse.process_results(
-        flatResults,
-        db,
-        dbClient,
-        scraper_name,
-        (batch = true)
-      );
-      logger.info(
-        'zomato scraper: Scraped ' +
-          pageNum +
-          ' pages. Results count: ' +
-          res.result.length
-      );
-
-      if (res.goNext) {
-        pageNum++;
-      } else {
-        hasNext = false;
-      }
-    } else {
-      process.exit(1);
-    }
+  if (settings.SCRAPER_TEST_MODE) {
+    locations = locations.slice(0, 4);
   }
+
+  await Promise.all(
+    locations.map(async (location, i) => {
+      logger.info('On location ' + location.name);
+      try {
+        if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
+          await utils.delay(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
+        }
+
+        let page = await browser.newPage();
+        await page.setViewport(settings.PUPPETEER_VIEWPORT);
+
+        let hasNext = true;
+        let pageNum = 1;
+
+        while (hasNext && pageNum <= maxPage) {
+          try {
+            await utils.delay(3000);
+            logger.info(
+              'zomato scraper: Starting page: ' +
+                pageNum +
+                ' in ' +
+                location.name
+            );
+            let res = await scrapePage(location, page, pageNum);
+            if (res != undefined) {
+              var flatResults = [].concat.apply([], res.result);
+
+              // this is an async call
+              await parse.process_results(
+                flatResults,
+                db,
+                dbClient,
+                scraper_name,
+                (batch = true)
+              );
+
+              logger.info(
+                'zomato scraper: Scraped ' +
+                  pageNum +
+                  ' pages. Results count: ' +
+                  res.result.length
+              );
+
+              if (res.goNext) {
+                pageNum++;
+              } else {
+                hasNext = false;
+                page.close();
+              }
+            } else {
+              process.exit(1);
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        }
+      } catch (error) {
+        logger.info('', error);
+      }
+    })
+  );
 
   await browser.close();
   // close the dbclient
