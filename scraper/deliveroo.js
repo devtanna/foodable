@@ -4,6 +4,7 @@ const $ = require('cheerio');
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+let links = require('./deliveroo_locations.json');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -29,30 +30,6 @@ if (settings.ENABLE_DELIVEROO) {
 
 let browser;
 let page;
-
-const getLocations = async () => {
-  try {
-    await page.goto(
-      'https://deliveroo.ae/sitemap',
-      settings.PUPPETEER_GOTO_PAGE_ARGS
-    );
-    const html = await page.content();
-    const links = $("h3:contains('Dubai')", html)
-      .next('.sitemap--zones')
-      .find('> li')
-      .find('> a')
-      .map((i, link) => {
-        return {
-          locationName: $(link).text(),
-          url: $(link).prop('href'),
-        };
-      });
-
-    return links;
-  } catch (error) {
-    logger.error('Error in sitemap fetch: ' + error);
-  }
-};
 
 const scrapePage = async url => {
   try {
@@ -180,8 +157,6 @@ const scrapePage = async url => {
   }
 };
 
-let data = [];
-
 const run = async () => {
   if (!settings.ENABLE_DELIVEROO) {
     logger.info('Deliveroo scraper is DISABLED. EXITING.');
@@ -195,7 +170,6 @@ const run = async () => {
   page = await browser.newPage();
   await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-  var links = await getLocations();
   if (links != null) {
     if (settings.SCRAPER_TEST_MODE) {
       links = links.slice(0, 2);

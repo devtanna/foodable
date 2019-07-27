@@ -1,0 +1,466 @@
+[
+  {
+    "locationName": "Academic City",
+    "url": "/restaurants/dubai/academic-city"
+  },
+  {
+    "locationName": "Al Badaa",
+    "url": "/restaurants/dubai/al-badaa"
+  },
+  {
+    "locationName": "Al Barari",
+    "url": "/restaurants/dubai/al-barari"
+  },
+  {
+    "locationName": "Al Barsha 1",
+    "url": "/restaurants/dubai/al-barsha-1"
+  },
+  {
+    "locationName": "Al Barsha 2",
+    "url": "/restaurants/dubai/al-barsha-2"
+  },
+  {
+    "locationName": "Al Barsha 3",
+    "url": "/restaurants/dubai/al-barsha-3"
+  },
+  {
+    "locationName": "Al Barsha Park 1",
+    "url": "/restaurants/dubai/al-barsha-park-1"
+  },
+  {
+    "locationName": "Al Barsha South",
+    "url": "/restaurants/dubai/al-barsha-south"
+  },
+  {
+    "locationName": "Al Jaddaf",
+    "url": "/restaurants/dubai/al-jaddaf"
+  },
+  {
+    "locationName": "Al Khawaneej East",
+    "url": "/restaurants/dubai/al-khawaneej-east"
+  },
+  {
+    "locationName": "Al Khawaneej West",
+    "url": "/restaurants/dubai/al-khawaneej-west"
+  },
+  {
+    "locationName": "Al Mamzar",
+    "url": "/restaurants/dubai/al-mamzar"
+  },
+  {
+    "locationName": "Al Manara",
+    "url": "/restaurants/dubai/al-manara"
+  },
+  {
+    "locationName": "Al Mizhar",
+    "url": "/restaurants/dubai/al-mizhar"
+  },
+  {
+    "locationName": "Al Nahda 1",
+    "url": "/restaurants/dubai/al-nahda-1"
+  },
+  {
+    "locationName": "Al Nahda 2",
+    "url": "/restaurants/dubai/al-nahda-2"
+  },
+  {
+    "locationName": "Al Quoz 1",
+    "url": "/restaurants/dubai/al-quoz-1"
+  },
+  {
+    "locationName": "Al Quoz 2",
+    "url": "/restaurants/dubai/al-quoz-2"
+  },
+  {
+    "locationName": "Al Quoz 3",
+    "url": "/restaurants/dubai/al-quoz-3"
+  },
+  {
+    "locationName": "Al Quoz Pond Park",
+    "url": "/restaurants/dubai/al-quoz-pond-park"
+  },
+  {
+    "locationName": "Al Qusais",
+    "url": "/restaurants/dubai/al-qusais"
+  },
+  {
+    "locationName": "Al Qusais 2",
+    "url": "/restaurants/dubai/al-qusais-2"
+  },
+  {
+    "locationName": "Al Qusais 3",
+    "url": "/restaurants/dubai/al-qusais-3"
+  },
+  {
+    "locationName": "Al Qusais Industrial Area",
+    "url": "/restaurants/dubai/al-qusais-industrial-area"
+  },
+  {
+    "locationName": "Al Rashidiya",
+    "url": "/restaurants/dubai/al-rashidiya"
+  },
+  {
+    "locationName": "Al Safa 1",
+    "url": "/restaurants/dubai/al-safa-1"
+  },
+  {
+    "locationName": "Al Safa 2",
+    "url": "/restaurants/dubai/al-safa-2"
+  },
+  {
+    "locationName": "Al Satwa",
+    "url": "/restaurants/dubai/al-satwa"
+  },
+  {
+    "locationName": "Al Sufouh",
+    "url": "/restaurants/dubai/al-sufouh"
+  },
+  {
+    "locationName": "Al Twar",
+    "url": "/restaurants/dubai/al-twar"
+  },
+  {
+    "locationName": "Al Waheda",
+    "url": "/restaurants/dubai/al-waheda"
+  },
+  {
+    "locationName": "Al Warqaa",
+    "url": "/restaurants/dubai/al-warqaa"
+  },
+  {
+    "locationName": "Al Wasl",
+    "url": "/restaurants/dubai/al-wasl"
+  },
+  {
+    "locationName": "American University of Dubai",
+    "url": "/restaurants/dubai/american-university-of-dubai"
+  },
+  {
+    "locationName": "Arabian Ranches",
+    "url": "/restaurants/dubai/arabian-ranches"
+  },
+  {
+    "locationName": "Arabian Ranches 2",
+    "url": "/restaurants/dubai/arabian-ranches-2"
+  },
+  {
+    "locationName": "Business Bay",
+    "url": "/restaurants/dubai/business-bay"
+  },
+  {
+    "locationName": "Century Mall",
+    "url": "/restaurants/dubai/century-mall"
+  },
+  {
+    "locationName": "City Walk",
+    "url": "/restaurants/dubai/city-walk"
+  },
+  {
+    "locationName": "Corniche Deira",
+    "url": "/restaurants/dubai/corniche-deira"
+  },
+  {
+    "locationName": "D.I.F.C.",
+    "url": "/restaurants/dubai/difc"
+  },
+  {
+    "locationName": "DAFZA",
+    "url": "/restaurants/dubai/dafza"
+  },
+  {
+    "locationName": "Damac Hills",
+    "url": "/restaurants/dubai/damac-hills"
+  },
+  {
+    "locationName": "Deira",
+    "url": "/restaurants/dubai/deira"
+  },
+  {
+    "locationName": "Deira City Centre",
+    "url": "/restaurants/dubai/deira-city-centre"
+  },
+  {
+    "locationName": "Design District",
+    "url": "/restaurants/dubai/design-district"
+  },
+  {
+    "locationName": "Discovery Gardens",
+    "url": "/restaurants/dubai/discovery-gardens"
+  },
+  {
+    "locationName": "Downtown",
+    "url": "/restaurants/dubai/downtown"
+  },
+  {
+    "locationName": "Dubai - International City",
+    "url": "/restaurants/dubai/dubai-international-city"
+  },
+  {
+    "locationName": "Dubai Creek",
+    "url": "/restaurants/dubai/dubai-creek"
+  },
+  {
+    "locationName": "Dubai Mall",
+    "url": "/restaurants/dubai/dubai-mall"
+  },
+  {
+    "locationName": "Emirates Hills",
+    "url": "/restaurants/dubai/emirates-hills"
+  },
+  {
+    "locationName": "Emirates Tower",
+    "url": "/restaurants/dubai/emirates-tower"
+  },
+  {
+    "locationName": "Emirates golf club",
+    "url": "/restaurants/dubai/emirates-golf-club"
+  },
+  {
+    "locationName": "Festival City",
+    "url": "/restaurants/dubai/festival-city"
+  },
+  {
+    "locationName": "Garhoud",
+    "url": "/restaurants/dubai/garhoud"
+  },
+  {
+    "locationName": "Healthcare City",
+    "url": "/restaurants/dubai/healthcare-city"
+  },
+  {
+    "locationName": "Hor Al Anz East",
+    "url": "/restaurants/dubai/hor-al-anz-east"
+  },
+  {
+    "locationName": "IMPZ",
+    "url": "/restaurants/dubai/impz"
+  },
+  {
+    "locationName": "Ibn Battuta",
+    "url": "/restaurants/dubai/ibn-battuta"
+  },
+  {
+    "locationName": "Index Tower",
+    "url": "/restaurants/dubai/index-tower"
+  },
+  {
+    "locationName": "Internet City",
+    "url": "/restaurants/dubai/internet-city"
+  },
+  {
+    "locationName": "Internet City 2",
+    "url": "/restaurants/dubai/internet-city-2"
+  },
+  {
+    "locationName": "J.B.R.",
+    "url": "/restaurants/dubai/jbr"
+  },
+  {
+    "locationName": "J.L.T.",
+    "url": "/restaurants/dubai/jlt"
+  },
+  {
+    "locationName": "J.L.T. West",
+    "url": "/restaurants/dubai/jlt-west"
+  },
+  {
+    "locationName": "JLT Connector",
+    "url": "/restaurants/dubai/jlt-connector"
+  },
+  {
+    "locationName": "Jafilia",
+    "url": "/restaurants/dubai/jafilia"
+  },
+  {
+    "locationName": "Jebel Ali",
+    "url": "/restaurants/dubai/jebel-ali"
+  },
+  {
+    "locationName": "Jebel Ali Village",
+    "url": "/restaurants/dubai/jebel-ali-village"
+  },
+  {
+    "locationName": "Jumeirah 1",
+    "url": "/restaurants/dubai/jumeirah-1"
+  },
+  {
+    "locationName": "Jumeirah 2",
+    "url": "/restaurants/dubai/jumeirah-2"
+  },
+  {
+    "locationName": "Jumeirah 3",
+    "url": "/restaurants/dubai/jumeirah-3"
+  },
+  {
+    "locationName": "Jumeirah Heights",
+    "url": "/restaurants/dubai/jumeirah-heights"
+  },
+  {
+    "locationName": "Jumeirah Park",
+    "url": "/restaurants/dubai/jumeirah-park"
+  },
+  {
+    "locationName": "Jumeirah Village Circle",
+    "url": "/restaurants/dubai/jumeirah-village-circle"
+  },
+  {
+    "locationName": "Jumeirah Village Triangle",
+    "url": "/restaurants/dubai/jumeirah-village-triangle"
+  },
+  {
+    "locationName": "Karama",
+    "url": "/restaurants/dubai/karama"
+  },
+  {
+    "locationName": "Knowledge Village",
+    "url": "/restaurants/dubai/knowledge-village"
+  },
+  {
+    "locationName": "Madinat Al Jumeirah",
+    "url": "/restaurants/dubai/madinat-al-jumeirah"
+  },
+  {
+    "locationName": "Marina",
+    "url": "/restaurants/dubai/marina"
+  },
+  {
+    "locationName": "Marina Mall",
+    "url": "/restaurants/dubai/marina-mall"
+  },
+  {
+    "locationName": "Marina West",
+    "url": "/restaurants/dubai/marina-west"
+  },
+  {
+    "locationName": "Meadows 8",
+    "url": "/restaurants/dubai/meadows-8"
+  },
+  {
+    "locationName": "Media City",
+    "url": "/restaurants/dubai/media-city"
+  },
+  {
+    "locationName": "Meydan",
+    "url": "/restaurants/dubai/meydan"
+  },
+  {
+    "locationName": "Mirdif",
+    "url": "/restaurants/dubai/mirdif"
+  },
+  {
+    "locationName": "Motor City",
+    "url": "/restaurants/dubai/motor-city"
+  },
+  {
+    "locationName": "Muhaisnah 1",
+    "url": "/restaurants/dubai/muhaisnah-1"
+  },
+  {
+    "locationName": "Muhaisnah 4",
+    "url": "/restaurants/dubai/muhaisnah-4"
+  },
+  {
+    "locationName": "Nad Al Sheba",
+    "url": "/restaurants/dubai/nad-al-sheba"
+  },
+  {
+    "locationName": "Nadd Al Hamar",
+    "url": "/restaurants/dubai/nadd-al-hamar"
+  },
+  {
+    "locationName": "Outlet Mall",
+    "url": "/restaurants/dubai/outlet-mall"
+  },
+  {
+    "locationName": "Palm Residences",
+    "url": "/restaurants/dubai/palm-residences"
+  },
+  {
+    "locationName": "Port Saeed",
+    "url": "/restaurants/dubai/port-saeed"
+  },
+  {
+    "locationName": "RemRaam",
+    "url": "/restaurants/dubai/remraam"
+  },
+  {
+    "locationName": "Satwa",
+    "url": "/restaurants/dubai/satwa"
+  },
+  {
+    "locationName": "Sheikh Zayed Road",
+    "url": "/restaurants/dubai/sheikh-zayed-road"
+  },
+  {
+    "locationName": "Silicon Oasis",
+    "url": "/restaurants/dubai/silicon-oasis"
+  },
+  {
+    "locationName": "Souk Al Bahar",
+    "url": "/restaurants/dubai/souk-al-bahar"
+  },
+  {
+    "locationName": "Sports City",
+    "url": "/restaurants/dubai/sports-city"
+  },
+  {
+    "locationName": "Springs 1 and 2",
+    "url": "/restaurants/dubai/springs-1-and-2"
+  },
+  {
+    "locationName": "Studio City",
+    "url": "/restaurants/dubai/studio-city"
+  },
+  {
+    "locationName": "TECOM",
+    "url": "/restaurants/dubai/tecom"
+  },
+  {
+    "locationName": "The Greens",
+    "url": "/restaurants/dubai/the-greens"
+  },
+  {
+    "locationName": "The Lakes",
+    "url": "/restaurants/dubai/the-lakes"
+  },
+  {
+    "locationName": "The Meadows",
+    "url": "/restaurants/dubai/the-meadows"
+  },
+  {
+    "locationName": "The Palm",
+    "url": "/restaurants/dubai/the-palm"
+  },
+  {
+    "locationName": "The Villa",
+    "url": "/restaurants/dubai/the-villa"
+  },
+  {
+    "locationName": "Umm Al Sheif",
+    "url": "/restaurants/dubai/umm-al-sheif"
+  },
+  {
+    "locationName": "Umm Ramool",
+    "url": "/restaurants/dubai/umm-ramool"
+  },
+  {
+    "locationName": "Umm Suqeim 1",
+    "url": "/restaurants/dubai/umm-suqeim-1"
+  },
+  {
+    "locationName": "Umm Suqeim 2",
+    "url": "/restaurants/dubai/umm-suqeim-2"
+  },
+  {
+    "locationName": "Umm Suqeim 3",
+    "url": "/restaurants/dubai/umm-suqeim-3"
+  },
+  {
+    "locationName": "World Trade Center",
+    "url": "/restaurants/dubai/world-trade-center"
+  },
+  {
+    "locationName": "Zabeel",
+    "url": "/restaurants/dubai/zabeel"
+  }
+]
