@@ -65,6 +65,7 @@ const Listing = ({ offer }) => {
           <a
             href={mainOffer.href}
             target="_blank"
+            rel="noopener"
             onClick={() =>
               trackEvent(
                 'offer_click',
@@ -103,6 +104,7 @@ const Listing = ({ offer }) => {
                     <a
                       className="otherOffer__offer"
                       href={otherOffer.href}
+                      rel="noopener"
                       onClick={() =>
                         trackEvent(
                           'offer_click',

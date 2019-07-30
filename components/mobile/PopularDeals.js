@@ -14,6 +14,7 @@ const PopularDeals = ({ deals }) => (
             href={deal.href}
             target="_blank"
             key={index}
+            rel="noopener"
             onClick={() =>
               trackEvent('offer_click', 'popular', deal.source, deal.title)
             }

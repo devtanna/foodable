@@ -123,6 +123,7 @@ const BestOffer = ({ offer }) => {
       href={offer.href}
       target="_blank"
       onClick={track}
+      rel="noopener"
       className={`bestOffer ${offer.source}`}>
       <div className="bestOffer__heading">
         <img src={offerSources[offer.source].logo} alt={offer.source} />
@@ -217,6 +218,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
           href={offer.href}
           target="_blank"
           key={index}
+          rel="noopener"
           onClick={() =>
             trackEvent('offer_click', 'others', offer.source, offer.title)
           }
