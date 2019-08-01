@@ -67,13 +67,10 @@ const scrapePage = async url => {
 
     logger.info(`Number of available offers: ${offersCount}`);
 
-    $('li[class*="HomeFeedGrid"]', html).each(function() {
+    $('a[class*="HomeFeedUICard"]', html).each(function() {
       let img;
       try {
         img = $(this)
-          .children('div')
-          .children('div')
-          .children('a')
           .children('span')
           .children('div')
           .css('background-image');
@@ -109,7 +106,7 @@ const scrapePage = async url => {
         .trim();
 
       let offer = $('li[class*="HomeFeedUICard"]', this)
-        .eq(2)
+        .eq(3)
         .children('span')
         .eq(2)
         .children('span')
@@ -124,7 +121,7 @@ const scrapePage = async url => {
             .text()
             .trim()
         ),
-        href: clean_deliveroo_href($('a', this).prop('href')),
+        href: clean_deliveroo_href($(this).prop('href')),
         image: cleanImg(img),
         location: url.locationName,
         address: '',
