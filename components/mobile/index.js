@@ -19,7 +19,7 @@ const Foodables = ({
       <Sidebar.Pushable>
         <Sidebar
           as={Menu}
-          direction="right"
+          direction="left"
           animation="overlay"
           onHide={() => setSidebarVisible(false)}
           vertical

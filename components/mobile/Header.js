@@ -30,19 +30,17 @@ const Header = ({ cuisines, filters }) => {
   return (
     <header>
       <div className="wrapper">
-        <div>
-          <Icon name="search" onClick={() => setSearchModalOpen(true)} />
-        </div>
+        <nav>
+          <Icon name="content" onClick={() => setSidebarVisible(true)} />
+        </nav>
         <div className="logoWrapper">
           <a href="/">
             <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
           </a>
         </div>
-        <nav>
-          <div className="menuToggle">
-            <Icon name="content" onClick={() => setSidebarVisible(true)} />
-          </div>
-        </nav>
+        <div className="searchWrapper">
+          <Icon name="search" onClick={() => setSearchModalOpen(true)} />
+        </div>
       </div>
       <SearchModal cuisines={cuisines} filters={filters} />
       <style jsx>{`
@@ -65,7 +63,7 @@ const Header = ({ cuisines, filters }) => {
         .logo {
           max-width: 170px;
         }
-        nav {
+        .searchWrapper {
           display: flex;
           justify-content: flex-end;
         }
