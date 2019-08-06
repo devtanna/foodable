@@ -130,9 +130,9 @@ function calculateScore(item) {
   Object.entries(offerMapping).some(([mapScore, regexes]) => {
     regexes.some(regex => {
       let regexMatchObject = offer.match(regex);
-      scoreLevel = regexMatchObject ? mapScore : -1;
+      scoreLevel = regexMatchObject ? mapScore : 0;
       scoreValue =
-        regexMatchObject && regexMatchObject[1] ? regexMatchObject[1] : -1;
+        regexMatchObject && regexMatchObject[1] ? regexMatchObject[1] : 0;
 
       if (regexMatchObject) {
         foundMatch = true;
@@ -145,6 +145,9 @@ function calculateScore(item) {
   if (!foundMatch || scoreLevel <= 0) {
     logger.error('NO SCORE ASSIGNED FOR: ' + offer);
   }
+
+  scoreLevel = Number(scoreLevel);
+  scoreValue = Number(scoreValue);
 
   return { scoreLevel, scoreValue };
 }
