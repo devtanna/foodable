@@ -117,6 +117,7 @@ exports.EntityQuery = new GraphQLObjectType({
               {
                 $match: matchObj,
               },
+              { $sort: { 'offers.0.scoreLevel': -1 } },
               { $unwind: '$offers' },
               {
                 $project: {
@@ -140,6 +141,7 @@ exports.EntityQuery = new GraphQLObjectType({
             // DEFAULT
             var items = await EntityModel.aggregate([
               { $match: { type: 'offers', locationSlug: args.locationSlug } },
+              { $sort: { 'offers.0.scoreLevel': -1 } },
               { $unwind: '$offers' },
               {
                 $project: {
