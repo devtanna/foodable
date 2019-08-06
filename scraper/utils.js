@@ -1,8 +1,9 @@
 const fetch = require('node-fetch');
+const fs = require('fs');
+const baselineLocations = require('./baseline_locations');
 
 function getProxy() {
-  const url =
-    'https://gimmeproxy.com/api/getProxy?protocol=socks5&supportsHttps=true';
+  const url = 'https://gimmeproxy.com/api/getProxy?protocol=socks5&supportsHttps=true';
   return fetch(url)
     .then(res => res.json())
     .then(json => {
@@ -42,9 +43,7 @@ function similarity(s1, s2) {
   if (longerLength == 0) {
     return 1.0;
   }
-  return (
-    (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)
-  );
+  return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
 }
 
 function editDistance(s1, s2) {
@@ -59,8 +58,7 @@ function editDistance(s1, s2) {
       else {
         if (j > 0) {
           var newValue = costs[j - 1];
-          if (s1.charAt(i - 1) != s2.charAt(j - 1))
-            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+          if (s1.charAt(i - 1) != s2.charAt(j - 1)) newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
           costs[j - 1] = lastValue;
           lastValue = newValue;
         }
@@ -72,10 +70,7 @@ function editDistance(s1, s2) {
 }
 
 function calculateScore(item) {
-  var score = 0,
-    rating = item['rating'],
-    offer = item['offer'],
-    source = item['source'];
+  var offer = item['offer'];
 
   if (!offer) return;
 
@@ -98,6 +93,8 @@ function calculateScore(item) {
       /^(\d+)% off on all orders above\s*(\d+(.\d+)*)/im,
       /^(\d+)% off on all orders above aed\s*(\d+(.\d+)*)$/im,
       /^(\d+)% off on all orders above aed\s*(\d+(.\d+)*) from/im,
+      /^(\d+)% off on dine-in above aed\s*(\d+(.\d+)*) from/im,
+      /^(\d+)% off on dine-in above aed\s*(\d+(.\d+)*)/im,
     ],
     8: [
       /^2 for 1$/im,
@@ -131,8 +128,7 @@ function calculateScore(item) {
     regexes.some(regex => {
       let regexMatchObject = offer.match(regex);
       scoreLevel = regexMatchObject ? mapScore : 0;
-      scoreValue =
-        regexMatchObject && regexMatchObject[1] ? regexMatchObject[1] : 0;
+      scoreValue = regexMatchObject && regexMatchObject[1] ? regexMatchObject[1] : 0;
 
       if (regexMatchObject) {
         foundMatch = true;
@@ -143,7 +139,7 @@ function calculateScore(item) {
   });
 
   if (!foundMatch || scoreLevel <= 0) {
-    logger.error('NO SCORE ASSIGNED FOR: ' + offer);
+    logger.error(`${item['title']}: NO SCORE ASSIGNED FOR: ${offer}`);
   }
 
   scoreLevel = Number(scoreLevel);
@@ -159,10 +155,39 @@ function delay(ms) {
   });
 }
 
+function compare_strings(base_string, scraped_string) {
+  if (scraped_string.includes(base_string.replace('al', ''))) {
+    return 1;
+  }
+
+  if (base_string.includes(scraped_string.replace('al', ''))) {
+    return 1;
+  }
+
+  return similarity(base_string, scraped_string);
+}
+
+function getBaselineLocations(city = 'dubai') {
+  let resultLocationObject = {};
+  if (baselineLocations.length) {
+    baselineLocations.forEach(element => {
+      resultLocationObject[element.slug] = {
+        locationName: element.locationName,
+        locationSlug: element.slug,
+        type: 'location',
+        city: city,
+      };
+    });
+  }
+
+  return resultLocationObject;
+}
+
 module.exports = {
   slugify: slugify,
-  stringDistance: similarity,
   calculateScore: calculateScore,
   getProxy: getProxy,
   delay: delay,
+  getBaselineLocations: getBaselineLocations,
+  compare_strings: compare_strings,
 };

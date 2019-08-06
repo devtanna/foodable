@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-const ObjectsToCsv = require('objects-to-csv');
 var locations = require('./carriage_locations.json');
 
 const settings = require('../settings')();
@@ -16,16 +15,12 @@ var dbClient;
 // Initialize connection once at the top of the scraper
 if (settings.ENABLE_CARRIAGE) {
   var MongoClient = require('mongodb').MongoClient;
-  MongoClient.connect(
-    settings.DB_CONNECT_URL,
-    { useNewUrlParser: true },
-    function(err, client) {
-      if (err) throw err;
-      db = client.db(settings.DB_NAME);
-      dbClient = client;
-      logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
-    }
-  );
+  MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
+    if (err) throw err;
+    db = client.db(settings.DB_NAME);
+    dbClient = client;
+    logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
+  });
 }
 // ########## END DB STUFF ####################
 
@@ -40,12 +35,11 @@ async function scrapeInfiniteScrollItems(page, location) {
     const MAX = 100;
 
     while (keepGoing && index < MAX) {
-      logger.info('Scraping page number: ' + index + ' in ' + location.name);
+      await utils.delay(3000); // ! 3 second sleep per page
+      logger.info('Scraping page number: ' + index + ' in ' + location.locationName);
       let htmlBefore = await page.content();
       let offersCount = $('.restaurant-item', htmlBefore).length;
-      await page.evaluate(
-        'window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});'
-      );
+      await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
       await page.waitFor(4000);
       let htmlAfter = await page.content();
       let updatedOffersCount = $('.restaurant-item', htmlAfter).length;
@@ -71,9 +65,7 @@ async function scrapeInfiniteScrollItems(page, location) {
             .trim(),
           type: 'restaurant',
           source: `${scraper_name}`,
-          href:
-            'https://www.trycarriage.com/en/ae/' +
-            $('a:first-child', this).prop('href'),
+          href: 'https://www.trycarriage.com/en/ae/' + $('a:first-child', this).prop('href'),
           slug: utils.slugify(
             $('.rest-name-slogan h3', this)
               .text()
@@ -82,7 +74,7 @@ async function scrapeInfiniteScrollItems(page, location) {
           image: $('.rest-cover', this)
             .css('background-image')
             .split(/"/)[1],
-          location: utils.slugify(location.name),
+          location: location.baseline,
           rating: null,
           cuisine: $('.rest-name-slogan p', this)
             .text()
@@ -110,10 +102,10 @@ async function scrapeInfiniteScrollItems(page, location) {
         }
       });
     } catch (error) {
-      logger.error(error);
+      logger.error(`Error in offer building ${error}`);
     }
   } catch (e) {
-    logger.error(e);
+    logger.error(`Error in scrape ${e}`);
   }
   logger.info('number of items scraped: ' + items.length);
   return items;
@@ -149,44 +141,43 @@ async function scrapeInfiniteScrollItems(page, location) {
       browser.newPage().then(page => {
         page.setViewport(settings.PUPPETEER_VIEWPORT);
         page
-          .goto(
-            `https://www.trycarriage.com/en/ae/restaurants?area_id=${
-              locations[i].id
-            }`,
-            { waitUntil: 'load' }
-          )
+          .goto(`https://www.trycarriage.com/en/ae/restaurants?area_id=${locations[i].id}`, { waitUntil: 'load' })
           .then(() => {
-            logger.info('Scraping location: ' + locations[i].name);
+            logger.info('Scraping location: ' + locations[i].locationName);
 
             scrapeInfiniteScrollItems(page, locations[i]).then(res => {
               var flatResults = [].concat.apply([], res);
-              parse
-                .process_results(
-                  flatResults,
-                  db,
-                  dbClient,
-                  scraper_name,
-                  (batch = true)
-                )
-                .then(() => {
-                  count -= 1;
-                  if (count < 0) {
-                    logger.info('Closing browser');
-                    // Close the browser.
-                    browser.close();
-                    logger.info('Closing client');
-                    // close the dbclient
-                    dbClient.close();
-                    logger.info('Carriage Scrape Done!');
-                  } else {
-                    page.close();
-                  }
-                });
+              parse.process_results(flatResults, db).then(() => {
+                count -= 1;
+                if (count < 0) {
+                  logger.info('Closing browser');
+                  // Close the browser.
+                  browser.close();
+                  logger.info('Closing client');
+                  // close the dbclient
+                  dbClient.close();
+                  logger.info('Carriage Scrape Done!');
+                } else {
+                  page.close();
+                }
+              });
             });
           });
       });
     } catch (error) {
-      logger.info('', error);
+      logger.error(`Error ${error}`);
+      count -= 1;
+      if (count < 0) {
+        logger.info('Closing browser');
+        // Close the browser.
+        browser.close();
+        logger.info('Closing client');
+        // close the dbclient
+        dbClient.close();
+        logger.info('Carriage Scrape Done!');
+      } else {
+        page.close();
+      }
     }
   }
 })();

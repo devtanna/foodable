@@ -11,7 +11,7 @@ Run this first to load the locations
 - `node scraper/carriage.js`
 - `node scraper/ubereats.js`
 
-* `node scraper/reindex2.js`
+* `node scraper/reindex.js`
 
 Run this at any given time after any number of scraper runs to generate the offers.
 

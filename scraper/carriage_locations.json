@@ -1,670 +1,1040 @@
 [
   {
     "id": "937",
-    "name": "Abu Hail"
+    "locationName": "Abu Hail",
+    "baseline": ["abu-hail", "al-baraha", "al-muteena", "corniche-deira"]
   },
   {
     "id": "764",
-    "name": "Academic City"
+    "locationName": "Academic City",
+    "baseline": ["academic-city", "dubai-silicon-oasis-dso", "international-city", "the-villas", "dubai-outlet-mall"]
   },
   {
     "id": "919",
-    "name": "Al Bada'a"
+    "locationName": "Al Bada'a",
+    "baseline": ["al-badaa", "al-satwa", "jumeirah-1", "al-jaffiliya"]
   },
   {
     "id": "933",
-    "name": "Al Baraha"
+    "locationName": "Al Baraha",
+    "baseline": ["al-baraha", "abu-hail", "al-muteena", "hor-al-anz", "naif", "corniche-deira"]
   },
   {
     "id": "834",
-    "name": "Al Barari"
+    "locationName": "Al Barari",
+    "baseline": ["al-barari", "legends", "majan", "city-of-arabia", "falcon-city"]
   },
   {
     "id": "846",
-    "name": "Al Barsha 1"
+    "locationName": "Al Barsha 1",
+    "baseline": ["al-barsha", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area", "barsha-heights"]
   },
   {
     "id": "833",
-    "name": "Al Barsha 2"
+    "locationName": "Al Barsha 2",
+    "baseline": ["al-barsha", "al-quoz-industrial-area", "al-barsha-south"]
   },
   {
     "id": "832",
-    "name": "Al Barsha 3"
+    "locationName": "Al Barsha 3",
+    "baseline": ["al-barsha", "the-greens", "barsha-heights"]
   },
   {
     "id": "830",
-    "name": "Al Barsha South"
+    "locationName": "Al Barsha South",
+    "baseline": [
+      "al-barsha-south",
+      "al-barsha",
+      "jumeirah-village-circle",
+      "dubai-sports-city",
+      "motor-city",
+      "arabian-ranches",
+      "dubai-studio-city"
+    ]
   },
   {
     "id": "811",
-    "name": "Al Furjan"
+    "locationName": "Al Furjan",
+    "baseline": ["al-furjan", "discovery-gardens", "jebel-ali-village", "green-community-village"]
   },
   {
     "id": "1337",
-    "name": "Al Hamriya"
+    "locationName": "Al Hamriya",
+    "baseline": ["al-hamriya", "al-karama", "al-raffa", "umm-hurair", "al-souq-al-kabeer"]
   },
   {
     "id": "921",
-    "name": "Al Hudaiba"
+    "locationName": "Al Hudaiba",
+    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa", "mankhool"]
   },
   {
     "id": "865",
-    "name": "Al Jaddaf"
+    "locationName": "Al Jaddaf",
+    "baseline": [
+      "al-jaddaf",
+      "zabeel",
+      "umm-hurair",
+      "dubai-festival-city",
+      "dubai-design-district",
+      "oud-metha",
+      "dubai-creek"
+    ]
   },
   {
     "id": "920",
-    "name": "Al Jaffiliya"
+    "locationName": "Al Jaffiliya",
+    "baseline": ["al-jaffiliya", "al-hudaiba-and-around", "trade-centre-area", "mankhool"]
   },
   {
     "id": "924",
-    "name": "Al Karama"
+    "locationName": "Al Karama",
+    "baseline": ["al-karama", "oud-metha", "mankhool"]
   },
   {
     "id": "931",
-    "name": "Al Khabaisi"
+    "locationName": "Al Khabaisi",
+    "baseline": ["al-khabaisi", "al-muraqqabat", "al-muteena", "hor-al-anz", "dubai-international-airport-area"]
   },
   {
     "id": "793",
-    "name": "Al Khawaneej 1"
+    "locationName": "Al Khawaneej 1",
+    "baseline": ["al-khawaneej", "oud-al-muteena", "al-mizhar", "al-awir-and-beyond"]
   },
   {
     "id": "792",
-    "name": "Al Khawaneej 2"
+    "locationName": "Al Khawaneej 2",
+    "baseline": ["al-khawaneej", "oud-al-muteena", "al-mizhar", "al-awir-and-beyond"]
   },
   {
     "id": "940",
-    "name": "Al Mamzar"
+    "locationName": "Al Mamzar",
+    "baseline": ["al-mamzar", "al-nahda", "hor-al-anz", "corniche-deira", "the-palm-deira"]
   },
   {
     "id": "908",
-    "name": "Al Manara"
+    "locationName": "Al Manara",
+    "baseline": ["al-manara", "umm-suqeim", "umm-al-sheif", "al-safa", "al-quoz", "al-quoz-industrial-area"]
   },
   {
     "id": "925",
-    "name": "Al Mankhool"
+    "locationName": "Al Mankhool",
+    "baseline": [
+      "mankhool",
+      "al-raffa",
+      "al-souq-al-kabeer",
+      "umm-hurair",
+      "al-karama",
+      "al-jaffiliya",
+      "al-hudaiba-and-around"
+    ]
   },
   {
     "id": "922",
-    "name": "Al Mina"
+    "locationName": "Al Mina",
+    "baseline": ["al-hudaiba-and-around", "al-raffa", "dubai-maritime-city"]
   },
   {
     "id": "794",
-    "name": "Al Mizhar 1"
+    "locationName": "Al Mizhar 1",
+    "baseline": ["al-mizhar", "muhaisnah", "oud-al-muteena", "mirdif"]
   },
   {
     "id": "795",
-    "name": "Al Mizhar 2"
+    "locationName": "Al Mizhar 2",
+    "baseline": ["al-mizhar", "muhaisnah", "oud-al-muteena", "mirdif"]
   },
   {
     "id": "812",
-    "name": "Al Muntazah"
+    "locationName": "Al Muntazah",
+    "baseline": ["al-muntazah"]
   },
   {
     "id": "932",
-    "name": "Al Muraqqabat"
+    "locationName": "Al Muraqqabat",
+    "baseline": ["al-muraqqabat", "al-rigga", "naif", "al-muteena", "al-khabaisi", "baniyas"]
   },
   {
     "id": "1146",
-    "name": "Al Murar"
+    "locationName": "Al Murar",
+    "baseline": ["al-mamzar", "naif", "al-muteena", "al-baraha"]
   },
   {
     "id": "879",
-    "name": "Al Nahda 1"
+    "locationName": "Al Nahda 1",
+    "baseline": ["al-nahda", "al-qusais"]
   },
   {
     "id": "881",
-    "name": "Al Nahda 2"
+    "locationName": "Al Nahda 2",
+    "baseline": ["al-nahda", "al-qusais"]
   },
   {
     "id": "849",
-    "name": "Al Quoz"
+    "locationName": "Al Quoz",
+    "baseline": ["al-quoz", "al-quoz-industrial-area"]
   },
   {
     "id": "853",
-    "name": "Al Quoz 1"
+    "locationName": "Al Quoz 1",
+    "baseline": ["al-quoz"]
   },
   {
     "id": "851",
-    "name": "Al Quoz 2"
+    "locationName": "Al Quoz 2",
+    "baseline": ["al-quoz", "meydan"]
   },
   {
     "id": "852",
-    "name": "Al Quoz 3"
+    "locationName": "Al Quoz 3",
+    "baseline": ["al-quoz"]
   },
   {
     "id": "850",
-    "name": "Al Quoz 4"
+    "locationName": "Al Quoz 4",
+    "baseline": ["al-quoz", "al-quoz-industrial-area"]
   },
   {
     "id": "1143",
-    "name": "Al Quoz Industrial Area 2"
+    "locationName": "Al Quoz Industrial Area 2",
+    "baseline": ["al-quoz-industrial-area"]
   },
   {
     "id": "848",
-    "name": "Al Quoz Industrial Area 3"
+    "locationName": "Al Quoz Industrial Area 3",
+    "baseline": ["al-quoz-industrial-area", "umm-al-sheif", "al-barsha"]
   },
   {
     "id": "847",
-    "name": "Al Quoz Industrial Area 4"
+    "locationName": "Al Quoz Industrial Area 4",
+    "baseline": ["al-quoz-industrial-area", "umm-al-sheif", "al-barsha"]
   },
   {
     "id": "1680",
-    "name": "Al Qusais 1"
+    "locationName": "Al Qusais 1",
+    "baseline": ["al-qusais", "hor-al-anz", "al-nahda", "al-twar"]
   },
   {
     "id": "874",
-    "name": "Al Qusais 2"
+    "locationName": "Al Qusais 2",
+    "baseline": ["al-qusais", "hor-al-anz", "al-nahda", "al-twar"]
   },
   {
     "id": "873",
-    "name": "Al Qusais 3"
+    "locationName": "Al Qusais 3",
+    "baseline": ["al-qusais", "hor-al-anz", "al-nahda", "al-twar"]
   },
   {
     "id": "878",
-    "name": "Al Qusais Industrial Area"
+    "locationName": "Al Qusais Industrial Area",
+    "baseline": ["al-qusais", "hor-al-anz", "al-nahda", "al-twar"]
   },
   {
     "id": "882",
-    "name": "Al Qusais Industrial Area 1"
+    "locationName": "Al Qusais Industrial Area 1",
+    "baseline": ["al-qusais", "hor-al-anz", "al-nahda", "al-twar"]
   },
   {
     "id": "877",
-    "name": "Al Qusais Industrial Area 5"
+    "locationName": "Al Qusais Industrial Area 5",
+    "baseline": ["al-qusais", "hor-al-anz", "al-nahda", "al-twar"]
   },
   {
     "id": "923",
-    "name": "Al Raffa"
+    "locationName": "Al Raffa",
+    "baseline": ["al-raffa", "al-souq-al-kabeer", "mankhool", "al-hudaiba-and-around"]
   },
   {
     "id": "1145",
-    "name": "Al Ras"
+    "locationName": "Al Ras",
+    "baseline": ["al-ras", "naif", "al-rigga"]
   },
   {
     "id": "867",
-    "name": "Al Rashidiya"
+    "locationName": "Al Rashidiya",
+    "baseline": [
+      "rashidiya",
+      "nad-shamma",
+      "umm-ramool",
+      "mirdif",
+      "al-warqa",
+      "nad-al-hamar",
+      "dubai-festival-city",
+      "dubai-international-airport-area"
+    ]
   },
   {
     "id": "930",
-    "name": "Al Rigga"
+    "locationName": "Al Rigga",
+    "baseline": ["al-rigga", "naif", "al-muteena", "al-muraqqabat", "al-ras", "baniyas"]
   },
   {
     "id": "914",
-    "name": "Al Safa"
+    "locationName": "Al Safa",
+    "baseline": ["al-safa", "al-quoz"]
   },
   {
     "id": "1516",
-    "name": "Al Safa 1"
+    "locationName": "Al Safa 1",
+    "baseline": ["al-safa", "al-quoz"]
   },
   {
     "id": "912",
-    "name": "Al Safa 2"
+    "locationName": "Al Safa 2",
+    "baseline": ["al-safa", "al-quoz"]
   },
   {
     "id": "918",
-    "name": "Al Satwa"
+    "locationName": "Al Satwa",
+    "baseline": ["al-satwa", "al-badaa", "al-jaffiliya", "trade-centre-area", "difc", "sheikh-zayed-road"]
   },
   {
     "id": "1632",
-    "name": "Al Souq Al Kabeer"
+    "locationName": "Al Souq Al Kabeer",
+    "baseline": ["al-souq-al-kabeer", "umm-hurair", "al-raffa", "meena-bazaar"]
   },
   {
     "id": "905",
-    "name": "Al Sufouh 1"
+    "locationName": "Al Sufouh 1",
+    "baseline": ["al-sufouh", "al-barsha", "madinat-jumeirah"]
   },
   {
     "id": "902",
-    "name": "Al Sufouh 2"
+    "locationName": "Al Sufouh 2",
+    "baseline": ["al-sufouh", "al-barsha", "madinat-jumeirah"]
   },
   {
     "id": "1679",
-    "name": "Al Twar 1"
+    "locationName": "Al Twar 1",
+    "baseline": ["al-twar", "al-qusais", "hor-al-anz", "dubai-international-airport-area"]
   },
   {
     "id": "872",
-    "name": "Al Twar 2"
+    "locationName": "Al Twar 2",
+    "baseline": ["al-twar", "al-qusais", "hor-al-anz", "dubai-international-airport-area"]
   },
   {
     "id": "1678",
-    "name": "Al Twar 3"
+    "locationName": "Al Twar 3",
+    "baseline": ["al-twar", "al-qusais", "hor-al-anz", "dubai-international-airport-area"]
   },
   {
     "id": "726",
-    "name": "Al Waha"
+    "locationName": "Al Waha",
+    "baseline": ["the-sustainable-city", "layan", "arabian-ranches"]
   },
   {
     "id": "938",
-    "name": "Al Waheda"
+    "locationName": "Al Waheda",
+    "baseline": ["abu-hail", "hor-al-anz", "al-mamzar"]
   },
   {
     "id": "781",
-    "name": "Al Warqa 1"
+    "locationName": "Al Warqa 1",
+    "baseline": ["al-warqa", "international-city", "ras-al-khor", "nad-al-hamar", "nad-shamma", "mirdif"]
   },
   {
     "id": "785",
-    "name": "Al Warqa 2"
+    "locationName": "Al Warqa 2",
+    "baseline": ["al-warqa", "international-city", "ras-al-khor", "nad-al-hamar", "nad-shamma", "mirdif"]
   },
   {
     "id": "782",
-    "name": "Al Warqa 3"
+    "locationName": "Al Warqa 3",
+    "baseline": ["al-warqa", "international-city", "ras-al-khor", "nad-al-hamar", "nad-shamma", "mirdif"]
   },
   {
     "id": "1340",
-    "name": "Al Warqa 4"
+    "locationName": "Al Warqa 4",
+    "baseline": ["al-warqa", "international-city", "ras-al-khor", "nad-al-hamar", "nad-shamma", "mirdif"]
   },
   {
     "id": "784",
-    "name": "Al Warqa 5"
+    "locationName": "Al Warqa 5",
+    "baseline": ["al-warqa", "international-city", "ras-al-khor", "nad-al-hamar", "nad-shamma", "mirdif"]
   },
   {
     "id": "915",
-    "name": "Al Wasl"
+    "locationName": "Al Wasl",
+    "baseline": ["al-wasl", "jumeirah-1", "jumeirah-2", "al-safa", "al-satwa"]
   },
   {
     "id": "735",
-    "name": "Arabian Ranches"
+    "locationName": "Arabian Ranches",
+    "baseline": [
+      "arabian-ranches",
+      "remraam",
+      "motor-city",
+      "al-barsha-south",
+      "the-sustainable-city",
+      "layan",
+      "mudon",
+      "dubai-lifestyle-city",
+      "al-qudra",
+      "damac-hills",
+      "reem",
+      "town-square"
+    ]
   },
   {
     "id": "729",
-    "name": "Arabian Ranches 2"
+    "locationName": "Arabian Ranches 2",
+    "baseline": [
+      "arabian-ranches",
+      "remraam",
+      "motor-city",
+      "al-barsha-south",
+      "the-sustainable-city",
+      "layan",
+      "mudon",
+      "dubai-lifestyle-city"
+    ]
   },
   {
     "id": "836",
-    "name": "Barsha Heights - TECOM"
+    "locationName": "Barsha Heights - TECOM",
+    "baseline": [
+      "barsha-heights",
+      "dubai-internet-city",
+      "dubai-knowledge-village",
+      "the-greens",
+      "al-barsha",
+      "al-sufouh"
+    ]
   },
   {
     "id": "883",
-    "name": "Business Bay"
+    "locationName": "Business Bay",
+    "baseline": ["business-bay", "downtown-dubai", "al-wasl", "al-quoz"]
   },
   {
     "id": "753",
-    "name": "City of Arabia"
+    "locationName": "City of Arabia",
+    "baseline": ["city-of-arabia", "majan", "al-barari", "falcon-city", "legends", "global-village"]
   },
   {
     "id": "1138",
-    "name": "DIFC"
+    "locationName": "DIFC",
+    "baseline": ["difc", "trade-centre-area", "downtown-dubai", "zabeel", "sheikh-zayed-road"]
   },
   {
     "id": "935",
-    "name": "Deira"
+    "locationName": "Deira",
+    "baseline": [
+      "deira-city-centre-area",
+      "abu-hail",
+      "al-baraha",
+      "naif",
+      "al-muraqqabat",
+      "hor-al-anz",
+      "al-khabaisi",
+      "al-muteena",
+      "al-ras"
+    ]
   },
   {
     "id": "813",
-    "name": "Discovery Gardens"
+    "locationName": "Discovery Gardens",
+    "baseline": ["discovery-gardens", "al-furjan"]
   },
   {
     "id": "885",
-    "name": "Downtown Dubai"
+    "locationName": "Downtown Dubai",
+    "baseline": ["downtown-dubai", "business-bay", "difc"]
   },
   {
     "id": "884",
-    "name": "Dubai Design District"
+    "locationName": "Dubai Design District",
+    "baseline": ["dubai-design-district", "downtown-dubai", "zabeel", "ras-al-khor", "business-bay"]
   },
   {
     "id": "866",
-    "name": "Dubai Festival City"
+    "locationName": "Dubai Festival City",
+    "baseline": [
+      "dubai-festival-city",
+      "umm-ramool",
+      "al-jaddaf",
+      "nad-al-hamar",
+      "nad-shamma",
+      "al-garhoud",
+      "rashidiya"
+    ]
   },
   {
     "id": "928",
-    "name": "Dubai Healthcare City"
+    "locationName": "Dubai Healthcare City",
+    "baseline": ["dubai-healthcare-city", "umm-hurair", "oud-metha", "zabeel"]
   },
   {
     "id": "899",
-    "name": "Dubai Internet City"
+    "locationName": "Dubai Internet City",
+    "baseline": [
+      "dubai-internet-city",
+      "dubai-knowledge-village",
+      "dubai-media-city",
+      "barsha-heights",
+      "the-greens",
+      "jumeirah-lake-towers-jlt"
+    ]
   },
   {
     "id": "712",
-    "name": "Dubai Investment Park - 1"
+    "locationName": "Dubai Investment Park - 1",
+    "baseline": ["dubai-investment-park"]
   },
   {
     "id": "709",
-    "name": "Dubai Investment Park - 2"
-  },
-  {
-    "id": "1714",
-    "name": "Dubai Land"
+    "locationName": "Dubai Investment Park - 2",
+    "baseline": ["dubai-investment-park"]
   },
   {
     "id": "737",
-    "name": "Dubai Lifestyle City"
+    "locationName": "Dubai Lifestyle City",
+    "baseline": ["dubai-lifestyle-city", "the-sustainable-city", "arabian-ranches", "layan", "reem"]
   },
   {
     "id": "897",
-    "name": "Dubai Marina"
+    "locationName": "Dubai Marina",
+    "baseline": [
+      "dubai-marina",
+      "dubai-internet-city",
+      "dubai-media-city",
+      "jumeirah-lake-towers-jlt",
+      "dubai-knowledge-village"
+    ]
   },
   {
     "id": "900",
-    "name": "Dubai Media City"
+    "locationName": "Dubai Media City",
+    "baseline": ["dubai-media-city", "dubai-internet-city", "dubai-knowledge-village", "dubai-marina"]
   },
   {
     "id": "718",
-    "name": "Dubai Production City"
+    "locationName": "Dubai Production City",
+    "baseline": ["impz", "jumeirah-village-triangle-jvt", "dubai-sports-city", "jumeirah-village-circle"]
   },
   {
     "id": "765",
-    "name": "Dubai Silicon Oasis"
+    "locationName": "Dubai Silicon Oasis",
+    "baseline": ["dubai-silicon-oasis-dso", "academic-city", "international-city", "liwan", "nad-al-sheba"]
   },
   {
     "id": "719",
-    "name": "Dubai Sports City"
+    "locationName": "Dubai Sports City",
+    "baseline": [
+      "dubai-sports-city",
+      "impz",
+      "jumeirah-village-circle",
+      "jumeirah-village-triangle-jvt",
+      "motor-city",
+      "dubai-studio-city",
+      "the-greens"
+    ]
   },
   {
     "id": "722",
-    "name": "Dubai Studio City"
+    "locationName": "Dubai Studio City",
+    "baseline": ["dubai-studio-city", "dubai-sports-city", "motor-city", "the-greens"]
   },
   {
     "id": "1330",
-    "name": "Emirates Hills"
+    "locationName": "Emirates Hills",
+    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows", "jumeirah-lake-towers-jlt"]
   },
   {
     "id": "843",
-    "name": "Emirates Hills 2"
+    "locationName": "Emirates Hills 2",
+    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows", "jumeirah-lake-towers-jlt"]
   },
   {
     "id": "761",
-    "name": "Falconcity of Wonders"
+    "locationName": "Falconcity of Wonders",
+    "baseline": ["falcon-city", "city-of-arabia", "majan", "legends", "al-barari"]
   },
   {
     "id": "869",
-    "name": "Garhoud"
+    "locationName": "Garhoud",
+    "baseline": [
+      "al-garhoud",
+      "umm-ramool",
+      "dubai-festival-city",
+      "deira-city-centre-area",
+      "dubai-international-airport-area"
+    ]
   },
   {
     "id": "714",
-    "name": "Green Community East"
+    "locationName": "Green Community East",
+    "baseline": ["green-community-village", "dubai-investment-park", "al-furjan"]
   },
   {
     "id": "713",
-    "name": "Green Community Village"
+    "locationName": "Green Community Village",
+    "baseline": ["green-community-village", "dubai-investment-park", "al-furjan"]
   },
   {
     "id": "934",
-    "name": "Hor Al Anz"
+    "locationName": "Hor Al Anz",
+    "baseline": ["hor-al-anz", "abu-hail", "al-muteena", "al-khabaisi", "al-muraqqabat", "al-baraha"]
   },
   {
     "id": "939",
-    "name": "Hor Al Anz East"
+    "locationName": "Hor Al Anz East",
+    "baseline": ["hor-al-anz", "abu-hail", "al-muteena", "al-khabaisi", "al-muraqqabat", "al-baraha"]
   },
   {
     "id": "772",
-    "name": "International City"
+    "locationName": "International City",
+    "baseline": ["international-city", "al-warqa", "nad-al-hamar", "ras-al-khor", "nad-al-sheba"]
   },
   {
     "id": "767",
-    "name": "International City Phase(2)"
+    "locationName": "International City Phase(2)",
+    "baseline": ["international-city", "al-warqa", "nad-al-hamar", "ras-al-khor", "nad-al-sheba"]
   },
   {
     "id": "810",
-    "name": "Jebel Ali Village"
+    "locationName": "Jebel Ali Village",
+    "baseline": [
+      "jebel-ali-village",
+      "discovery-gardens",
+      "al-furjan",
+      "jafza",
+      "jebel-ali-industrial-area",
+      "the-palm-jebel-ali"
+    ]
   },
   {
     "id": "917",
-    "name": "Jumeira 1"
+    "locationName": "Jumeira 1",
+    "baseline": ["jumeirah-1", "al-badaa", "al-wasl"]
   },
   {
     "id": "1517",
-    "name": "Jumeira 2"
+    "locationName": "Jumeira 2",
+    "baseline": ["jumeirah-2", "al-wasl", "al-safa"]
   },
   {
     "id": "913",
-    "name": "Jumeira 3"
+    "locationName": "Jumeira 3",
+    "baseline": ["jumeirah-3", "al-safa", "umm-suqeim"]
   },
   {
     "id": "896",
-    "name": "Jumeirah Beach Residence"
+    "locationName": "Jumeirah Beach Residence",
+    "baseline": [
+      "jumeirah-beach-residence-jbr",
+      "jumeirah-lake-towers-jlt",
+      "dubai-marina",
+      "dubai-media-city",
+      "dubai-internet-city",
+      "bluewaters-island"
+    ]
   },
   {
     "id": "1091",
-    "name": "Jumeirah Golf Estates"
+    "locationName": "Jumeirah Golf Estates",
+    "baseline": [
+      "jumeirah-golf-estates",
+      "impz",
+      "dubai-sports-city",
+      "dubai-studio-city",
+      "green-community-village",
+      "jumeirah-village-triangle-jvt",
+      "damac-hills"
+    ]
   },
   {
     "id": "816",
-    "name": "Jumeirah Heights"
+    "locationName": "Jumeirah Heights",
+    "baseline": ["jumeirah-heights", "jumeirah-lake-towers-jlt", "meadows", "jumeirah-islands"]
   },
   {
     "id": "815",
-    "name": "Jumeirah Islands"
+    "locationName": "Jumeirah Islands",
+    "baseline": ["jumeirah-islands", "jumeirah-lake-towers-jlt", "jumeirah-heights", "meadows", "springs"]
   },
   {
     "id": "817",
-    "name": "Jumeirah Lakes Towers - JLT"
+    "locationName": "Jumeirah Lakes Towers - JLT",
+    "baseline": [
+      "jumeirah-lake-towers-jlt",
+      "jumeirah-heights",
+      "jumeirah-beach-residence-jbr",
+      "dubai-marina",
+      "meadows",
+      "emirates-hills"
+    ]
   },
   {
     "id": "814",
-    "name": "Jumeirah Park"
+    "locationName": "Jumeirah Park",
+    "baseline": [
+      "jumeirah-park",
+      "discovery-gardens",
+      "discovery-gardens",
+      "springs",
+      "jumeirah-islands",
+      "jumeirah-heights",
+      "jumeirah-lake-towers-jlt"
+    ]
   },
   {
     "id": "829",
-    "name": "Jumeirah Village Circle"
+    "locationName": "Jumeirah Village Circle",
+    "baseline": [
+      "jumeirah-village-circle",
+      "jumeirah-village-triangle-jvt",
+      "springs",
+      "al-barsha-south",
+      "motor-city",
+      "dubai-sports-city",
+      "impz"
+    ]
   },
   {
     "id": "822",
-    "name": "Jumeirah Village Triangle - JVT"
+    "locationName": "Jumeirah Village Triangle - JVT",
+    "baseline": [
+      "jumeirah-village-triangle-jvt",
+      "jumeirah-park",
+      "springs",
+      "jumeirah-village-circle",
+      "dubai-sports-city",
+      "impz"
+    ]
   },
   {
     "id": "901",
-    "name": "Knowledge Village"
+    "locationName": "Knowledge Village",
+    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-internet-city", "dubai-marina", "al-sufouh"]
   },
   {
     "id": "727",
-    "name": "Layan"
+    "locationName": "Layan",
+    "baseline": ["layan", "the-sustainable-city", "mudon", "arabian-ranches", "town-square"]
   },
   {
     "id": "1519",
-    "name": "Legends"
+    "locationName": "Legends",
+    "baseline": ["legends", "majan", "al-barari", "city-of-arabia", "falcon-city", "global-village"]
   },
   {
     "id": "762",
-    "name": "Liwan"
+    "locationName": "Liwan",
+    "baseline": ["liwan", "dubai-silicon-oasis-dso"]
   },
   {
     "id": "835",
-    "name": "Majan"
+    "locationName": "Majan",
+    "baseline": ["majan", "al-barari", "legends", "city-of-arabia", "falcon-city"]
   },
   {
     "id": "1339",
-    "name": "Marsa Al Khor"
+    "locationName": "Marsa Al Khor",
+    "baseline": ["dubai-festival-city", "al-garhoud", "dubai-festival-city", "al-jaddaf"]
   },
   {
     "id": "818",
-    "name": "Meadows 2"
+    "locationName": "Meadows 2",
+    "baseline": ["meadows", "jumeirah-heights", "jumeirah-lake-towers-jlt", "jumeirah-islands", "springs"]
   },
   {
     "id": "789",
-    "name": "Mirdif"
+    "locationName": "Mirdif",
+    "baseline": ["mirdif", "rashidiya", "al-twar", "al-mizhar", "al-warqa", "nad-al-hamar"]
   },
   {
     "id": "723",
-    "name": "Motor City"
+    "locationName": "Motor City",
+    "baseline": [
+      "motor-city",
+      "dubai-sports-city",
+      "jumeirah-village-circle",
+      "jumeirah-village-triangle-jvt",
+      "arabian-ranches",
+      "dubai-studio-city"
+    ]
   },
   {
     "id": "725",
-    "name": "Mudon"
+    "locationName": "Mudon",
+    "baseline": ["mudon", "dubai-studio-city", "arabian-ranches", "remraam", "motor-city", "damac-hills", "town-square"]
   },
   {
     "id": "804",
-    "name": "Muhaisnah"
+    "locationName": "Muhaisnah",
+    "baseline": [
+      "muhaisnah",
+      "al-twar",
+      "al-qusais",
+      "oud-al-muteena",
+      "al-mizhar",
+      "mirdif",
+      "rashidiya",
+      "dubai-international-airport-area"
+    ]
   },
   {
     "id": "1518",
-    "name": "Muhaisnah 1"
+    "locationName": "Muhaisnah 1",
+    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "rashidiya", "dubai-international-airport-area"]
   },
   {
     "id": "1677",
-    "name": "Muhaisnah 3"
+    "locationName": "Muhaisnah 3",
+    "baseline": ["muhaisnah", "al-qusais", "al-twar"]
   },
   {
     "id": "876",
-    "name": "Muhaisnah 4"
+    "locationName": "Muhaisnah 4",
+    "baseline": ["muhaisnah", "al-qusais", "al-twar"]
   },
   {
     "id": "1563",
-    "name": "Muteena"
+    "locationName": "Muteena",
+    "baseline": [
+      "al-muteena",
+      "naif",
+      "al-baraha",
+      "abu-hail",
+      "hor-al-anz",
+      "al-khabaisi",
+      "al-muraqqabat",
+      "al-rigga"
+    ]
   },
   {
     "id": "854",
-    "name": "Nad Al Sheba 1"
+    "locationName": "Nad Al Sheba 1",
+    "baseline": ["nad-al-sheba", "al-quoz", "business-bay", "dubai-design-district", "ras-al-khor", "meydan"]
   },
   {
     "id": "856",
-    "name": "Nad Al Sheba 2"
+    "locationName": "Nad Al Sheba 2",
+    "baseline": ["nad-al-sheba", "ras-al-khor"]
   },
   {
     "id": "857",
-    "name": "Nad Al Sheba 3"
+    "locationName": "Nad Al Sheba 3",
+    "baseline": ["nad-al-sheba", "ras-al-khor", "international-city"]
   },
   {
     "id": "858",
-    "name": "Nad Al Sheba 4"
+    "locationName": "Nad Al Sheba 4",
+    "baseline": ["nad-al-sheba", "dubai-silicon-oasis-dso", "liwan"]
   },
   {
     "id": "1338",
-    "name": "Nad Shamma"
+    "locationName": "Nad Shamma",
+    "baseline": ["nad-shamma", "dubai-festival-city", "umm-ramool", "rashidiya", "nad-al-hamar"]
   },
   {
     "id": "864",
-    "name": "Nadd Al Hamar"
+    "locationName": "Nadd Al Hamar",
+    "baseline": ["nad-al-hamar", "nad-shamma", "dubai-festival-city", "ras-al-khor", "al-warqa"]
   },
   {
     "id": "1142",
-    "name": "Naif"
+    "locationName": "Naif",
+    "baseline": ["naif", "al-ras", "al-baraha", "al-muteena", "al-muraqqabat", "al-rigga"]
   },
   {
     "id": "798",
-    "name": "Oud Al Muteena"
+    "locationName": "Oud Al Muteena",
+    "baseline": ["oud-al-muteena", "muhaisnah", "al-mizhar", "al-khawaneej"]
   },
   {
     "id": "926",
-    "name": "Oud Metha"
+    "locationName": "Oud Metha",
+    "baseline": ["oud-metha", "al-karama", "umm-hurair", "zabeel", "dubai-healthcare-city"]
   },
   {
     "id": "942",
-    "name": "Port Rashid"
+    "locationName": "Port Rashid",
+    "baseline": ["port-rashid", "al-raffa", "al-baraha"]
   },
   {
     "id": "1513",
-    "name": "Port Saeed"
+    "locationName": "Port Saeed",
+    "baseline": ["port-saeed", "al-muraqqabat", "al-khabaisi", "al-garhoud", "umm-hurair"]
   },
   {
     "id": "863",
-    "name": "Ras Al Khor"
+    "locationName": "Ras Al Khor",
+    "baseline": ["ras-al-khor", "dubai-festival-city", "nad-al-hamar", "al-jaddaf", "dubai-design-district"]
   },
   {
     "id": "860",
-    "name": "Ras Al Khor Industrial Area 1"
+    "locationName": "Ras Al Khor Industrial Area 1",
+    "baseline": ["ras-al-khor", "nad-al-sheba", "dubai-design-district"]
   },
   {
     "id": "861",
-    "name": "Ras Al Khor Industrial Area 2"
+    "locationName": "Ras Al Khor Industrial Area 2",
+    "baseline": ["ras-al-khor", "nad-al-sheba", "nad-al-hamar"]
   },
   {
     "id": "1683",
-    "name": "Ras Al Khor Industrial Area 3"
+    "locationName": "Ras Al Khor Industrial Area 3",
+    "baseline": ["ras-al-khor", "nad-al-sheba", "nad-al-hamar"]
   },
   {
     "id": "715",
-    "name": "Remraam"
+    "locationName": "Remraam",
+    "baseline": ["remraam", "mudon", "jumeirah-golf-estates", "al-qudra", "damac-hills", "town-square"]
   },
   {
     "id": "1329",
-    "name": "Springs 1"
+    "locationName": "Springs 1",
+    "baseline": ["springs", "meadows", "jumeirah-islands", "emirates-hills", "meadows", "jumeirah-heights"]
   },
   {
     "id": "827",
-    "name": "Springs 10"
+    "locationName": "Springs 10",
+    "baseline": ["springs", "emirates-hills", "jumeirah-village-triangle-jvt"]
   },
   {
     "id": "826",
-    "name": "Springs 11"
+    "locationName": "Springs 11",
+    "baseline": ["springs", "jumeirah-islands", "emirates-hills", "jumeirah-village-triangle-jvt"]
   },
   {
     "id": "824",
-    "name": "Springs 14"
+    "locationName": "Springs 14",
+    "baseline": ["springs", "jumeirah-islands", "emirates-hills", "jumeirah-village-triangle-jvt"]
   },
   {
     "id": "825",
-    "name": "Springs 15"
+    "locationName": "Springs 15",
+    "baseline": ["springs", "jumeirah-village-triangle-jvt", "emirates-hills", "jumeirah-islands"]
   },
   {
     "id": "823",
-    "name": "Springs 2"
+    "locationName": "Springs 2",
+    "baseline": ["springs", "emirates-hills", "jumeirah-islands"]
   },
   {
     "id": "828",
-    "name": "Springs 7"
+    "locationName": "Springs 7",
+    "baseline": ["springs", "emirates-hills", "jumeirah-village-circle", "jumeirah-village-triangle-jvt"]
   },
   {
     "id": "1144",
-    "name": "Springs 9"
+    "locationName": "Springs 9",
+    "baseline": ["springs", "emirates-hills", "jumeirah-village-triangle-jvt"]
   },
   {
     "id": "1140",
-    "name": "The Gardens"
+    "locationName": "The Gardens",
+    "baseline": ["discovery-gardens", "jumeirah-park", "jebel-ali-village", "al-furjan"]
   },
   {
     "id": "845",
-    "name": "The Greens"
+    "locationName": "The Greens",
+    "baseline": ["the-greens", "barsha-heights", "dubai-internet-city", "emirates-hills"]
   },
   {
     "id": "837",
-    "name": "The Lakes"
+    "locationName": "The Lakes",
+    "baseline": ["the-lakes", "emirates-hills", "the-greens"]
   },
   {
     "id": "1623",
-    "name": "The Palm Jumeirah"
+    "locationName": "The Palm Jumeirah",
+    "baseline": [
+      "palm-jumeirah",
+      "dubai-knowledge-village",
+      "al-sufouh",
+      "dubai-internet-city",
+      "dubai-media-city",
+      "dubai-marina",
+      "jumeirah-beach-residence-jbr",
+      "palm-residences"
+    ]
   },
   {
     "id": "728",
-    "name": "The Sustainable City"
+    "locationName": "The Sustainable City",
+    "baseline": ["the-sustainable-city", "layan", "arabian-ranches", "mudon", "town-square"]
   },
   {
     "id": "755",
-    "name": "The Villa"
+    "locationName": "The Villa",
+    "baseline": [
+      "the-villas",
+      "academic-city",
+      "dubai-silicon-oasis-dso",
+      "falcon-city",
+      "liwan",
+      "city-of-arabia",
+      "dubai-outlet-mall"
+    ]
   },
   {
     "id": "889",
-    "name": "Trade Centre"
+    "locationName": "Trade Centre",
+    "baseline": ["trade-centre-area", "difc", "al-satwa", "zabeel", "sheikh-zayed-road"]
   },
   {
     "id": "907",
-    "name": "Umm Al Sheif"
+    "locationName": "Umm Al Sheif",
+    "baseline": ["umm-al-sheif", "al-quoz-industrial-area", "al-manara", "umm-suqeim", "al-barsha"]
   },
   {
     "id": "929",
-    "name": "Umm Hurair 1"
+    "locationName": "Umm Hurair 1",
+    "baseline": ["umm-hurair", "al-karama", "oud-metha"]
   },
   {
     "id": "927",
-    "name": "Umm Hurair 2"
+    "locationName": "Umm Hurair 2",
+    "baseline": ["umm-hurair", "oud-metha", "al-karama", "al-jaddaf", "dubai-healthcare-city"]
   },
   {
     "id": "868",
-    "name": "Umm Ramool"
+    "locationName": "Umm Ramool",
+    "baseline": [
+      "umm-ramool",
+      "al-garhoud",
+      "rashidiya",
+      "nad-shamma",
+      "dubai-festival-city",
+      "dubai-international-airport-area"
+    ]
   },
   {
     "id": "911",
-    "name": "Umm Suqeim 1"
+    "locationName": "Umm Suqeim 1",
+    "baseline": ["umm-suqeim", "al-safa", "jumeirah-3", "al-manara"]
   },
   {
     "id": "909",
-    "name": "Umm Suqeim 2"
+    "locationName": "Umm Suqeim 2",
+    "baseline": ["umm-suqeim", "al-manara", "umm-al-sheif", "al-safa"]
   },
   {
     "id": "906",
-    "name": "Umm Suqeim 3"
+    "locationName": "Umm Suqeim 3",
+    "baseline": ["umm-suqeim", "umm-al-sheif", "al-sufouh", "al-manara", "madinat-jumeirah"]
   },
   {
     "id": "779",
-    "name": "Warsan 2"
+    "locationName": "Warsan 2",
+    "baseline": ["al-warqa", "international-city", "academic-city"]
   },
   {
     "id": "780",
-    "name": "Warsan 3"
+    "locationName": "Warsan 3",
+    "baseline": ["al-warqa", "international-city", "academic-city"]
   },
   {
     "id": "888",
-    "name": "Za'abeel 1"
+    "locationName": "Za'abeel 1",
+    "baseline": ["zabeel", "dubai-healthcare-city", "oud-metha", "umm-hurair", "trade-centre-area", "difc"]
   },
   {
     "id": "886",
-    "name": "Za'abeel 2"
+    "locationName": "Za'abeel 2",
+    "baseline": ["zabeel", "trade-centre-area", "difc", "dubai-design-district", "downtown-dubai", "dubai-creek"]
   }
 ]

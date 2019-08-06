@@ -16,20 +16,16 @@ var dbClient;
 var MongoClient = require('mongodb').MongoClient;
 
 if (settings.ENABLE_TALABAT) {
-  MongoClient.connect(
-    settings.DB_CONNECT_URL,
-    { useNewUrlParser: true },
-    function(err, client) {
-      if (err) throw err;
-      db = client.db(settings.DB_NAME);
-      dbClient = client;
-      logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
-    }
-  );
+  MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
+    if (err) throw err;
+    db = client.db(settings.DB_NAME);
+    dbClient = client;
+    logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
+  });
 }
 // ########## END DB STUFF ####################
 
-async function scrapeInfiniteScrollItems(page) {
+async function scrapeInfiniteScrollItems(page, url) {
   let items = [];
 
   // we get the location from the url
@@ -49,12 +45,11 @@ async function scrapeInfiniteScrollItems(page) {
     const MAX = 100;
 
     while (keepGoing && index < MAX) {
+      await utils.delay(3000); // ! 3 second sleep per page
       logger.info('Scraping page number: ' + index + ' in ' + location);
       let htmlBefore = await page.content();
       let offersCount = $('.rest-link', htmlBefore).length;
-      await page.evaluate(
-        'window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});'
-      );
+      await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
       await page.waitFor(4000);
       let htmlAfter = await page.content();
       let updatedOffersCount = $('.rest-link', htmlAfter).length;
@@ -71,9 +66,7 @@ async function scrapeInfiniteScrollItems(page) {
 
     $('.rest-link', html).each(function() {
       let $ratingImgSrc = $('.rating-img > img', this).attr('src');
-      let starRating = $ratingImgSrc.match(
-        new RegExp('rating-' + '(.*)' + '.svg')
-      )[1];
+      let starRating = $ratingImgSrc.match(new RegExp('rating-' + '(.*)' + '.svg'))[1];
       let cuisine = [];
       $('.cuisShow .ng-binding', this).each(function() {
         cuisine.push($(this).text());
@@ -112,16 +105,13 @@ async function scrapeInfiniteScrollItems(page) {
           .prop('lazy-img')
           .split('?')
           .shift(),
-        location: location.trim(),
+        location: url.baseline,
         rating: starRating,
         cuisine: clean_talabat_cuisine(cuisine.join('')),
         offer: $("div[ng-if='rest.offersnippet']", this)
           .text()
           .trim(),
-        deliveryTime: $(
-          'span[ng-if="!showDeliveryRange || rest.dtim >= 120"]',
-          this
-        )
+        deliveryTime: $('span[ng-if="!showDeliveryRange || rest.dtim >= 120"]', this)
           .text()
           .trim(),
         minimumOrder: $('span:contains("Min:")', this)
@@ -156,7 +146,7 @@ async function scrapeInfiniteScrollItems(page) {
   } catch (e) {
     logger.error('Error during infinte page scrape: ' + e);
   }
-  logger.info('Number of items scraped: ' + items.length);
+  logger.info(`Number of items scraped: ${items.length} in ${url.baseline}`);
   return items;
 }
 
@@ -180,7 +170,7 @@ async function scrapeInfiniteScrollItems(page) {
       start = process.argv[2];
       end = Math.min(process.argv[3], 184);
     }
-    let count = end - start; // to know when to terminate the db connection
+    let count = end - start - 1; // to know when to terminate the db connection
     console.log('Number of locations: ' + urls.length);
 
     for (let i = start; i <= end; i++) {
@@ -196,40 +186,27 @@ async function scrapeInfiniteScrollItems(page) {
         page.setViewport(settings.PUPPETEER_VIEWPORT);
 
         try {
-          page
-            .goto(
-              `https://www.talabat.com/${url.url}`,
-              settings.PUPPETEER_GOTO_PAGE_ARGS
-            )
-            .then(() => {
-              logger.info('Scraping location: ' + url.url);
+          page.goto(`https://www.talabat.com/${url.url}`, settings.PUPPETEER_GOTO_PAGE_ARGS).then(() => {
+            logger.info('Scraping location: ' + url.url);
 
-              scrapeInfiniteScrollItems(page).then(res => {
-                var flatResults = [].concat.apply([], res);
-                parse
-                  .process_results(
-                    flatResults,
-                    db,
-                    dbClient,
-                    scraper_name,
-                    (batch = true)
-                  )
-                  .then(() => {
-                    count -= 1;
-                    if (count < 0) {
-                      logger.info('Closing browser');
-                      // Close the browser.
-                      browser.close();
-                      logger.info('Closing client');
-                      // close the dbclient
-                      dbClient.close();
-                      logger.info('Talabat Scrape Done!');
-                    } else {
-                      page.close();
-                    }
-                  });
+            scrapeInfiniteScrollItems(page, url).then(res => {
+              var flatResults = [].concat.apply([], res);
+              parse.process_results(flatResults, db).then(() => {
+                count -= 1;
+                if (count < 0) {
+                  logger.info('Closing browser');
+                  // Close the browser.
+                  browser.close();
+                  logger.info('Closing client');
+                  // close the dbclient
+                  dbClient.close();
+                  logger.info('Talabat Scrape Done!');
+                } else {
+                  page.close();
+                }
               });
             });
+          });
         } catch (error) {
           logger.info('', error);
           count -= 1;
@@ -262,11 +239,7 @@ function clean_talabat_cuisine(input) {
 }
 
 function clean_talabat_votes(input) {
-  if (
-    input != null &&
-    input.match(/\d+/) != null &&
-    input.match(/\d+/).length > 0
-  ) {
+  if (input != null && input.match(/\d+/) != null && input.match(/\d+/).length > 0) {
     return input.match(/\d+/)[0];
   } else {
     return '';
@@ -274,11 +247,7 @@ function clean_talabat_votes(input) {
 }
 
 function clean_talabat_rating(input) {
-  if (
-    input != null &&
-    input.match(/\d+/) != null &&
-    input.match(/\d+/).length > 0
-  ) {
+  if (input != null && input.match(/\d+/) != null && input.match(/\d+/).length > 0) {
     return input.match(/\d+/)[0];
   } else {
     return '';

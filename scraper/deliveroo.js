@@ -15,16 +15,12 @@ var dbClient;
 if (settings.ENABLE_DELIVEROO) {
   // Initialize connection once at the top of the scraper
   var MongoClient = require('mongodb').MongoClient;
-  MongoClient.connect(
-    settings.DB_CONNECT_URL,
-    { useNewUrlParser: true },
-    function(err, client) {
-      if (err) throw err;
-      db = client.db(settings.DB_NAME);
-      dbClient = client;
-      logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
-    }
-  );
+  MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
+    if (err) throw err;
+    db = client.db(settings.DB_NAME);
+    dbClient = client;
+    logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
+  });
 }
 // ########## END DB STUFF ####################
 
@@ -33,22 +29,18 @@ let page;
 
 const scrapePage = async url => {
   try {
-    await page.goto(
-      `https://deliveroo.ae${url.url}?offer=all+offers`,
-      settings.PUPPETEER_GOTO_PAGE_ARGS
-    );
+    await page.goto(`https://deliveroo.ae${url.url}?offer=all+offers`, settings.PUPPETEER_GOTO_PAGE_ARGS);
 
     let keepGoing = true;
     let index = 0;
     const MAX = 100;
 
     while (keepGoing && index < MAX) {
+      await utils.delay(3000); // ! 5 second sleep per page
       logger.info('Scraping page number: ' + index + ' in ' + url.url);
       let htmlBefore = await page.content();
       let offersCount = $('li[class*="HomeFeedGrid"]', htmlBefore).length;
-      await page.evaluate(
-        'window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});'
-      );
+      await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
       await page.waitFor(4000);
       let htmlAfter = await page.content();
       let updatedOffersCount = $('li[class*="HomeFeedGrid"]', htmlAfter).length;
@@ -92,7 +84,7 @@ const scrapePage = async url => {
           if (el === '' || el === '·') return;
 
           if (el.match(/\((\d+(.\d+)*)[+]*\)/g)) {
-            votes = el.match(/(\d+(.\d+)*)/g);
+            votes = el.match(/(\d+(.\d+)*)/g)[0];
           } else if (el.match(/(\d+(.\d+)*)/g)) {
             rating = el.match(/(\d+(.\d+)*)/g)[0];
           } else if (el !== '' && el !== '·') {
@@ -106,7 +98,7 @@ const scrapePage = async url => {
         .trim();
 
       let offer = $('li[class*="HomeFeedUICard"]', this)
-        .eq(3)
+        .eq(-1)
         .children('span')
         .eq(2)
         .children('span')
@@ -123,7 +115,7 @@ const scrapePage = async url => {
         ),
         href: clean_deliveroo_href($(this).prop('href')),
         image: cleanImg(img),
-        location: url.locationName,
+        location: url.baseline,
         address: '',
         cuisine: cuisine.join(', '),
         offer,
@@ -136,6 +128,7 @@ const scrapePage = async url => {
 
       // if no offer, then skip
       if (result.offer.length > 0) {
+        // console.log(">>>", result);
         let { scoreLevel, scoreValue } = utils.calculateScore(result);
         result['scoreLevel'] = scoreLevel;
         result['scoreValue'] = scoreValue;
@@ -147,7 +140,6 @@ const scrapePage = async url => {
         }
       }
     });
-
     return items;
   } catch (error) {
     logger.error('Error in data extract: ' + error);
@@ -186,14 +178,7 @@ const run = async () => {
           var flatResults = [].concat.apply([], res);
 
           // this is an async call
-          await parse.process_results(
-            flatResults,
-            db,
-            dbClient,
-            scraper_name,
-            (batch = true)
-          );
-          logger.info('Scraped deliveroo. Results count: ' + res.length);
+          await parse.process_results(flatResults, db);
         }
       } catch (error) {
         logger.error('Error in overall fetch: ' + error);

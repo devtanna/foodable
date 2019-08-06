@@ -16,16 +16,12 @@ var dbClient;
 // Initialize connection once at the top of the scraper
 if (settings.ENABLE_ZOMATO) {
   var MongoClient = require('mongodb').MongoClient;
-  MongoClient.connect(
-    settings.DB_CONNECT_URL,
-    { useNewUrlParser: true },
-    function(err, client) {
-      if (err) throw err;
-      db = client.db(settings.DB_NAME);
-      dbClient = client;
-      logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
-    }
-  );
+  MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
+    if (err) throw err;
+    db = client.db(settings.DB_NAME);
+    dbClient = client;
+    logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
+  });
 }
 // ########## END DB STUFF ####################
 
@@ -51,7 +47,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
           .trim(),
         href: $('.result-title', this).prop('href'),
         image: cleanImg($('.feat-img', this).prop('data-original')),
-        location: location.name,
+        location: location.baseline,
         address: $('.search-result-address', this)
           .text()
           .trim(),
@@ -92,7 +88,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
 
     return { result, goNext: $('.paginator_item.next.item', html).length > 0 };
   } catch (error) {
-    logger.info(error);
+    logger.info(`Error in scrape ${error}`);
   }
 };
 
@@ -113,8 +109,6 @@ const run = async () => {
     }
   }
 
-  console.log('Browser args:', args);
-
   browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: args,
@@ -126,7 +120,7 @@ const run = async () => {
 
   await Promise.all(
     locations.map(async (location, i) => {
-      logger.info('On location ' + location.name);
+      // logger.info('On location ' + location.locationName);
       try {
         if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
           await utils.delay(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
@@ -141,55 +135,48 @@ const run = async () => {
         while (hasNext && pageNum <= maxPage) {
           try {
             await utils.delay(3000);
-            logger.info(
-              'zomato scraper: Starting page: ' +
-                pageNum +
-                ' in ' +
-                location.name
-            );
+            logger.info('zomato scraper: Starting page: ' + pageNum + ' in ' + location.locationName);
             let res = await scrapePage(location, page, pageNum);
             if (res != undefined) {
               var flatResults = [].concat.apply([], res.result);
 
               // this is an async call
-              await parse.process_results(
-                flatResults,
-                db,
-                dbClient,
-                scraper_name,
-                (batch = true)
-              );
+              await parse.process_results(flatResults, db, dbClient, scraper_name, (batch = true));
 
               logger.info(
-                'zomato scraper: Scraped ' +
-                  pageNum +
-                  ' pages. Results count: ' +
-                  res.result.length
+                `zomato scraper: Scraped ${pageNum} pages. Results count: ${res.result.length} in ${
+                  location.locationName
+                }`
               );
 
               if (res.goNext) {
                 pageNum++;
               } else {
                 hasNext = false;
-                page.close();
+                await page.close();
               }
             } else {
-              process.exit(1);
+              // await browser.close();
+              // // close the dbclient
+              // await dbClient.close();
+              // process.exit(1);
             }
           } catch (e) {
-            console.log(e);
+            logger.error(`Error: ${e}`);
           }
         }
       } catch (error) {
-        logger.info('', error);
+        logger.error(`Error:${error}`);
       }
     })
-  );
-
-  await browser.close();
-  // close the dbclient
-  await dbClient.close();
-  logger.info('Zomato Scrape Done!');
+  )
+    .then(async () => {
+      await browser.close();
+      // close the dbclient
+      await dbClient.close();
+      logger.info('Zomato Scrape Done!');
+    })
+    .catch(e => logger.error(`Error: ${e}`));
 };
 
 run();

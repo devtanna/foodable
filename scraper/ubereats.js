@@ -14,16 +14,12 @@ var dbClient;
 // Initialize connection once at the top of the scraper
 if (settings.ENABLE_UBEREATS) {
   var MongoClient = require('mongodb').MongoClient;
-  MongoClient.connect(
-    settings.DB_CONNECT_URL,
-    { useNewUrlParser: true },
-    function(err, client) {
-      if (err) throw err;
-      db = client.db(settings.DB_NAME);
-      dbClient = client;
-      logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
-    }
-  );
+  MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
+    if (err) throw err;
+    db = client.db(settings.DB_NAME);
+    dbClient = client;
+    logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
+  });
 }
 // ########## END DB STUFF ####################
 
@@ -42,10 +38,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
       const listingsWithOffers = $('a.base_', html);
 
-      console.log(
-        'Number of offers on current page:',
-        listingsWithOffers.length
-      );
+      console.log('Number of offers on current page:', listingsWithOffers.length);
 
       try {
         listingsWithOffers.each(function() {
@@ -121,10 +114,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
       // scroll to next page
       previousHeight = await page.evaluate('document.body.scrollHeight');
       await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-      await page.waitForFunction(
-        `document.body.scrollHeight > ${previousHeight}`,
-        { timeout: scrollDelay }
-      );
+      await page.waitForFunction(`document.body.scrollHeight > ${previousHeight}`, { timeout: scrollDelay });
       await page.waitFor(scrollDelay);
       pageNum++;
     }
@@ -155,10 +145,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
 
   try {
     // Navigate to the page.
-    await page.goto(
-      'https://www.ubereats.com/en-AE/dubai/',
-      settings.PUPPETEER_GOTO_PAGE_ARGS
-    );
+    await page.goto('https://www.ubereats.com/en-AE/dubai/', settings.PUPPETEER_GOTO_PAGE_ARGS);
 
     // max number of pages to scroll through
     var maxPage = settings.SCRAPER_MAX_PAGE('ubereats');
@@ -169,13 +156,7 @@ async function scrapeInfiniteScrollItems(page, pageCount, scrollDelay = 1000) {
     var flatResults = [].concat.apply([], res);
 
     // this is an async call
-    await parse.process_results(
-      flatResults,
-      db,
-      dbClient,
-      scraper_name,
-      (batch = true)
-    );
+    await parse.process_results(flatResults, db, dbClient, scraper_name, (batch = true));
     logger.info('Scraped ubereats. Results count: ' + res.length);
   } catch (error) {
     console.log('Setup and scrape entry error:', error);

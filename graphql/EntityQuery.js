@@ -9,13 +9,10 @@ var tagType = require('./EntityType').tagType;
 var _ = require('lodash');
 
 function getProjection(fieldASTs) {
-  return fieldASTs.fieldNodes[0].selectionSet.selections.reduce(
-    (projections, selection) => {
-      projections[selection.name.value] = 1;
-      return projections;
-    },
-    {}
-  );
+  return fieldASTs.fieldNodes[0].selectionSet.selections.reduce((projections, selection) => {
+    projections[selection.name.value] = 1;
+    return projections;
+  }, {});
 }
 
 // Queries
@@ -117,6 +114,7 @@ exports.EntityQuery = new GraphQLObjectType({
               {
                 $match: matchObj,
               },
+              { $sort: { 'offers.0.scoreLevel': -1 } },
               { $unwind: '$offers' },
               {
                 $project: {
@@ -140,6 +138,7 @@ exports.EntityQuery = new GraphQLObjectType({
             // DEFAULT
             var items = await EntityModel.aggregate([
               { $match: { type: 'offers', locationSlug: args.locationSlug } },
+              { $sort: { 'offers.0.scoreLevel': -1 } },
               { $unwind: '$offers' },
               {
                 $project: {
@@ -166,15 +165,12 @@ exports.EntityQuery = new GraphQLObjectType({
               // sort them
               item.offers = item.offers.sort((a, b) => {
                 return (
-                  Number(b.scoreLevel) - Number(a.scoreLevel) ||
-                  parseFloat(b.scoreValue) - parseFloat(a.scoreValue)
+                  Number(b.scoreLevel) - Number(a.scoreLevel) || parseFloat(b.scoreValue) - parseFloat(a.scoreValue)
                 );
               });
 
               // remove dups by key {offer}-{source}
-              item.offers = _.uniqBy(item.offers, offer =>
-                [offer.offer, offer.source].join()
-              );
+              item.offers = _.uniqBy(item.offers, offer => [offer.offer, offer.source].join());
             }
           });
 
@@ -182,8 +178,7 @@ exports.EntityQuery = new GraphQLObjectType({
           items.sort(function(a, b) {
             return (
               Number(b.offers[0].scoreLevel) - Number(a.offers[0].scoreLevel) ||
-              parseFloat(b.offers[0].scoreValue) -
-                parseFloat(a.offers[0].scoreValue) ||
+              parseFloat(b.offers[0].scoreValue) - parseFloat(a.offers[0].scoreValue) ||
               b.offers.length - a.offers.length
             );
           });

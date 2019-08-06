@@ -3,18 +3,11 @@ const isServerRequest = process && process.env && process.env.HOSTNAME != null;
 const backendEndpointForClient = 'http://foodable.local:8090/graphql';
 const backendEndpointForServer = 'http://foodable:4000/graphql';
 var DOCKER_BACKEND_ENDPOINT =
-  isServerRequest != null && isServerRequest == true
-    ? backendEndpointForServer
-    : backendEndpointForClient;
+  isServerRequest != null && isServerRequest == true ? backendEndpointForServer : backendEndpointForClient;
 
 function getDBsettings() {
-  if (
-    process.env &&
-    process.env.MONGO_ENV != null &&
-    process.env.MONGO_ENV == 'atlas'
-  ) {
-    var atlasConnection =
-      'mongodb+srv://devtanna:K4eh5Ds2MrDkAk5I@foodable-cluster0-zyyjg.gcp.mongodb.net';
+  if (process.env && process.env.MONGO_ENV != null && process.env.MONGO_ENV == 'atlas') {
+    var atlasConnection = 'mongodb+srv://devtanna:K4eh5Ds2MrDkAk5I@foodable-cluster0-zyyjg.gcp.mongodb.net';
     return {
       DB: atlasConnection + '/foodabledb?retryWrites=true&w=majority',
       DB_CONNECT_URL: atlasConnection,
@@ -22,11 +15,7 @@ function getDBsettings() {
       DB_FULL_URL: atlasConnection + '/foodlabdb?retryWrites=true&w=majority',
     };
   }
-  if (
-    process.env &&
-    process.env.ENV != null &&
-    process.env.ENV == 'localhost'
-  ) {
+  if (process.env && process.env.ENV != null && process.env.ENV == 'localhost') {
     return {
       DB: 'mongodb://localhost/foodabledb',
       DB_CONNECT_URL: 'mongodb://localhost/',
@@ -113,13 +102,7 @@ var systemSettings = {
   PORT: 4000,
 };
 
-var devSettings = Object.assign(
-  {},
-  puppeteerSettings,
-  mongoSettings,
-  scraperSettings,
-  systemSettings
-);
+var devSettings = Object.assign({}, puppeteerSettings, mongoSettings, scraperSettings, systemSettings);
 
 ////////////////////////////////////////////////////////////////
 ////////// Warning!! These are production settings ////////////
@@ -142,12 +125,7 @@ function get_Azure_BackendEndpoint() {
   return 'http://localhost:4000/graphql';
 }
 
-var prodSettings = Object.assign(
-  {},
-  devSettings,
-  systemSettings,
-  scraperSettings
-);
+var prodSettings = Object.assign({}, devSettings, systemSettings, scraperSettings);
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 

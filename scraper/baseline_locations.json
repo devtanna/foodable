@@ -1,0 +1,542 @@
+[
+  {
+    "locationName": "Abu Hail",
+    "slug": "abu-hail"
+  },
+  {
+    "locationName": "Al Garhoud",
+    "slug": "al-garhoud"
+  },
+  {
+    "locationName": "Al Khabaisi",
+    "slug": "al-khabaisi"
+  },
+  {
+    "locationName": "Al Muraqqabat",
+    "slug": "al-muraqqabat"
+  },
+  {
+    "locationName": "Al Muteena",
+    "slug": "al-muteena"
+  },
+  {
+    "locationName": "Oud Al Muteena",
+    "slug": "oud-al-muteena"
+  },
+  {
+    "locationName": "Al Ras",
+    "slug": "al-ras"
+  },
+  {
+    "locationName": "Al Rigga",
+    "slug": "al-rigga"
+  },
+  {
+    "locationName": "Baniyas",
+    "slug": "baniyas"
+  },
+  {
+    "locationName": "Deira City Centre Area",
+    "slug": "deira-city-centre-area"
+  },
+  {
+    "locationName": "Dubai Festival City",
+    "slug": "dubai-festival-city"
+  },
+  {
+    "locationName": "Dubai International Airport Area",
+    "slug": "dubai-international-airport-area"
+  },
+  {
+    "locationName": "Hor Al Anz",
+    "slug": "hor-al-anz"
+  },
+  {
+    "locationName": "Naif",
+    "slug": "naif"
+  },
+  {
+    "locationName": "Rashidiya",
+    "slug": "rashidiya"
+  },
+  {
+    "locationName": "Al Karama",
+    "slug": "al-karama"
+  },
+  {
+    "locationName": "Mankhool",
+    "slug": "mankhool"
+  },
+  {
+    "locationName": "Meena Bazaar",
+    "slug": "meena-bazaar"
+  },
+  {
+    "locationName": "Oud Metha",
+    "slug": "oud-metha"
+  },
+  {
+    "locationName": "Port Rashid",
+    "slug": "port-rashid"
+  },
+  {
+    "locationName": "Umm Hurair",
+    "slug": "umm-hurair"
+  },
+  {
+    "locationName": "Bluewaters Island",
+    "slug": "bluewaters-island"
+  },
+  {
+    "locationName": "Dubai Marina",
+    "slug": "dubai-marina"
+  },
+  {
+    "locationName": "Emirates Hills",
+    "slug": "emirates-hills"
+  },
+  {
+    "locationName": "Jumeirah Beach Residence (JBR)",
+    "slug": "jumeirah-beach-residence-jbr"
+  },
+  {
+    "locationName": "Jumeirah Lake Towers (JLT)",
+    "slug": "jumeirah-lake-towers-jlt"
+  },
+  {
+    "locationName": "Palm Jumeirah",
+    "slug": "palm-jumeirah"
+  },
+  {
+    "locationName": "Al Barsha",
+    "slug": "al-barsha"
+  },
+  {
+    "locationName": "Al Barsha South",
+    "slug": "al-barsha-south"
+  },
+  {
+    "locationName": "Al Quoz",
+    "slug": "al-quoz"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area",
+    "slug": "al-quoz-industrial-area"
+  },
+  {
+    "locationName": "Dubai Hills",
+    "slug": "dubai-hills"
+  },
+  {
+    "locationName": "Al Safa",
+    "slug": "al-safa"
+  },
+  {
+    "locationName": "Jumeirah 1",
+    "slug": "jumeirah-1"
+  },
+  {
+    "locationName": "Jumeirah 2",
+    "slug": "jumeirah-2"
+  },
+  {
+    "locationName": "Jumeirah 3",
+    "slug": "jumeirah-3"
+  },
+  {
+    "locationName": "Madinat Jumeirah",
+    "slug": "madinat-jumeirah"
+  },
+  {
+    "locationName": "Umm Suqeim",
+    "slug": "umm-suqeim"
+  },
+  {
+    "locationName": "Business Bay",
+    "slug": "business-bay"
+  },
+  {
+    "locationName": "Downtown Dubai",
+    "slug": "downtown-dubai"
+  },
+  {
+    "locationName": "Dubai Design District",
+    "slug": "dubai-design-district"
+  },
+  {
+    "locationName": "Academic City",
+    "slug": "academic-city"
+  },
+  {
+    "locationName": "Al Awir & Beyond",
+    "slug": "al-awir-and-beyond"
+  },
+  {
+    "locationName": "Dubai Outlet Mall",
+    "slug": "dubai-outlet-mall"
+  },
+  {
+    "locationName": "Dubai Silicon Oasis (DSO)",
+    "slug": "dubai-silicon-oasis-dso"
+  },
+  {
+    "locationName": "International City",
+    "slug": "international-city"
+  },
+  {
+    "locationName": "Al Furjan",
+    "slug": "al-furjan"
+  },
+  {
+    "locationName": "Discovery Gardens",
+    "slug": "discovery-gardens"
+  },
+  {
+    "locationName": "Dubai Investment Park",
+    "slug": "dubai-investment-park"
+  },
+  {
+    "locationName": "Jafza",
+    "slug": "jafza"
+  },
+  {
+    "locationName": "Jebel Ali Industrial Area",
+    "slug": "jebel-ali-industrial-area"
+  },
+  {
+    "locationName": "Jebel Ali Village",
+    "slug": "jebel-ali-village"
+  },
+  {
+    "locationName": "Al Nahda",
+    "slug": "al-nahda"
+  },
+  {
+    "locationName": "Muhaisnah",
+    "slug": "muhaisnah"
+  },
+  {
+    "locationName": "Dubai Internationl Financial Center (DIFC)",
+    "slug": "difc"
+  },
+  {
+    "locationName": "Trade Centre Area",
+    "slug": "trade-centre-area"
+  },
+  {
+    "locationName": "Za'abeel",
+    "slug": "zabeel"
+  },
+  {
+    "locationName": "Al Khawaneej",
+    "slug": "al-khawaneej"
+  },
+  {
+    "locationName": "Al Warqa",
+    "slug": "al-warqa"
+  },
+  {
+    "locationName": "Mirdif",
+    "slug": "mirdif"
+  },
+  {
+    "locationName": "Al Sufouh",
+    "slug": "al-sufouh"
+  },
+  {
+    "locationName": "Barsha Heights",
+    "slug": "barsha-heights"
+  },
+  {
+    "locationName": "Dubai Internet City",
+    "slug": "dubai-internet-city"
+  },
+  {
+    "locationName": "Dubai Knowledge Village",
+    "slug": "dubai-knowledge-village"
+  },
+  {
+    "locationName": "Dubai Media City",
+    "slug": "dubai-media-city"
+  },
+  {
+    "locationName": "The Greens",
+    "slug": "the-greens"
+  },
+  {
+    "locationName": "Green Community Village",
+    "slug": "green-community-village"
+  },
+  {
+    "locationName": "Al Barari",
+    "slug": "al-barari"
+  },
+  {
+    "locationName": "Al Qudra",
+    "slug": "al-qudra"
+  },
+  {
+    "locationName": "Arabian Ranches",
+    "slug": "arabian-ranches"
+  },
+  {
+    "locationName": "City of Arabia",
+    "slug": "city-of-arabia"
+  },
+  {
+    "locationName": "DAMAC Hills",
+    "slug": "damac-hills"
+  },
+  {
+    "locationName": "Dubai Sports City",
+    "slug": "dubai-sports-city"
+  },
+  {
+    "locationName": "Dubai Studio City",
+    "slug": "dubai-studio-city"
+  },
+  {
+    "locationName": "Global Village",
+    "slug": "global-village"
+  },
+  {
+    "locationName": "Dubai Production City (IMPZ)",
+    "slug": "impz"
+  },
+  {
+    "locationName": "Motor City",
+    "slug": "motor-city"
+  },
+  {
+    "locationName": "Mudon",
+    "slug": "mudon"
+  },
+  {
+    "locationName": "Reem",
+    "slug": "reem"
+  },
+  {
+    "locationName": "Remraam",
+    "slug": "remraam"
+  },
+  {
+    "locationName": "The Villas",
+    "slug": "the-villas"
+  },
+  {
+    "locationName": "Town Square",
+    "slug": "town-square"
+  },
+  {
+    "locationName": "Al Hudaiba and Around",
+    "slug": "al-hudaiba-and-around"
+  },
+  {
+    "locationName": "Al Satwa",
+    "slug": "al-satwa"
+  },
+  {
+    "locationName": "Nad Al Sheba",
+    "slug": "nad-al-sheba"
+  },
+  {
+    "locationName": "Ras Al Khor",
+    "slug": "ras-al-khor"
+  },
+  {
+    "locationName": "Al Maktoum International Airport",
+    "slug": "al-maktoum-international-airport"
+  },
+  {
+    "locationName": "Al Badaa",
+    "slug": "al-badaa"
+  },
+  {
+    "locationName": "Al Baraha",
+    "slug": "al-baraha"
+  },
+  {
+    "locationName": "Al Hamriya",
+    "slug": "al-hamriya"
+  },
+  {
+    "locationName": "Al Jaddaf",
+    "slug": "al-jaddaf"
+  },
+  {
+    "locationName": "Al Jaffiliya",
+    "slug": "al-jaffiliya"
+  },
+  {
+    "locationName": "Al Mamzar",
+    "slug": "al-mamzar"
+  },
+  {
+    "locationName": "Al Manara",
+    "slug": "al-manara"
+  },
+  {
+    "locationName": "Al Mizhar",
+    "slug": "al-mizhar"
+  },
+  {
+    "locationName": "Al Muntazah",
+    "slug": "al-muntazah"
+  },
+  {
+    "locationName": "Al Souq Al Kabeer",
+    "slug": "al-souq-al-kabeer"
+  },
+  {
+    "locationName": "Al Twar",
+    "slug": "al-twar"
+  },
+  {
+    "locationName": "Dubai Healthcare City",
+    "slug": "dubai-healthcare-city"
+  },
+  {
+    "locationName": "Falcon City",
+    "slug": "falcon-city"
+  },
+  {
+    "locationName": "Jumeirah Golf Estates",
+    "slug": "jumeirah-golf-estates"
+  },
+  {
+    "locationName": "Jumeirah Heights",
+    "slug": "jumeirah-heights"
+  },
+  {
+    "locationName": "Jumeirah Islands",
+    "slug": "jumeirah-islands"
+  },
+  {
+    "locationName": "Jumeirah Village Circle",
+    "slug": "jumeirah-village-circle"
+  },
+  {
+    "locationName": "Jumeirah Village Triangle - JVT",
+    "slug": "jumeirah-village-triangle-jvt"
+  },
+  {
+    "locationName": "Layan",
+    "slug": "layan"
+  },
+  {
+    "locationName": "Legends",
+    "slug": "legends"
+  },
+  {
+    "locationName": "Liwan",
+    "slug": "liwan"
+  },
+  {
+    "locationName": "Majan",
+    "slug": "majan"
+  },
+  {
+    "locationName": "Meadows",
+    "slug": "meadows"
+  },
+  {
+    "locationName": "Nad Shamma",
+    "slug": "nad-shamma"
+  },
+  {
+    "locationName": "Nad Al Hamar",
+    "slug": "nad-al-hamar"
+  },
+  {
+    "locationName": "Port Saeed",
+    "slug": "port-saeed"
+  },
+  {
+    "locationName": "Springs",
+    "slug": "springs"
+  },
+  {
+    "locationName": "The Lakes",
+    "slug": "the-lakes"
+  },
+  {
+    "locationName": "The Sustainable City",
+    "slug": "the-sustainable-city"
+  },
+  {
+    "locationName": "Umm Al Sheif",
+    "slug": "umm-al-sheif"
+  },
+  {
+    "locationName": "Umm Ramool",
+    "slug": "umm-ramool"
+  },
+  {
+    "locationName": "Al Qusais",
+    "slug": "al-qusais"
+  },
+  {
+    "locationName": "Al Raffa",
+    "slug": "al-raffa"
+  },
+  {
+    "locationName": "Al Wasl",
+    "slug": "al-wasl"
+  },
+  {
+    "locationName": "Dubai Land",
+    "slug": "dubai-land"
+  },
+  {
+    "locationName": "Dubai Lifestyle City",
+    "slug": "dubai-lifestyle-city"
+  },
+  {
+    "locationName": "Jumeirah Park",
+    "slug": "jumeirah-park"
+  },
+  {
+    "locationName": "Corniche Deira",
+    "slug": "corniche-deira"
+  },
+  {
+    "locationName": "Dubai Creek",
+    "slug": "dubai-creek"
+  },
+  {
+    "locationName": "Meydan",
+    "slug": "meydan"
+  },
+  {
+    "locationName": "Palm Residences",
+    "slug": "palm-residences"
+  },
+  {
+    "locationName": "Sheikh Zayed Road",
+    "slug": "sheikh-zayed-road"
+  },
+  {
+    "locationName": "Dubai Maritime City",
+    "slug": "dubai-maritime-city"
+  },
+  {
+    "locationName": "Dubai Techno Park",
+    "slug": "dubai-techno-park"
+  },
+  {
+    "locationName": "Mira Community",
+    "slug": "mira-community"
+  },
+  {
+    "locationName": "The Palm Deira",
+    "slug": "the-palm-deira"
+  },
+  {
+    "locationName": "The Palm Jebel Ali",
+    "slug": "the-palm-jebel-ali"
+  },
+  {
+    "locationName": "Waterfront",
+    "slug": "waterfront"
+  }
+]
