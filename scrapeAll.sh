@@ -6,10 +6,10 @@ export ENV='localhost'
 node devops/slackBot.js "Starting Scraper"
 wait
 
-mongoexport --host localhost:27017,localhost:27017 --db foodabledb --collection collection_99_99_99 --type json --out backupdatadump.json
+sudo service mongod start
 wait
 
-sudo systemctl start mongodb
+mongoexport --host localhost:27017,localhost:27017 --db foodabledb --collection collection_99_99_99 --type json --out backupdatadump.json
 wait
 
 sleep 5
@@ -75,7 +75,7 @@ end=`date +%s`
 runtime=$((end-start))/86400
 echo "$runtime" ns
 
-sudo systemctl stop mongodb
+sudo service mongod stop
 wait
 
 mongoimport --host foodable-Cluster0-shard-0/foodable-cluster0-shard-00-00-zyyjg.gcp.mongodb.net:27017,foodable-cluster0-shard-00-01-zyyjg.gcp.mongodb.net:27017,foodable-cluster0-shard-00-02-zyyjg.gcp.mongodb.net:27017 --ssl --username devtanna --password K4eh5Ds2MrDkAk5I --authenticationDatabase admin --db foodabledb --collection collection_99_99_99 --drop --type json --file datadump.json
