@@ -114,7 +114,6 @@ exports.EntityQuery = new GraphQLObjectType({
               {
                 $match: matchObj,
               },
-              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1 } },
               { $unwind: '$offers' },
               {
                 $project: {
@@ -127,6 +126,7 @@ exports.EntityQuery = new GraphQLObjectType({
                   offers: { $addToSet: '$offers' },
                 },
               },
+              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1 } },
             ])
               .skip(pageSize * (page - 1))
               .limit(pageSize)
@@ -138,7 +138,6 @@ exports.EntityQuery = new GraphQLObjectType({
             // DEFAULT
             var items = await EntityModel.aggregate([
               { $match: { type: 'offers', locationSlug: args.locationSlug } },
-              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1 } },
               { $unwind: '$offers' },
               {
                 $project: {
@@ -151,6 +150,7 @@ exports.EntityQuery = new GraphQLObjectType({
                   offers: { $addToSet: '$offers' },
                 },
               },
+              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1 } },
             ])
               .skip(pageSize * (page - 1))
               .limit(pageSize)
