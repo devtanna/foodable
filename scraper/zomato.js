@@ -103,7 +103,8 @@ const run = async () => {
   let args = settings.PUPPETEER_BROWSER_ARGS;
 
   if (!settings.SCRAPER_TEST_MODE) {
-    const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
+    // const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
+    const myProxy = 'socks5://159.65.53.129:1080'; //await utils.getProxy();
     if (myProxy && myProxy.length > 0) {
       args.push(`--proxy-server=${myProxy}`);
     }

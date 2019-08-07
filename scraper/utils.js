@@ -95,6 +95,7 @@ function calculateScore(item) {
       /^(\d+)% off on all orders above aed\s*(\d+(.\d+)*) from/im,
       /^(\d+)% off on dine-in above aed\s*(\d+(.\d+)*) from/im,
       /^(\d+)% off on dine-in above aed\s*(\d+(.\d+)*)/im,
+      /^(\d+)% off on dine-in and your first home-delivery order from us/im,
     ],
     8: [
       /^2 for 1$/im,
@@ -104,7 +105,11 @@ function calculateScore(item) {
       /^buy 1 get 1 free$/im,
       /^special offer: buy one get one free!$/im,
     ],
-    7: [/^aed (\d+(.\d+)*) off all orders$/im],
+    7: [
+      /^aed (\d+(.\d+)*) off all orders$/im,
+      /^aed(\d+(.\d+)*) off all orders$/im,
+      /^aed(\d+(.\d+)*) off on all orders above aed(\d+(.\d+)*)$/im,
+    ],
 
     6: [/^(\d+) aed meals$/im, /^(\d+) aed meal$/im],
 
