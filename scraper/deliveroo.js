@@ -36,12 +36,12 @@ const scrapePage = async url => {
     const MAX = 100;
 
     while (keepGoing && index < MAX) {
-      await utils.delay(3000); // ! 5 second sleep per page
+      await utils.delay(1000); // ! 5 second sleep per page
       logger.info('Scraping page number: ' + index + ' in ' + url.url);
       let htmlBefore = await page.content();
       let offersCount = $('li[class*="HomeFeedGrid"]', htmlBefore).length;
       await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
-      await page.waitFor(4000);
+      await page.waitFor(1000);
       let htmlAfter = await page.content();
       let updatedOffersCount = $('li[class*="HomeFeedGrid"]', htmlAfter).length;
       if (updatedOffersCount === offersCount) {
@@ -161,12 +161,12 @@ const run = async () => {
 
   if (links != null) {
     if (settings.SCRAPER_TEST_MODE) {
-      links = links.slice(0, 2);
+      links = links.slice(0, 8);
     }
 
     logger.info('Number of locations received: ' + links.length);
     for (let i = 0; i < links.length; i++) {
-      await utils.delay(2000);
+      await utils.delay(1000);
       logger.info('On scrape ' + i + ' / ' + links.length);
 
       try {

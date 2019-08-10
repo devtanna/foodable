@@ -28,9 +28,6 @@ if (settings.ENABLE_TALABAT) {
 async function scrapeInfiniteScrollItems(page, url) {
   let items = [];
 
-  // we get the location from the url
-  const location = page.url().split('/')[6];
-
   try {
     await page.evaluate(() => {
       Array.from(document.querySelectorAll('span'))
@@ -38,19 +35,19 @@ async function scrapeInfiniteScrollItems(page, url) {
         .click();
     });
 
-    await page.waitFor(4000);
+    await page.waitFor(3000);
 
     let keepGoing = true;
     let index = 0;
     const MAX = 100;
 
     while (keepGoing && index < MAX) {
-      await utils.delay(3000); // ! 3 second sleep per page
-      logger.info('Scraping page number: ' + index + ' in ' + location);
+      await utils.delay(1000); // ! 3 second sleep per page
+      logger.info('Scraping page number: ' + index + ' in ' + url.locationName);
       let htmlBefore = await page.content();
       let offersCount = $('.rest-link', htmlBefore).length;
       await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
-      await page.waitFor(4000);
+      await page.waitFor(1000);
       let htmlAfter = await page.content();
       let updatedOffersCount = $('.rest-link', htmlAfter).length;
       if (updatedOffersCount === offersCount) {
@@ -146,7 +143,8 @@ async function scrapeInfiniteScrollItems(page, url) {
   } catch (e) {
     logger.error('Error during infinte page scrape: ' + e);
   }
-  logger.info(`Number of items scraped: ${items.length} in ${url.baseline}`);
+  logger.info(`Number of items scraped: ${items.length} in ${url.locationName}`);
+  logger.info(`Baselines for ${url.locationName} are: ${url.baseline}`);
   return items;
 }
 
@@ -164,66 +162,49 @@ async function scrapeInfiniteScrollItems(page, url) {
   if (urls != null) {
     let start, end;
     if (settings.SCRAPER_TEST_MODE) {
-      start = 0;
-      end = 4;
+      start = 5;
+      end = 8;
     } else {
       start = process.argv[2];
       end = Math.min(process.argv[3], 184);
     }
-    let count = end - start - 1; // to know when to terminate the db connection
-    console.log('Number of locations: ' + urls.length);
+    let locations = urls.slice(start, end + 1);
+    logger.info(`Scraping locations range: [${start} - ${end}], count: ${locations.length}`);
 
-    for (let i = start; i <= end; i++) {
-      await utils.delay(5000); // ! 5 second sleep so we dont trigger cloudflare.
-      logger.info('Locations processed: ' + i + '/' + end);
-      let url = urls[i];
+    await Promise.all(
+      locations.map(async (url, i) => {
+        await utils.delay(1000); // ! 5 second sleep so we dont trigger cloudflare.
 
-      if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
-        await utils.delay(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
-      }
+        if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
+          await utils.delay(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
+        }
 
-      browser.newPage().then(page => {
+        let page = await browser.newPage();
         page.setViewport(settings.PUPPETEER_VIEWPORT);
 
         try {
-          page.goto(`https://www.talabat.com/${url.url}`, settings.PUPPETEER_GOTO_PAGE_ARGS).then(() => {
-            logger.info('Scraping location: ' + url.url);
+          await page.goto(`https://www.talabat.com/${url.url}`, settings.PUPPETEER_GOTO_PAGE_ARGS);
+          logger.info('Scraping location: ' + url.url);
 
-            scrapeInfiniteScrollItems(page, url).then(res => {
-              var flatResults = [].concat.apply([], res);
-              parse.process_results(flatResults, db).then(() => {
-                count -= 1;
-                if (count < 0) {
-                  logger.info('Closing browser');
-                  // Close the browser.
-                  browser.close();
-                  logger.info('Closing client');
-                  // close the dbclient
-                  dbClient.close();
-                  logger.info('Talabat Scrape Done!');
-                } else {
-                  page.close();
-                }
-              });
-            });
-          });
+          let res = await scrapeInfiniteScrollItems(page, url);
+          let flatResults = [].concat.apply([], res);
+
+          await parse.process_results(flatResults, db);
+          await page.close();
+
+          logger.info('Locations processed: ' + (start + i) + '/' + end);
         } catch (error) {
           logger.info('', error);
-          count -= 1;
-          if (count < 0) {
-            logger.info('Closing browser');
-            // Close the browser.
-            browser.close();
-            logger.info('Closing client');
-            // close the dbclient
-            dbClient.close();
-            logger.info('Talabat Scrape Done!');
-          } else {
-            page.close();
-          }
         }
-      });
-    }
+      })
+    )
+      .then(async () => {
+        await browser.close();
+        // close the dbclient
+        await dbClient.close();
+        logger.info('Talabat Scrape Done!');
+      })
+      .catch(e => logger.error(`Error: ${e}`));
   }
 })();
 

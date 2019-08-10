@@ -25,7 +25,7 @@ wait
 node devops/slackBot.js "Running Talabat 0 to 92"
 wait
 
-echo "< talabat ..." && node scraper/talabat.js 0 92 && echo "... talabat >" &&
+echo "< talabat ..." && node scraper/talabat.js 0 90 && echo "... talabat >" &&
 wait
 
 node devops/slackBot.js "Running Deliveroo"
@@ -49,7 +49,7 @@ wait
 node devops/slackBot.js "Running Talabat 93 to 184"
 wait
 
-echo "< talabat ..." && node scraper/talabat.js 93 184 && echo "... talabat >" &&
+echo "< talabat ..." && node scraper/talabat.js 91 180 && echo "... talabat >" &&
 wait
 
 node devops/slackBot.js "Running Re Index"

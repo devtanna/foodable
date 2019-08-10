@@ -28,19 +28,19 @@ async function scrapeInfiniteScrollItems(page, location) {
   let items = [];
   try {
     await page.evaluate('$("#specialoffers").click()');
-    await page.waitFor(4000);
+    await page.waitFor(3000);
 
     let keepGoing = true;
     let index = 0;
     const MAX = 100;
 
     while (keepGoing && index < MAX) {
-      await utils.delay(3000); // ! 3 second sleep per page
+      await utils.delay(1000); // ! 3 second sleep per page
       logger.info('Scraping page number: ' + index + ' in ' + location.locationName);
       let htmlBefore = await page.content();
       let offersCount = $('.restaurant-item', htmlBefore).length;
       await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
-      await page.waitFor(4000);
+      await page.waitFor(1000);
       let htmlAfter = await page.content();
       let updatedOffersCount = $('.restaurant-item', htmlAfter).length;
       if (updatedOffersCount === offersCount) {
@@ -131,7 +131,7 @@ async function scrapeInfiniteScrollItems(page, location) {
 
   var count = locations.length - 1;
   for (let i = 0; i < locations.length; i++) {
-    await utils.delay(3000);
+    await utils.delay(1000);
     logger.info('On location ' + i + ' / ' + locations.length);
     try {
       if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {

@@ -116,7 +116,7 @@ const run = async () => {
   });
 
   if (settings.SCRAPER_TEST_MODE) {
-    locations = locations.slice(0, 4);
+    locations = locations.slice(24, 28);
   }
 
   await Promise.all(
@@ -135,7 +135,7 @@ const run = async () => {
 
         while (hasNext && pageNum <= maxPage) {
           try {
-            await utils.delay(3000);
+            await utils.delay(1000);
             logger.info('zomato scraper: Starting page: ' + pageNum + ' in ' + location.locationName);
             let res = await scrapePage(location, page, pageNum);
             if (res != undefined) {
