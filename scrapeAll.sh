@@ -22,7 +22,7 @@ start=`date +%s`
 echo "< dbclean ..." && node scraper/cleanup/dbClean.js && echo "... dbclean >" &&
 wait
 
-node devops/slackBot.js "Running Talabat 0 to 92"
+node devops/slackBot.js "Running Talabat 0 to 90"
 wait
 
 echo "< talabat ..." && node scraper/talabat.js 0 90 && echo "... talabat >" &&
@@ -46,7 +46,7 @@ wait
 echo "< zomato ..." && node scraper/zomato.js && echo "... zomato >" &&
 wait
 
-node devops/slackBot.js "Running Talabat 93 to 184"
+node devops/slackBot.js "Running Talabat 91 to 180"
 wait
 
 echo "< talabat ..." && node scraper/talabat.js 91 180 && echo "... talabat >" &&
