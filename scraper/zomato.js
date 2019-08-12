@@ -136,7 +136,7 @@ const run = async () => {
   };
 
   openPages.registerListener(function(val) {
-    if (val > 0 && val < 5 && yielded) {
+    if (val > 0 && val < settings.MAX_TABS && yielded) {
       yielded = false;
       let res = fdbGen.next();
     } else if (val === 0 && fdbGen.next().done) {

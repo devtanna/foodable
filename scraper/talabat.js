@@ -159,7 +159,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
         });
       } catch (error) {
         logger.error(`Error ${error}`);
-        page.close();
+        await page.close();
         openPages.v--;
       }
     });
@@ -208,7 +208,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
     };
 
     openPages.registerListener(function(val) {
-      if (val > 0 && val < 5 && yielded) {
+      if (val > 0 && val < settings.MAX_TABS && yielded) {
         yielded = false;
         let res = fdbGen.next();
       } else if (val === 0 && fdbGen.next().done) {
@@ -230,7 +230,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
         }
         openPages.v++;
         let location = locations[i];
-        let logMsg = `Scraping location: ${i} / ${locations.length} --- ${location.locationName}`;
+        let logMsg = `Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`;
         scrapeInfiniteScrollItems(location, logMsg, browser, openPages);
       }
     }
