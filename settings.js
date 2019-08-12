@@ -95,7 +95,7 @@ var scraperSettings = {
   ENABLE_ZOMATO: true,
   ENABLE_DELIVEROO: true,
   ENABLE_CARRIAGE: true,
-  MAX_TABS: 8,
+  MAX_TABS: 3,
 };
 
 var systemSettings = {

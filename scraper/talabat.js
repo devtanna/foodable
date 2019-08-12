@@ -48,14 +48,14 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
 
         while (keepGoing && index < MAX) {
           await utils.delay(1000); // ! 3 second sleep per page
-          logger.info('Scraping page number: ' + index + ' in ' + location.locationName);
+          logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
           let htmlBefore = await page.content();
           let offersCount = $('.rest-link', htmlBefore).length;
           await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
           await page.waitFor(1000);
           let htmlAfter = await page.content();
           let updatedOffersCount = $('.rest-link', htmlAfter).length;
-          if (updatedOffersCount === offersCount) {
+          if (updatedOffersCount === offersCount && index > 5) {
             keepGoing = false;
             break;
           }
@@ -63,6 +63,8 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
         }
 
         await page.waitFor(1000);
+
+        let skippedCount = 0;
 
         const html = await page.content();
         const finalOffersCount = $('.rest-link', html).length;
@@ -146,11 +148,14 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
             if (index === -1) {
               items.push(result); // write to db
             }
+          } else {
+            skippedCount++;
           }
         });
 
         logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
         logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
+        logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
 
         let flatResults = [].concat.apply([], items);
         parse.process_results(flatResults, db).then(async () => {

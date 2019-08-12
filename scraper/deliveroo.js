@@ -24,12 +24,9 @@ if (settings.ENABLE_DELIVEROO) {
 }
 // ########## END DB STUFF ####################
 
-let browser;
-let page;
-
-const scrapePage = async url => {
+const scrapePage = async (page, location) => {
   try {
-    await page.goto(`https://deliveroo.ae${url.url}?offer=all+offers`, settings.PUPPETEER_GOTO_PAGE_ARGS);
+    await page.goto(`https://deliveroo.ae${location.url}?offer=all+offers`, settings.PUPPETEER_GOTO_PAGE_ARGS);
 
     let keepGoing = true;
     let index = 0;
@@ -37,7 +34,7 @@ const scrapePage = async url => {
 
     while (keepGoing && index < MAX) {
       await utils.delay(1000); // ! 5 second sleep per page
-      logger.info('Scraping page number: ' + index + ' in ' + url.url);
+      logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
       let htmlBefore = await page.content();
       let offersCount = $('li[class*="HomeFeedGrid"]', htmlBefore).length;
       await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
@@ -53,11 +50,13 @@ const scrapePage = async url => {
 
     await page.waitFor(1000);
 
+    let skippedCount = 0;
+
     const html = await page.content();
     let items = [];
     let offersCount = $('li[class*="HomeFeedGrid"]', html).length;
 
-    logger.info(`Number of available offers: ${offersCount}`);
+    logger.info(`Number of available offers in ${location.locationName}: ${offersCount}`);
 
     $('a[class*="HomeFeedUICard"]', html).each(function() {
       let img;
@@ -115,7 +114,7 @@ const scrapePage = async url => {
         ),
         href: clean_deliveroo_href($(this).prop('href')),
         image: cleanImg(img),
-        location: url.baseline,
+        location: location.baseline,
         address: '',
         cuisine: cuisine.join(', '),
         offer,
@@ -128,7 +127,6 @@ const scrapePage = async url => {
 
       // if no offer, then skip
       if (result.offer.length > 0) {
-        // console.log(">>>", result);
         let { scoreLevel, scoreValue } = utils.calculateScore(result);
         result['scoreLevel'] = scoreLevel;
         result['scoreValue'] = scoreValue;
@@ -138,8 +136,13 @@ const scrapePage = async url => {
           // dont want to push duplicates
           items.push(result);
         }
+      } else {
+        skippedCount++;
       }
     });
+
+    logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
+
     return items;
   } catch (error) {
     logger.error('Error in data extract: ' + error);
@@ -152,12 +155,10 @@ const run = async () => {
     process.exit();
   }
 
-  browser = await puppeteer.launch({
+  let browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: settings.PUPPETEER_BROWSER_ARGS,
   });
-  page = await browser.newPage();
-  await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
   if (links != null) {
     if (settings.SCRAPER_TEST_MODE) {
@@ -165,31 +166,72 @@ const run = async () => {
     }
 
     logger.info('Number of locations received: ' + links.length);
-    for (let i = 0; i < links.length; i++) {
-      await utils.delay(1000);
-      logger.info('On scrape ' + i + ' / ' + links.length);
 
-      try {
-        logger.info('Scraping: ' + links[i].url);
+    let yielded = false;
+    let fdbGen = scrapeGenerator();
 
-        let res = await scrapePage(links[i]);
+    const openPages = {
+      value: 0,
+      listener: val => {},
+      set v(val) {
+        this.value = val;
+        this.listener(val);
+      },
+      get v() {
+        return this.value;
+      },
+      registerListener: function(l) {
+        this.listener = l;
+      },
+    };
 
-        if (res != null) {
-          var flatResults = [].concat.apply([], res);
+    openPages.registerListener(function(val) {
+      if (val > 0 && val < settings.MAX_TABS && yielded) {
+        yielded = false;
+        let res = fdbGen.next();
+      } else if (val === 0 && fdbGen.next().done) {
+        handleClose();
+      }
+    });
 
-          // this is an async call
-          await parse.process_results(flatResults, db);
+    const handleClose = () => {
+      browser.close();
+      dbClient.close();
+      logger.info('Deliveroo Scrape Done!');
+    };
+
+    function* scrapeGenerator() {
+      for (let i = 0; i < links.length; i++) {
+        if (openPages.v >= settings.MAX_TABS) {
+          yielded = true;
+          yield i;
         }
-      } catch (error) {
-        logger.error('Error in overall fetch: ' + error);
+        openPages.v++;
+        let location = links[i];
+
+        browser.newPage().then(async page => {
+          await page.setViewport(settings.PUPPETEER_VIEWPORT);
+
+          logger.info(`Scraping location: ${i + 1} / ${links.length} --- ${location.locationName}`);
+
+          let items = await scrapePage(page, location);
+
+          if (items != null) {
+            logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
+            logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
+
+            let flatResults = [].concat.apply([], items);
+            await parse.process_results(flatResults, db);
+
+            await page.close();
+            openPages.v--;
+          }
+        });
       }
     }
-  }
 
-  await browser.close();
-  // close the dbclient
-  await dbClient.close();
-  logger.info('Deliveroo Scrape Done!');
+    fdbGen.next();
+  }
 };
 
 run();
