@@ -104,7 +104,7 @@ const run = async () => {
 
   if (!settings.SCRAPER_TEST_MODE) {
     // const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
-    const myProxy = 'socks5://111.223.75.181:8888'; //await utils.getProxy();
+    const myProxy = 'socks5://111.223.75.178:8888'; //await utils.getProxy();
     if (myProxy && myProxy.length > 0) {
       args.push(`--proxy-server=${myProxy}`);
     }

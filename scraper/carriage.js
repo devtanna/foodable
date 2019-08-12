@@ -122,8 +122,6 @@ async function scrapeInfiniteScrollItems(page, location) {
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: settings.PUPPETEER_BROWSER_ARGS,
   });
-  const page = await browser.newPage();
-  page.setViewport(settings.PUPPETEER_VIEWPORT);
 
   if (settings.SCRAPER_TEST_MODE) {
     locations = locations.slice(0, 4);

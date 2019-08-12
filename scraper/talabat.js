@@ -25,7 +25,7 @@ if (settings.ENABLE_TALABAT) {
 }
 // ########## END DB STUFF ####################
 
-async function scrapeInfiniteScrollItems(page, url) {
+async function scrapeInfiniteScrollItems(page, location) {
   let items = [];
 
   try {
@@ -43,7 +43,7 @@ async function scrapeInfiniteScrollItems(page, url) {
 
     while (keepGoing && index < MAX) {
       await utils.delay(1000); // ! 3 second sleep per page
-      logger.info('Scraping page number: ' + index + ' in ' + url.locationName);
+      logger.info('Scraping page number: ' + index + ' in ' + location.locationName);
       let htmlBefore = await page.content();
       let offersCount = $('.rest-link', htmlBefore).length;
       await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
@@ -60,6 +60,9 @@ async function scrapeInfiniteScrollItems(page, url) {
     await page.waitFor(1000);
 
     const html = await page.content();
+    const finalOffersCount = $('.rest-link', html).length;
+
+    logger.info(`Offers count for ${location.locationName} = ${finalOffersCount}`);
 
     $('.rest-link', html).each(function() {
       let $ratingImgSrc = $('.rating-img > img', this).attr('src');
@@ -102,7 +105,7 @@ async function scrapeInfiniteScrollItems(page, url) {
           .prop('lazy-img')
           .split('?')
           .shift(),
-        location: url.baseline,
+        location: location.baseline,
         rating: starRating,
         cuisine: clean_talabat_cuisine(cuisine.join('')),
         offer: $("div[ng-if='rest.offersnippet']", this)
@@ -143,8 +146,8 @@ async function scrapeInfiniteScrollItems(page, url) {
   } catch (e) {
     logger.error('Error during infinte page scrape: ' + e);
   }
-  logger.info(`Number of items scraped: ${items.length} in ${url.locationName}`);
-  logger.info(`Baselines for ${url.locationName} are: ${url.baseline}`);
+  logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
+  logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
   return items;
 }
 
@@ -162,49 +165,82 @@ async function scrapeInfiniteScrollItems(page, url) {
   if (urls != null) {
     let start, end;
     if (settings.SCRAPER_TEST_MODE) {
-      start = 5;
-      end = 8;
+      start = 0;
+      end = 50;
     } else {
       start = process.argv[2];
-      end = Math.min(process.argv[3], 184);
+      end = Math.min(process.argv[3], 180);
     }
     let locations = urls.slice(start, end + 1);
     logger.info(`Scraping locations range: [${start} - ${end}], count: ${locations.length}`);
 
-    await Promise.all(
-      locations.map(async (url, i) => {
-        await utils.delay(1000); // ! 5 second sleep so we dont trigger cloudflare.
+    let yielded = false;
+    let fdbGen = scrapeGenerator();
 
-        if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
-          await utils.delay(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
+    const openPages = {
+      value: 0,
+      listener: val => {},
+      set v(val) {
+        this.value = val;
+        this.listener(val);
+      },
+      get v() {
+        return this.value;
+      },
+      registerListener: function(l) {
+        this.listener = l;
+      },
+    };
+
+    openPages.registerListener(function(val) {
+      if (val > 0 && val < 5 && yielded) {
+        yielded = false;
+        let res = fdbGen.next();
+      } else if (val === 0 && fdbGen.next().done) {
+        handleClose();
+      }
+    });
+
+    const handleClose = () => {
+      browser.close();
+      dbClient.close();
+      logger.info('Talabat Scrape Done!');
+    };
+
+    function* scrapeGenerator() {
+      for (let i = 0; i < locations.length; i++) {
+        if (openPages.v >= settings.MAX_TABS) {
+          yielded = true;
+          yield i;
         }
-
-        let page = await browser.newPage();
-        page.setViewport(settings.PUPPETEER_VIEWPORT);
+        openPages.v++;
 
         try {
-          await page.goto(`https://www.talabat.com/${url.url}`, settings.PUPPETEER_GOTO_PAGE_ARGS);
-          logger.info('Scraping location: ' + url.url);
+          let location = locations[i];
 
-          let res = await scrapeInfiniteScrollItems(page, url);
-          let flatResults = [].concat.apply([], res);
+          browser.newPage().then(page => {
+            page.setViewport(settings.PUPPETEER_VIEWPORT);
+            page.goto(`https://www.talabat.com/${location.url}`, { waitUntil: 'load' }).then(() => {
+              logger.info(`Scraping location: ${i} / ${locations.length} --- ${location.locationName}`);
 
-          await parse.process_results(flatResults, db);
-          await page.close();
-
-          logger.info('Locations processed: ' + (start + i) + '/' + end);
+              scrapeInfiniteScrollItems(page, location).then(res => {
+                var flatResults = [].concat.apply([], res);
+                parse.process_results(flatResults, db).then(async () => {
+                  await page.close();
+                  openPages.v--;
+                });
+              });
+            });
+          });
         } catch (error) {
-          logger.info('', error);
+          logger.error(`Error ${error}`);
+          page.close();
+          openPages.v--;
         }
-      })
-    )
-      .then(async () => {
-        await browser.close();
-        // close the dbclient
-        await dbClient.close();
-        logger.info('Talabat Scrape Done!');
-      })
-      .catch(e => logger.error(`Error: ${e}`));
+      }
+    }
+
+    fdbGen.next();
   }
 })();
 
