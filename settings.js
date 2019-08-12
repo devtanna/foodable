@@ -75,7 +75,7 @@ var scraperSettings = {
   // MAX PAGES TO SCRAPE
   SCRAPER_MAX_PAGE: function(scraperName) {
     if (this.SCRAPER_TEST_MODE) return 5;
-    if (scraperName == 'zomato') return 25;
+    if (scraperName == 'zomato') return Infinity;
     if (scraperName == 'talabat') return 5;
     if (scraperName == 'carriage') return 25;
     if (scraperName == 'deliveroo') return 5;

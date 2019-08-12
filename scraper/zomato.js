@@ -25,8 +25,6 @@ if (settings.ENABLE_ZOMATO) {
 }
 // ########## END DB STUFF ####################
 
-let browser;
-
 const scrapePage = async (location, page, pageNum = 1) => {
   try {
     const url = `${location.url}&page=${pageNum}`;
@@ -110,26 +108,60 @@ const run = async () => {
     }
   }
 
-  browser = await puppeteer.launch({
+  let browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: args,
   });
 
   if (settings.SCRAPER_TEST_MODE) {
-    locations = locations.slice(24, 28);
+    locations = locations.slice(24, 34);
   }
 
-  await Promise.all(
-    locations.map(async (location, i) => {
-      // logger.info('On location ' + location.locationName);
-      try {
-        if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
-          await utils.delay(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
-        }
+  let yielded = false;
+  let fdbGen = scrapeGenerator();
 
-        let page = await browser.newPage();
+  const openPages = {
+    value: 0,
+    listener: val => {},
+    set v(val) {
+      this.value = val;
+      this.listener(val);
+    },
+    get v() {
+      return this.value;
+    },
+    registerListener: function(l) {
+      this.listener = l;
+    },
+  };
+
+  openPages.registerListener(function(val) {
+    if (val > 0 && val < 5 && yielded) {
+      yielded = false;
+      let res = fdbGen.next();
+    } else if (val === 0 && fdbGen.next().done) {
+      handleClose();
+    }
+  });
+
+  const handleClose = () => {
+    browser.close();
+    dbClient.close();
+    logger.info('Zomato Scrape Done!');
+  };
+
+  function* scrapeGenerator() {
+    for (let i = 0; i < locations.length; i++) {
+      if (openPages.v >= settings.MAX_TABS) {
+        yielded = true;
+        yield i;
+      }
+      openPages.v++;
+      let location = locations[i];
+      let logMsg = `Scraping location: ${i} / ${locations.length} --- ${location.locationName}`;
+
+      browser.newPage().then(async page => {
         await page.setViewport(settings.PUPPETEER_VIEWPORT);
-
         let hasNext = true;
         let pageNum = 1;
 
@@ -141,7 +173,6 @@ const run = async () => {
             if (res != undefined) {
               var flatResults = [].concat.apply([], res.result);
 
-              // this is an async call
               await parse.process_results(flatResults, db, dbClient, scraper_name, (batch = true));
 
               logger.info(
@@ -154,30 +185,20 @@ const run = async () => {
                 pageNum++;
               } else {
                 hasNext = false;
-                await page.close();
               }
-            } else {
-              // await browser.close();
-              // // close the dbclient
-              // await dbClient.close();
-              // process.exit(1);
             }
           } catch (e) {
             logger.error(`Error: ${e}`);
           }
         }
-      } catch (error) {
-        logger.error(`Error:${error}`);
-      }
-    })
-  )
-    .then(async () => {
-      await browser.close();
-      // close the dbclient
-      await dbClient.close();
-      logger.info('Zomato Scrape Done!');
-    })
-    .catch(e => logger.error(`Error: ${e}`));
+
+        await page.close();
+        openPages.v--;
+      });
+    }
+  }
+
+  fdbGen.next();
 };
 
 run();
