@@ -32,6 +32,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
     let skippedCount = 0;
     const html = await page.content();
     let result = [];
+    let offersCount = $('.search-result', html).length;
 
     $('.search-result', html).each(function() {
       let cuisine = [];
@@ -89,7 +90,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
 
     logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
 
-    return { result, goNext: $('.paginator_item.next.item', html).length > 0 };
+    return { result, goNext: $('.paginator_item.next.item', html).length > 0 || offersCount === 0 };
   } catch (error) {
     logger.info(`Error in scrape ${error}`);
   }
