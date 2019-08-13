@@ -165,6 +165,8 @@ const run = async () => {
       openPages.v++;
       let location = locations[i];
 
+      logger.info(`Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`);
+
       browser.newPage().then(async page => {
         await page.setViewport(settings.PUPPETEER_VIEWPORT);
         let hasNext = true;
