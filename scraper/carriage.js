@@ -28,7 +28,7 @@ async function scrapeInfiniteScrollItems(page, location) {
   let items = [];
   try {
     await page.evaluate('$("#specialoffers").click()');
-    await page.waitFor(3000);
+    await page.waitFor(4000);
 
     let keepGoing = true;
     let index = 0;
@@ -36,7 +36,7 @@ async function scrapeInfiniteScrollItems(page, location) {
 
     while (keepGoing && index < MAX) {
       await utils.delay(1000); // ! 3 second sleep per page
-      logger.info('Scraping page number: ' + index + ' in ' + location.locationName);
+      logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
       let htmlBefore = await page.content();
       let offersCount = $('.restaurant-item', htmlBefore).length;
       await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
@@ -127,55 +127,71 @@ async function scrapeInfiniteScrollItems(page, location) {
     locations = locations.slice(0, 4);
   }
 
-  var count = locations.length - 1;
-  for (let i = 0; i < locations.length; i++) {
-    await utils.delay(1000);
-    logger.info('On location ' + i + ' / ' + locations.length);
-    try {
-      if (i > 0 && i % settings.SCRAPER_NUMBER_OF_MULTI_TABS == 0) {
-        await utils.delay(settings.SCRAPER_SLEEP_BETWEEN_TAB_BATCH);
+  logger.info('Number of locations received: ' + locations.length);
+
+  let yielded = false;
+  let fdbGen = scrapeGenerator();
+
+  const openPages = {
+    value: 0,
+    listener: val => {},
+    set v(val) {
+      this.value = val;
+      this.listener(val);
+    },
+    get v() {
+      return this.value;
+    },
+    registerListener: function(l) {
+      this.listener = l;
+    },
+  };
+
+  openPages.registerListener(function(val) {
+    if (val > 0 && val < settings.MAX_TABS && yielded) {
+      yielded = false;
+      let res = fdbGen.next();
+    } else if (val === 0 && fdbGen.next().done) {
+      handleClose();
+    }
+  });
+
+  const handleClose = () => {
+    browser.close();
+    dbClient.close();
+    logger.info('Carriage Scrape Done!');
+  };
+
+  function* scrapeGenerator() {
+    for (let i = 0; i < locations.length; i++) {
+      if (openPages.v >= settings.MAX_TABS) {
+        yielded = true;
+        yield i;
       }
+      openPages.v++;
+      let location = locations[i];
 
-      browser.newPage().then(page => {
-        page.setViewport(settings.PUPPETEER_VIEWPORT);
-        page
-          .goto(`https://www.trycarriage.com/en/ae/restaurants?area_id=${locations[i].id}`, { waitUntil: 'load' })
-          .then(() => {
-            logger.info('Scraping location: ' + locations[i].locationName);
+      browser.newPage().then(async page => {
+        await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-            scrapeInfiniteScrollItems(page, locations[i]).then(res => {
-              var flatResults = [].concat.apply([], res);
-              parse.process_results(flatResults, db).then(() => {
-                count -= 1;
-                if (count < 0) {
-                  logger.info('Closing browser');
-                  // Close the browser.
-                  browser.close();
-                  logger.info('Closing client');
-                  // close the dbclient
-                  dbClient.close();
-                  logger.info('Carriage Scrape Done!');
-                } else {
-                  page.close();
-                }
-              });
-            });
-          });
+        await page.goto(`https://www.trycarriage.com/en/ae/restaurants?area_id=${location.id}`, { waitUntil: 'load' });
+
+        logger.info(`Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`);
+
+        let items = await scrapeInfiniteScrollItems(page, location);
+
+        logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
+        logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
+
+        let flatResults = [].concat.apply([], items);
+
+        await parse.process_results(flatResults, db);
+
+        await page.close();
+        openPages.v--;
       });
-    } catch (error) {
-      logger.error(`Error ${error}`);
-      count -= 1;
-      if (count < 0) {
-        logger.info('Closing browser');
-        // Close the browser.
-        browser.close();
-        logger.info('Closing client');
-        // close the dbclient
-        dbClient.close();
-        logger.info('Carriage Scrape Done!');
-      } else {
-        page.close();
-      }
     }
   }
+
+  fdbGen.next();
 })();
