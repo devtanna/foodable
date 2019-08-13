@@ -5,7 +5,7 @@ const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 
-let locations = require('./zomato_locations.json');
+let locationsJson = require('./zomato_locations.json');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -134,9 +134,16 @@ const run = async () => {
     args: args,
   });
 
+  let start, end;
   if (settings.SCRAPER_TEST_MODE) {
-    locations = locations.slice(24, 34);
+    start = 0;
+    end = 10;
+  } else {
+    start = process.argv[2];
+    end = Math.min(process.argv[3], 87);
   }
+
+  let locations = locationsJson.slice(start, end + 1);
 
   let yielded = false;
   let fdbGen = scrapeGenerator();
@@ -172,6 +179,8 @@ const run = async () => {
   };
 
   function* scrapeGenerator() {
+    logger.info(`Scraping locations range: [${start} - ${end}], count: ${locations.length}`);
+
     for (let i = 0; i < locations.length; i++) {
       if (openPages.v >= settings.MAX_TABS) {
         yielded = true;
