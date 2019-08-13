@@ -29,8 +29,23 @@ const scrapePage = async (location, page, pageNum = 1) => {
   try {
     const url = `${location.url}&page=${pageNum}`;
     await page.goto(url, settings.PUPPETEER_GOTO_PAGE_ARGS);
+
     let skippedCount = 0;
     const html = await page.content();
+
+    let currentPage = parseInt(
+      $('.pagination-number b', html)
+        .eq(0)
+        .text()
+    );
+    let totalPages = parseInt(
+      $('.pagination-number b', html)
+        .eq(1)
+        .text()
+    );
+
+    logger.info(`${location.locationName}: ${currentPage} / ${totalPages}`);
+
     let result = [];
     let offersCount = $('.search-result', html).length;
 
@@ -90,7 +105,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
 
     logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
 
-    return { result, goNext: $('.paginator_item.next.item', html).length > 0 || offersCount === 0 };
+    return { result, goNext: currentPage < totalPages };
   } catch (error) {
     logger.info(`Error in scrape ${error}`);
   }
