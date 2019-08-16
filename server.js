@@ -11,6 +11,7 @@ const next = require('next');
 const path = require('path');
 const compression = require('compression');
 const device = require('express-device');
+const { sitemap } = require('./sitemap');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -19,28 +20,20 @@ const handle = app.getRequestHandler();
 // Connecting to mongodb:
 // we need this as we need to open a connection to the db for api calls
 // this connection is separate from the scraper connections
-mongoose.connect(
-  settings.DB,
-  { useCreateIndex: true, useNewUrlParser: true },
-  (err, client) => {
-    if (err) throw err;
-    console.log('connected to mongo :) dbname:', settings.DB);
+mongoose.connect(settings.DB, { useCreateIndex: true, useNewUrlParser: true }, (err, client) => {
+  if (err) throw err;
+  console.log('connected to mongo :) dbname:', settings.DB);
 
-    // small check to see if the db has the current active collection
-    client.db.listCollections().toArray(function(err, collections) {
-      var lastCollectionInDb = collections.sort()[collections.length - 1][
-        'name'
-      ];
-      if (!scraperDbHelper.checkDBhasActiveCollection(collections)) {
-        console.log('<< DB does NOT have the current active collection! :( >>');
-      } else {
-        console.log(
-          '<< DB active collection exists! :) >> "' + lastCollectionInDb + '"'
-        );
-      }
-    });
-  }
-);
+  // small check to see if the db has the current active collection
+  client.db.listCollections().toArray(function(err, collections) {
+    var lastCollectionInDb = collections.sort()[collections.length - 1]['name'];
+    if (!scraperDbHelper.checkDBhasActiveCollection(collections)) {
+      console.log('<< DB does NOT have the current active collection! :( >>');
+    } else {
+      console.log('<< DB active collection exists! :) >> "' + lastCollectionInDb + '"');
+    }
+  });
+});
 
 app
   .prepare()
@@ -59,11 +52,7 @@ app
     server.use(
       '/graphql',
       (req, res, next) => {
-        console.log(
-          'Request from: ' + req['headers']['host'],
-          ' and origin ',
-          req['headers']['origin']
-        );
+        console.log('Request from: ' + req['headers']['host'], ' and origin ', req['headers']['origin']);
         // check who is sending the request
         // var block_request = false;
         // // if (req['headers']['host'].indexOf('localhost') < 0) {
@@ -180,6 +169,17 @@ app
       res.status(200).sendFile(req.url, options);
     });
 
+    server.get('/sitemap.xml', function(req, res) {
+      try {
+        const xml = sitemap.toXML();
+        res.header('Content-Type', 'application/xml');
+        res.send(xml);
+      } catch (e) {
+        console.error(e);
+        res.status(500).end();
+      }
+    });
+
     server.get('*', (req, res) => {
       res.cookie('fdb_device', req.device.type);
       return handle(req, res);
@@ -188,12 +188,7 @@ app
     // points to 4000
     server.set('port', settings.PORT);
     server.listen(server.get('port'), () => {
-      console.log(
-        'Server is running at localhost:',
-        server.get('port'),
-        ' for NODE_ENV:',
-        process.env.NODE_ENV
-      );
+      console.log('Server is running at localhost:', server.get('port'), ' for NODE_ENV:', process.env.NODE_ENV);
     });
   })
   .catch(ex => {

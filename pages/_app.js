@@ -19,12 +19,9 @@ const PageHead = () => (
     <title>Discover & compare food deals in UAE | Foodable.ae</title>
     <meta
       name="description"
-      content="Compare food promotions and discover great deals from top food delivery websites in United Arab Emirates (UAE). Search by restaurant name or your favorite cuisine and find great food deals in your area."
+      content="Compare food promotions and discover great deals and offers from top food delivery websites in United Arab Emirates (UAE). Search by restaurant name or your favorite cuisine and find great food deals in your area."
     />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=5"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <link rel="icon" href="/static/favicon.png" />
     <link rel="manifest" href="/static/manifest.json" />
   </Head>
@@ -52,11 +49,7 @@ class FoodableApp extends App {
             border-radius: 0 !important;
           }
           .searchBtn {
-            background: linear-gradient(
-              270deg,
-              #f34343 18.23%,
-              #ff7e52 100%
-            ) !important;
+            background: linear-gradient(270deg, #f34343 18.23%, #ff7e52 100%) !important;
             color: #fff !important;
             width: 100%;
           }

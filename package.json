@@ -58,6 +58,7 @@
     "react-apollo": "^2.5.5",
     "react-dom": "^16.8.6",
     "semantic-ui-react": "^0.86.0",
+    "sitemap": "^4.0.2",
     "universal-cookie": "^4.0.0",
     "vanilla-lazyload": "^12.0.0",
     "winston": "^3.2.1",

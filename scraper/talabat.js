@@ -55,7 +55,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
           await page.waitFor(1000);
           let htmlAfter = await page.content();
           let updatedOffersCount = $('.rest-link', htmlAfter).length;
-          if (updatedOffersCount === offersCount && index > 5) {
+          if (updatedOffersCount === offersCount && index > 3) {
             keepGoing = false;
             break;
           }

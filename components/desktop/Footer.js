@@ -7,9 +7,7 @@ const Footer = () => (
     <div className="wrapper">
       <div className="logoWrapper">
         <img className="logo" src="/static/logo-white.svg" alt="Foodable.ae" />
-        <div className="copyrights">
-          Copyright 2019 foodable.ae | All rights reserved.
-        </div>
+        <div className="copyrights">Copyright 2019 foodable.ae | All rights reserved.</div>
       </div>
       <div className="nav">
         <div className="navHeading">About Foodable</div>
@@ -20,17 +18,17 @@ const Footer = () => (
             </a>
           </li>
           <li>
-            <Link href="/about-us">
+            <Link href="/about-us/">
               <a>About Us</a>
             </Link>
           </li>
           <li>
-            <Link href="/privacy-policy">
+            <Link href="/privacy-policy/">
               <a>Privacy Policy</a>
             </Link>
           </li>
           <li>
-            <Link href="/terms">
+            <Link href="/terms/">
               <a>Terms &amp; Conditions</a>
             </Link>
           </li>

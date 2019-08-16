@@ -4,14 +4,7 @@ import { AppContext } from '../../helpers/contexts';
 import { trackEvent } from '../../helpers/utils';
 import Listings from './Listings';
 
-const Foodables = ({
-  offers,
-  randomOffers,
-  location,
-  page,
-  cuisines,
-  filters,
-}) => {
+const Foodables = ({ offers, randomOffers, location, page, cuisines, filters }) => {
   const { sidebarVisible, setSidebarVisible } = useContext(AppContext);
 
   return (
@@ -35,7 +28,7 @@ const Foodables = ({
             </div>
             <div className="location__change">
               <a
-                href="/select-area"
+                href="/select-area/"
                 onClick={() => {
                   trackEvent('change_location', 'generic');
                   setSidebarVisible(false);

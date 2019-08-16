@@ -23,7 +23,7 @@ const PageHead = ({ page, location, filters }) => (
       {filters.cuisine.length > 0
         ? ` ${filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ')} cuisine`
         : null}{' '}
-      food deals in {location.text}, {capitalizeFirstLetter(location.city)}
+      food deals and offers in {location.text}, {capitalizeFirstLetter(location.city)}
       {filters.keywords !== ''
         ? `, matching keywords '${filters.keywords}'`
         : null}{' '}
@@ -110,7 +110,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
 
   // Validate city first, if invalid, redirect to select area page
   if (CITIES.find(obj => obj.key === city) === undefined) {
-    redirectToPage(res, '/select-area');
+    redirectToPage(res, '/select-area/');
   }
 
   try {
@@ -141,7 +141,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
     // No offers and random offers, probably means location is not correct
     // hence, send back to select-area page
     if (offers.length === 0 && randomOffers.length === 0) {
-      redirectToPage(res, '/select-area');
+      redirectToPage(res, '/select-area/');
       return;
     }
 

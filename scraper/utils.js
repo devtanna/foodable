@@ -75,7 +75,7 @@ function calculateScore(item) {
   if (!offer) return;
 
   var offerMapping = {
-    11: [
+    5: [
       /^(\d+)% off all orders$/im,
       /^(\d+)% off$/im,
       /^(\d+)% off on all orders$/im,
@@ -84,7 +84,18 @@ function calculateScore(item) {
       /^(\d+)% off on all dine-in and home-delivery orders$/im,
       /^discount of (\d+)% on your total bill$/im,
     ],
-    10: [
+    4: [
+      /^aed (\d+(.\d+)*) off all orders$/im,
+      /^aed(\d+(.\d+)*) off all orders$/im,
+      /^aed(\d+(.\d+)*) off on all orders above aed(\d+(.\d+)*)$/im,
+      /^2 for 1$/im,
+      /^bogo$/im,
+      /^buy 1 get 1 free$/im,
+      /^special offer: buy one get one free!$/im,
+      /^(\d+) aed meals$/im,
+      /^(\d+) aed meal$/im,
+    ],
+    3: [
       /^(\d+)% off orders above aed\s*(\d+(.\d+)*)$/im,
       /^(\d+)% off on all orders above\s*(\d+(.\d+)*)$/im,
       /^(\d+)% off on all orders above\s*(\d+(.\d+)*)/im,
@@ -95,37 +106,25 @@ function calculateScore(item) {
       /^(\d+)% off on dine-in and your first home-delivery order from us/im,
       /^(\d+)% off on your first order$/im,
       /^(\d+)% off on your first order from/im,
-    ],
-    9: [/^(\d+)% off selected items$/im],
-    8: [
-      /^2 for 1$/im,
-      /^bogo$/im,
-      /^Cheap Eats$/im,
-      /^Free Dessert$/im,
-      /^buy 1 get 1 free$/im,
-      /^special offer: buy one get one free!$/im,
-    ],
-    7: [
-      /^aed (\d+(.\d+)*) off all orders$/im,
-      /^aed(\d+(.\d+)*) off all orders$/im,
-      /^aed(\d+(.\d+)*) off on all orders above aed(\d+(.\d+)*)$/im,
+      /^(\d+)% off selected items$/im,
+      /^aed (\d+(.\d+)*) off selected items$/im,
     ],
 
-    6: [/^(\d+) aed meals$/im, /^(\d+) aed meal$/im],
-
-    5: [/^aed (\d+(.\d+)*) off selected items$/im],
-
-    4: [
+    2: [
       /^free item with orders over aed (\d+(.\d+)*)$/im,
       /^free [\w\s]+ with orders over aed (\d+(.\d+)*)$/im,
       /^spend aed (\d+(.\d+)*), get (\d+)% off$/im,
+      /^Cheap Eats$/im,
+      /^Free Dessert$/im,
+      /^free delivery$/im,
     ],
 
-    3: [/^special offers on menu items$/im, /^special offer$/im],
-
-    2: [/^(feel good)*\s*meal deals$/im],
-
-    1: [/^free delivery$/im, /^(\d+)% off on dine-in$/im],
+    1: [
+      /^(feel good)*\s*meal deals$/im,
+      /^special offers on menu items$/im,
+      /^special offer$/im,
+      /^(\d+)% off on dine-in$/im,
+    ],
   };
   let scoreLevel, scoreValue;
   let foundMatch = false;
