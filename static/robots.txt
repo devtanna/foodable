@@ -72,3 +72,5 @@ Disallow: /
 
 User-agent: SemrushBot-SA
 Disallow: /
+
+Sitemap: http://foodable.ae/sitemap.xml
