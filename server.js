@@ -12,6 +12,7 @@ const path = require('path');
 const compression = require('compression');
 const device = require('express-device');
 const { sitemap } = require('./sitemap');
+const nodemailer = require('nodemailer');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -117,8 +118,9 @@ app
     });
 
     // Simple ContactUs Endpoint + VALIDATION
-    server.post('/contactus', (req, res) => {
+    server.post('/contactus', async (req, res) => {
       console.log(req.body);
+
       if (!req.body.email) {
         return res.status(400).send({
           success: 'false',
@@ -138,10 +140,22 @@ app
         });
       }
 
-      dbHelper.insertOneEntryIntoMongo(
-        { email: req.body.email, message: req.body.message, added: new Date() },
-        settings.CONTACTUS_MONGO_COLLECTION_NAME
-      );
+      const MAILER_SETUP = {
+        service: 'gmail',
+        auth: {
+          user: 'foodable.ae@gmail.com',
+          pass: 'fdb4life',
+        },
+      };
+
+      let transporter = nodemailer.createTransport(MAILER_SETUP);
+
+      let info = await transporter.sendMail({
+        from: 'foodable.ae@gmail.com',
+        to: 'foodable.ae@gmail.com',
+        subject: `Message from: ${req.body.email}`,
+        text: req.body.message,
+      });
 
       return res.status(201).send({
         success: 'true',
