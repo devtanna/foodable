@@ -3,19 +3,19 @@ const baselines = require('./scraper/baseline_locations.json');
 
 const urls = [
   {
-    url: 'http://foodable.ae/about-us/',
+    url: 'http://foodable.ae/about-us',
     changefreq: 'monthly',
   },
   {
-    url: 'http://foodable.ae/privacy-policy/',
+    url: 'http://foodable.ae/privacy-policy',
     changefreq: 'monthly',
   },
   {
-    url: 'http://foodable.ae/select-area/',
+    url: 'http://foodable.ae/select-area',
     changefreq: 'monthly',
   },
   {
-    url: 'http://foodable.ae/terms/',
+    url: 'http://foodable.ae/terms',
     changefreq: 'monthly',
   },
 ];

@@ -20,7 +20,7 @@ Index.getInitialProps = async ({ req, res, query }) => {
     redirectToPage(res, `/${selectedLocation.city}/${selectedLocation.slug}/`);
     return;
   } catch (e) {
-    redirectToPage(res, '/select-area/');
+    redirectToPage(res, '/select-area');
     return;
   }
 

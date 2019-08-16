@@ -12,7 +12,7 @@ const PageHead = () => (
 
 const PrivacyPolicy = () => {
   useEffect(() => {
-    trackPageView('privacy policy', '/privacy-policy/');
+    trackPageView('privacy policy', '/privacy-policy');
   }, []);
 
   return (

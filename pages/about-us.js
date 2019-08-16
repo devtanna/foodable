@@ -12,7 +12,7 @@ const PageHead = () => (
 
 const AboutUs = () => {
   useEffect(() => {
-    trackPageView('about us', '/about-us/');
+    trackPageView('about us', '/about-us');
   }, []);
 
   return (

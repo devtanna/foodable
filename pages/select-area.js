@@ -6,7 +6,7 @@ import { getLocations } from '../helpers/api';
 
 const SelectArea = ({ locations }) => {
   useEffect(() => {
-    trackPageView('landingpage', '/select-area/');
+    trackPageView('landingpage', '/select-area');
   }, []);
 
   return (

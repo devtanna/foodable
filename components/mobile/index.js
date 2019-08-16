@@ -28,7 +28,7 @@ const Foodables = ({ offers, randomOffers, location, page, cuisines, filters }) 
             </div>
             <div className="location__change">
               <a
-                href="/select-area/"
+                href="/select-area"
                 onClick={() => {
                   trackEvent('change_location', 'generic');
                   setSidebarVisible(false);
