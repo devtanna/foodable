@@ -17,9 +17,7 @@ const Landing = ({ locations }) => {
     <main>
       <div className="wrapper">
         <img className="logo" src="/static/logo.svg" alt="Foodable.ae" />
-        <h1>
-          Discover and compare great food deals from top food delivery websites!
-        </h1>
+        <h1>Discover and compare great food deals from top food delivery websites!</h1>
         <div className="ctaWrapper">
           <Dropdown
             selection
@@ -55,7 +53,7 @@ const Landing = ({ locations }) => {
       <style jsx>{`
         main {
           height: 100%;
-          background: #fff url('/static/lp-bg-s.svg') 30% 100% no-repeat;
+          background: #fff url('/static/lp-bg-s.webp') 30% 100% no-repeat;
         }
         .wrapper {
           max-width: 800px;
@@ -98,7 +96,7 @@ const Landing = ({ locations }) => {
         }
         @media ${device.tablet} {
           main {
-            background: #fff url('/static/lp-bg.svg') 0 110% no-repeat;
+            background: #fff url('/static/lp-bg.webp') 0 110% no-repeat;
             background-size: 100%;
           }
           .wrapper {

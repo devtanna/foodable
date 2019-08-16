@@ -1,23 +1,23 @@
 export const offerSources = {
   talabat: {
     color: '#FF6400',
-    logo: '/static/restaurant-banners/talabat.png',
+    logo: '/static/restaurant-banners/talabat.webp',
   },
   deliveroo: {
     color: '#00CCBC',
-    logo: '/static/restaurant-banners/deliveroo.png',
+    logo: '/static/restaurant-banners/deliveroo.webp',
   },
   carriage: {
     color: '#E0513D',
-    logo: '/static/restaurant-banners/carriage.png',
+    logo: '/static/restaurant-banners/carriage.webp',
   },
   zomato: {
     color: '#CB202D',
-    logo: '/static/restaurant-banners/zomato.png',
+    logo: '/static/restaurant-banners/zomato.webp',
   },
   ubereats: {
     color: '#000',
-    logo: '/static/restaurant-banners/uber-eats.png',
+    logo: '/static/restaurant-banners/uber-eats.webp',
   },
 };
 
