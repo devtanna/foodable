@@ -140,22 +140,27 @@ app
         });
       }
 
-      const MAILER_SETUP = {
-        service: 'gmail',
-        auth: {
-          user: 'foodable.ae@gmail.com',
-          pass: 'fdb4life',
-        },
-      };
+      try {
+        const MAILER_SETUP = {
+          service: 'gmail',
+          auth: {
+            user: 'foodable.ae@gmail.com',
+            pass: 'fdb4life',
+          },
+        };
 
-      let transporter = nodemailer.createTransport(MAILER_SETUP);
+        let transporter = nodemailer.createTransport(MAILER_SETUP);
 
-      let info = await transporter.sendMail({
-        from: 'foodable.ae@gmail.com',
-        to: 'foodable.ae@gmail.com',
-        subject: `Message from: ${req.body.email}`,
-        text: req.body.message,
-      });
+        await transporter.sendMail({
+          from: 'foodable.ae@gmail.com',
+          to: 'foodable.ae@gmail.com',
+          subject: `Message from: ${req.body.email}`,
+          text: req.body.message,
+        });
+      } catch (e) {
+        logger.error(e);
+        return res.status(500).end();
+      }
 
       return res.status(201).send({
         success: 'true',
@@ -189,8 +194,9 @@ app
         res.header('Content-Type', 'application/xml');
         res.send(xml);
       } catch (e) {
-        console.error(e);
-        res.status(500).end();
+        logger.error(e);
+        consol.error(e);
+        return res.status(500).end();
       }
     });
 
