@@ -80,6 +80,7 @@ var scraperSettings = {
     if (scraperName == 'carriage') return 25;
     if (scraperName == 'deliveroo') return 5;
     if (scraperName == 'ubereats') return 5;
+    if (scraperName == 'eateasy') return 5;
     return 5;
   },
   // Max number of multi tabs to open at a time
@@ -95,6 +96,7 @@ var scraperSettings = {
   ENABLE_ZOMATO: true,
   ENABLE_DELIVEROO: true,
   ENABLE_CARRIAGE: true,
+  ENABLE_EATEASY: true,
   MAX_TABS: 4,
 };
 

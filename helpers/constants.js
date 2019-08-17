@@ -19,6 +19,10 @@ export const offerSources = {
     color: '#000',
     logo: '/static/restaurant-banners/uber-eats.webp',
   },
+  eateasy: {
+    color: '#e71c38',
+    logo: '/static/restaurant-banners/eateasy.webp',
+  },
 };
 
 export const TRACKING_ID = 'UA-142540848-1';
