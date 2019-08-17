@@ -143,6 +143,8 @@ app
       try {
         const MAILER_SETUP = {
           service: 'gmail',
+          port: 587,
+          secure: false,
           auth: {
             user: 'foodable.ae@gmail.com',
             pass: 'fdb4life',
@@ -158,7 +160,7 @@ app
           text: req.body.message,
         });
       } catch (e) {
-        logger.error(e);
+        console.error(e);
         return res.status(500).end();
       }
 
@@ -194,7 +196,6 @@ app
         res.header('Content-Type', 'application/xml');
         res.send(xml);
       } catch (e) {
-        logger.error(e);
         consol.error(e);
         return res.status(500).end();
       }
