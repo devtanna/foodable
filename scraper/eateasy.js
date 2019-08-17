@@ -12,7 +12,7 @@ const logger = require('../helpers/logging').getLogger();
 var scraper_name = 'eateasy';
 var db;
 var dbClient;
-if (settings.ENABLE_DELIVEROO) {
+if (settings.ENABLE_EATEASY) {
   // Initialize connection once at the top of the scraper
   var MongoClient = require('mongodb').MongoClient;
   MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
@@ -114,7 +114,7 @@ const scrapePage = async (page, location) => {
 };
 
 const run = async () => {
-  if (!settings.ENABLE_DELIVEROO) {
+  if (!settings.ENABLE_EATEASY) {
     logger.info('Eateasy scraper is DISABLED. EXITING.');
     process.exit();
   }
