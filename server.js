@@ -164,7 +164,7 @@ app
 
       return res.status(201).send({
         success: 'true',
-        message: 'Contact-us entry added successfully.',
+        message: 'Contact us email sent successfully.',
       });
     });
 
