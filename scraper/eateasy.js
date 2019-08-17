@@ -66,7 +66,7 @@ const scrapePage = async (page, location) => {
             .trim()
         ),
         href: $(this).prop('href'),
-        image: cleanImg($('.restaurant-box-banner img', this).prop('src')),
+        image: cleanImg($('.restaurant-box-logo img', this).prop('src')),
         location: location.baseline,
         address: $('.restaurant-box-desc .location', this)
           .text()
