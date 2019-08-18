@@ -22,6 +22,7 @@ const PageHead = () => (
       content="Compare food promotions and discover great deals and offers from top food delivery websites in United Arab Emirates (UAE). Search by restaurant name or your favorite cuisine and find great food deals in your area."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="theme-color" content="#F66550" />
     <link rel="icon" href="/static/favicon.png" />
     <link rel="manifest" href="/static/manifest.json" />
   </Head>

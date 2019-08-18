@@ -3,32 +3,32 @@ const baselines = require('./scraper/baseline_locations.json');
 
 const urls = [
   {
-    url: 'http://foodable.ae/about-us',
+    url: 'https://foodable.ae/about-us',
     changefreq: 'monthly',
   },
   {
-    url: 'http://foodable.ae/privacy-policy',
+    url: 'https://foodable.ae/privacy-policy',
     changefreq: 'monthly',
   },
   {
-    url: 'http://foodable.ae/select-area',
+    url: 'https://foodable.ae/select-area',
     changefreq: 'monthly',
   },
   {
-    url: 'http://foodable.ae/terms',
+    url: 'https://foodable.ae/terms',
     changefreq: 'monthly',
   },
 ];
 
 baselines.forEach(baseline =>
   urls.push({
-    url: `http://foodable.ae/dubai/${baseline.slug}/`,
+    url: `https://foodable.ae/dubai/${baseline.slug}/`,
     changefreq: 'monthly',
   })
 );
 
 const sitemap = createSitemap({
-  hostname: 'http://foodable.ae',
+  hostname: 'https://foodable.ae',
   urls,
 });
 
