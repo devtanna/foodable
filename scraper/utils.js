@@ -82,6 +82,7 @@ function calculateScore(item) {
       /^(\d+)% off on all orders$/im,
       /^(\d+)% off on all orders from/im,
       /^(\d+)% discount on food and beverage$/im,
+      /^(\d+)% off every menu item today$/im,
       /^(\d+)% off on all dine-in and home-delivery orders$/im,
       /^discount of (\d+)% on your total bill$/im,
     ],
