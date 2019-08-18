@@ -24,7 +24,7 @@ const Terms = () => {
         <h3>Welcome to Foodable!</h3>
         <p>
           Please read these Terms of Use carefully before using the website and services offered by Foodable. They set
-          forth the legally binding Agreement for your use of the website at http://www.foodable.ae (the “website”) and
+          forth the legally binding Agreement for your use of the website at https://www.foodable.ae (the “website”) and
           all services provided by Foodable.
         </p>
 

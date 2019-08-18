@@ -68,8 +68,8 @@ const PrivacyPolicy = () => {
           <p>
             This Privacy Policy ("Policy") covers how Foodable treats personal information, tracks or collects in
             connection with your use of{' '}
-            <a href="http://foodable.ae/" target="_blank">
-              http://foodable.ae
+            <a href="https://foodable.ae/" target="_blank">
+              foodable.ae
             </a>{' '}
             ("Site") and any applications created and available through or in connection with social networks
             (collectively, the "Services").
