@@ -45,15 +45,19 @@ function sendStats(db) {
     .collection(collectionName)
     .find({ type: 'offers', 'offers.0.source': 'deliveroo' })
     .count();
+  let etCount = db
+    .collection(collectionName)
+    .find({ type: 'offers', 'offers.0.source': 'eateasy' })
+    .count();
 
   console.log(totalCount);
 
-  Promise.all([zCount, tCount, uCount, cCount, dCount, totalCount]).then(result => {
+  Promise.all([zCount, tCount, uCount, cCount, dCount, etCount, totalCount]).then(result => {
     const slackWebHook = 'https://hooks.slack.com/services/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';
     let payload = {
       text: `Current Offer Stats:\n\tZomato: ${result[0]}\n\tTalabat: ${result[1]}\n\tUbereats: ${
         result[2]
-      }\n\tCarriage: ${result[3]}\n\tDeliveroo: ${result[4]}\n\n\tTotal: ${result[5]}.
+      }\n\tCarriage: ${result[3]}\n\tDeliveroo: ${result[4]}\n\tEat-Easy: ${result[5]}\n\n\tTotal: ${result[6]}.
       `,
       username: 'azure-scraper',
       icon_emoji: ':thumbsup:',
