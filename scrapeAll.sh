@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "---starting script-----------------------------------------------" && date
-echo $PWD && cd /home/foodablescraper/app/foodable && echo $PWD
+echo $PWD && cd /home/foodableae/foodable && echo $PWD
 export ENV='localhost'
 
 node devops/slackBot.js "Starting Scraper"
