@@ -82,28 +82,15 @@ const Landing = ({ locations }) => {
           padding: 0 30px;
           grid-column-gap: 15px;
         }
-        @media ${device.mobileM} {
-          .logo {
-            max-width: 225px;
-          }
-          h1 {
-            font-size: 1.5rem;
-          }
-        }
-        @media ${device.mobileL} {
-          main {
-            background-size: 100%;
-          }
-        }
         @media ${device.tablet} {
-          main {
-            background: #fff url('/static/lp-bg.webp') 0 110% no-repeat;
-            background-size: 100%;
-          }
           .wrapper {
             padding-top: 75px;
           }
+          .logo {
+            max-width: 300px;
+          }
           h1 {
+            font-size: 1.9rem;
             margin: 50px 30px 75px;
           }
           .ctaWrapper {
