@@ -54,6 +54,7 @@ const Landing = ({ locations }) => {
         main {
           height: 100%;
           background: #fff url('/static/lp-bg-s.webp') 30% 100% no-repeat;
+          background-size: contain;
         }
         .wrapper {
           max-width: 800px;
@@ -66,7 +67,7 @@ const Landing = ({ locations }) => {
         }
         .logo {
           width: 100%;
-          max-width: 290px;
+          max-width: 200px;
           margin: 0 auto;
         }
         h1 {
@@ -83,10 +84,10 @@ const Landing = ({ locations }) => {
         }
         @media ${device.mobileM} {
           .logo {
-            max-width: 350px;
+            max-width: 225px;
           }
           h1 {
-            font-size: 2rem;
+            font-size: 1.5rem;
           }
         }
         @media ${device.mobileL} {
