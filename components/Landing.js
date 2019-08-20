@@ -83,6 +83,10 @@ const Landing = ({ locations }) => {
           grid-column-gap: 15px;
         }
         @media ${device.tablet} {
+          main {
+            background: #fff url('/static/lp-bg.webp') 0 110% no-repeat;
+            background-size: 100%;
+          }
           .wrapper {
             padding-top: 75px;
           }
