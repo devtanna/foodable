@@ -18,7 +18,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
         <div className="mainWrapper">
           {!isSearchPage && hasOffers && (
             <Fragment>
-              <h1 className="sectionHeading">Best offers near {location.text}</h1>
+              <h1 className="sectionHeading">Food deals near {location.text}</h1>
             </Fragment>
           )}
           {hasOffers ? (
