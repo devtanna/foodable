@@ -10,10 +10,7 @@ const Search = ({ cuisines, filters, onSearch }) => {
   cuisines.forEach(cuisine => {
     let key = slugify(cuisine);
 
-    if (
-      cuisinesOptions.filter(option => option.key === key).length > 0 ||
-      key === ''
-    ) {
+    if (cuisinesOptions.filter(option => option.key === key).length > 0 || key === '') {
       return false;
     }
 
@@ -34,10 +31,16 @@ const Search = ({ cuisines, filters, onSearch }) => {
 
   const handleSearch = () => {
     let query = {};
-    if (keywords) query.keywords = keywords;
-    if (selectedCuisine.length) query.cuisine = selectedCuisine;
 
-    trackEvent('search', 'generic', query.keywords, query.cuisine);
+    if (keywords) {
+      query.keywords = keywords;
+      trackEvent('search', 'generic', 'keywords', query.keywords);
+    }
+
+    if (selectedCuisine.length) {
+      query.cuisine = selectedCuisine;
+      trackEvent('search', 'generic', 'cuisine', query.cuisine);
+    }
 
     if (keywords === '' && selectedCuisine.length === 0) {
       window.location.pathname = '/';
