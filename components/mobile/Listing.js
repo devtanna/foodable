@@ -32,28 +32,17 @@ const Listing = ({ offer }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <LazyImage
-          src={imgSrc}
-          alt={mainOffer.title}
-          width="200"
-          height="200"
-        />
+        <LazyImage src={imgSrc} alt={mainOffer.title} width="200" height="200" />
       </div>
       <div className="listing__content">
         <div className="listing__meta">
           <div className="meta__name">
             {mainOffer.title}
-            <small className="meta__cuisine">{mainOffer.cuisine}</small>
+            <small className="meta__cuisine truncate">{mainOffer.cuisine}</small>
           </div>
           {initialRating && (
             <div className="meta__rating">
-              <Rating
-                size="small"
-                icon="star"
-                disabled
-                defaultRating={Number(initialRating)}
-                maxRating={5}
-              />
+              <Rating size="small" icon="star" disabled defaultRating={Number(initialRating)} maxRating={5} />
             </div>
           )}
         </div>
@@ -66,14 +55,7 @@ const Listing = ({ offer }) => {
             href={mainOffer.href}
             target="_blank"
             rel="noopener"
-            onClick={() =>
-              trackEvent(
-                'offer_click',
-                'main',
-                mainOffer.source,
-                mainOffer.title
-              )
-            }
+            onClick={() => trackEvent('offer_click', 'main', mainOffer.source, mainOffer.title)}
             className="bestOffer__footer">
             <div>View Deal</div>
             <div>
@@ -85,19 +67,12 @@ const Listing = ({ offer }) => {
       {otherOffers.length > 0 && (
         <div className="otherOffers">
           <Accordion>
-            <Accordion.Title
-              active={activeIndex === 0}
-              index={0}
-              onClick={handleAccordion}
-              className="accordionTitle">
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={handleAccordion} className="accordionTitle">
               <div className="showMoreBtn">
-                Show more deals{' '}
-                <Icon name="arrow alternate circle down outline" />
+                Show more deals <Icon name="arrow alternate circle down outline" />
               </div>
             </Accordion.Title>
-            <Accordion.Content
-              active={activeIndex === 0}
-              className="accordionContent">
+            <Accordion.Content active={activeIndex === 0} className="accordionContent">
               <ul className="otherOffers__list">
                 {otherOffers.map((otherOffer, index) => (
                   <li key={index}>
@@ -105,14 +80,7 @@ const Listing = ({ offer }) => {
                       className="otherOffer__offer"
                       href={otherOffer.href}
                       rel="noopener"
-                      onClick={() =>
-                        trackEvent(
-                          'offer_click',
-                          'others',
-                          otherOffer.source,
-                          otherOffer.title
-                        )
-                      }
+                      onClick={() => trackEvent('offer_click', 'others', otherOffer.source, otherOffer.title)}
                       target="_blank">
                       <span>{otherOffer.source}</span>
                       <span>{otherOffer.offer}</span>
@@ -216,6 +184,12 @@ const Listing = ({ offer }) => {
         }
         :global(.accordionTitle, .accordionContent) {
           padding: 0 !important;
+        }
+        .truncate {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
         }
       `}</style>
     </div>

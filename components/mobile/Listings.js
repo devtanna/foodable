@@ -18,7 +18,9 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
         <div className="mainWrapper">
           {!isSearchPage && hasOffers && (
             <Fragment>
-              <h1 className="sectionHeading">Food deals near {location.text}</h1>
+              <h1 className="sectionHeading">
+                <span>Food deals near</span> {location.text}
+              </h1>
             </Fragment>
           )}
           {hasOffers ? (
@@ -45,7 +47,10 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
           color: #3b3b3b;
           margin: 0;
           padding: 15px 0 0 0;
-          font-size: 18px;
+          font-size: 16px;
+        }
+        .sectionHeading span {
+          font-weight: normal;
         }
         .mainWrapper {
           padding: 0 10px;
