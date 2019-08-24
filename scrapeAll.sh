@@ -70,7 +70,7 @@ wait
 node scraper/reindex.js
 wait
 
-node devops/slackBot.js "All Done"
+node devops/slackBot.js "All Scrapers Done"
 wait
 
 node devops/systemPing.js
@@ -100,4 +100,11 @@ echo "Data Transported"
 wait
 
 echo date >> /tmp/cron_timestamps.txt
+wait
+
+pkill -f -- "chromium-browser --type=renderer" &&
+pkill chrome &&
+pkill chromium &&
+pkill -f chromium &&
+pkill -f puppeteer
 wait
