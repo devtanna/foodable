@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icon, Responsive, Rating, Loader } from 'semantic-ui-react';
+import { Icon, Rating, Loader, Transition } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
 import { trackEvent } from '../../helpers/utils';
 import dynamic from 'next/dynamic';
@@ -24,21 +24,12 @@ const Listing = ({ offer }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <LazyImage
-          src={imgSrc}
-          alt={mainOffer.title}
-          width="200"
-          height="200"
-        />
+        <LazyImage src={imgSrc} alt={mainOffer.title} width="200" height="200" />
       </div>
       <div className="listing__content">
         <ListingMeta offer={mainOffer} />
         <BestOffer offer={mainOffer} />
-        <OtherOffers
-          offers={otherOffers}
-          isMoreOffersOpen={showMoreOffers}
-          toggleMore={setShowMoreOffers}
-        />
+        <OtherOffers offers={otherOffers} isMoreOffersOpen={showMoreOffers} toggleMore={setShowMoreOffers} />
       </div>
       <MoreOffers offers={moreOffers} isOpen={showMoreOffers} />
       <style jsx>{`
@@ -52,7 +43,7 @@ const Listing = ({ offer }) => {
         .listing__content {
           display: grid;
           grid-template-columns: 1fr 0.9fr 0.8fr;
-          min-height: 200px;
+          min-height: 220px;
         }
         .listing__img {
           padding: 20px;
@@ -63,24 +54,18 @@ const Listing = ({ offer }) => {
 };
 
 const ListingMeta = ({ offer }) => {
-  const initialRating = offer.rating;
+  const { title, rating, cuisine } = offer;
 
   return (
     <div className="listing__meta">
       <h2 className="meta__name">
-        {offer.title}
-        <small className="meta__cuisine">{offer.cuisine}</small>
+        {title}
+        <small className="meta__cuisine truncate">{cuisine}</small>
       </h2>
-      {initialRating && (
+      {rating && (
         <div className="meta__rating">
           <div className="rating__heading">Rating</div>
-          <Rating
-            size="large"
-            icon="star"
-            disabled
-            defaultRating={Number(initialRating)}
-            maxRating={5}
-          />
+          <Rating size="large" icon="star" disabled defaultRating={Number(rating)} maxRating={5} />
         </div>
       )}
       <style jsx>{`
@@ -100,13 +85,14 @@ const ListingMeta = ({ offer }) => {
           font-weight: normal;
           font-size: 16px;
         }
-        .meta__costForTwo {
-          color: #d2d2d2;
-          font-weight: bold;
-          font-size: 14px;
-        }
         .rating__heading {
           margin-bottom: 5px;
+        }
+        .truncate {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 250px;
         }
       `}</style>
     </div>
@@ -118,32 +104,85 @@ const BestOffer = ({ offer }) => {
     trackEvent('offer_click', 'main', offer.source, offer.title);
   };
 
+  const slideUpAnimation = 'slide up';
+  const animationDuration = 500;
+
+  const [deliveryInfoVisible, setDeliveryInfoVisible] = useState(false);
+
+  const { href, source, offer: _offer, minimumOrder, deliveryCharge, deliveryTime } = offer;
+
+  const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
+
   return (
     <a
-      href={offer.href}
+      href={href}
       target="_blank"
       onClick={track}
       rel="noopener"
-      className={`bestOffer ${offer.source}`}>
+      onMouseEnter={() => setDeliveryInfoVisible(true)}
+      onMouseLeave={() => setDeliveryInfoVisible(false)}
+      className={`bestOffer ${source}`}>
       <div className="bestOffer__heading">
-        <img src={offerSources[offer.source].logo} alt={offer.source} />
+        <img src={offerSources[source].logo} alt={source} />
       </div>
       <div className="bestOffer__body">
-        <div className="bestOffer__ribbon">Great Deal!</div>
-        <h3 className="bestOffer__offer">{offer.offer}</h3>
+        <div className="bestOffer__main">
+          <div className="bestOffer__ribbon">Great Deal</div>
+          <h3 className="bestOffer__offer">{_offer}</h3>
+        </div>
+        {hasDeliveryInfo && (
+          <Transition.Group animation={slideUpAnimation} duration={animationDuration}>
+            {deliveryInfoVisible && (
+              <div className="deliveryInfo__wrapper">
+                {minimumOrder && (
+                  <div className="deliveryInfo__item">
+                    <span className="deliveryInfo__value">
+                      {minimumOrder} <small>aed</small>
+                    </span>
+                    <span className="deliveryInfo__desc">min order</span>
+                  </div>
+                )}
+                {deliveryCharge && (
+                  <div className="deliveryInfo__item">
+                    <span className="deliveryInfo__value">
+                      {deliveryCharge} <small>aed</small>
+                    </span>
+                    <span className="deliveryInfo__desc">delivery fee</span>
+                  </div>
+                )}
+                {deliveryTime && (
+                  <div className="deliveryInfo__item">
+                    <span className="deliveryInfo__value">
+                      {deliveryTime} <small>mins</small>
+                    </span>
+                    <span className="deliveryInfo__desc">time est.</span>
+                  </div>
+                )}
+              </div>
+            )}
+          </Transition.Group>
+        )}
       </div>
       <div className="bestOffer__footer">
         <div>
-          Show this deal <Icon size="small" name="arrow right" />
+          Place Order <Icon size="small" name="arrow right" />
         </div>
       </div>
       <style jsx>{`
+        :global(.slide.up.visible) {
+          display: flex !important;
+        }
         .bestOffer {
           display: grid;
-          margin: 20px;
+          margin: 15px;
           grid-template-rows: 30px auto 30px;
           grid-row-gap: 0;
           border: 1px solid #ddd;
+          background: #fff8f3;
+          position: relative;
+        }
+        .bestOffer:hover {
+          background: #fff4ed;
         }
         .bestOffer__heading {
           display: flex;
@@ -163,7 +202,14 @@ const BestOffer = ({ offer }) => {
           )
           .join('')}
         .bestOffer__body {
-          background: #fff8f3;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .bestOffer__main {
+          width: 100%;
+          height: 100%;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -187,19 +233,44 @@ const BestOffer = ({ offer }) => {
           margin: 0;
           font-size: 16px;
           text-align: center;
-          color: #4d4d4d;
+          color: #333;
           text-transform: uppercase;
         }
         .bestOffer__footer {
           display: flex;
           justify-content: center;
           align-items: center;
-          background: #fff8f3;
           color: #4d4d4d;
-          font-size: 11px;
+          font-size: 12px;
           font-weight: bold;
           text-transform: uppercase;
           border-top: 1px solid #ddd;
+        }
+        .deliveryInfo__wrapper {
+          border-top: 1px solid #ddd;
+          display: none;
+          width: 100%;
+          justify-content: space-around;
+          padding: 5px 0;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background: #fff4ed;
+        }
+        .deliveryInfo__item {
+          line-height: 0.8em;
+          text-align: center;
+        }
+        .deliveryInfo__value {
+          font-size: 13px;
+          color: #333;
+        }
+        .deliveryInfo__desc {
+          display: block;
+          font-size: 10px;
+          color: #daa7a7;
+          text-transform: capitalize;
+          font-weight: bold;
         }
       `}</style>
     </a>
@@ -213,23 +284,27 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
 
   return (
     <div className="otherOffers">
-      {offers.slice(0, 2).map((offer, index) => (
-        <a
-          href={offer.href}
-          target="_blank"
-          key={index}
-          rel="noopener"
-          onClick={() =>
-            trackEvent('offer_click', 'others', offer.source, offer.title)
-          }
-          className={`otherOffer ${offer.source}`}>
-          <div className="otherOffer__heading">
-            <div>View Deal</div>
-            <img src={offerSources[offer.source].logo} alt={offer.source} />
-          </div>
-          <div className="otherOffer__body">{offer.offer}</div>
-        </a>
-      ))}
+      {offers.slice(0, 2).map((offer, index) => {
+        const { minimumOrder, deliveryCharge, deliveryTime, href, source, offer: _offer, title } = offer;
+        const hasDeliveryInfo = minimumOrder && deliveryCharge && deliveryTime;
+        return (
+          <a
+            href={href}
+            target="_blank"
+            key={index}
+            rel="noopener"
+            onClick={() => trackEvent('offer_click', 'others', source, title)}
+            className={`otherOffer ${source}`}>
+            <div className="otherOffer__heading">
+              <div>View Deal</div>
+              <img src={offerSources[source].logo} alt={source} />
+            </div>
+            <div className="otherOffer__body">
+              <div className="otherOffer__value">{_offer}</div>
+            </div>
+          </a>
+        );
+      })}
       {hasMore && (
         <button
           onClick={() => {
@@ -245,7 +320,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
       )}
       <style jsx>{`
         .otherOffers {
-          margin: 20px 20px 20px 0;
+          margin: 15px 15px 15px 0;
           display: grid;
           grid-template-rows: ${hasMore ? '3fr 3fr 1fr' : '1fr 1fr'};
           grid-row-gap: 10px;
@@ -283,13 +358,21 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
         .otherOffer__body {
           background: #fff;
           margin: 1px;
+          text-align: center;
           display: flex;
-          justify-content: center;
-          align-items: center;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .otherOffer__value {
           font-size: 14px;
+          padding: 0 10px;
           text-transform: uppercase;
           font-weight: bold;
-          text-align: center;
+          display: flex;
+          height: 100%;
+          min-height: 30px;
+          justify-content: center;
+          align-items: center;
         }
         .showMoreBtn {
           background: linear-gradient(270deg, #3aca7c 16.26%, #88e0d0 98.03%);
@@ -320,10 +403,7 @@ const MoreOffers = ({ offers, isOpen }) => {
         <ul className="otherOffers__list">
           {offers.map((otherOffer, index) => (
             <li key={index}>
-              <a
-                className="otherOffer__offer"
-                href={otherOffer.href}
-                target="_blank">
+              <a className="otherOffer__offer" href={otherOffer.href} target="_blank">
                 <span>{otherOffer.source}</span>
                 <span>{otherOffer.offer}</span>
                 <Icon name="angle right" />

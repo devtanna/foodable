@@ -191,6 +191,17 @@ function getBaselineLocations(city = 'dubai') {
   return resultLocationObject;
 }
 
+function getNumFromString(str) {
+  if (str) {
+    const matchedNum = str.match(/[+-]?\d+(\.\d+)?/g);
+    let num = matchedNum ? matchedNum[0] : '0.00';
+    if (+num < 10 && Number.isInteger(+num)) {
+      num = parseInt(num).toFixed(2);
+    }
+    return num;
+  } else return null;
+}
+
 module.exports = {
   slugify: slugify,
   calculateScore: calculateScore,
@@ -198,4 +209,5 @@ module.exports = {
   delay: delay,
   getBaselineLocations: getBaselineLocations,
   compare_strings: compare_strings,
+  getNumFromString: getNumFromString,
 };

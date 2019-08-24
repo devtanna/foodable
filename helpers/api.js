@@ -59,7 +59,10 @@ export const getOffers = async (location, page, searchFilters) => {
               cost_for_two,
               votes,
               image,
-              href
+              href,
+              deliveryTime,
+              deliveryCharge,
+              minimumOrder
             }
           }
         }

@@ -66,7 +66,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
         address: $('.search-result-address', this)
           .text()
           .trim(),
-        cuisine: cuisine.join(','),
+        cuisine: cuisine.join(', '),
         offer: $('.res-offers .zgreen', this)
           .text()
           .trim(),
@@ -85,6 +85,9 @@ const scrapePage = async (location, page, pageNum = 1) => {
             .text()
             .trim()
         ),
+        deliveryTime: '',
+        deliveryCharge: '',
+        minimumOrder: '',
         type: 'restaurant',
       };
 
@@ -137,7 +140,7 @@ const run = async () => {
   let start, end;
   if (settings.SCRAPER_TEST_MODE) {
     start = 0;
-    end = 10;
+    end = 4;
   } else {
     start = process.argv[2];
     end = Math.min(process.argv[3], 87);
