@@ -54,6 +54,15 @@ const offerObjectType = new GraphQLObjectType({
     cost_for_two: {
       type: GraphQLString,
     },
+    deliveryTime: {
+      type: GraphQLString,
+    },
+    minimumOrder: {
+      type: GraphQLString,
+    },
+    deliveryCharge: {
+      type: GraphQLString,
+    },
     slug: {
       type: GraphQLString,
     },
@@ -139,6 +148,15 @@ exports.entityType = new GraphQLObjectType({
         type: GraphQLString,
       },
       cost_for_two: {
+        type: GraphQLString,
+      },
+      deliveryTime: {
+        type: GraphQLString,
+      },
+      minimumOrder: {
+        type: GraphQLString,
+      },
+      deliveryCharge: {
         type: GraphQLString,
       },
       slug: {

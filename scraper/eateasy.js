@@ -86,6 +86,24 @@ const scrapePage = async (page, location) => {
         votes: null,
         source: `${scraper_name}`,
         cost_for_two: '',
+        deliveryTime: utils.getNumFromString(
+          $('.delivery-columns li', this)
+            .eq(2)
+            .text()
+            .trim()
+        ),
+        deliveryCharge: utils.getNumFromString(
+          $('.delivery-columns li', this)
+            .eq(1)
+            .text()
+            .trim()
+        ),
+        minimumOrder: utils.getNumFromString(
+          $('.delivery-columns li', this)
+            .eq(0)
+            .text()
+            .trim()
+        ),
         type: 'restaurant',
       };
 
@@ -126,7 +144,7 @@ const run = async () => {
 
   if (links != null) {
     if (settings.SCRAPER_TEST_MODE) {
-      links = links.slice(0, 8);
+      links = links.slice(0, 4);
     }
 
     logger.info('Number of locations received: ' + links.length);

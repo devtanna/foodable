@@ -92,6 +92,16 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
                 .replace(/['"]+/g, '')
             )
           );
+          const _deliveryTime = $('span[ng-if="!showDeliveryRange || rest.dtim >= 120"]', this)
+            .text()
+            .trim();
+          const _deliveryCharge = $('span[ng-switch-when="0"]', this)
+            .text()
+            .trim();
+          const _minimumOrder = $('span:contains("Min:")', this)
+            .next()
+            .text()
+            .trim();
           let result = {
             title: clean_talabat_title(
               $('.media-heading', this)
@@ -118,16 +128,9 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
             offer: $("div[ng-if='rest.offersnippet']", this)
               .text()
               .trim(),
-            deliveryTime: $('span[ng-if="!showDeliveryRange || rest.dtim >= 120"]', this)
-              .text()
-              .trim(),
-            minimumOrder: $('span:contains("Min:")', this)
-              .next()
-              .text()
-              .trim(),
-            deliveryCharge: $('span[ng-switch-when="0"]', this)
-              .text()
-              .trim(),
+            deliveryTime: utils.getNumFromString(_deliveryTime),
+            minimumOrder: utils.getNumFromString(_minimumOrder),
+            deliveryCharge: utils.getNumFromString(_deliveryCharge),
             cost_for_two: '', // no info on talabat
             votes: clean_talabat_votes(
               $('.rating-num', this)
@@ -186,7 +189,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
     let start, end;
     if (settings.SCRAPER_TEST_MODE) {
       start = 0;
-      end = 20;
+      end = 4;
     } else {
       start = process.argv[2];
       end = Math.min(process.argv[3], 180);

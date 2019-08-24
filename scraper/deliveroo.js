@@ -104,6 +104,30 @@ const scrapePage = async (page, location) => {
         .text()
         .trim();
 
+      let deliveryTimeP1 = $('span[class*="Bubble"]', this)
+        .eq(1)
+        .children('p')
+        .text()
+        .trim();
+      let deliveryTimeP2 = $('span[class*="Bubble"]', this)
+        .eq(2)
+        .children('p')
+        .text()
+        .trim();
+      let deliveryTime;
+      if (deliveryTimeP2.toLowerCase() === 'min') {
+        deliveryTime = `${deliveryTimeP1} ${deliveryTimeP2}`;
+      } else {
+        deliveryTime = `${deliveryTimeP2} ${deliveryTimeP1}`;
+      }
+      deliveryTime = deliveryTime.replace('min', '');
+
+      let deliveryCharge = $('li[class*="HomeFeedUICard"]', this)
+        .eq(-2)
+        .children('span')
+        .text()
+        .trim();
+
       let result = {
         title,
         slug: utils.slugify(
@@ -122,6 +146,9 @@ const scrapePage = async (page, location) => {
         votes,
         source: `${scraper_name}`,
         cost_for_two: '',
+        deliveryTime,
+        minimumOrder: '',
+        deliveryCharge: getNumFromString(deliveryCharge),
         type: 'restaurant',
       };
 
@@ -162,7 +189,7 @@ const run = async () => {
 
   if (links != null) {
     if (settings.SCRAPER_TEST_MODE) {
-      links = links.slice(0, 8);
+      links = links.slice(0, 4);
     }
 
     logger.info('Number of locations received: ' + links.length);
@@ -254,4 +281,15 @@ function cleanImg(img) {
   }
 
   return imgSrc;
+}
+
+function getNumFromString(str) {
+  if (str) {
+    const matchedNum = str.match(/[+-]?\d+(\.\d+)?/g);
+    let num = matchedNum ? matchedNum[1] || matchedNum[0] : '0.00';
+    if (+num < 10 && Number.isInteger(+num)) {
+      num = parseInt(num).toFixed(2);
+    }
+    return num;
+  } else return null;
 }
