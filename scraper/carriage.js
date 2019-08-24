@@ -82,11 +82,12 @@ async function scrapeInfiniteScrollItems(page, location) {
           offer: 'Special Carriage Offer',
           deliveryTime: $('.del-time em', this)
             .text()
-            .trim(),
-          minimumOrder: null,
-          deliveryCharge: null,
-          cost_for_two: null,
-          votes: null,
+            .trim()
+            .replace('mins', ''),
+          minimumOrder: '',
+          deliveryCharge: '',
+          cost_for_two: '',
+          votes: '',
           address: location.name,
         };
 

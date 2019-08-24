@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icon, Accordion, Rating, Loader } from 'semantic-ui-react';
+import { Icon, Rating, Loader } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
 import { trackEvent } from '../../helpers/utils';
 import dynamic from 'next/dynamic';
@@ -14,12 +14,11 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
 
 const Listing = ({ offer }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [showOtherOffers, setShowOtherOffers] = useState(false);
 
-  const handleAccordion = (e, titleProps) => {
-    const { index } = titleProps;
-    const newIndex = activeIndex === index ? -1 : index;
-    setActiveIndex(newIndex);
+  const handleAccordion = () => {
     trackEvent('show_more', 'others');
+    setShowOtherOffers(!showOtherOffers);
   };
 
   const mainOffer = offer.offers[0];
@@ -29,13 +28,18 @@ const Listing = ({ offer }) => {
 
   const initialRating = mainOffer.rating;
 
+  const hasOtherOffers = otherOffers.length > 0;
+
+  const { minimumOrder, deliveryCharge, deliveryTime } = mainOffer;
+  const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
+
   return (
     <div className="listing">
-      <div className="listing__img">
-        <LazyImage src={imgSrc} alt={mainOffer.title} width="200" height="200" />
-      </div>
-      <div className="listing__content">
-        <div className="listing__meta">
+      <div className="listing__meta">
+        <div className="listing__img">
+          <LazyImage src={imgSrc} alt={mainOffer.title} width="75px" height="75px" />
+        </div>
+        <div>
           <div className="meta__name">
             {mainOffer.title}
             <small className="meta__cuisine truncate">{mainOffer.cuisine}</small>
@@ -46,75 +50,94 @@ const Listing = ({ offer }) => {
             </div>
           )}
         </div>
-        <div className="bestOffer">
-          <div className="bestOffer__heading">
-            <span>{mainOffer.source}</span>
-          </div>
-          <div className="bestOffer__offer">{mainOffer.offer}</div>
-          <a
-            href={mainOffer.href}
-            target="_blank"
-            rel="noopener"
-            onClick={() => trackEvent('offer_click', 'main', mainOffer.source, mainOffer.title)}
-            className="bestOffer__footer">
-            <div>View Deal</div>
-            <div>
-              <Icon size="small" name="arrow right" />
-            </div>
-          </a>
-        </div>
       </div>
-      {otherOffers.length > 0 && (
-        <div className="otherOffers">
-          <Accordion>
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={handleAccordion} className="accordionTitle">
-              <div className="showMoreBtn">
-                Show more deals <Icon name="arrow alternate circle down outline" />
-              </div>
-            </Accordion.Title>
-            <Accordion.Content active={activeIndex === 0} className="accordionContent">
-              <ul className="otherOffers__list">
-                {otherOffers.map((otherOffer, index) => (
-                  <li key={index}>
-                    <a
-                      className="otherOffer__offer"
-                      href={otherOffer.href}
-                      rel="noopener"
-                      onClick={() => trackEvent('offer_click', 'others', otherOffer.source, otherOffer.title)}
-                      target="_blank">
-                      <span>{otherOffer.source}</span>
-                      <span>{otherOffer.offer}</span>
-                      <Icon name="angle right" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </Accordion.Content>
-          </Accordion>
+      <div className="bestOffer">
+        <div className="bestOffer__heading">
+          <small>Best Deal</small>
+          <span>{mainOffer.source}</span>
         </div>
+        <div className="bestOffer__offer">{mainOffer.offer}</div>
+      </div>
+      {hasDeliveryInfo && (
+        <div className="deliveryInfo__wrapper">
+          {minimumOrder && (
+            <div className="deliveryInfo__item">
+              <span className="deliveryInfo__value">
+                {minimumOrder} <small>aed</small>
+              </span>
+              <span className="deliveryInfo__desc">min order</span>
+            </div>
+          )}
+          {deliveryCharge && (
+            <div className="deliveryInfo__item">
+              <span className="deliveryInfo__value">
+                {deliveryCharge} <small>aed</small>
+              </span>
+              <span className="deliveryInfo__desc">delivery fee</span>
+            </div>
+          )}
+          {deliveryTime && (
+            <div className="deliveryInfo__item">
+              <span className="deliveryInfo__value">
+                {deliveryTime} <small>mins</small>
+              </span>
+              <span className="deliveryInfo__desc">time est.</span>
+            </div>
+          )}
+        </div>
+      )}
+      <div className="actionBtns">
+        {hasOtherOffers && (
+          <button onClick={handleAccordion} className="actionBtns__moreDeals">
+            View All Deals
+          </button>
+        )}
+        <a
+          href={mainOffer.href}
+          target="_blank"
+          rel="noopener"
+          onClick={() => trackEvent('offer_click', 'main', mainOffer.source, mainOffer.title)}
+          className="actionBtns__cta">
+          <div>Place Order</div>
+          <div>
+            <Icon size="small" name="arrow right" />
+          </div>
+        </a>
+      </div>
+      {showOtherOffers && (
+        <ul className="otherOffers__list">
+          {otherOffers.map((otherOffer, index) => (
+            <li key={index}>
+              <a
+                className="otherOffer__offer"
+                href={otherOffer.href}
+                rel="noopener"
+                onClick={() => trackEvent('offer_click', 'others', otherOffer.source, otherOffer.title)}
+                target="_blank">
+                <span>{otherOffer.source}</span>
+                <span>{otherOffer.offer}</span>
+                <Icon name="angle right" />
+              </a>
+            </li>
+          ))}
+        </ul>
       )}
       <style jsx>{`
         .listing {
-          display: grid;
-          grid-template-columns: 35% 65%;
           background: #fff;
           box-shadow: 0 1px 4px rgba(41, 51, 57, 0.3);
           margin-bottom: 15px;
         }
-        .listing__content {
-          display: block;
-          padding: 10px;
+        .listing__meta {
+          display: grid;
+          grid-template-columns: 75px auto;
+          align-items: center;
+          border-bottom: 1px solid #eaeaea;
         }
         .listing__img {
-          padding: 5px;
-        }
-        .listing__meta {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          border-bottom: 1px solid #eaeaea;
-          padding-bottom: 10px;
-          margin-bottom: 5px;
+          width: 75px;
+          height: 75px;
+          padding: 10px;
         }
         .meta__name {
           font-weight: bold;
@@ -126,41 +149,80 @@ const Listing = ({ offer }) => {
           font-weight: normal;
           font-size: 13px;
         }
+        .bestOffer {
+          padding: 10px;
+          display: flex;
+          align-items: center;
+        }
         .bestOffer__heading {
-          font-size: 15px;
+          font-size: 13x;
           font-weight: bold;
-          color: #333;
+          color: rgba(0, 0, 0, 0.7);
+          text-transform: capitalize;
+          line-height: 1.2em;
+          min-width: 70px;
+        }
+        .bestOffer__heading small {
+          display: block;
+          line-height: 1em;
+          font-size: 10px;
+          color: #4fbf74;
+          font-weight: 700;
         }
         .bestOffer__offer {
-          color: #7e8e12;
+          color: #333;
           font-size: 16px;
           font-weight: bold;
+          margin-left: 15px;
         }
-        .bestOffer__footer {
+        .deliveryInfo__wrapper {
+          display: flex;
+          width: 100%;
+          justify-content: space-around;
+          padding: 10px 10px 0;
+          border-top: 1px solid #eaeaea;
+        }
+        .deliveryInfo__item {
+          line-height: 0.8em;
+          text-align: center;
+        }
+        .deliveryInfo__value {
+          font-size: 13px;
+          color: #333;
+        }
+        .deliveryInfo__desc {
+          display: block;
+          font-size: 10px;
+          color: #daa7a7;
+          text-transform: capitalize;
+          font-weight: bold;
+        }
+        .actionBtns {
+          display: grid;
+          grid-template-columns: ${hasOtherOffers ? '100px auto' : '1fr'};
+          grid-column-gap: 10px;
+          padding: 10px;
+        }
+        .actionBtns__cta {
           display: flex;
           justify-content: center;
           align-items: center;
           background: linear-gradient(270deg, #f34343 18.23%, #fd7650 100%);
           color: #fff;
-          font-size: 11px;
+          font-size: 13px;
           font-weight: bold;
-          text-transform: uppercase;
-          padding: 5px 0;
-          margin-top: 5px;
-          border-radius: 4px;
+          border-radius: 2px;
+          height: 35px;
         }
-        .otherOffers {
-          grid-column-end: span 2;
-        }
-        .showMoreBtn {
-          border-top: 1px solid #eaeaea;
+        .actionBtns__moreDeals {
+          color: rgba(24, 44, 55, 0.6);
+          border: 1px solid rgba(24, 44, 55, 0.6);
+          border-radius: 2px;
+          background: none;
+          outline: none;
+          font-size: 12px;
+          height: 35px;
           text-align: center;
-          margin: 5px;
-          padding-top: 5px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: #666;
         }
         .otherOffers__list {
           padding: 0;
@@ -181,9 +243,7 @@ const Listing = ({ offer }) => {
           display: grid;
           grid-template-columns: 1fr 2fr auto;
           color: #666;
-        }
-        :global(.accordionTitle, .accordionContent) {
-          padding: 0 !important;
+          text-transform: capitalize;
         }
         .truncate {
           white-space: nowrap;

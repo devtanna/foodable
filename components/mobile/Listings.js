@@ -53,7 +53,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
           font-weight: normal;
         }
         .mainWrapper {
-          padding: 0 10px;
+          padding: 0 5px;
           margin-bottom: 30px;
         }
         .listingsWrapper {

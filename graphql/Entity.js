@@ -78,6 +78,21 @@ var OfferModelSchema = new Schema({
     text: true,
     required: false,
   },
+  deliveryCharge: {
+    type: String,
+    text: true,
+    required: false,
+  },
+  minimumOrder: {
+    type: String,
+    text: true,
+    required: false,
+  },
+  deliveryTime: {
+    type: String,
+    text: true,
+    required: false,
+  },
   slug: {
     type: String,
     text: true,
@@ -212,6 +227,24 @@ var EnityModelSchema = new Schema({
     required: false,
   },
   _id: {
+    type: String,
+    text: true,
+    index: false,
+    required: false,
+  },
+  deliveryCharge: {
+    type: String,
+    text: true,
+    index: false,
+    required: false,
+  },
+  minimumOrder: {
+    type: String,
+    text: true,
+    index: false,
+    required: false,
+  },
+  deliveryTime: {
     type: String,
     text: true,
     index: false,
