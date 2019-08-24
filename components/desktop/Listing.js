@@ -60,7 +60,7 @@ const ListingMeta = ({ offer }) => {
     <div className="listing__meta">
       <h2 className="meta__name">
         {title}
-        <small className="meta__cuisine">{cuisine}</small>
+        <small className="meta__cuisine truncate">{cuisine}</small>
       </h2>
       {rating && (
         <div className="meta__rating">
@@ -87,6 +87,12 @@ const ListingMeta = ({ offer }) => {
         }
         .rating__heading {
           margin-bottom: 5px;
+        }
+        .truncate {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 250px;
         }
       `}</style>
     </div>
@@ -359,6 +365,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
         }
         .otherOffer__value {
           font-size: 14px;
+          padding: 0 10px;
           text-transform: uppercase;
           font-weight: bold;
           display: flex;
