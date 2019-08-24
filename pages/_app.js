@@ -23,6 +23,14 @@ const PageHead = () => (
     />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="theme-color" content="#F66550" />
+    <meta property="og:title" content="Discover & compare food deals in UAE | Foodable.ae" />
+    <meta
+      property="og:description"
+      content="Compare food promotions and discover great deals and offers from top food delivery websites in United Arab Emirates (UAE). Search by restaurant name or your favorite cuisine and find great food deals in your area."
+    />
+    <meta property="og:url" content="https://foodable.ae/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://foodable.ae/static/icon-512.png" />
     <link rel="icon" href="/static/favicon.png" />
     <link rel="manifest" href="/static/manifest.json" />
   </Head>

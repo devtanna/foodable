@@ -4,9 +4,13 @@ import { trackPageView } from '../helpers/utils';
 import Landing from '../components/Landing';
 import { getLocations } from '../helpers/api';
 
-const SelectArea = ({ locations }) => {
+const SelectArea = ({ locations, utmSource }) => {
   useEffect(() => {
-    trackPageView('landingpage', '/select-area');
+    if (utmSource && utmSource === 'pwa') {
+      trackPageView('landingpage', '/select-area/pwa');
+    } else {
+      trackPageView('landingpage', '/select-area');
+    }
   }, []);
 
   return (
@@ -21,8 +25,10 @@ const SelectArea = ({ locations }) => {
   );
 };
 
-SelectArea.getInitialProps = async ({ req, res }) => {
-  return getLocations();
+SelectArea.getInitialProps = async ({ req, res, query }) => {
+  const { locations } = await getLocations();
+  const utmSource = query['utm_source'];
+  return { locations, utmSource };
 };
 
 export default SelectArea;

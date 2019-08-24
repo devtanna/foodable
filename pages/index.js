@@ -4,7 +4,7 @@ import base64 from 'base-64';
 
 const Index = () => <div />;
 
-Index.getInitialProps = async ({ req, res, query }) => {
+Index.getInitialProps = async ({ req, res }) => {
   let cookies;
 
   if (res) {

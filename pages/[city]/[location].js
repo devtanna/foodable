@@ -16,38 +16,20 @@ import qs from 'qs';
 import base64 from 'base-64';
 import _pick from 'lodash/pick';
 
-const PageHead = ({ page, location, filters }) => (
-  <Head>
-    <title>
-      Discover & compare 
-      {filters.cuisine.length > 0
-        ? ` ${filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ')} cuisine`
-        : null}{' '}
-      food deals and offers in {location.text}, {capitalizeFirstLetter(location.city)}
-      {filters.keywords !== ''
-        ? `, matching keywords '${filters.keywords}'`
-        : null}{' '}
-      | Foodable.ae
-      {page > 1 ? ` - Page ${page}` : null}
-    </title>
-    <meta
-      name="description"
-      content={`Compare food promotions and discover great deals from top food delivery websites. Search by restaurant name or your favorite cuisine and find top deals in your area.${
-        filters.cuisine.length > 0
-          ? ' ' + filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ') + ' restaurants in ' + location.text + ', ' + capitalizeFirstLetter(location.city) + '.'
-          : ''
-      }${
-        filters.keywords !== ''
-          ? " Restaurants matching keyword '" + filters.keywords + "' in " + location.text + ', ' + capitalizeFirstLetter(location.city) + '.'
-          : ''
-      }`}
-    />
-  </Head>
-);
+const PageHead = ({ page, location, filters }) => {
+  const title = `Discover & compare ${filters.cuisine.length > 0 ? filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ') + " cuisine " : ''}food deals and offers in ${location.text}, ${capitalizeFirstLetter(location.city)} ${filters.keywords !== '' ? ", matching keywords '" + filters.keywords + "'": ''} | Foodable.ae${page > 1 ? " - Page " + page : ''}`
+  const description = `Compare food promotions and discover great deals from top food delivery websites. Search by restaurant name or your favorite cuisine and find top deals in your area. ${filters.cuisine.length > 0 ? ' ' + filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ') + ' restaurants in ' + location.text + ', ' + capitalizeFirstLetter(location.city) + '.' : ''}${filters.keywords !== '' ? " Restaurants matching keyword '" + filters.keywords + "' in " + location.text + ', ' + capitalizeFirstLetter(location.city) + '.' : ''}`;
+  return (
+    <Head>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+    </Head>
+  );
+};
 
 const Location = ({
   offers,
-  randomOffers,
+  randomOffers = [],
   selectedLocation = null,
   page = 1,
   cuisines = [],
@@ -135,16 +117,6 @@ Location.getInitialProps = async ({ req, res, query }) => {
       searchFilters
     );
 
-    // Get random offers as well
-    const { randomOffers } = await getRandomOffers(location);
-
-    // No offers and random offers, probably means location is not correct
-    // hence, send back to select-area page
-    if (offers.length === 0 && randomOffers.length === 0) {
-      redirectToPage(res, '/select-area');
-      return;
-    }
-
     res.cookie('fdb_location', base64.encode(JSON.stringify(selectedLocation)));
 
     // All good so far? get cuisines and send back the needed information
@@ -153,7 +125,6 @@ Location.getInitialProps = async ({ req, res, query }) => {
 
     return {
       offers,
-      randomOffers,
       selectedLocation,
       page,
       cuisines,

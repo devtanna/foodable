@@ -1,21 +1,13 @@
 import React, { Fragment } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import PopularDeals from './PopularDeals';
 import Listing from './Listing';
 import Pagination from '../Pagination';
 import NoResults from '../NoResults';
 import { removeObjEmpty } from '../../helpers/utils';
 import _isEmpty from 'lodash/isEmpty';
 
-const Listings = ({
-  offers,
-  randomOffers,
-  location,
-  page,
-  cuisines,
-  filters,
-}) => {
+const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) => {
   let isSearchPage = !_isEmpty(removeObjEmpty(filters));
   let hasOffers = offers.length > 0;
 
@@ -26,8 +18,9 @@ const Listings = ({
         <div className="mainWrapper">
           {!isSearchPage && hasOffers && (
             <Fragment>
-              <h1 className="sectionHeading">Popular deals for today!</h1>
-              <PopularDeals deals={randomOffers} />
+              <h1 className="sectionHeading">
+                <span>Food deals near</span> {location.text}
+              </h1>
             </Fragment>
           )}
           {hasOffers ? (
@@ -54,7 +47,10 @@ const Listings = ({
           color: #3b3b3b;
           margin: 0;
           padding: 15px 0 0 0;
-          font-size: 18px;
+          font-size: 16px;
+        }
+        .sectionHeading span {
+          font-weight: normal;
         }
         .mainWrapper {
           padding: 0 10px;

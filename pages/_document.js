@@ -19,7 +19,7 @@ class MyDocument extends Document {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', "${TRACKING_ID}");
+        gtag('config', "${TRACKING_ID}", { 'send_page_view': false });
       `,
     };
   }
@@ -31,10 +31,7 @@ class MyDocument extends Document {
         <Head>
           {isProduction && (
             <Fragment>
-              <script
-                defer
-                src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
-              />
+              <script defer src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`} />
               <script defer dangerouslySetInnerHTML={this.setGoogleTags()} />
             </Fragment>
           )}

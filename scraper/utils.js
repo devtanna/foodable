@@ -96,6 +96,7 @@ function calculateScore(item) {
       /^special offer: buy one get one free!$/im,
       /^(\d+) aed meals$/im,
       /^(\d+) aed meal$/im,
+      /^special carriage offer$/im,
     ],
     3: [
       /^(\d+)% off orders above aed\s*(\d+(.\d+)*)$/im,

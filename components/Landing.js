@@ -54,6 +54,7 @@ const Landing = ({ locations }) => {
         main {
           height: 100%;
           background: #fff url('/static/lp-bg-s.webp') 30% 100% no-repeat;
+          background-size: contain;
         }
         .wrapper {
           max-width: 800px;
@@ -66,7 +67,7 @@ const Landing = ({ locations }) => {
         }
         .logo {
           width: 100%;
-          max-width: 290px;
+          max-width: 200px;
           margin: 0 auto;
         }
         h1 {
@@ -81,19 +82,6 @@ const Landing = ({ locations }) => {
           padding: 0 30px;
           grid-column-gap: 15px;
         }
-        @media ${device.mobileM} {
-          .logo {
-            max-width: 350px;
-          }
-          h1 {
-            font-size: 2rem;
-          }
-        }
-        @media ${device.mobileL} {
-          main {
-            background-size: 100%;
-          }
-        }
         @media ${device.tablet} {
           main {
             background: #fff url('/static/lp-bg.webp') 0 110% no-repeat;
@@ -102,7 +90,11 @@ const Landing = ({ locations }) => {
           .wrapper {
             padding-top: 75px;
           }
+          .logo {
+            max-width: 300px;
+          }
           h1 {
+            font-size: 1.9rem;
             margin: 50px 30px 75px;
           }
           .ctaWrapper {
