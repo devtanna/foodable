@@ -174,7 +174,10 @@ async function scrapeInfiniteScrollItems(page, location) {
       browser.newPage().then(async page => {
         await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-        await page.goto(`https://www.trycarriage.com/en/ae/restaurants?area_id=${location.id}`, { waitUntil: 'load' });
+        await page.goto(`https://www.trycarriage.com/en/ae/restaurants?area_id=${location.id}`, {
+          waitUntil: 'load',
+          timeout: 35000,
+        });
 
         logger.info(`Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`);
 
