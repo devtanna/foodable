@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Rating, Loader } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
-import { trackEvent } from '../../helpers/utils';
+import { trackEvent, limitChars } from '../../helpers/utils';
 import dynamic from 'next/dynamic';
 const LazyImage = dynamic(() => import('../LazyImage'), {
   ssr: false,
@@ -56,7 +56,7 @@ const Listing = ({ offer }) => {
           <small>Best Deal</small>
           <span>{mainOffer.source}</span>
         </div>
-        <div className="bestOffer__offer">{mainOffer.offer}</div>
+        <div className="bestOffer__offer">{limitChars(mainOffer.offer)}</div>
       </div>
       {hasDeliveryInfo && (
         <div className="deliveryInfo__wrapper">
@@ -115,7 +115,7 @@ const Listing = ({ offer }) => {
                 onClick={() => trackEvent('offer_click', 'others', otherOffer.source, otherOffer.title)}
                 target="_blank">
                 <span>{otherOffer.source}</span>
-                <span>{otherOffer.offer}</span>
+                <span>{limitChars(otherOffer.offer)}</span>
                 <Icon name="angle right" />
               </a>
             </li>
