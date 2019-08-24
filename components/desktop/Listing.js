@@ -231,7 +231,7 @@ const BestOffer = ({ offer }) => {
         }
         .bestOffer__offer {
           margin: 0;
-          font-size: 18px;
+          font-size: 16px;
           text-align: center;
           color: #333;
           text-transform: uppercase;
