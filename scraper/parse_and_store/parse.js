@@ -23,7 +23,12 @@ async function process_results(mergedResults, db) {
         offer.indexed = 0;
         delete offer._id; // delete so insert works
         delete offer.location; // no need for this
-        db.collection(collectionName).insertOne(offer);
+
+        try {
+          db.collection(collectionName).insertOne(offer);
+        } catch (e) {
+          logger.error(`Error during insertOne. Error: ${e}`);
+        }
       } else {
         logger.error(`Could not find ${offerLocation} in baseline.`);
       }
