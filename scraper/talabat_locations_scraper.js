@@ -9,7 +9,7 @@ const outputFile = path.join(__dirname, 'talabat_locations.json');
 const getLocations = async page => {
   try {
     let data = [];
-    await page.goto('https://www.talabat.com/uae/sitemap');
+    await page.goto('https://www.talabat.com/uae/sitemap', settings.PUPPETEER_GOTO_PAGE_ARGS);
     const html = await page.content();
     $("h4:contains('Dubai')", html)
       .next('.row')
@@ -39,9 +39,7 @@ const run = async () => {
   try {
     let data = await getLocations(page);
 
-    fs.writeFile(outputFile, JSON.stringify(data, null, 2), err =>
-      err ? console.log(err) : 'Done!'
-    );
+    fs.writeFile(outputFile, JSON.stringify(data, null, 2), err => (err ? console.log(err) : 'Done!'));
   } catch (e) {
     console.log(e);
   } finally {

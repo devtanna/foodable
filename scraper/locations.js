@@ -12,21 +12,17 @@ var db;
 var dbClient;
 // Initialize connection once at the top of the scraper
 var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(
-  settings.DB_CONNECT_URL,
-  { useNewUrlParser: true },
-  function(err, client) {
-    if (err) throw err;
-    db = client.db(settings.DB_NAME);
-    dbClient = client;
-    logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
-  }
-);
+MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
+  if (err) throw err;
+  db = client.db(settings.DB_NAME);
+  dbClient = client;
+  logger.info('... Connected to mongo! ... at: ' + settings.DB_CONNECT_URL);
+});
 // ########## END DB STUFF ####################
 
 const getLocations = async page => {
   try {
-    await page.goto('https://www.talabat.com/uae/sitemap');
+    await page.goto('https://www.talabat.com/uae/sitemap', settings.PUPPETEER_GOTO_PAGE_ARGS);
     const html = await page.content();
     const links = $("h4:contains('Dubai')", html)
       .next('.row')
@@ -100,9 +96,7 @@ const getLocations = async page => {
 
 function cleanupOldCollections(db) {
   for (let i = 3; i < 31; i++) {
-    var date = new Date(
-      new Date().setDate(dbutils.getCurrentDateTime().getDate() - i)
-    );
+    var date = new Date(new Date().setDate(dbutils.getCurrentDateTime().getDate() - i));
     collection_1 = dbutils.getDBCollectionForDateTime(date);
 
     db.collection(collection_1)

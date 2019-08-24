@@ -9,7 +9,7 @@ const outputFile = path.join(__dirname, 'deliveroo_locations.json');
 const getLocations = async page => {
   try {
     let data = [];
-    await page.goto('https://deliveroo.ae/sitemap');
+    await page.goto('https://deliveroo.ae/sitemap', settings.PUPPETEER_GOTO_PAGE_ARGS);
     const html = await page.content();
     $("h3:contains('Dubai')", html)
       .next('.sitemap--zones')
@@ -40,9 +40,7 @@ const run = async () => {
   try {
     let data = await getLocations(page);
 
-    fs.writeFile(outputFile, JSON.stringify(data, null, 2), err =>
-      err ? console.log(err) : 'Done!'
-    );
+    fs.writeFile(outputFile, JSON.stringify(data, null, 2), err => (err ? console.log(err) : 'Done!'));
   } catch (e) {
     console.log(e);
   } finally {

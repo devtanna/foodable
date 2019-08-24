@@ -28,7 +28,7 @@ if (settings.ENABLE_TALABAT) {
 function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
   browser.newPage().then(page => {
     page.setViewport(settings.PUPPETEER_VIEWPORT);
-    page.goto(`https://www.talabat.com/${location.url}`, { waitUntil: 'load' }).then(async () => {
+    page.goto(`https://www.talabat.com/${location.url}`, settings.PUPPETEER_GOTO_PAGE_ARGS).then(async () => {
       logger.info(logMsg);
 
       let items = [];
