@@ -211,18 +211,19 @@ const Listing = ({ offer }) => {
           color: #fff;
           font-size: 13px;
           font-weight: bold;
-          border-radius: 2px;
           height: 35px;
+          border-radius: 2px;
         }
         .actionBtns__moreDeals {
           color: rgba(24, 44, 55, 0.6);
-          border: 1px solid rgba(24, 44, 55, 0.6);
+          border: 1px solid rgba(14, 23, 28, 0.3);
           border-radius: 2px;
           background: none;
           outline: none;
           font-size: 12px;
           height: 35px;
           text-align: center;
+          border-radius: 2px !important;
         }
         .otherOffers__list {
           padding: 0;
