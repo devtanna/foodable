@@ -62,26 +62,26 @@ const Listing = ({ offer }) => {
         <div className="deliveryInfo__wrapper">
           {minimumOrder && (
             <div className="deliveryInfo__item">
+              <span className="deliveryInfo__desc">min order</span>
               <span className="deliveryInfo__value">
                 {minimumOrder} <small>aed</small>
               </span>
-              <span className="deliveryInfo__desc">min order</span>
             </div>
           )}
           {deliveryCharge && (
             <div className="deliveryInfo__item">
+              <span className="deliveryInfo__desc">delivery fee</span>
               <span className="deliveryInfo__value">
                 {deliveryCharge} <small>aed</small>
               </span>
-              <span className="deliveryInfo__desc">delivery fee</span>
             </div>
           )}
           {deliveryTime && (
             <div className="deliveryInfo__item">
+              <span className="deliveryInfo__desc">time est.</span>
               <span className="deliveryInfo__value">
                 {deliveryTime} <small>mins</small>
               </span>
-              <span className="deliveryInfo__desc">time est.</span>
             </div>
           )}
         </div>
@@ -176,15 +176,14 @@ const Listing = ({ offer }) => {
           margin-left: 15px;
         }
         .deliveryInfo__wrapper {
-          display: flex;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
           width: 100%;
-          justify-content: space-around;
-          padding: 10px 10px 0;
-          border-top: 1px solid #eaeaea;
+          padding: 0 10px 10px;
+          margin-top: -5px;
         }
         .deliveryInfo__item {
-          line-height: 0.8em;
-          text-align: center;
+          line-height: 1em;
         }
         .deliveryInfo__value {
           font-size: 13px;
@@ -195,13 +194,13 @@ const Listing = ({ offer }) => {
           font-size: 10px;
           color: #daa7a7;
           text-transform: capitalize;
-          font-weight: bold;
         }
         .actionBtns {
           display: grid;
           grid-template-columns: ${hasOtherOffers ? '100px auto' : '1fr'};
           grid-column-gap: 10px;
           padding: 10px;
+          border-top: 1px solid #eaeaea;
         }
         .actionBtns__cta {
           display: flex;
@@ -233,6 +232,7 @@ const Listing = ({ offer }) => {
         }
         .otherOffers__list li {
           border-bottom: 1px solid #ddd;
+          font-size: 13px;
         }
         .otherOffers__list li a {
           padding: 10px 20px;

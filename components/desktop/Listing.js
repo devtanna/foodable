@@ -104,7 +104,7 @@ const BestOffer = ({ offer }) => {
     trackEvent('offer_click', 'main', offer.source, offer.title);
   };
 
-  const slideUpAnimation = 'slide up';
+  const deliveryInfoAnimation = 'slide up';
   const animationDuration = 500;
 
   const [deliveryInfoVisible, setDeliveryInfoVisible] = useState(false);
@@ -131,7 +131,7 @@ const BestOffer = ({ offer }) => {
           <h3 className="bestOffer__offer">{_offer}</h3>
         </div>
         {hasDeliveryInfo && (
-          <Transition.Group animation={slideUpAnimation} duration={animationDuration}>
+          <Transition.Group animation={deliveryInfoAnimation} duration={animationDuration}>
             {deliveryInfoVisible && (
               <div className="deliveryInfo__wrapper">
                 {minimumOrder && (
@@ -169,7 +169,7 @@ const BestOffer = ({ offer }) => {
         </div>
       </div>
       <style jsx>{`
-        :global(.slide.up.visible) {
+        :global(.slide.up.visible, .slide.down.visible) {
           display: flex !important;
         }
         .bestOffer {
@@ -282,17 +282,23 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
 
   const hasMore = offers.length > 2;
 
+  const deliveryInfoAnimation = 'slide down';
+  const animationDuration = 500;
+
   return (
     <div className="otherOffers">
       {offers.slice(0, 2).map((offer, index) => {
         const { minimumOrder, deliveryCharge, deliveryTime, href, source, offer: _offer, title } = offer;
         const hasDeliveryInfo = minimumOrder && deliveryCharge && deliveryTime;
+        const [deliveryInfoVisible, setDeliveryInfoVisible] = useState(false);
         return (
           <a
             href={href}
             target="_blank"
             key={index}
             rel="noopener"
+            onMouseEnter={() => setDeliveryInfoVisible(true)}
+            onMouseLeave={() => setDeliveryInfoVisible(false)}
             onClick={() => trackEvent('offer_click', 'others', source, title)}
             className={`otherOffer ${source}`}>
             <div className="otherOffer__heading">
@@ -301,6 +307,38 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
             </div>
             <div className="otherOffer__body">
               <div className="otherOffer__value">{_offer}</div>
+              {hasDeliveryInfo && (
+                <Transition.Group animation={deliveryInfoAnimation} duration={animationDuration}>
+                  {deliveryInfoVisible && (
+                    <div className="deliveryInfo__wrapper">
+                      {minimumOrder && (
+                        <div className="deliveryInfo__item">
+                          <span className="deliveryInfo__value">
+                            {minimumOrder} <small>aed</small>
+                          </span>
+                          <span className="deliveryInfo__desc">min order</span>
+                        </div>
+                      )}
+                      {deliveryCharge && (
+                        <div className="deliveryInfo__item">
+                          <span className="deliveryInfo__value">
+                            {deliveryCharge} <small>aed</small>
+                          </span>
+                          <span className="deliveryInfo__desc">delivery fee</span>
+                        </div>
+                      )}
+                      {deliveryTime && (
+                        <div className="deliveryInfo__item">
+                          <span className="deliveryInfo__value">
+                            {deliveryTime} <small>mins</small>
+                          </span>
+                          <span className="deliveryInfo__desc">time est.</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </Transition.Group>
+              )}
             </div>
           </a>
         );
@@ -362,6 +400,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          position: relative;
         }
         .otherOffer__value {
           font-size: 14px;
@@ -386,6 +425,32 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
           border: 0;
           outline: none;
           cursor: pointer;
+        }
+        .deliveryInfo__wrapper {
+          display: none;
+          justify-content: space-around;
+          align-items: center;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background: #fff;
+          width: 100%;
+          height: 100%;
+        }
+        .deliveryInfo__item {
+          line-height: 0.8em;
+          text-align: center;
+        }
+        .deliveryInfo__value {
+          font-size: 13px;
+          color: #333;
+        }
+        .deliveryInfo__desc {
+          display: block;
+          font-size: 10px;
+          color: #daa7a7;
+          text-transform: capitalize;
+          font-weight: bold;
         }
       `}</style>
     </div>
