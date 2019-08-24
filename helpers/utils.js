@@ -29,11 +29,7 @@ export const slugify = string => {
     .replace(/-+$/, ''); // Trim - from end of text
 };
 
-export const trackPageView = (
-  page_title = null,
-  page_location = null,
-  page_path = null
-) => {
+export const trackPageView = (page_title = null, page_location = null, page_path = null) => {
   if (!window.gtag) return;
   try {
     window.gtag('config', TRACKING_ID, {
@@ -46,12 +42,7 @@ export const trackPageView = (
   }
 };
 
-export const trackEvent = (
-  action,
-  event_category = null,
-  event_label = null,
-  value = null
-) => {
+export const trackEvent = (action, event_category = null, event_label = null, value = null) => {
   if (!window.gtag) return;
   try {
     window.gtag('event', action, {
@@ -78,11 +69,7 @@ export const deslugify = slug => {
 export const removeObjEmpty = obj => {
   let _obj = Object.assign({}, obj);
 
-  Object.keys(_obj).forEach(
-    key =>
-      (!_obj[key] || _obj[key].length === 0 || _obj[key] === '') &&
-      delete _obj[key]
-  );
+  Object.keys(_obj).forEach(key => (!_obj[key] || _obj[key].length === 0 || _obj[key] === '') && delete _obj[key]);
 
   return _obj;
 };
@@ -92,11 +79,17 @@ export const capitalizeFirstLetter = string => {
 };
 
 export const hideVirtualKeyboard = () => {
-  if (
-    document.activeElement &&
-    document.activeElement.blur &&
-    typeof document.activeElement.blur === 'function'
-  ) {
+  if (document.activeElement && document.activeElement.blur && typeof document.activeElement.blur === 'function') {
     document.activeElement.blur();
   }
+};
+
+export const limitChars = str => {
+  const limit = 70;
+  if (str.length > limit) {
+    str = str.substring(0, limit);
+    str += '...';
+  }
+
+  return str;
 };

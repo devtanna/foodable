@@ -117,6 +117,11 @@ Location.getInitialProps = async ({ req, res, query }) => {
       searchFilters
     );
 
+    if (offers.length === 0 && page === 1) {
+      redirectToPage(res, '/select-area');
+      return;
+    }
+
     res.cookie('fdb_location', base64.encode(JSON.stringify(selectedLocation)));
 
     // All good so far? get cuisines and send back the needed information

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Rating, Loader, Transition } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
-import { trackEvent } from '../../helpers/utils';
+import { trackEvent, limitChars } from '../../helpers/utils';
 import dynamic from 'next/dynamic';
 const LazyImage = dynamic(() => import('../LazyImage'), {
   ssr: false,
@@ -128,7 +128,7 @@ const BestOffer = ({ offer }) => {
       <div className="bestOffer__body">
         <div className="bestOffer__main">
           <div className="bestOffer__ribbon">Great Deal</div>
-          <h3 className="bestOffer__offer">{_offer}</h3>
+          <h3 className="bestOffer__offer">{limitChars(_offer)}</h3>
         </div>
         {hasDeliveryInfo && (
           <Transition.Group animation={deliveryInfoAnimation} duration={animationDuration}>
@@ -306,7 +306,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
               <img src={offerSources[source].logo} alt={source} />
             </div>
             <div className="otherOffer__body">
-              <div className="otherOffer__value">{_offer}</div>
+              <div className="otherOffer__value">{limitChars(_offer)}</div>
               {hasDeliveryInfo && (
                 <Transition.Group animation={deliveryInfoAnimation} duration={animationDuration}>
                   {deliveryInfoVisible && (
@@ -470,7 +470,7 @@ const MoreOffers = ({ offers, isOpen }) => {
             <li key={index}>
               <a className="otherOffer__offer" href={otherOffer.href} target="_blank">
                 <span>{otherOffer.source}</span>
-                <span>{otherOffer.offer}</span>
+                <span>{limitChars(otherOffer.offer)}</span>
                 <Icon name="angle right" />
               </a>
             </li>
