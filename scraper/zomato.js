@@ -47,52 +47,47 @@ const scrapePage = async (location, page, pageNum = 1) => {
     logger.info(`${location.locationName}: ${currentPage} / ${totalPages}`);
 
     let result = [];
+    let offersCount = $('.search-result', html).length;
 
-    $('.search-o2-card', html).each(function() {
-      let title = $('.result-order-flow-title', this)
-        .text()
-        .trim();
+    $('.search-result', html).each(function() {
+      let cuisine = [];
+
+      $('.search-page-text .nowrap a', this).each(function() {
+        cuisine.push($(this).text());
+      });
 
       var singleItem = {
-        title,
-        href: $('.result-order-flow-title', this).prop('href'),
-        image: cleanImg($('.feat-img', this).prop('data-original')),
-        location: location.baseline,
-        address: location.baseline,
-        cuisine: $('.description .grey-text.nowrap', this)
-          .eq(0)
+        title: $('.result-title', this)
           .text()
           .trim(),
-        offer: $('.offer-text', this)
+        href: $('.result-title', this).prop('href'),
+        image: cleanImg($('.feat-img', this).prop('data-original')),
+        location: location.baseline,
+        address: $('.search-result-address', this)
           .text()
-          .trim()
-          .replace(/\./g, ''),
+          .trim(),
+        cuisine: cuisine.join(', '),
+        offer: $('.res-offers .zgreen', this)
+          .text()
+          .trim(),
         rating: $('.rating-popup', this)
           .text()
           .trim(),
         votes: $('[class^="rating-votes-div"]', this)
           .text()
           .trim(),
-        cost_for_two: '',
+        cost_for_two: $('.res-cost span:nth-child(2)', this)
+          .text()
+          .trim(),
         source: `${scraper_name}`,
-        slug: utils.slugify(title),
-        deliveryTime: utils.getNumFromString(
-          $('.description div', this)
-            .eq(3)
+        slug: utils.slugify(
+          $('.result-title', this)
             .text()
             .trim()
-            .split('·')[1]
-            .trim()
         ),
+        deliveryTime: '',
         deliveryCharge: '',
-        minimumOrder: utils.getNumFromString(
-          $('.description div', this)
-            .eq(3)
-            .text()
-            .trim()
-            .split('·')[0]
-            .trim()
-        ),
+        minimumOrder: '',
         type: 'restaurant',
       };
 
