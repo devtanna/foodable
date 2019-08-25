@@ -39,7 +39,7 @@ const Listing = ({ offer }) => {
         <div className="listing__img">
           <LazyImage src={imgSrc} alt={mainOffer.title} width="75px" height="75px" />
         </div>
-        <div>
+        <div className="listing__content">
           <div className="meta__name">
             {mainOffer.title}
             <small className="meta__cuisine truncate">{mainOffer.cuisine}</small>
@@ -138,6 +138,9 @@ const Listing = ({ offer }) => {
           width: 75px;
           height: 75px;
           padding: 10px;
+        }
+        .listing__content {
+          padding: 5px 5px 5px 0;
         }
         .meta__name {
           font-weight: bold;
@@ -250,7 +253,7 @@ const Listing = ({ offer }) => {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          max-width: 100%;
+          max-width: 260px;
         }
       `}</style>
     </div>

@@ -30,7 +30,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
                   <Listing offer={offer} key={index} />
                 ))}
               </div>
-              <Pagination filters={filters} page={page} />
+              <Pagination listingsCount={offers.length} filters={filters} page={page} />
             </Fragment>
           ) : (
             <NoResults isSearch={isSearchPage} />

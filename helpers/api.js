@@ -3,6 +3,7 @@ import { gql } from 'apollo-boost';
 import fetch from 'isomorphic-unfetch';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { PAGE_SIZE } from './constants';
 
 const settings = require('../settings')();
 
@@ -26,13 +27,11 @@ const client = new ApolloClient({
   defaultOptions: defaultOptions,
 });
 
-const pageSize = 20;
-
 export const getOffers = async (location, page, searchFilters) => {
   try {
     const queryParams = [];
     queryParams.push(`page: ${page}`);
-    queryParams.push(`pageSize: ${pageSize}`);
+    queryParams.push(`pageSize: ${PAGE_SIZE}`);
     queryParams.push(`locationSlug: "${location}"`);
 
     if (searchFilters.keywords !== '') {
