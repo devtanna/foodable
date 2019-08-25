@@ -125,7 +125,7 @@ function calculateScore(item) {
       /^(\d+)% off on dine-in and your first home-delivery order from us Offer on home-delivery only applicable when you order online on Zomato or the restaurant app$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us Offer on home-delivery only applicable when you order online on Zomato$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us Only applicable on orders above aed(\d+) Offer on home-delivery only applicable when you order online on Zomato or the restaurant app$/im,
-      /^(\d+)% off on your first order Only applicable on orders above aed(\d+) from (\d+):(\d+) pm to (\d+):(\d+) pm$/im,
+      /^(\d+)% off on your first order Only applicable on orders above aed(\d+) from (\d+):(\d+) (pm|am) to (\d+):(\d+) (pm|am)$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us$/im,
       /^(\d+)% off on your first order from/im,
       /^(\d+)% off on your first order$/im,
