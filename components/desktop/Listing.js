@@ -289,7 +289,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
     <div className="otherOffers">
       {offers.slice(0, 2).map((offer, index) => {
         const { minimumOrder, deliveryCharge, deliveryTime, href, source, offer: _offer, title } = offer;
-        const hasDeliveryInfo = minimumOrder && deliveryCharge && deliveryTime;
+        const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
         const [deliveryInfoVisible, setDeliveryInfoVisible] = useState(false);
         return (
           <a
