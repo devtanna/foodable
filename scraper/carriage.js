@@ -76,17 +76,15 @@ async function scrapeInfiniteScrollItems(page, location) {
             .split(/"/)[1],
           location: location.baseline,
           rating: null,
-          cuisine: $('.rest-name-slogan p', this)
-            .text()
-            .trim(),
+          cuisine: null,
           offer: 'Special Carriage Offer',
           deliveryTime: $('.del-time em', this)
             .text()
             .trim()
             .replace('mins', ''),
-          minimumOrder: '',
-          deliveryCharge: '',
-          cost_for_two: '',
+          minimumOrder: '?',
+          deliveryCharge: '?',
+          cost_for_two: '?',
           votes: '',
           address: location.name,
         };

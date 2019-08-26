@@ -147,7 +147,7 @@ const scrapePage = async (page, location) => {
         source: `${scraper_name}`,
         cost_for_two: '',
         deliveryTime,
-        minimumOrder: '',
+        minimumOrder: '?',
         deliveryCharge: getNumFromString(deliveryCharge),
         type: 'restaurant',
       };
