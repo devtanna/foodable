@@ -11,6 +11,7 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
     </div>
   ),
 });
+const showCurrency = str => str !== '?';
 
 const Listing = ({ offer }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -64,7 +65,7 @@ const Listing = ({ offer }) => {
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">min order</span>
               <span className="deliveryInfo__value">
-                {minimumOrder} <small>aed</small>
+                {minimumOrder} {showCurrency(minimumOrder) && <small>aed</small>}
               </span>
             </div>
           )}
@@ -72,7 +73,7 @@ const Listing = ({ offer }) => {
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">delivery fee</span>
               <span className="deliveryInfo__value">
-                {deliveryCharge} <small>aed</small>
+                {deliveryCharge} {showCurrency(deliveryCharge) && <small>aed</small>}
               </span>
             </div>
           )}

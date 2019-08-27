@@ -11,6 +11,7 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
     </div>
   ),
 });
+const showCurrency = str => str !== '?';
 
 const Listing = ({ offer }) => {
   const mainOffer = offer.offers[0];
@@ -137,7 +138,7 @@ const BestOffer = ({ offer }) => {
                 {minimumOrder && (
                   <div className="deliveryInfo__item">
                     <span className="deliveryInfo__value">
-                      {minimumOrder} <small>aed</small>
+                      {minimumOrder} {showCurrency(minimumOrder) && <small>aed</small>}
                     </span>
                     <span className="deliveryInfo__desc">min order</span>
                   </div>
@@ -145,7 +146,7 @@ const BestOffer = ({ offer }) => {
                 {deliveryCharge && (
                   <div className="deliveryInfo__item">
                     <span className="deliveryInfo__value">
-                      {deliveryCharge} <small>aed</small>
+                      {deliveryCharge} {showCurrency(deliveryCharge) && <small>aed</small>}
                     </span>
                     <span className="deliveryInfo__desc">delivery fee</span>
                   </div>
@@ -314,7 +315,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
                       {minimumOrder && (
                         <div className="deliveryInfo__item">
                           <span className="deliveryInfo__value">
-                            {minimumOrder} <small>aed</small>
+                            {minimumOrder} {showCurrency(minimumOrder) && <small>aed</small>}
                           </span>
                           <span className="deliveryInfo__desc">min order</span>
                         </div>
@@ -322,7 +323,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
                       {deliveryCharge && (
                         <div className="deliveryInfo__item">
                           <span className="deliveryInfo__value">
-                            {deliveryCharge} <small>aed</small>
+                            {deliveryCharge} {showCurrency(deliveryCharge) && <small>aed</small>}
                           </span>
                           <span className="deliveryInfo__desc">delivery fee</span>
                         </div>
