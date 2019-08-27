@@ -106,5 +106,6 @@ pkill -f -- "chromium-browser --type=renderer" &&
 pkill chrome &&
 pkill chromium &&
 pkill -f chromium &&
-pkill -f puppeteer
+pkill -f puppeteer &&
+kill $(ps aux | grep 'puppet' | awk '{print $2}')
 wait

@@ -80,9 +80,11 @@ async function reindex(db, dbClient, todayDateStr) {
       }
 
       // PART3 -> accumulate cuisine tags
-      let cuisineTags = restaurant['cuisine'].split(',').map(s => s.trim());
-      if (cuisineTags.length) {
-        cuisineArray.push(cuisineTags);
+      if (restaurant['cuisine'] != null) {
+        let cuisineTags = restaurant['cuisine'].split(',').map(s => s.trim());
+        if (cuisineTags.length) {
+          cuisineArray.push(cuisineTags);
+        }
       }
     });
 
