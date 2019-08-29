@@ -50,7 +50,6 @@ export const getOffers = async (location, page, searchFilters) => {
             offers {
               title,
               cuisine,
-              cuisineArray,
               offer,
               score,
               source,

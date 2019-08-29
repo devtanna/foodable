@@ -54,7 +54,9 @@ const Listing = ({ offer }) => {
 };
 
 const ListingMeta = ({ offer }) => {
-  const { title, rating, cuisineArray } = offer;
+  const { title, rating } = offer;
+
+  let cuisineArray = [];
 
   return (
     <div className="listing__meta">
