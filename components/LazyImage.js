@@ -26,18 +26,12 @@ export class LazyImage extends React.Component {
     const { alt, src, width, height } = this.props;
     return (
       <React.Fragment>
-        <img
-          alt={alt}
-          className="lazy"
-          data-src={src}
-          width={width}
-          height={height}
-        />
+        <img alt={alt} className="lazy" data-src={src} width={width} height={height} />
         <style jsx>{`
           .lazy {
             width: 100%;
             height: 100%;
-            object-fit: scale-down;
+            object-fit: cover;
           }
         `}</style>
       </React.Fragment>

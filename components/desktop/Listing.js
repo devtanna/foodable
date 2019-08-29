@@ -54,16 +54,22 @@ const Listing = ({ offer }) => {
 };
 
 const ListingMeta = ({ offer }) => {
-  const { title, rating, cuisine } = offer;
+  const { title, rating, cuisineArray } = offer;
 
   return (
     <div className="listing__meta">
-      <h2 className="meta__name">
-        {title}
-        <small className="meta__cuisine truncate">{cuisine}</small>
-      </h2>
+      <div>
+        <h2 className="meta__name">{title}</h2>
+        <div className="meta__tags">
+          {cuisineArray.map((cuisine, index) => (
+            <a className="cuisineTag" key={index} href={`?cuisine%5B0%5D=${cuisine.toLowerCase()}`}>
+              {cuisine}
+            </a>
+          ))}
+        </div>
+      </div>
       {rating && (
-        <div className="meta__rating">
+        <div>
           <div className="rating__heading">Rating</div>
           <Rating size="large" icon="star" disabled defaultRating={Number(rating)} maxRating={5} />
         </div>
@@ -78,6 +84,26 @@ const ListingMeta = ({ offer }) => {
         }
         .meta__name {
           margin: 0;
+        }
+        .meta__tags {
+          margin-top: 5px;
+        }
+        .cuisineTag {
+          display: inline-block;
+          background-color: rgba(24, 44, 55, 0.07);
+          color: #182c37;
+          font-size: 11px;
+          padding: 4px 8px;
+          border-radius: 2px;
+          margin: 5px;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        .cuisineTag:first-child {
+          margin-left: 0;
+        }
+        .cuisineTag:hover {
+          text-decoration: underline;
         }
         .meta__cuisine {
           color: #8f8f8f;
