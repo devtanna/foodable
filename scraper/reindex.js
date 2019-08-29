@@ -70,7 +70,7 @@ async function reindex(db, dbClient, todayDateStr) {
       delete restaurant['_id']; // so mongo does not treat it as different
 
       let key = `${restaurant.slug}_${restaurant.locationSlug}`;
-      let cuisineTags = restaurant['cuisine'].split(',').map(s => s.trim());
+      let cuisineTags = restaurant['cuisine'] ? restaurant['cuisine'].split(',').map(s => s.trim()) : null;
       restaurant['cuisineArray'] = cuisineTags;
 
       // PART2 -> hash the restaurants
