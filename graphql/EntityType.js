@@ -42,6 +42,9 @@ const offerObjectType = new GraphQLObjectType({
     cuisine: {
       type: GraphQLString,
     },
+    cuisineArray: {
+      type: GraphQLList(GraphQLString),
+    },
     offer: {
       type: GraphQLString,
     },
@@ -137,6 +140,9 @@ exports.entityType = new GraphQLObjectType({
       },
       cuisine: {
         type: GraphQLString,
+      },
+      cuisineArray: {
+        type: GraphQLList(GraphQLString),
       },
       offer: {
         type: GraphQLString,
