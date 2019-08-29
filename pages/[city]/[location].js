@@ -117,7 +117,9 @@ Location.getInitialProps = async ({ req, res, query }) => {
       searchFilters
     );
 
-    if (offers.length === 0 && page === 1) {
+    const isSearchPage = searchFilters.keywords !== '' || searchFilters.cuisine.length > 0;
+    
+    if (offers.length === 0 && page === 1 && !isSearchPage) {
       redirectToPage(res, '/select-area');
       return;
     }

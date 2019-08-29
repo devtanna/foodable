@@ -93,3 +93,7 @@ export const limitChars = str => {
 
   return str;
 };
+
+export const showCurrency = str => str !== '?';
+
+export const showMins = str => str.search(/pre-order/gi) < 0;

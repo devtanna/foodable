@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Rating, Loader } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
-import { trackEvent, limitChars } from '../../helpers/utils';
+import { trackEvent, limitChars, showCurrency, showMins } from '../../helpers/utils';
 import dynamic from 'next/dynamic';
 const LazyImage = dynamic(() => import('../LazyImage'), {
   ssr: false,
@@ -11,7 +11,6 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
     </div>
   ),
 });
-const showCurrency = str => str !== '?';
 
 const Listing = ({ offer }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -81,7 +80,7 @@ const Listing = ({ offer }) => {
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">time est.</span>
               <span className="deliveryInfo__value">
-                {deliveryTime} <small>mins</small>
+                {deliveryTime} {showMins(deliveryTime) && <small>mins</small>}
               </span>
             </div>
           )}

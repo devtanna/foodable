@@ -136,7 +136,7 @@ const scrapePage = async (page, location) => {
             .text()
             .trim()
         ),
-        href: clean_deliveroo_href($(this).prop('href')),
+        href: `https://deliveroo.ae${clean_deliveroo_href($(this).prop('href'))}`,
         image: cleanImg(img),
         location: location.baseline,
         address: '',
