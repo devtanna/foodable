@@ -95,7 +95,7 @@ const ListingMeta = ({ offer }) => {
           font-size: 11px;
           padding: 4px 8px;
           border-radius: 2px;
-          margin: 5px;
+          margin: 2px;
           font-weight: bold;
           text-transform: uppercase;
         }
