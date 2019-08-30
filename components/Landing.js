@@ -18,6 +18,12 @@ const Landing = ({ locations }) => {
       <div className="wrapper">
         <img className="logo" src="/static/logo.svg" alt="Foodable.ae" />
         <h1>Discover and compare great food deals from top food delivery websites!</h1>
+        <div className="partners">
+          <img src="/static/restaurant-banners/zomato_lp.webp" alt="Zomato" />
+          <img src="/static/restaurant-banners/talabat_lp.webp" alt="Talabat" />
+          <img src="/static/restaurant-banners/deliveroo_lp.webp" alt="Deliveroo" />
+          <img src="/static/restaurant-banners/eateasy_lp.webp" alt="Eat easy" />
+        </div>
         <div className="ctaWrapper">
           <Dropdown
             selection
@@ -73,7 +79,18 @@ const Landing = ({ locations }) => {
         h1 {
           font-size: 20px;
           color: #7c7c7c;
-          margin: 30px;
+          margin: 0 30px;
+        }
+        .partners {
+          margin: 15px auto 30px;
+          display: flex;
+          justify-content: center;
+        }
+        .partners img {
+          width: 38px;
+          height: 38px;
+          margin: 0 5px;
+          border-radius: 8px;
         }
         .ctaWrapper {
           display: grid;
@@ -84,18 +101,27 @@ const Landing = ({ locations }) => {
         }
         @media ${device.tablet} {
           main {
-            background: #fff url('/static/lp-bg.webp') 0 110% no-repeat;
+            background: #fff url('/static/lp-bg.webp') 0 125% no-repeat;
             background-size: 100%;
           }
           .wrapper {
-            padding-top: 75px;
+            padding-top: 40px;
           }
           .logo {
             max-width: 300px;
           }
           h1 {
-            font-size: 1.9rem;
-            margin: 50px 30px 75px;
+            font-size: 1.7rem;
+            margin: 0 auto;
+            max-width: 500px;
+          }
+          .partners {
+            margin: 30px auto 60px;
+          }
+          .partners img {
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
           }
           .ctaWrapper {
             grid-template-columns: 1fr 2fr auto;
