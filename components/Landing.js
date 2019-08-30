@@ -66,9 +66,6 @@ const Landing = ({ locations }) => {
           max-width: 800px;
           margin: 0 auto;
           padding-top: 30px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
           text-align: center;
         }
         .logo {
@@ -90,7 +87,7 @@ const Landing = ({ locations }) => {
           width: 38px;
           height: 38px;
           margin: 0 5px;
-          border-radius: 8px;
+          border-radius: 4px;
         }
         .ctaWrapper {
           display: grid;
@@ -105,7 +102,7 @@ const Landing = ({ locations }) => {
             background-size: 100%;
           }
           .wrapper {
-            padding-top: 40px;
+            padding-top: 50px;
           }
           .logo {
             max-width: 300px;
@@ -114,6 +111,7 @@ const Landing = ({ locations }) => {
             font-size: 1.7rem;
             margin: 0 auto;
             max-width: 500px;
+            margin-top: 30px;
           }
           .partners {
             margin: 30px auto 60px;
