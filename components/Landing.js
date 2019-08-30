@@ -19,10 +19,10 @@ const Landing = ({ locations }) => {
         <img className="logo" src="/static/logo.svg" alt="Foodable.ae" />
         <h1>Discover and compare great food deals from top food delivery websites!</h1>
         <div className="partners">
-          <img src="/static/restaurant-banners/zomato_lp.webp" alt="Zomato" />
-          <img src="/static/restaurant-banners/talabat_lp.webp" alt="Talabat" />
-          <img src="/static/restaurant-banners/deliveroo_lp.webp" alt="Deliveroo" />
-          <img src="/static/restaurant-banners/eateasy_lp.webp" alt="Eat easy" />
+          <img src="/static/restaurant-banners/zomato_lp.webp" alt="Zomato partner" />
+          <img src="/static/restaurant-banners/talabat_lp.webp" alt="Talabat partner" />
+          <img src="/static/restaurant-banners/deliveroo_lp.webp" alt="Deliveroo partner" />
+          <img src="/static/restaurant-banners/eateasy_lp.webp" alt="Eat easy partner" />
         </div>
         <div className="ctaWrapper">
           <Dropdown
@@ -79,7 +79,7 @@ const Landing = ({ locations }) => {
         h1 {
           font-size: 20px;
           color: #7c7c7c;
-          margin: 0 30px;
+          margin: 15px 30px 0;
         }
         .partners {
           margin: 15px auto 30px;
