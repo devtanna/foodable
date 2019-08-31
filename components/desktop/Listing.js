@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Icon, Rating, Loader, Transition } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
 import { trackEvent, limitChars, showCurrency, showMins } from '../../helpers/utils';
+import copy from 'copy-to-clipboard';
+import qs from 'qs';
 import dynamic from 'next/dynamic';
 const LazyImage = dynamic(() => import('../LazyImage'), {
   ssr: false,
@@ -55,8 +57,32 @@ const Listing = ({ offer }) => {
 
 const ListingMeta = ({ offer }) => {
   const { title, rating } = offer;
+  const [linkCopied, setLinkCopied] = useState(false);
 
   let cuisineArray = [];
+
+  useEffect(() => {
+    if (linkCopied) {
+      setTimeout(() => {
+        setLinkCopied(false);
+      }, 4000);
+    }
+  }, [linkCopied]);
+
+  const handleCopyShareLink = () => {
+    const query = {};
+    query.keywords = title;
+
+    const url = new URL(window.location.href);
+    url.search = qs.stringify(query);
+
+    const shareableLink = url;
+    copy(url);
+
+    setLinkCopied(true);
+
+    trackEvent('copy_link', 'generic');
+  };
 
   return (
     <div className="listing__meta">
@@ -70,18 +96,35 @@ const ListingMeta = ({ offer }) => {
           ))}
         </div>
       </div>
-      {rating && (
-        <div>
-          <div className="rating__heading">Rating</div>
-          <Rating size="large" icon="star" disabled defaultRating={Number(rating)} maxRating={5} />
-        </div>
-      )}
+      <div className="meta__footer">
+        {rating && (
+          <div>
+            <div className="rating__heading">Rating</div>
+            <Rating size="large" icon="star" disabled defaultRating={Number(rating)} maxRating={5} />
+          </div>
+        )}
+        {linkCopied ? (
+          <div className="meta__linkCopied">
+            <Fragment>
+              <Icon name="check" />
+              <span>Link copied!</span>
+            </Fragment>
+          </div>
+        ) : (
+          <a className="meta__share" onClick={handleCopyShareLink}>
+            <Fragment>
+              <Icon name="linkify" />
+              <span className="shareLink">Share via link</span>
+            </Fragment>
+          </a>
+        )}
+      </div>
       <style jsx>{`
         .listing__meta {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 25px 0;
+          padding: 25px 25px 25px 0;
           border-right: 1px solid #e7e7e7;
         }
         .meta__name {
@@ -100,6 +143,7 @@ const ListingMeta = ({ offer }) => {
           margin: 2px;
           font-weight: bold;
           text-transform: uppercase;
+          outline: none;
         }
         .cuisineTag:first-child {
           margin-left: 0;
@@ -114,7 +158,49 @@ const ListingMeta = ({ offer }) => {
           font-size: 16px;
         }
         .rating__heading {
-          margin-bottom: 5px;
+          font-size: 10px;
+          color: #666;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        .meta__footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+        .meta__share {
+          font-size: 12px;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: #00b5ad;
+          user-select: none;
+          line-height: 1em;
+          display: flex;
+          align-items: center;
+          padding-bottom: 3px;
+        }
+        .meta__share:hover {
+          cursor: pointer;
+          color: #999;
+        }
+        .shareLink {
+          display: inline-block;
+          overflow: hidden;
+          width: 0;
+          white-space: nowrap;
+          transition: width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .meta__share:hover .shareLink {
+          width: 95px;
+        }
+        .meta__linkCopied {
+          font-size: 12px;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: #21ba45;
+          user-select: none;
+          line-height: 1em;
+          padding-bottom: 3px;
         }
         .truncate {
           white-space: nowrap;
