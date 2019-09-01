@@ -12,6 +12,7 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
     </div>
   ),
 });
+const hasNavigator = typeof navigator !== 'undefined' && navigator.share !== undefined;
 
 const getShareLink = keyword => {
   const query = {};
@@ -44,8 +45,6 @@ const Listing = ({ offer }) => {
   const { minimumOrder, deliveryCharge, deliveryTime } = mainOffer;
   const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
 
-  const hasNavigator = typeof navigator !== 'undefined' && navigator.share !== undefined;
-
   const handleShare = async () => {
     const shareLink = getShareLink(mainOffer.title);
 
@@ -67,7 +66,7 @@ const Listing = ({ offer }) => {
         <div className="listing__img">
           <LazyImage src={imgSrc} alt={mainOffer.title} width="75px" height="75px" />
         </div>
-        <div className={`listing__content${hasNavigator ? ' navigator' : ''}`}>
+        <div className="listing__content">
           <div>
             <div className="meta__name">
               {mainOffer.title}
@@ -80,11 +79,9 @@ const Listing = ({ offer }) => {
             )}
           </div>
           {hasNavigator && (
-            <div>
-              <a onClick={handleShare}>
-                <Icon name="share square" color="teal" size="small" />
-              </a>
-            </div>
+            <a onClick={handleShare}>
+              <Icon name="share square" color="teal" size="small" />
+            </a>
           )}
         </div>
       </div>
@@ -178,10 +175,8 @@ const Listing = ({ offer }) => {
         }
         .listing__content {
           padding: 5px;
-        }
-        .listing__content.navigator {
-          display: grid;
-          grid-template-columns: auto 20px;
+          display: flex;
+          justify-content: space-between;
           align-items: center;
         }
         .meta__name {
@@ -295,9 +290,6 @@ const Listing = ({ offer }) => {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          max-width: 260px;
-        }
-        .listing__content.navigator .truncate {
           max-width: 240px;
         }
       `}</style>
