@@ -102,17 +102,17 @@ const ListingMeta = ({ offer }) => {
           </div>
         )}
         {linkCopied ? (
-          <div className="meta__linkCopied">
+          <div className="meta__share meta__share--success">
             <Fragment>
               <Icon name="check" />
               <span>Link copied!</span>
             </Fragment>
           </div>
         ) : (
-          <a className="meta__share" onClick={handleCopyShareLink}>
+          <a className="meta__share meta__share--default" onClick={handleCopyShareLink}>
             <Fragment>
               <Icon name="linkify" />
-              <span className="shareLink">Share via link</span>
+              <span className="meta__share-txt">Share via link</span>
             </Fragment>
           </a>
         )}
@@ -177,28 +177,22 @@ const ListingMeta = ({ offer }) => {
           align-items: center;
           padding-bottom: 3px;
         }
-        .meta__share:hover {
+        .meta__share--default:hover {
           cursor: pointer;
           color: #999;
         }
-        .shareLink {
+        .meta__share--success {
+          color: #21ba45;
+        }
+        .meta__share-txt {
           display: inline-block;
           overflow: hidden;
           width: 0;
           white-space: nowrap;
           transition: width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        .meta__share:hover .shareLink {
+        .meta__share:hover .meta__share-txt {
           width: 95px;
-        }
-        .meta__linkCopied {
-          font-size: 12px;
-          font-weight: bold;
-          text-transform: uppercase;
-          color: #21ba45;
-          user-select: none;
-          line-height: 1em;
-          padding-bottom: 3px;
         }
         .truncate {
           white-space: nowrap;

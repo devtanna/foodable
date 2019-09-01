@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Icon, Rating, Loader } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
 import { trackEvent, limitChars, showCurrency, showMins } from '../../helpers/utils';
+import qs from 'qs';
 import dynamic from 'next/dynamic';
 const LazyImage = dynamic(() => import('../LazyImage'), {
   ssr: false,
@@ -11,6 +12,16 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
     </div>
   ),
 });
+
+const getShareLink = keyword => {
+  const query = {};
+  query.keywords = keyword;
+
+  const url = new URL(window.location.href);
+  url.search = qs.stringify(query);
+
+  return url;
+};
 
 const Listing = ({ offer }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -33,6 +44,24 @@ const Listing = ({ offer }) => {
   const { minimumOrder, deliveryCharge, deliveryTime } = mainOffer;
   const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
 
+  const hasNavigator = typeof navigator !== 'undefined' && navigator.share !== undefined;
+
+  const handleShare = async () => {
+    const shareLink = getShareLink(mainOffer.title);
+
+    try {
+      await navigator.share({
+        title: 'Check out this Foodable offer!',
+        text: `${mainOffer.offer} from ${mainOffer.source}`,
+        url: shareLink,
+      });
+
+      trackEvent('copy_link', 'generic');
+    } catch (error) {
+      console.log('Error sharing', error);
+    }
+  };
+
   return (
     <div className="listing">
       <div className="listing__meta">
@@ -40,14 +69,21 @@ const Listing = ({ offer }) => {
           <LazyImage src={imgSrc} alt={mainOffer.title} width="75px" height="75px" />
         </div>
         <div className="listing__content">
-          <div className="meta__name">
-            {mainOffer.title}
-            <small className="meta__cuisine truncate">{mainOffer.cuisine}</small>
-          </div>
-          {initialRating && (
-            <div className="meta__rating">
-              <Rating size="small" icon="star" disabled defaultRating={Number(initialRating)} maxRating={5} />
+          <div>
+            <div className="meta__name">
+              {mainOffer.title}
+              <small className="meta__cuisine truncate">{mainOffer.cuisine}</small>
             </div>
+            {initialRating && (
+              <div className="meta__rating">
+                <Rating size="small" icon="star" disabled defaultRating={Number(initialRating)} maxRating={5} />
+              </div>
+            )}
+          </div>
+          {hasNavigator && (
+            <a onClick={handleShare}>
+              <Icon name="share square" color="teal" size="small" />
+            </a>
           )}
         </div>
       </div>
@@ -140,7 +176,10 @@ const Listing = ({ offer }) => {
           padding: 10px;
         }
         .listing__content {
-          padding: 5px 5px 5px 0;
+          padding: 5px;
+          display: grid;
+          grid-template-columns: auto 20px;
+          align-items: center;
         }
         .meta__name {
           font-weight: bold;
