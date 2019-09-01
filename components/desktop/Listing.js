@@ -56,10 +56,8 @@ const Listing = ({ offer }) => {
 };
 
 const ListingMeta = ({ offer }) => {
-  const { title, rating } = offer;
+  const { title, rating, cuisineArray } = offer;
   const [linkCopied, setLinkCopied] = useState(false);
-
-  let cuisineArray = [];
 
   useEffect(() => {
     if (linkCopied) {
