@@ -51,8 +51,7 @@ const Listing = ({ offer }) => {
 
     try {
       await navigator.share({
-        title: 'Check out this Foodable offer!',
-        text: `${mainOffer.offer} from ${mainOffer.source}`,
+        title: `${mainOffer.offer} from ${mainOffer.source}`,
         url: shareLink,
       });
 
@@ -68,7 +67,7 @@ const Listing = ({ offer }) => {
         <div className="listing__img">
           <LazyImage src={imgSrc} alt={mainOffer.title} width="75px" height="75px" />
         </div>
-        <div className="listing__content">
+        <div className={`listing__content${hasNavigator ? ' navigator' : ''}`}>
           <div>
             <div className="meta__name">
               {mainOffer.title}
@@ -177,6 +176,8 @@ const Listing = ({ offer }) => {
         }
         .listing__content {
           padding: 5px;
+        }
+        .listing__content.navigator {
           display: grid;
           grid-template-columns: auto 20px;
           align-items: center;
@@ -293,6 +294,9 @@ const Listing = ({ offer }) => {
           overflow: hidden;
           text-overflow: ellipsis;
           max-width: 260px;
+        }
+        .listing__content.navigator .truncate {
+          max-width: 240px;
         }
       `}</style>
     </div>
