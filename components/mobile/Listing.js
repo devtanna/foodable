@@ -51,7 +51,7 @@ const Listing = ({ offer }) => {
 
     try {
       await navigator.share({
-        title: `${mainOffer.offer} from ${mainOffer.source}`,
+        text: `${mainOffer.offer} from ${mainOffer.source} -`,
         url: shareLink,
       });
 
