@@ -51,7 +51,7 @@ const Listing = ({ offer }) => {
 
     try {
       await navigator.share({
-        text: `${mainOffer.offer} from ${mainOffer.source} -`,
+        text: `${mainOffer.title}: ${mainOffer.offer} on ${mainOffer.source}.`,
         url: shareLink,
       });
 
@@ -80,9 +80,11 @@ const Listing = ({ offer }) => {
             )}
           </div>
           {hasNavigator && (
-            <a onClick={handleShare}>
-              <Icon name="share square" color="teal" size="small" />
-            </a>
+            <div>
+              <a onClick={handleShare}>
+                <Icon name="share square" color="teal" size="small" />
+              </a>
+            </div>
           )}
         </div>
       </div>
