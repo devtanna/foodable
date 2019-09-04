@@ -32,11 +32,6 @@ wait
 echo "< deliveroo ..." && node scraper/deliveroo.js && echo "... deliveroo >" &&
 wait
 
-node devops/slackBot.js "Running Carriage"
-wait
-echo "< carriage ..." && node scraper/carriage.js && echo "... carriage >" &&
-wait
-
 node devops/slackBot.js "Running Eateasy"
 wait
 echo "< eateasy ..." && node scraper/eateasy.js && echo "... eateasy >" &&
