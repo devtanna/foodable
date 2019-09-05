@@ -201,15 +201,18 @@ app
       }
     });
 
-    server.get('/static/:name', function(req, res, next) {
+    server.get(['/static/:name', '/static/**/:name'], function(req, res, next) {
+      let rootUrl = req.url.split('/');
+      rootUrl.pop();
+      rootUrl = rootUrl.join('/');
       const acceptsWebp = req.accepts('image/webp') !== false;
       const options = {
-        root: path.join(__dirname, '/static'),
+        root: path.join(__dirname, rootUrl),
       };
-      const fileName = req.params.name;
+      let fileName = req.params.name;
       const fileType = fileName.split('.')[1];
       if (fileType === 'webp' && !acceptsWebp) {
-        fileName.replace('webp', 'png');
+        fileName = fileName.replace('webp', 'png');
       }
       return res.status(200).sendFile(fileName, options);
     });
