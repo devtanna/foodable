@@ -201,6 +201,19 @@ app
       }
     });
 
+    server.get('/static/:name', function(req, res, next) {
+      const acceptsWebp = req.accepts('image/webp') !== false;
+      const options = {
+        root: path.join(__dirname, '/static'),
+      };
+      const fileName = req.params.name;
+      const fileType = fileName.split('.')[1];
+      if (fileType === 'webp' && !acceptsWebp) {
+        fileName.replace('webp', 'png');
+      }
+      return res.status(200).sendFile(fileName, options);
+    });
+
     server.get('*', (req, res) => {
       res.cookie('fdb_device', req.device.type);
       return handle(req, res);
