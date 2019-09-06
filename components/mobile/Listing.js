@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Rating, Loader } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
-import { trackEvent, limitChars, showCurrency, showMins } from '../../helpers/utils';
+import { trackEvent, limitChars, showCurrency, showMins, toStartCase } from '../../helpers/utils';
 import qs from 'qs';
 import dynamic from 'next/dynamic';
 const LazyImage = dynamic(() => import('../LazyImage'), {
@@ -69,7 +69,7 @@ const Listing = ({ offer }) => {
         <div className="listing__content">
           <div>
             <div className="meta__name">
-              {mainOffer.title}
+              {toStartCase(mainOffer.title)}
               <small className="meta__cuisine truncate">{mainOffer.cuisine}</small>
             </div>
             {initialRating && (

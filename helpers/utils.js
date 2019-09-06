@@ -1,5 +1,6 @@
 import Router from 'next/router';
 import { TRACKING_ID } from './constants';
+import _startCase from 'lodash/startCase';
 
 export const redirectToPage = (res, page) => {
   if (res) {
@@ -76,6 +77,10 @@ export const removeObjEmpty = obj => {
 
 export const capitalizeFirstLetter = string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+export const toStartCase = string => {
+  return _startCase(string.toLowerCase());
 };
 
 export const hideVirtualKeyboard = () => {

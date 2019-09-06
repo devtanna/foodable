@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Icon, Rating, Loader, Transition } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
-import { trackEvent, limitChars, showCurrency, showMins } from '../../helpers/utils';
+import { trackEvent, limitChars, showCurrency, showMins, toStartCase } from '../../helpers/utils';
 import copy from 'copy-to-clipboard';
 import qs from 'qs';
 import dynamic from 'next/dynamic';
@@ -85,7 +85,7 @@ const ListingMeta = ({ offer }) => {
   return (
     <div className="listing__meta">
       <div>
-        <h2 className="meta__name">{title}</h2>
+        <h2 className="meta__name">{toStartCase(title)}</h2>
         <div className="meta__tags">
           {cuisineArray.map((cuisine, index) => (
             <a className="cuisineTag" key={index} href={`?cuisine%5B0%5D=${cuisine.toLowerCase()}`}>
