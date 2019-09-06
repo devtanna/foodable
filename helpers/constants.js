@@ -29,4 +29,4 @@ export const TRACKING_ID = 'UA-142540848-1';
 
 export const CITIES = [{ key: 'dubai', text: 'Dubai', value: 'dubai' }];
 
-export const PAGE_SIZE = 20;
+export const PAGE_SIZE = 25;
