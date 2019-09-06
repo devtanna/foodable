@@ -128,7 +128,7 @@ const Listing = ({ offer }) => {
         )}
         <a
           href={mainOffer.href}
-          target="_self"
+          target="_blank"
           rel="noopener"
           onClick={() => trackEvent('offer_click', 'main', mainOffer.source, mainOffer.title)}
           className="actionBtns__cta">
@@ -147,7 +147,7 @@ const Listing = ({ offer }) => {
                 href={otherOffer.href}
                 rel="noopener"
                 onClick={() => trackEvent('offer_click', 'others', otherOffer.source, otherOffer.title)}
-                target="_self">
+                target="_blank">
                 <span>{otherOffer.source}</span>
                 <span>{limitChars(otherOffer.offer)}</span>
                 <Icon name="angle right" />
