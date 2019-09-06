@@ -95,11 +95,13 @@ const ListingMeta = ({ offer }) => {
         </div>
       </div>
       <div className="meta__footer">
-        {rating && (
+        {rating ? (
           <div>
             <div className="rating__heading">Rating</div>
             <Rating size="large" icon="star" disabled defaultRating={Number(rating)} maxRating={5} />
           </div>
+        ) : (
+          <div />
         )}
         {linkCopied ? (
           <div className="meta__share meta__share--success">
