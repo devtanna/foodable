@@ -88,6 +88,7 @@ function calculateScore(item) {
       /^2 for 1$/im,
       /^bogo$/im,
       /^buy 1 get 1 free$/im,
+      /^Buy One Get One free on select items$/im,
       /^special offer: buy one get one free!$/im,
     ],
     4: [
