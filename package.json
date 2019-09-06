@@ -38,6 +38,7 @@
     "express": "^4.17.1",
     "express-device": "^0.4.2",
     "express-graphql": "^0.8.0",
+    "express-useragent": "^1.0.13",
     "file-loader": "^3.0.1",
     "fuse.js": "^3.4.5",
     "graphql": "^14.2.1",

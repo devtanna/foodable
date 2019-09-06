@@ -11,6 +11,7 @@ const next = require('next');
 const path = require('path');
 const compression = require('compression');
 const device = require('express-device');
+const useragent = require('express-useragent');
 const { sitemap } = require('./sitemap');
 const nodemailer = require('nodemailer');
 
@@ -43,6 +44,7 @@ app
 
     server.use(compression());
     server.use(device.capture());
+    server.use(useragent.express());
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
 
@@ -205,7 +207,7 @@ app
       let rootUrl = req.url.split('/');
       rootUrl.pop();
       rootUrl = rootUrl.join('/');
-      const acceptsWebp = req.accepts('image/webp') !== false;
+      const acceptsWebp = req.useragent.browser && req.useragent.browser.toLowerCase() !== 'safari';
       const options = {
         root: path.join(__dirname, rootUrl),
       };
