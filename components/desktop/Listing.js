@@ -56,7 +56,7 @@ const Listing = ({ offer }) => {
 };
 
 const ListingMeta = ({ offer }) => {
-  const { title, rating, cuisineArray } = offer;
+  const { title, rating, cuisineArray, source } = offer;
   const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const ListingMeta = ({ offer }) => {
 
     setLinkCopied(true);
 
-    trackEvent('copy_link', 'generic');
+    trackEvent('copy_link', 'generic', source, title);
   };
 
   return (

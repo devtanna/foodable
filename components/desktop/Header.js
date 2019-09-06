@@ -25,7 +25,7 @@ const Header = ({ location }) => {
             </li>
             <li>
               <div className="location__change">
-                <a href="/select-area" onClick={() => trackEvent('change_location', 'generic')}>
+                <a href="/select-area" onClick={() => trackEvent('change_location', 'generic', location.text, '')}>
                   Change Location
                 </a>
               </div>

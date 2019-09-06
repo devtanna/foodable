@@ -54,7 +54,7 @@ const Listing = ({ offer }) => {
         url: shareLink,
       });
 
-      trackEvent('copy_link', 'generic');
+      trackEvent('copy_link', 'generic', mainOffer.source, mainOffer.title);
     } catch (error) {
       console.log('Error sharing', error);
     }
