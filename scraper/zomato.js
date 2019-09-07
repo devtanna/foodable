@@ -33,15 +33,27 @@ const scrapePage = async (location, page) => {
 
     let keepGoing = true;
     let index = 0;
-    const MAX = 100;
+    const MAX = 40;
 
     while (keepGoing && index < MAX) {
-      await utils.delay(1000);
       logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
       let htmlBefore = await page.content();
       let offersCount = $('.res_details__wrapper', htmlBefore).length;
       await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
-      await page.waitFor(5000);
+      await utils.delay(1000);
+      await page.waitFor(() => {
+        function isInViewport(elem) {
+          const bounding = elem.getBoundingClientRect();
+          return (
+            bounding.top >= 0 &&
+            bounding.left >= 0 &&
+            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+          );
+        }
+        const el = document.querySelector('.row.white-bg.pl15.pr15.mb10');
+        return !el || !isInViewport(el);
+      });
       let htmlAfter = await page.content();
       let updatedOffersCount = $('.res_details__wrapper', htmlAfter).length;
       if (updatedOffersCount === offersCount && index > 3) {
@@ -219,7 +231,6 @@ const run = async () => {
         await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
         try {
-          await utils.delay(1000);
           logger.info('zomato scraper: Starting location: ' + location.locationName);
           let res = await scrapePage(location, page);
           if (res != undefined) {
