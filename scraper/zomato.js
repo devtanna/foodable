@@ -48,36 +48,41 @@ const scrapePage = async (location, page, pageNum = 1) => {
 
     let result = [];
 
-    $('.search-o2-card', html).each(function() {
-      let title = $('.result-order-flow-title', this)
+    let listingItems = $('.search-o2-card', html);
+
+    for (let i = 0; i < listingItems.length; i++) {
+      let listing = listingItems[i];
+
+      let title = $('.result-order-flow-title', listing)
         .text()
         .trim();
 
+      let href = $('.result-order-flow-title', listing).prop('href');
+
       var singleItem = {
         title,
-        href: $('.result-order-flow-title', this).prop('href'),
-        image: cleanImg($('.feat-img', this).prop('data-original')),
+        image: cleanImg($('.feat-img', listing).prop('data-original')),
         location: location.baseline,
         address: location.baseline,
-        cuisine: $('.description .grey-text.nowrap', this)
+        cuisine: $('.description .grey-text.nowrap', listing)
           .eq(0)
           .text()
           .trim(),
-        offer: $('.offer-text', this)
+        offer: $('.offer-text', listing)
           .text()
           .trim()
           .replace(/\./g, ''),
-        rating: $('.rating-popup', this)
+        rating: $('.rating-popup', listing)
           .text()
           .trim(),
-        votes: $('[class^="rating-votes-div"]', this)
+        votes: $('[class^="rating-votes-div"]', listing)
           .text()
           .trim(),
         cost_for_two: '',
         source: `${scraper_name}`,
         slug: utils.slugify(title),
         deliveryTime: utils.getNumFromString(
-          $('.description div', this)
+          $('.description div', listing)
             .eq(3)
             .text()
             .trim()
@@ -86,7 +91,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
         ),
         deliveryCharge: '?',
         minimumOrder: utils.getNumFromString(
-          $('.description div', this)
+          $('.description div', listing)
             .eq(3)
             .text()
             .trim()
@@ -95,6 +100,14 @@ const scrapePage = async (location, page, pageNum = 1) => {
         ),
         type: 'restaurant',
       };
+
+      try {
+        await page.goto(href, settings.PUPPETEER_GOTO_PAGE_ARGS);
+        let pdpUrl = page.url();
+        singleItem.href = pdpUrl;
+      } catch (e) {
+        console.log(e);
+      }
 
       // if no offer, then skip
       if (singleItem.offer.length > 0) {
@@ -109,7 +122,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
       } else {
         skippedCount++;
       }
-    });
+    }
 
     logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
 
