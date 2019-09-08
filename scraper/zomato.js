@@ -4,6 +4,8 @@ const $ = require('cheerio');
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+const fetch = require('isomorphic-unfetch');
+const ZOMATO_API_KEY = '35a79084d91ab22692d3da87957f3685';
 
 let locationsJson = require('./zomato_locations.json');
 
@@ -53,32 +55,32 @@ const scrapePage = async (location, page, pageNum = 1) => {
     for (let i = 0; i < listingItems.length; i++) {
       let listing = listingItems[i];
 
-      let title = $('.result-order-flow-title', listing)
-        .text()
-        .trim();
-
       let href = $('.result-order-flow-title', listing).prop('href');
+      let urlObj = new URL(href);
+      let resId = urlObj.searchParams.get('res_id');
 
-      var singleItem = {
+      let zomatoRestaurant = await getZomatoRestaurant(resId);
+
+      let orderUrl = new URL(zomatoRestaurant['order_url']);
+      orderUrl.search = '';
+      let trueHref = orderUrl.toString();
+
+      let title = zomatoRestaurant['name'];
+
+      let singleItem = {
         title,
-        image: cleanImg($('.feat-img', listing).prop('data-original')),
+        image: zomatoRestaurant['thumb'],
+        href: trueHref,
         location: location.baseline,
         address: location.baseline,
-        cuisine: $('.description .grey-text.nowrap', listing)
-          .eq(0)
-          .text()
-          .trim(),
+        cuisine: zomatoRestaurant['cuisines'],
         offer: $('.offer-text', listing)
           .text()
           .trim()
           .replace(/\./g, ''),
-        rating: $('.rating-popup', listing)
-          .text()
-          .trim(),
-        votes: $('[class^="rating-votes-div"]', listing)
-          .text()
-          .trim(),
-        cost_for_two: '',
+        rating: zomatoRestaurant['user_rating']['aggregate_rating'],
+        votes: zomatoRestaurant['user_rating']['votes'],
+        cost_for_two: zomatoRestaurant['average_cost_for_two'],
         source: `${scraper_name}`,
         slug: utils.slugify(title),
         deliveryTime: utils.getNumFromString(
@@ -100,14 +102,6 @@ const scrapePage = async (location, page, pageNum = 1) => {
         ),
         type: 'restaurant',
       };
-
-      try {
-        await page.goto(href, settings.PUPPETEER_GOTO_PAGE_ARGS);
-        let pdpUrl = page.url();
-        singleItem.href = pdpUrl;
-      } catch (e) {
-        console.log(e);
-      }
 
       // if no offer, then skip
       if (singleItem.offer.length > 0) {
@@ -270,4 +264,68 @@ function cleanImg(img) {
   }
 
   return imgSrc;
+}
+
+const TIMEOUT_MS = 10000;
+
+const endpoints = {
+  getZomatoRestaurant: resId => `https://developers.zomato.com/api/v2.1/restaurant?res_id=${resId}`,
+};
+
+function getHeaders() {
+  return {
+    Accept: 'application/json',
+    'Content-type': 'application/json',
+  };
+}
+
+function timeoutPromise(promise) {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error('promise timeout'));
+    }, TIMEOUT_MS);
+    promise.then(
+      res => {
+        clearTimeout(timeoutId);
+        resolve(res);
+      },
+      err => {
+        clearTimeout(timeoutId);
+        reject(err);
+      }
+    );
+  });
+}
+
+async function request(path, method = 'GET', body = {}, headers = {}) {
+  const options = {
+    method: method,
+    headers: Object.assign({}, getHeaders(), headers),
+    credentials: 'same-origin',
+  };
+
+  if (method !== 'GET') {
+    options.body = JSON.stringify(body);
+  }
+
+  try {
+    let res = await timeoutPromise(fetch(path, options));
+    let data = await res.json();
+    if (!res.ok) {
+      let message = data.message || 'Something went wrong, please try again.';
+      return Promise.reject({ message });
+    }
+    return data;
+  } catch (error) {
+    return Promise.reject({
+      message: 'Something went wrong, please try again.',
+    });
+  }
+}
+
+function getZomatoRestaurant(res_id) {
+  let header = {
+    'user-key': ZOMATO_API_KEY,
+  };
+  return request(endpoints['getZomatoRestaurant'](res_id), 'GET', {}, header);
 }
