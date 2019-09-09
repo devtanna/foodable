@@ -90,6 +90,8 @@ function calculateScore(item) {
       /^buy 1 get 1 free$/im,
       /^Buy One Get One free on select items$/im,
       /^special offer: buy one get one free!$/im,
+      /^(\d+)% off selected items$/im,
+      /^(\d+)% off on all dine-in and home-delivery orders Offer on home-delivery only applicable when you order online on Zomato/im,
     ],
     4: [
       /^aed (\d+(.\d+)*) off all orders$/im,
@@ -109,9 +111,7 @@ function calculateScore(item) {
       /^(\d+)% off on dine-in above aed\s*(\d+(.\d+)*)/im,
       /^(\d+)% on all dine-in and home-delivery orders Only applicable on orders above aed\s*(\d+(.\d+)*) Offer on home-delivery only applicable when you order online on Zomato$/im,
       /^(\d+)% off on all dine-in and home-delivery orders Only applicable on orders above aed\s*(\d+(.\d+)*) Offer on home-delivery only applicable when you order online on Zomato$/im,
-      /^(\d+)% off on all dine-in and home-delivery orders Offer on home-delivery only applicable when you order online on Zomato$/im,
       /^spend aed (\d+(.\d+)*), get (\d+)% off$/im,
-      /^(\d+)% off selected items$/im,
       /^aed (\d+(.\d+)*) off selected items$/im,
       /^deals on$/im,
     ],

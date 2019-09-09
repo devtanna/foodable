@@ -102,6 +102,14 @@ const scrapePage = async (location, page, pageNum = 1) => {
         type: 'restaurant',
       };
 
+      try {
+        await page.goto(href, settings.PUPPETEER_GOTO_PAGE_ARGS);
+        let pdpUrl = page.url();
+        singleItem.href = pdpUrl;
+      } catch (e) {
+        console.log(e);
+      }
+
       // if no offer, then skip
       if (singleItem.offer.length > 0) {
         let { scoreLevel, scoreValue } = utils.calculateScore(singleItem);
@@ -137,7 +145,7 @@ const run = async () => {
 
   if (!settings.SCRAPER_TEST_MODE) {
     // const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
-    const myProxy = 'socks5://111.223.75.178:8888'; //await utils.getProxy();
+    const myProxy = 'socks5://163.172.81.30:443'; //await utils.getProxy();
     if (myProxy && myProxy.length > 0) {
       args.push(`--proxy-server=${myProxy}`);
     }
