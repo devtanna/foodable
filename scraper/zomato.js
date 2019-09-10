@@ -102,13 +102,13 @@ const scrapePage = async (location, page, pageNum = 1) => {
         type: 'restaurant',
       };
 
-      try {
-        await page.goto(href, settings.PUPPETEER_GOTO_PAGE_ARGS);
-        let pdpUrl = page.url();
-        singleItem.href = pdpUrl;
-      } catch (e) {
-        console.log(e);
-      }
+      // try {
+      //   await page.goto(href, settings.PUPPETEER_GOTO_PAGE_ARGS);
+      //   let pdpUrl = page.url();
+      //   singleItem.href = pdpUrl;
+      // } catch (e) {
+      //   console.log(e);
+      // }
 
       // if no offer, then skip
       if (singleItem.offer.length > 0) {
