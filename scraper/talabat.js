@@ -40,14 +40,13 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
             .click();
         });
 
-        await page.waitFor(3000);
+        await page.waitFor(1000);
 
         let keepGoing = true;
         let index = 0;
         const MAX = 100;
 
         while (keepGoing && index < MAX) {
-          await utils.delay(1000); // ! 3 second sleep per page
           logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
           let htmlBefore = await page.content();
           let offersCount = $('.rest-link', htmlBefore).length;
@@ -61,8 +60,6 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
           }
           index++;
         }
-
-        await page.waitFor(1000);
 
         let skippedCount = 0;
 
