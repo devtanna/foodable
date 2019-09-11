@@ -13,7 +13,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
   let hasOffers = offers.length > 0;
 
   return (
-    <div>
+    <div className="wrapper">
       <Header location={location} />
       <main>
         <div className="mainWrapper">
@@ -34,8 +34,13 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
       </main>
       <Footer />
       <style jsx>{`
-        main {
+        .wrapper {
           height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        main {
+          flex: 1;
           background-color: #fafafa;
           padding: 30px 15px;
         }
