@@ -36,11 +36,10 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
       <style jsx>{`
         .wrapper {
           height: 100%;
-          display: flex;
-          flex-direction: column;
+          display: grid;
+          grid-template-rows: auto 1fr auto;
         }
         main {
-          flex: 1;
           background-color: #fafafa;
           padding: 30px 15px;
         }
