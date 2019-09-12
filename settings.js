@@ -93,7 +93,7 @@ var scraperSettings = {
   // SCRAPER INDIVIDUAL TOGGLE
   ENABLE_TALABAT: true,
   ENABLE_UBEREATS: true,
-  ENABLE_ZOMATO: false,
+  ENABLE_ZOMATO: true,
   ENABLE_DELIVEROO: true,
   ENABLE_CARRIAGE: false,
   ENABLE_EATEASY: true,
