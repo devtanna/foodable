@@ -42,14 +42,9 @@ wait
 echo "< talabat ..." && node scraper/talabat.js 91 180 && echo "... talabat >" &&
 wait
 
-node devops/slackBot.js "Running Zomato 0 to 43"
+node devops/slackBot.js "Running Zomato 0 to 87"
 wait
-echo "< zomato ..." && node scraper/zomato.js 0 43 && echo "... zomato >" &&
-wait
-
-node devops/slackBot.js "Running Zomato 44 to 87"
-wait
-echo "< zomato ..." && node scraper/zomato.js 44 87 && echo "... zomato >" &&
+echo "< zomato ..." && node scraper/zomato.js 0 87 && echo "... zomato >" &&
 wait
 
 node devops/slackBot.js "Running Re Index"
