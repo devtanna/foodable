@@ -1,4 +1,6 @@
 // Global app settings
+const slackApiToken = 'xoxp-690095593765-691933474583-748104240066-f158dc195bad901199a9ccad63c40cc7';
+const slackLogBotChanelId = 'CLPT6LL3C';
 const isServerRequest = process && process.env && process.env.HOSTNAME != null;
 const backendEndpointForClient = 'http://foodable.local:8090/graphql';
 const backendEndpointForServer = 'http://foodable:4000/graphql';
@@ -103,6 +105,8 @@ var scraperSettings = {
 var systemSettings = {
   BACKEND_ENDPOINT: get_backendEndpoint(),
   PORT: 4000,
+  SLACK_API_TOKEN: slackApiToken,
+  SLACK_LOG_BOT_CHANEL_ID: slackLogBotChanelId,
 };
 
 var devSettings = Object.assign({}, puppeteerSettings, mongoSettings, scraperSettings, systemSettings);

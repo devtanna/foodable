@@ -49,6 +49,7 @@
     "next": "^9.0.0",
     "next-offline": "^4.0.2",
     "node-fetch": "^2.6.0",
+    "node-slack-upload": "^2.0.0",
     "nodemailer": "^6.3.0",
     "nprogress": "^0.2.0",
     "objects-to-csv": "^1.2.1",
