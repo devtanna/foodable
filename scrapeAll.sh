@@ -3,6 +3,8 @@ echo "---starting script-----------------------------------------------" && date
 echo $PWD && cd /home/foodableae/foodable && echo $PWD
 export ENV='localhost'
 
+echo "" > /tmp/cronlog.txt
+
 node devops/slackBot.js "Starting Scraper"
 wait
 
