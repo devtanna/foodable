@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-
+const performance = require('perf_hooks').performance;
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
@@ -196,7 +196,11 @@ const run = async () => {
 
           logger.info(`Scraping location: ${i + 1} / ${links.length} --- ${location.locationName}`);
 
+          let t0 = performance.now();
           let items = await scrapePage(page, location);
+          let t1 = performance.now();
+
+          logger.debug(`Eateasy scrapePage function call took: ${t1 - t0} msec.`);
 
           if (items != null) {
             logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);

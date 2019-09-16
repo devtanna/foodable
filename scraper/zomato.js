@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-
+const performance = require('perf_hooks').performance;
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
@@ -221,7 +221,13 @@ const run = async () => {
           try {
             await utils.delay(1000);
             logger.info('zomato scraper: Starting page: ' + pageNum + ' in ' + location.locationName);
+
+            let t0 = performance.now();
             let res = await scrapePage(location, page, pageNum);
+            let t1 = performance.now();
+
+            logger.debug(`Zomato scrapePage function call took: ${t1 - t0} msec.`);
+
             if (res != undefined) {
               var flatResults = [].concat.apply([], res.result);
 

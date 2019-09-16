@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-
+const performance = require('perf_hooks').performance;
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
@@ -236,7 +236,12 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
         openPages.v++;
         let location = locations[i];
         let logMsg = `Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`;
+
+        let t0 = performance.now();
         scrapeInfiniteScrollItems(location, logMsg, browser, openPages);
+        let t1 = performance.now();
+
+        logger.debug(`Talabat scrapeInfiniteScrollItems function call took: ${t1 - t0} msec.`);
       }
     }
 
