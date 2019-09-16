@@ -13,8 +13,8 @@ function sendLogFile(scraperName) {
   slack.uploadFile(
     {
       file: fs.createReadStream(filename),
-      filetype: 'post',
-      title: `${scraperName} log`,
+      filetype: 'auto',
+      title: `${scraperName} ${new Date().getFullYear()}-${m}-${d} Log`,
       initialComment: '',
       channels: `${settings.SLACK_LOG_BOT_CHANEL_ID}`,
     },
