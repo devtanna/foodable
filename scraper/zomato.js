@@ -73,9 +73,8 @@ const scrapePage = async (location, page) => {
         .text()
         .trim();
 
-      let image = new URL(cleanImg($('.res_details__image_container div', this).css('background-image')));
-      image.search = image.search.replace(/100/g, '200');
-      image = image.toString();
+      let image = cleanImg($('.res_details__image_container div', this).css('background-image'));
+      image = image.replace(/100/g, '200');
 
       let singleItem = {
         title,
