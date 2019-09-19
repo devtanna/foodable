@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer');
-const devices = require('puppeteer/DeviceDescriptors');
 const $ = require('cheerio');
 
 const settings = require('../settings')();
@@ -26,97 +25,69 @@ if (settings.ENABLE_ZOMATO) {
 }
 // ########## END DB STUFF ####################
 
-const scrapePage = async (location, page) => {
+const scrapePage = async (location, page, pageNum = 1) => {
   try {
-    const url = `${location.url}`;
+    const url = `${location.url}&page=${pageNum}`;
     await page.goto(url, settings.PUPPETEER_GOTO_PAGE_ARGS);
-
-    let keepGoing = true;
-    let index = 0;
-    const MAX = 40;
-
-    while (keepGoing && index < MAX) {
-      logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
-      let htmlBefore = await page.content();
-      let offersCount = $('.res_details__wrapper', htmlBefore).length;
-      await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
-      await utils.delay(1000);
-      await page.waitFor(() => {
-        function isInViewport(elem) {
-          const bounding = elem.getBoundingClientRect();
-          return (
-            bounding.top >= 0 &&
-            bounding.left >= 0 &&
-            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-          );
-        }
-        const el = document.querySelector('.row.white-bg.pl15.pr15.mb10');
-        return !el || !isInViewport(el);
-      });
-      let htmlAfter = await page.content();
-      let updatedOffersCount = $('.res_details__wrapper', htmlAfter).length;
-      if (updatedOffersCount === offersCount && index > 3) {
-        keepGoing = false;
-        break;
-      }
-      index++;
-    }
 
     let skippedCount = 0;
     const html = await page.content();
 
-    let result = [];
-
-    $('.res_details__wrapper', html).each(function() {
-      let title = $('.res_details__title div', this)
+    let currentPage = parseInt(
+      $('.pagination-number b', html)
+        .eq(0)
         .text()
-        .trim();
+    );
+    let totalPages = parseInt(
+      $('.pagination-number b', html)
+        .eq(1)
+        .text()
+    );
 
-      let image = cleanImg($('.res_details__image_container div', this).css('background-image'));
-      image = image.replace(/100/g, '200');
+    logger.info(`${location.locationName}: ${currentPage} / ${totalPages}`);
 
-      let singleItem = {
-        title,
-        href: $(this).prop('href'),
-        image,
+    let result = [];
+    let offersCount = $('.search-result', html).length;
+
+    $('.search-result', html).each(function() {
+      let cuisine = [];
+
+      $('.search-page-text .nowrap a', this).each(function() {
+        cuisine.push($(this).text());
+      });
+
+      var singleItem = {
+        title: $('.result-title', this)
+          .text()
+          .trim(),
+        href: $('.result-title', this).prop('href'),
+        image: cleanImg($('.feat-img', this).prop('data-original')),
         location: location.baseline,
-        address: location.baseline,
-        cuisine: $('.res_details__cuisines', this)
+        address: $('.search-result-address', this)
           .text()
           .trim(),
-        offer: $('.res_details__info span.nowrap', this)
-          .text()
-          .trim()
-          .replace(/\./g, '')
-          .split(' - ')[0],
-        rating: $('.res_details__rating', this)
+        cuisine: cuisine.join(', '),
+        offer: $('.res-offers .zgreen', this)
           .text()
           .trim(),
-        votes: null,
-        cost_for_two:
-          utils.getNumFromString(
-            $('.res_details__average_cost', this)
-              .text()
-              .trim()
-          ) * 2,
+        rating: $('.rating-popup', this)
+          .text()
+          .trim(),
+        votes: $('[class^="rating-votes-div"]', this)
+          .text()
+          .trim(),
+        cost_for_two: $('.res-cost span:nth-child(2)', this)
+          .text()
+          .trim(),
         source: `${scraper_name}`,
-        slug: utils.slugify(title),
-        deliveryTime: utils.getNumFromString(
-          $('.res_details__order_details', this)
+        slug: utils.slugify(
+          $('.result-title', this)
             .text()
             .trim()
-            .split('·')[0]
-            .trim()
         ),
+        deliveryTime: '?',
         deliveryCharge: '?',
-        minimumOrder: utils.getNumFromString(
-          $('.res_details__order_details', this)
-            .text()
-            .trim()
-            .split('·')[1]
-            .trim()
-        ),
+        minimumOrder: '?',
         type: 'restaurant',
       };
 
@@ -139,7 +110,7 @@ const scrapePage = async (location, page) => {
 
     logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
 
-    return { result };
+    return { result, goNext: currentPage < totalPages };
   } catch (error) {
     logger.info(`Error in scrape ${error}`);
   }
@@ -157,7 +128,7 @@ const run = async () => {
 
   if (!settings.SCRAPER_TEST_MODE) {
     // const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
-    const myProxy = 'socks5://localhost:9050';
+    const myProxy = 'socks5://localhost:9050'; //await utils.getProxy();
     if (myProxy && myProxy.length > 0) {
       args.push(`--proxy-server=${myProxy}`);
     }
@@ -226,25 +197,39 @@ const run = async () => {
       logger.info(`Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`);
 
       browser.newPage().then(async page => {
-        await page.emulate(devices['iPhone 6']);
         await page.setViewport(settings.PUPPETEER_VIEWPORT);
+        let hasNext = true;
+        let pageNum = 1;
 
-        try {
-          logger.info('zomato scraper: Starting location: ' + location.locationName);
-          let res = await scrapePage(location, page);
-          if (res != undefined) {
-            var flatResults = [].concat.apply([], res.result);
+        while (hasNext && pageNum <= maxPage) {
+          try {
+            await utils.delay(1000);
+            logger.info('zomato scraper: Starting page: ' + pageNum + ' in ' + location.locationName);
+            let res = await scrapePage(location, page, pageNum);
+            if (res != undefined) {
+              var flatResults = [].concat.apply([], res.result);
 
-            await parse.process_results(flatResults, db, dbClient, scraper_name, (batch = true));
+              await parse.process_results(flatResults, db, dbClient, scraper_name, (batch = true));
 
-            logger.info(`zomato scraper: Results count: ${res.result.length} in ${location.locationName}`);
+              logger.info(
+                `zomato scraper: Scraped ${pageNum} pages. Results count: ${res.result.length} in ${
+                  location.locationName
+                }`
+              );
+
+              if (res.goNext) {
+                pageNum++;
+              } else {
+                hasNext = false;
+              }
+            }
+          } catch (e) {
+            logger.error(`Error: ${e}`);
           }
-        } catch (e) {
-          logger.error(`Error: ${e}`);
-        } finally {
-          await page.close();
-          openPages.v--;
         }
+
+        await page.close();
+        openPages.v--;
       });
     }
   }
