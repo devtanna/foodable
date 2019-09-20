@@ -173,24 +173,29 @@ async function scrapeInfiniteScrollItems(page, location) {
       browser.newPage().then(async page => {
         await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-        await page.goto(`https://www.trycarriage.com/en/ae/restaurants?area_id=${location.id}`, {
-          waitUntil: 'load',
-          timeout: 35000,
-        });
+        try {
+          await page.goto(`https://www.trycarriage.com/en/ae/restaurants?area_id=${location.id}`, {
+            waitUntil: 'load',
+            timeout: 35000,
+          });
 
-        logger.info(`Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`);
+          logger.info(`Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`);
 
-        let items = await scrapeInfiniteScrollItems(page, location);
+          let items = await scrapeInfiniteScrollItems(page, location);
 
-        logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
-        logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
+          logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
+          logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
 
-        let flatResults = [].concat.apply([], items);
+          let flatResults = [].concat.apply([], items);
 
-        await parse.process_results(flatResults, db);
+          await parse.process_results(flatResults, db);
 
-        await page.close();
-        openPages.v--;
+          await page.close();
+          openPages.v--;
+        } catch (e) {
+          await page.close();
+          openPages.v--;
+        }
       });
     }
   }
