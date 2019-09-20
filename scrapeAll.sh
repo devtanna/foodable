@@ -48,6 +48,14 @@ wait
 node devops/slackLogBot.js eateasy
 wait
 
+node devops/slackBot.js "Running Carriage"
+wait
+echo "< carriage ..." && node scraper/carriage.js && echo "... carriage >" &&
+wait
+
+node devops/slackLogBot.js carriage
+wait
+
 node devops/slackBot.js "Running Talabat 91 to 180"
 wait
 echo "< talabat ..." && node scraper/talabat.js 91 180 && echo "... talabat >" &&
