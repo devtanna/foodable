@@ -97,9 +97,9 @@ var scraperSettings = {
   ENABLE_UBEREATS: true,
   ENABLE_ZOMATO: true,
   ENABLE_DELIVEROO: true,
-  ENABLE_CARRIAGE: false,
+  ENABLE_CARRIAGE: true,
   ENABLE_EATEASY: true,
-  MAX_TABS: 4,
+  MAX_TABS: 5,
 };
 
 var systemSettings = {
