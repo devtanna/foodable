@@ -4,7 +4,9 @@ import base64 from 'base-64';
 
 const Index = () => <div />;
 
-Index.getInitialProps = async ({ req, res }) => {
+Index.getInitialProps = async ({ req, res, query }) => {
+  const utmSource = query['utm_source'];
+
   let cookies;
 
   if (res) {
@@ -20,7 +22,11 @@ Index.getInitialProps = async ({ req, res }) => {
     redirectToPage(res, `/${selectedLocation.city}/${selectedLocation.slug}/`);
     return;
   } catch (e) {
-    redirectToPage(res, '/select-area');
+    let lp = '/select-area';
+    if (utmSource) {
+      lp = `${lp}?utm_source=pwa`;
+    }
+    redirectToPage(res, lp);
     return;
   }
 
