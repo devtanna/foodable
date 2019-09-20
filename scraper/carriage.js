@@ -84,7 +84,7 @@ async function scrapeInfiniteScrollItems(page, location) {
             .replace('mins', ''),
           minimumOrder: '?',
           deliveryCharge: '?',
-          cost_for_two: '?',
+          cost_for_two: '',
           votes: '',
           address: location.name,
         };
