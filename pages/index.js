@@ -19,7 +19,11 @@ Index.getInitialProps = async ({ req, res, query }) => {
 
   try {
     selectedLocation = JSON.parse(base64.decode(cookies.get('fdb_location')));
-    redirectToPage(res, `/${selectedLocation.city}/${selectedLocation.slug}/`);
+    let lp = `/${selectedLocation.city}/${selectedLocation.slug}/`;
+    if (utmSource) {
+      lp = `${lp}?utm_source=pwa`;
+    }
+    redirectToPage(res, lp);
     return;
   } catch (e) {
     let lp = '/select-area';

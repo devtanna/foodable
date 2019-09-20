@@ -35,13 +35,14 @@ const Location = ({
   cuisines = [],
   searchFilters = null,
   device = 'phone',
+  utmSource
 }) => {
   useEffect(() => {
     let _filters = qs.stringify(removeObjEmpty(searchFilters));
     if (_filters) {
       trackPageView('search', `/${selectedLocation.city}/${selectedLocation.slug}/?${_filters}`);  
     } else {
-      trackPageView('homepage', `/${selectedLocation.city}/${selectedLocation.slug}/`);
+      trackPageView('homepage', `/${selectedLocation.city}/${selectedLocation.slug}/${utmSource ? 'pwa/' : ''}`);
     }
   }, []);
 
@@ -130,6 +131,8 @@ Location.getInitialProps = async ({ req, res, query }) => {
     const { cuisines } = await getCuisines();
     const device = res ? req.device.type : cookies.get('fdb_device');
 
+    const utmSource = query['utm_source'];
+
     return {
       offers,
       selectedLocation,
@@ -137,6 +140,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
       cuisines,
       searchFilters,
       device,
+      utmSource
     };
   } catch (e) {
     console.log(e);
