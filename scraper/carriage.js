@@ -192,7 +192,8 @@ async function scrapeInfiniteScrollItems(page, location) {
 
           await page.close();
           openPages.v--;
-        } catch (e) {
+        } catch (error) {
+          logger.error(error);
           await page.close();
           openPages.v--;
         }
