@@ -32,14 +32,6 @@ wait
 node devops/slackLogBot.js talabat
 wait
 
-node devops/slackBot.js "Running Zomato 0 to 44"
-wait
-echo "< zomato ..." && node scraper/zomato.js 0 44 && echo "... zomato >" &&
-wait
-
-node devops/slackLogBot.js zomato
-wait
-
 node devops/slackBot.js "Running Deliveroo"
 wait
 echo "< deliveroo ..." && node scraper/deliveroo.js && echo "... deliveroo >" &&
@@ -74,6 +66,14 @@ wait
 
 # sudo systemctl restart tor
 # wait
+
+node devops/slackBot.js "Running Zomato 0 to 44"
+wait
+echo "< zomato ..." && node scraper/zomato.js 0 44 && echo "... zomato >" &&
+wait
+
+node devops/slackLogBot.js zomato
+wait
 
 node devops/slackBot.js "Running Zomato 45 to 87"
 wait
