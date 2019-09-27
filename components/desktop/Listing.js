@@ -31,7 +31,12 @@ const Listing = ({ offer }) => {
       <div className="listing__content">
         <ListingMeta offer={mainOffer} />
         <BestOffer offer={mainOffer} />
-        <OtherOffers offers={otherOffers} isMoreOffersOpen={showMoreOffers} toggleMore={setShowMoreOffers} />
+        <OtherOffers
+          mainOffer={mainOffer}
+          offers={otherOffers}
+          isMoreOffersOpen={showMoreOffers}
+          toggleMore={setShowMoreOffers}
+        />
       </div>
       <MoreOffers offers={moreOffers} isOpen={showMoreOffers} />
       <style jsx>{`
@@ -385,7 +390,7 @@ const BestOffer = ({ offer }) => {
   );
 };
 
-const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
+const OtherOffers = ({ offers, mainOffer, isMoreOffersOpen, toggleMore }) => {
   if (offers.length === 0) return false;
 
   const hasMore = offers.length > 2;
@@ -454,7 +459,7 @@ const OtherOffers = ({ offers, isMoreOffersOpen, toggleMore }) => {
       {hasMore && (
         <button
           onClick={() => {
-            trackEvent('show_more', 'others');
+            trackEvent('show_more', 'others', mainOffer.title);
             toggleMore(!isMoreOffersOpen);
           }}
           className="showMoreBtn">

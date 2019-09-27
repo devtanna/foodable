@@ -28,11 +28,6 @@ const Listing = ({ offer }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [showOtherOffers, setShowOtherOffers] = useState(false);
 
-  const handleAccordion = () => {
-    trackEvent('show_more', 'others');
-    setShowOtherOffers(!showOtherOffers);
-  };
-
   const mainOffer = offer.offers[0];
   const otherOffers = offer.offers.slice(1);
   const hasImg = mainOffer.image !== '';
@@ -58,6 +53,11 @@ const Listing = ({ offer }) => {
     } catch (error) {
       console.log('Error sharing', error);
     }
+  };
+
+  const handleAccordion = () => {
+    trackEvent('show_more', 'others', mainOffer.title);
+    setShowOtherOffers(!showOtherOffers);
   };
 
   return (
