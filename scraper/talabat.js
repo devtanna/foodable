@@ -5,6 +5,7 @@ const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 const urls = require('./talabat_locations.json');
+const slackBot = require('../devops/slackBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -14,6 +15,7 @@ var db;
 var dbClient;
 // Initialize connection once at the top of the scraper
 var MongoClient = require('mongodb').MongoClient;
+var totalCount = 0;
 
 if (settings.ENABLE_TALABAT) {
   MongoClient.connect(settings.DB_CONNECT_URL, { useNewUrlParser: true }, function(err, client) {
@@ -65,7 +67,6 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
 
         const html = await page.content();
         const finalOffersCount = $('.rest-link', html).length;
-
         logger.info(`Offers count for ${location.locationName} = ${finalOffersCount}`);
 
         $('.rest-link', html).each(function() {
@@ -152,9 +153,8 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
             skippedCount++;
           }
         });
-
+        totalCount += items.length > 0 ? items.length : 0;
         logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
-        logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
         logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
 
         let flatResults = [].concat.apply([], items);
@@ -224,6 +224,10 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
     const handleClose = () => {
       browser.close();
       dbClient.close();
+      if (totalCount > 0) {
+        logger.debug(`Total items scraped ${totalCount}`);
+        slackBot.sendSlackMessage(`Talabat Total Items Scraped: ${totalCount}`);
+      }
       logger.info('Talabat Scrape Done!');
     };
 

@@ -5,6 +5,7 @@ const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 let links = require('./eateasy_locations.json');
+const slackBot = require('../devops/slackBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -148,7 +149,7 @@ const run = async () => {
     }
 
     logger.info('Number of locations received: ' + links.length);
-
+    let totalCount = 0;
     let yielded = false;
     let fdbGen = scrapeGenerator();
 
@@ -179,6 +180,10 @@ const run = async () => {
     const handleClose = () => {
       browser.close();
       dbClient.close();
+      if (totalCount > 0) {
+        logger.debug(`Total items scraped ${totalCount}`);
+        slackBot.sendSlackMessage(`EatEasy Total Items Scraped: ${totalCount}`);
+      }
       logger.info('Eateasy Scrape Done!');
     };
 
@@ -208,7 +213,7 @@ const run = async () => {
 
             let flatResults = [].concat.apply([], items);
             await parse.process_results(flatResults, db);
-
+            totalCount += items.length;
             await page.close();
             openPages.v--;
           }
