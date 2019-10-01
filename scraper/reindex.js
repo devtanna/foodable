@@ -122,7 +122,11 @@ async function reindex(db, dbClient, todayDateStr) {
   }
 
   const cuisinesSet = new Set(flattened);
-  const cuisines = Array.from(cuisinesSet);
+  let cuisines = Array.from(cuisinesSet);
+  // capitalize each cuisine
+  cuisines = cuisines.map(function(x) {
+    return utils.capitalizeFirstLetter(x);
+  });
   logger.info(`Saving cuisines -> ${cuisines.length}`);
   await bulkInsert(db, [{ type: 'cuisine', tags: cuisines }], collectionName);
 

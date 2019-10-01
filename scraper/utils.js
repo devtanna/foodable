@@ -213,6 +213,10 @@ function getNumFromString(str) {
   } else return null;
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 module.exports = {
   slugify: slugify,
   calculateScore: calculateScore,
@@ -221,4 +225,5 @@ module.exports = {
   getBaselineLocations: getBaselineLocations,
   compare_strings: compare_strings,
   getNumFromString: getNumFromString,
+  capitalizeFirstLetter,
 };
