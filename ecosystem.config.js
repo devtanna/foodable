@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'foodable',
       watch: true,
-      instances: 4,
+      instances: 2,
       exec_mode: 'cluster',
       script: './server.js',
       env: {
