@@ -195,6 +195,7 @@ const run = async () => {
     logger.info('Number of locations received: ' + links.length);
 
     let yielded = false;
+    let totalCount = 0;
     let fdbGen = scrapeGenerator();
 
     const openPages = {
@@ -224,6 +225,10 @@ const run = async () => {
     const handleClose = () => {
       browser.close();
       dbClient.close();
+      if (totalCount > 0) {
+        logger.debug(`Total items scraped ${totalCount}`);
+        slackBot.sendSlackMessage(`Deliveroo Total Items Scraped: ${totalCount}`);
+      }
       logger.info('Deliveroo Scrape Done!');
     };
 
@@ -253,6 +258,7 @@ const run = async () => {
 
             let flatResults = [].concat.apply([], items);
             await parse.process_results(flatResults, db);
+            totalCount += items.length;
 
             await page.close();
             openPages.v--;
