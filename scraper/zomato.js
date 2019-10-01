@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
 
+const slackBot = require('../devops/slackBot');
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
@@ -140,6 +141,7 @@ const run = async () => {
   });
 
   let start, end;
+  let totalCount = 0;
   if (settings.SCRAPER_TEST_MODE) {
     start = 0;
     end = 4;
@@ -149,7 +151,6 @@ const run = async () => {
   }
 
   let locations = locationsJson.slice(start, end + 1);
-
   let yielded = false;
   let fdbGen = scrapeGenerator();
 
@@ -180,6 +181,11 @@ const run = async () => {
   const handleClose = () => {
     browser.close();
     dbClient.close();
+    if (totalCount > 0) {
+      logger.debug(`Total items scraped ${totalCount}`);
+      slackBot.sendSlackMessage(`Zomato Total Items Scraped: ${totalCount}`);
+    }
+
     logger.info('Zomato Scrape Done!');
   };
 
@@ -216,6 +222,7 @@ const run = async () => {
                   location.locationName
                 }`
               );
+              totalCount += res.result.length > 0 ? res.result.length : 0;
 
               if (res.goNext) {
                 pageNum++;

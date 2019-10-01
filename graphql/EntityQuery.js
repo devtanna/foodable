@@ -237,6 +237,10 @@ exports.EntityQuery = new GraphQLObjectType({
           if (!tags) {
             throw new Error('Error while fetching all offers data.');
           }
+          // sort before returning
+          // we take first tags element of array since it
+          // comes back as a graphql list of one element.
+          tags[0].tags.sort();
           return tags;
         },
       },
