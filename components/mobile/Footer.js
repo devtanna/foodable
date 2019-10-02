@@ -2,10 +2,10 @@ import SubscribeField from '../SubscribeField';
 import ContactUsModal from '../ContactUsModal';
 import Link from 'next/link';
 
-const Footer = () => (
+const Footer = ({ location }) => (
   <footer>
     <div className="wrapper">
-      <SubscribeField />
+      <SubscribeField location={location} />
       <div className="nav">
         <div className="navHeading">About Foodable</div>
         <ul className="linksList">

@@ -2,7 +2,7 @@ import SubscribeField from '../SubscribeField';
 import ContactUsModal from '../ContactUsModal';
 import Link from 'next/link';
 
-const Footer = () => (
+const Footer = ({ location }) => (
   <footer>
     <div className="wrapper">
       <div className="logoWrapper">
@@ -34,7 +34,7 @@ const Footer = () => (
           </li>
         </ul>
       </div>
-      <SubscribeField />
+      <SubscribeField location={location} />
     </div>
     <style jsx>{`
       footer {

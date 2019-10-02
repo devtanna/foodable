@@ -199,8 +199,8 @@ async function request(path, method = 'GET', body = {}) {
   }
 }
 
-export function subscribe(email) {
-  return request(endpoints['subscribe'], 'POST', { email });
+export function subscribe(email, city, area) {
+  return request(endpoints['subscribe'], 'POST', { email, city, area });
 }
 
 export function contactUs(email, message) {

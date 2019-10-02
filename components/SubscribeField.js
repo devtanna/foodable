@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Input, Form, Label, Icon, Message } from 'semantic-ui-react';
 import { subscribe } from '../helpers/api';
 
-const SubscribeField = () => {
+const SubscribeField = ({ location }) => {
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -12,7 +12,7 @@ const SubscribeField = () => {
     try {
       setError(null);
       setLoading(true);
-      let subscribed = await subscribe(email);
+      let subscribed = await subscribe(email, location.city, location.slug);
       setSuccess(true);
     } catch (e) {
       setError(e.message);
@@ -24,10 +24,7 @@ const SubscribeField = () => {
   return (
     <Form>
       <Form.Field>
-        <p>
-          Get everyday&#39;s top food promotions in your inbox, subscribe to our
-          newsletter!
-        </p>
+        <p>Get everyday&#39;s top food promotions in your inbox, subscribe to our newsletter!</p>
         {success ? (
           <Message
             positive
