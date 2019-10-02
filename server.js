@@ -95,6 +95,9 @@ app
 
     // Simple Email Subscribe Endpoint + VALIDATION
     server.post('/subscribe', (req, res) => {
+      const refererArea = req.body.area;
+      const refererCity = req.body.city;
+
       if (!req.body.email) {
         return res.status(400).send({
           success: 'false',
@@ -109,7 +112,12 @@ app
       }
 
       dbHelper.insertOneEntryIntoMongo(
-        { email: req.body.email, added: new Date() },
+        {
+          area: refererArea,
+          city: refererCity,
+          email: req.body.email,
+          added: new Date(),
+        },
         settings.SUBSCRIPTION_MONGO_COLLECTION_NAME
       );
 

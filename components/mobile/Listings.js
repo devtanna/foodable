@@ -37,7 +37,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
           )}
         </div>
       </main>
-      <Footer />
+      <Footer location={location} />
       <style jsx>{`
         main {
           height: 100%;
