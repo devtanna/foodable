@@ -5,6 +5,7 @@ const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 let links = require('./deliveroo_locations.json');
+const slackBot = require('../devops/slackBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();

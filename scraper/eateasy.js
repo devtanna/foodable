@@ -182,7 +182,7 @@ const run = async () => {
       dbClient.close();
       if (totalCount > 0) {
         logger.debug(`Total items scraped ${totalCount}`);
-        slackBot.sendSlackMessage(`EatEasy Total Items Scraped: ${totalCount}`);
+        slackBot.sendSlackMessage(`Eateasy Total Items Scraped: ${totalCount}`);
       }
       logger.info('Eateasy Scrape Done!');
     };

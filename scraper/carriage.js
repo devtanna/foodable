@@ -5,6 +5,7 @@ var locations = require('./carriage_locations.json');
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+const slackBot = require('../devops/slackBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -129,6 +130,7 @@ async function scrapeInfiniteScrollItems(page, location) {
   logger.info('Number of locations received: ' + locations.length);
 
   let yielded = false;
+  let totalCount = 0;
   let fdbGen = scrapeGenerator();
 
   const openPages = {
@@ -158,6 +160,10 @@ async function scrapeInfiniteScrollItems(page, location) {
   const handleClose = () => {
     browser.close();
     dbClient.close();
+    if (totalCount > 0) {
+      logger.debug(`Total items scraped ${totalCount}`);
+      slackBot.sendSlackMessage(`Carriage Total Items Scraped: ${totalCount}`);
+    }
     logger.info('Carriage Scrape Done!');
   };
 
@@ -182,7 +188,7 @@ async function scrapeInfiniteScrollItems(page, location) {
           logger.info(`Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`);
 
           let items = await scrapeInfiniteScrollItems(page, location);
-
+          totalCount += items.length;
           logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
           logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
 
