@@ -2,6 +2,7 @@ const utils = require('./utils');
 const settings = require('../settings')();
 const dbutils = require('../scraper/db');
 var ObjectID = require('mongodb').ObjectID;
+const CITY = process.argv[2] || 'dxb';
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -61,6 +62,7 @@ async function reindex(db, dbClient, todayDateStr) {
     .collection(collectionName)
     .find({
       type: 'restaurant',
+      city: CITY,
     })
     .toArray();
   logger.debug('Found restaurants to index: ' + restaurants.length);
@@ -69,7 +71,7 @@ async function reindex(db, dbClient, todayDateStr) {
     restaurants.forEach(restaurant => {
       delete restaurant['_id']; // so mongo does not treat it as different
 
-      let key = `${restaurant.slug}_${restaurant.locationSlug}`;
+      let key = `${restaurant.slug}_${restaurant.locationSlug}_${restaurant.city}`;
       let cuisineTags = restaurant['cuisine'] ? restaurant['cuisine'].split(',').map(s => s.trim()) : [];
       restaurant['cuisineArray'] = cuisineTags;
 
@@ -95,14 +97,15 @@ async function reindex(db, dbClient, todayDateStr) {
     logger.debug(`Offer Map Size: ${Object.keys(restaurantMap).length} keys.`);
     if (restaurantMap) {
       for (const [key, value] of Object.entries(restaurantMap)) {
-        let [restSlug, locSlug] = key.split('_');
-        let baselineLocations = await utils.getBaselineLocations();
+        let [restSlug, locSlug, city] = key.split('_');
+        let baselineLocations = await utils.getBaselineLocations(CITY);
         let location = baselineLocations[locSlug];
         value.forEach(offer => {
           offerInserts.push({
             type: 'offers',
             added: todayDateStr,
             slug: restSlug,
+            city: city,
             locationSlug: locSlug,
             locationName: location.locationName,
             offers: value,
@@ -128,7 +131,7 @@ async function reindex(db, dbClient, todayDateStr) {
     return utils.capitalizeFirstLetter(x);
   });
   logger.info(`Saving cuisines -> ${cuisines.length}`);
-  await bulkInsert(db, [{ type: 'cuisine', tags: cuisines }], collectionName);
+  await bulkInsert(db, [{ type: 'cuisine', city: CITY, tags: cuisines }], collectionName);
 
   logger.info('Saving offers ->');
   await bulkInsert(db, offerInserts, collectionName);

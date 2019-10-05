@@ -10,11 +10,12 @@ import {
   getLocations,
   getCuisines,
 } from '../../helpers/api';
-import { CITIES } from "../../helpers/constants";;
+import { CITIES_MAP } from "../../helpers/constants";;
 import Cookies from 'universal-cookie';
 import qs from 'qs';
 import base64 from 'base-64';
 import _pick from 'lodash/pick';
+import _findKey from 'lodash/findKey';
 
 const PageHead = ({ page, location, filters }) => {
   const title = `Discover & compare ${filters.cuisine.length > 0 ? filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ') + " cuisine " : ''}food delivery deals and offers in ${location.text}, ${capitalizeFirstLetter(location.city)} ${filters.keywords !== '' ? ", matching keywords '" + filters.keywords + "'": ''} | Foodable.ae${page > 1 ? " - Page " + page : ''}`
@@ -90,11 +91,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
   }
 
 	const { city, location } = query;
-
-  // Validate city first, if invalid, redirect to select area page
-  if (CITIES.find(obj => obj.key === city) === undefined) {
-    redirectToPage(res, '/select-area');
-  }
+  const citySlug = _findKey(CITIES_MAP, { slug: city });
 
   try {
     // Whenever /city/location page is called, update fdb_location cookie with the current
@@ -115,7 +112,8 @@ Location.getInitialProps = async ({ req, res, query }) => {
     const { offers } = await getOffers(
       location,
       page,
-      searchFilters
+      searchFilters,
+      citySlug
     );
 
     const isSearchPage = searchFilters.keywords !== '' || searchFilters.cuisine.length > 0;
@@ -128,7 +126,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
     res.cookie('fdb_location', base64.encode(JSON.stringify(selectedLocation)));
 
     // All good so far? get cuisines and send back the needed information
-    const { cuisines } = await getCuisines();
+    const { cuisines } = await getCuisines(citySlug);
     const device = res ? req.device.type : cookies.get('fdb_device');
 
     const utmSource = query['utm_source'];

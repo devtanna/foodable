@@ -2,10 +2,13 @@ import React, { Fragment, useContext } from 'react';
 import { Icon, Menu, Sidebar } from 'semantic-ui-react';
 import { AppContext } from '../../helpers/contexts';
 import { trackEvent } from '../../helpers/utils';
+import { CITIES_MAP } from '../../helpers/constants';
 import Listings from './Listings';
+import _find from 'lodash/find';
 
 const Foodables = ({ offers, randomOffers, location, page, cuisines, filters }) => {
   const { sidebarVisible, setSidebarVisible } = useContext(AppContext);
+  const cityName = _find(CITIES_MAP, { slug: location.city }).name;
 
   return (
     <Fragment>
@@ -23,7 +26,9 @@ const Foodables = ({ offers, randomOffers, location, page, cuisines, filters }) 
               <Icon name="map marker alternate" size="big" color="grey" />
               <div>
                 <div className="addressHeading">Delivery address:</div>
-                <div className="address">Dubai, {location.text}</div>
+                <div className="address">
+                  {cityName}, {location.text}
+                </div>
               </div>
             </div>
             <div className="location__change">

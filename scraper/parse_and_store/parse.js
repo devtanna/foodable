@@ -3,8 +3,8 @@ const dbutils = require('../db');
 // logging init
 const logger = require('../../helpers/logging').getLogger();
 
-async function process_results(mergedResults, db) {
-  let baselineLocations = await utils.getBaselineLocations();
+async function process_results(mergedResults, db, city) {
+  let baselineLocations = await utils.getBaselineLocations(city);
   let collectionName = dbutils.getCurrentDBCollection();
 
   mergedResults.forEach(offer => {

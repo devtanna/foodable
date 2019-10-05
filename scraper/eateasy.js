@@ -4,7 +4,7 @@ const performance = require('perf_hooks').performance;
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
-let links = require('./eateasy_locations.json');
+let links = require(`./locations/${process.argv[2]}/eateasy_locations.json`);
 const slackBot = require('../devops/slackBot');
 
 // logging init
@@ -25,7 +25,7 @@ if (settings.ENABLE_EATEASY) {
 }
 // ########## END DB STUFF ####################
 
-const scrapePage = async (page, location) => {
+const scrapePage = async (page, location, city) => {
   try {
     await page.goto(location.url, settings.PUPPETEER_GOTO_PAGE_ARGS);
 
@@ -66,6 +66,7 @@ const scrapePage = async (page, location) => {
             .text()
             .trim()
         ),
+        city: city,
         href: $(this).prop('href'),
         image: cleanImg($('.restaurant-box-logo img', this).prop('src')),
         location: location.baseline,
@@ -133,6 +134,8 @@ const scrapePage = async (page, location) => {
 };
 
 const run = async () => {
+  const city = process.argv[2];
+
   if (!settings.ENABLE_EATEASY) {
     logger.info('Eateasy scraper is DISABLED. EXITING.');
     process.exit();
@@ -199,10 +202,10 @@ const run = async () => {
         browser.newPage().then(async page => {
           await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-          logger.info(`Scraping location: ${i + 1} / ${links.length} --- ${location.locationName}`);
+          logger.info(`Scraping location: ${i + 1} / ${links.length} --- ${location.locationName} -- ${city}`);
 
           let t0 = performance.now();
-          let items = await scrapePage(page, location);
+          let items = await scrapePage(page, location, city);
           let t1 = performance.now();
 
           logger.debug(`Eateasy scrapePage function call took: ${t1 - t0} msec.`);
@@ -212,8 +215,10 @@ const run = async () => {
             logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
 
             let flatResults = [].concat.apply([], items);
-            await parse.process_results(flatResults, db);
+            
+            await parse.process_results(flatResults, db, city);
             totalCount += items.length;
+
             await page.close();
             openPages.v--;
           }

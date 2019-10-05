@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-var locations = require('./carriage_locations.json');
+var locations = require(`./locations/${process.argv[2]}/carriage_locations.json`);
 
 const settings = require('../settings')();
 const utils = require('./utils');
@@ -175,7 +175,7 @@ async function scrapeInfiniteScrollItems(page, location) {
       }
       openPages.v++;
       let location = locations[i];
-
+      let city = process.argv[2];
       browser.newPage().then(async page => {
         await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
@@ -194,7 +194,7 @@ async function scrapeInfiniteScrollItems(page, location) {
 
           let flatResults = [].concat.apply([], items);
 
-          await parse.process_results(flatResults, db);
+          await parse.process_results(flatResults, db, city);
 
           await page.close();
           openPages.v--;

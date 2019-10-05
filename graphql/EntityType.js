@@ -78,6 +78,9 @@ const offerObjectType = new GraphQLObjectType({
     locationName: {
       type: GraphQLString,
     },
+    city: {
+      type: GraphQLString,
+    },
     _id: {
       type: GraphQLString,
     },
@@ -175,6 +178,9 @@ exports.entityType = new GraphQLObjectType({
         type: GraphQLString,
       },
       locationName: {
+        type: GraphQLString,
+      },
+      city: {
         type: GraphQLString,
       },
       _id: {

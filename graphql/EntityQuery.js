@@ -37,6 +37,9 @@ exports.EntityQuery = new GraphQLObjectType({
                 locationName: {
                   $first: '$locationName',
                 },
+                city: {
+                  $first: '$city',
+                },
               },
             },
             { $sort: { locationName: 1 } },
@@ -44,6 +47,7 @@ exports.EntityQuery = new GraphQLObjectType({
           if (!items) {
             throw new Error('Error while fetching locationWithOffers data.');
           }
+
           return items;
         },
       },
@@ -55,12 +59,13 @@ exports.EntityQuery = new GraphQLObjectType({
           page: { type: GraphQLInt },
           locationSlug: { type: GraphQLNonNull(GraphQLString) },
           count: { type: GraphQLNonNull(GraphQLInt) },
+          city: { type: GraphQLNonNull(GraphQLString) },
         },
         resolve: async (root, args, context, info) => {
-          const { pageSize, page, locationSlug, count } = args;
+          const { pageSize, page, locationSlug, count, city } = args;
           const projections = getProjection(info);
           const items = await EntityModel.aggregate([
-            { $match: { type: 'restaurant', locationSlug: args.locationSlug } },
+            { $match: { type: 'restaurant', locationSlug: args.locationSlug, city: args.city } },
             { $sample: { size: args.count } },
           ])
             .skip(pageSize * (page - 1))
@@ -82,9 +87,10 @@ exports.EntityQuery = new GraphQLObjectType({
           locationSlug: { type: GraphQLNonNull(GraphQLString) },
           keywords: { type: GraphQLString },
           cuisine: { type: GraphQLString },
+          city: { type: GraphQLNonNull(GraphQLString) },
         },
         resolve: async (root, args, context, info) => {
-          const { pageSize, page, locationSlug, keywords, cuisine } = args;
+          const { pageSize, page, locationSlug, keywords, cuisine, city } = args;
 
           var results = [];
           if (cuisine || keywords) {
@@ -93,6 +99,7 @@ exports.EntityQuery = new GraphQLObjectType({
             var matchObj = {
               type: 'offers',
               locationSlug: args.locationSlug,
+              city: args.city,
             };
             if (cuisine) {
               cuisine.split(' ').forEach(function(item, index) {
@@ -137,7 +144,7 @@ exports.EntityQuery = new GraphQLObjectType({
           } else {
             // DEFAULT
             var items = await EntityModel.aggregate([
-              { $match: { type: 'offers', locationSlug: args.locationSlug } },
+              { $match: { type: 'offers', locationSlug: args.locationSlug, city: args.city } },
               { $unwind: '$offers' },
               {
                 $project: {
@@ -192,16 +199,17 @@ exports.EntityQuery = new GraphQLObjectType({
           keyword: { type: GraphQLNonNull(GraphQLString) },
           pageSize: { type: GraphQLInt },
           page: { type: GraphQLInt },
+          city: { type: GraphQLNonNull(GraphQLString) },
         },
         resolve: async (root, args, context, info) => {
-          const { keyword, locationSlug, pageSize, page } = args;
+          const { keyword, locationSlug, pageSize, page, city } = args;
           const projections = getProjection(info);
           var final = [];
           var totalCount = 0;
           var countDone = false;
           var keySplit = keyword.split(' ');
           for (var key in keySplit) {
-            var restaurants = await EntityModel.find({ type: 'restaurant' })
+            var restaurants = await EntityModel.find({ type: 'restaurant', city: args.city })
               .select(projections)
               .or([
                 { cuisine: { $regex: keySplit[key], $options: 'i' } },
@@ -230,10 +238,13 @@ exports.EntityQuery = new GraphQLObjectType({
       // Fetch all cuisine tags
       fetchCuisine: {
         type: new GraphQLList(tagType),
-        args: {},
+        args: {
+          city: { type: GraphQLNonNull(GraphQLString) },
+        },
         resolve: async (root, args, context, info) => {
+          const { city } = args;
           const projections = getProjection(info);
-          var tags = await EntityModel.find({ type: 'cuisine' }).exec();
+          var tags = await EntityModel.find({ type: 'cuisine', city }).exec();
           if (!tags) {
             throw new Error('Error while fetching all offers data.');
           }

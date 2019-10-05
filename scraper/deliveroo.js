@@ -4,7 +4,7 @@ const performance = require('perf_hooks').performance;
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
-let links = require('./deliveroo_locations.json');
+let links = require(`./locations/${process.argv[2]}/deliveroo_locations.json`);
 const slackBot = require('../devops/slackBot');
 
 // logging init
@@ -25,7 +25,7 @@ if (settings.ENABLE_DELIVEROO) {
 }
 // ########## END DB STUFF ####################
 
-const scrapePage = async (page, location) => {
+const scrapePage = async (page, location, city) => {
   try {
     await page.goto(`https://deliveroo.ae${location.url}?offer=all+offers`, settings.PUPPETEER_GOTO_PAGE_ARGS);
 
@@ -35,7 +35,7 @@ const scrapePage = async (page, location) => {
 
     while (keepGoing && index < MAX) {
       await utils.delay(1000); // ! 5 second sleep per page
-      logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
+      logger.info('Scrolling page number: ' + index + ' in ' + location.locationName + ' in ' + city);
       let htmlBefore = await page.content();
       let offersCount = $('li[class*="HomeFeedGrid"]', htmlBefore).length;
       await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
@@ -139,6 +139,7 @@ const scrapePage = async (page, location) => {
         ),
         href: `https://deliveroo.ae${clean_deliveroo_href($(this).prop('href'))}`,
         image: cleanImg(img),
+        city: city,
         location: location.baseline,
         address: '',
         cuisine: cuisine.join(', '),
@@ -178,6 +179,8 @@ const scrapePage = async (page, location) => {
 };
 
 const run = async () => {
+  const city = process.argv[2];
+
   if (!settings.ENABLE_DELIVEROO) {
     logger.info('Deliveroo scraper is DISABLED. EXITING.');
     process.exit();
@@ -245,10 +248,10 @@ const run = async () => {
         browser.newPage().then(async page => {
           await page.setViewport(settings.PUPPETEER_VIEWPORT);
 
-          logger.info(`Scraping location: ${i + 1} / ${links.length} --- ${location.locationName}`);
+          logger.info(`Scraping location: ${i + 1} / ${links.length} --- ${location.locationName} --- ${city}`);
 
           let t0 = performance.now();
-          let items = await scrapePage(page, location);
+          let items = await scrapePage(page, location, city);
           let t1 = performance.now();
 
           logger.debug(`Deliveroo scrapePage function call took: ${t1 - t0} msec.`);
@@ -258,7 +261,8 @@ const run = async () => {
             logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
 
             let flatResults = [].concat.apply([], items);
-            await parse.process_results(flatResults, db);
+            
+            await parse.process_results(flatResults, db, city);
             totalCount += items.length;
 
             await page.close();

@@ -4,7 +4,7 @@ const performance = require('perf_hooks').performance;
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
-const urls = require('./talabat_locations.json');
+const urls = require(`./locations/${process.argv[4]}/talabat_locations.json`);
 const slackBot = require('../devops/slackBot');
 
 // logging init
@@ -27,7 +27,7 @@ if (settings.ENABLE_TALABAT) {
 }
 // ########## END DB STUFF ####################
 
-function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
+function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
   browser.newPage().then(page => {
     page.setViewport(settings.PUPPETEER_VIEWPORT);
     page.goto(`https://www.talabat.com/${location.url}`, settings.PUPPETEER_GOTO_PAGE_ARGS).then(async () => {
@@ -114,6 +114,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
                 .replace(/['"]+/g, '')
             ),
             slug: rest_slug,
+            city: city,
             href: 'https://www.talabat.com' + $(this).attr('href'),
             image: $('.valign-helper', this)
               .next()
@@ -158,7 +159,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
         logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
 
         let flatResults = [].concat.apply([], items);
-        parse.process_results(flatResults, db).then(async () => {
+        parse.process_results(flatResults, db, city).then(async () => {
           await page.close();
           openPages.v--;
         });
@@ -172,6 +173,8 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
 }
 
 (async () => {
+  const city = process.argv[4];
+
   if (!settings.ENABLE_TALABAT) {
     logger.info('Talabat scraper is DISABLED. EXITING.');
     process.exit();
@@ -239,10 +242,10 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages) {
         }
         openPages.v++;
         let location = locations[i];
-        let logMsg = `Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName}`;
+        let logMsg = `Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName} --- ${city}`;
 
         let t0 = performance.now();
-        scrapeInfiniteScrollItems(location, logMsg, browser, openPages);
+        scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city);
         let t1 = performance.now();
 
         logger.debug(`Talabat scrapeInfiniteScrollItems function call took: ${t1 - t0} msec.`);

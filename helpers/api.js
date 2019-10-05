@@ -27,12 +27,13 @@ const client = new ApolloClient({
   defaultOptions: defaultOptions,
 });
 
-export const getOffers = async (location, page, searchFilters) => {
+export const getOffers = async (location, page, searchFilters, city) => {
   try {
     const queryParams = [];
     queryParams.push(`page: ${page}`);
     queryParams.push(`pageSize: ${PAGE_SIZE}`);
     queryParams.push(`locationSlug: "${location}"`);
+    queryParams.push(`city: "${city}"`);
 
     if (searchFilters.keywords !== '') {
       queryParams.push(`keywords: "${searchFilters.keywords}"`);
@@ -113,6 +114,7 @@ export const getLocations = async () => {
             key: _id
             value: locationSlug
             text: locationName
+            city
           }
         }
       `,
@@ -123,12 +125,12 @@ export const getLocations = async () => {
   }
 };
 
-export const getCuisines = async () => {
+export const getCuisines = async city => {
   try {
     const res = await client.query({
       query: gql`
         {
-          cuisines: fetchCuisine {
+          cuisines: fetchCuisine(city: "${city}") {
             tags
           }
         }

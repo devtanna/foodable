@@ -1,0 +1,398 @@
+[
+  {
+    "locationName": "Abu Shagara",
+    "slug": "abu-shagara"
+  },
+  {
+    "locationName": "Al  Muntazah",
+    "slug": "al-muntazah"
+  },
+  {
+    "locationName": "Al Abar",
+    "slug": "al-abar"
+  },
+  {
+    "locationName": "Al Atain",
+    "slug": "al-atain"
+  },
+  {
+    "locationName": "Al Azra",
+    "slug": "al-azra"
+  },
+  {
+    "locationName": "Al Bataeh",
+    "slug": "al-bataeh"
+  },
+  {
+    "locationName": "Al Bdai'a Subrub",
+    "slug": "al-bdaia-subrub"
+  },
+  {
+    "locationName": "Al Darari",
+    "slug": "al-darari"
+  },
+  {
+    "locationName": "Al Dhaid",
+    "slug": "al-dhaid"
+  },
+  {
+    "locationName": "Al Elyash",
+    "slug": "al-elyash"
+  },
+  {
+    "locationName": "Al Falah Suburb",
+    "slug": "al-falah-suburb"
+  },
+  {
+    "locationName": "Al Falaj",
+    "slug": "al-falaj"
+  },
+  {
+    "locationName": "Al Fayha",
+    "slug": "al-fayha"
+  },
+  {
+    "locationName": "Al Fisht",
+    "slug": "al-fisht"
+  },
+  {
+    "locationName": "Al Ghaphia",
+    "slug": "al-ghaphia"
+  },
+  {
+    "locationName": "Al Gharayen",
+    "slug": "al-gharayen"
+  },
+  {
+    "locationName": "Al Ghubaiba",
+    "slug": "al-ghubaiba"
+  },
+  {
+    "locationName": "Al Ghuwair",
+    "slug": "al-ghuwair"
+  },
+  {
+    "locationName": "Al Goaz",
+    "slug": "al-goaz"
+  },
+  {
+    "locationName": "Al Hazana",
+    "slug": "al-hazana"
+  },
+  {
+    "locationName": "Al Homaa",
+    "slug": "al-homaa"
+  },
+  {
+    "locationName": "Al Jazzat",
+    "slug": "al-jazzat"
+  },
+  {
+    "locationName": "Al Jubail",
+    "slug": "al-jubail"
+  },
+  {
+    "locationName": "Al Juraina",
+    "slug": "al-juraina"
+  },
+  {
+    "locationName": "Al Khaledia Suburb",
+    "slug": "al-khaledia-suburb"
+  },
+  {
+    "locationName": "Al Khan",
+    "slug": "al-khan"
+  },
+  {
+    "locationName": "Al Khezamia",
+    "slug": "al-khezamia"
+  },
+  {
+    "locationName": "Al Layyah",
+    "slug": "al-layyah"
+  },
+  {
+    "locationName": "Al Mahatta",
+    "slug": "al-mahatta"
+  },
+  {
+    "locationName": "Al Majaz 1",
+    "slug": "al-majaz-1"
+  },
+  {
+    "locationName": "Al Majaz 2",
+    "slug": "al-majaz-2"
+  },
+  {
+    "locationName": "Al Majaz 3",
+    "slug": "al-majaz-3"
+  },
+  {
+    "locationName": "Al Mamzar",
+    "slug": "al-mamzar"
+  },
+  {
+    "locationName": "Al Manakh",
+    "slug": "al-manakh"
+  },
+  {
+    "locationName": "Al Manazel",
+    "slug": "al-manazel"
+  },
+  {
+    "locationName": "Al Mansura",
+    "slug": "al-mansura"
+  },
+  {
+    "locationName": "Al Mareija",
+    "slug": "al-mareija"
+  },
+  {
+    "locationName": "Al Mirgab",
+    "slug": "al-mirgab"
+  },
+  {
+    "locationName": "Al Mujarah",
+    "slug": "al-mujarah"
+  },
+  {
+    "locationName": "Al Musalla",
+    "slug": "al-musalla"
+  },
+  {
+    "locationName": "Al Nabba",
+    "slug": "al-nabba"
+  },
+  {
+    "locationName": "Al Nad",
+    "slug": "al-nad"
+  },
+  {
+    "locationName": "Al Nahda",
+    "slug": "al-nahda"
+  },
+  {
+    "locationName": "Al Nasserya",
+    "slug": "al-nasserya"
+  },
+  {
+    "locationName": "Al Nekhailat",
+    "slug": "al-nekhailat"
+  },
+  {
+    "locationName": "Al Noof",
+    "slug": "al-noof"
+  },
+  {
+    "locationName": "Al Qadisia",
+    "slug": "al-qadisia"
+  },
+  {
+    "locationName": "Al Qasimia",
+    "slug": "al-qasimia"
+  },
+  {
+    "locationName": "Al Qulayaa",
+    "slug": "al-qulayaa"
+  },
+  {
+    "locationName": "Al Rahmania",
+    "slug": "al-rahmania"
+  },
+  {
+    "locationName": "Al Ramaqia",
+    "slug": "al-ramaqia"
+  },
+  {
+    "locationName": "Al Ramla East",
+    "slug": "al-ramla-east"
+  },
+  {
+    "locationName": "Al Ramla West",
+    "slug": "al-ramla-west"
+  },
+  {
+    "locationName": "Al Ramtha",
+    "slug": "al-ramtha"
+  },
+  {
+    "locationName": "Al Rifah",
+    "slug": "al-rifah"
+  },
+  {
+    "locationName": "Al Riffa",
+    "slug": "al-riffa"
+  },
+  {
+    "locationName": "Al Sabkha",
+    "slug": "al-sabkha"
+  },
+  {
+    "locationName": "Al Seef",
+    "slug": "al-seef"
+  },
+  {
+    "locationName": "Al Seyouh",
+    "slug": "al-seyouh"
+  },
+  {
+    "locationName": "Al Shahba",
+    "slug": "al-shahba"
+  },
+  {
+    "locationName": "Al Shuwaihen",
+    "slug": "al-shuwaihen"
+  },
+  {
+    "locationName": "Al Soor",
+    "slug": "al-soor"
+  },
+  {
+    "locationName": "Al Sweihat",
+    "slug": "al-sweihat"
+  },
+  {
+    "locationName": "Al Taawun",
+    "slug": "al-taawun"
+  },
+  {
+    "locationName": "Al Talaa",
+    "slug": "al-talaa"
+  },
+  {
+    "locationName": "Al Tarfa",
+    "slug": "al-tarfa"
+  },
+  {
+    "locationName": "Al Yarmook",
+    "slug": "al-yarmook"
+  },
+  {
+    "locationName": "Barashi",
+    "slug": "barashi"
+  },
+  {
+    "locationName": "Bu Danig",
+    "slug": "bu-danig"
+  },
+  {
+    "locationName": "Bu Tina",
+    "slug": "bu-tina"
+  },
+  {
+    "locationName": "Dasman",
+    "slug": "dasman"
+  },
+  {
+    "locationName": "Industrial Area 1",
+    "slug": "industrial-area-1"
+  },
+  {
+    "locationName": "Industrial Area 10",
+    "slug": "industrial-area-10"
+  },
+  {
+    "locationName": "Industrial Area 11",
+    "slug": "industrial-area-11"
+  },
+  {
+    "locationName": "Industrial Area 12",
+    "slug": "industrial-area-12"
+  },
+  {
+    "locationName": "Industrial Area 13",
+    "slug": "industrial-area-13"
+  },
+  {
+    "locationName": "Industrial Area 15",
+    "slug": "industrial-area-15"
+  },
+  {
+    "locationName": "Industrial Area 17",
+    "slug": "industrial-area-17"
+  },
+  {
+    "locationName": "Industrial Area 18",
+    "slug": "industrial-area-18"
+  },
+  {
+    "locationName": "Industrial Area 2",
+    "slug": "industrial-area-2"
+  },
+  {
+    "locationName": "Industrial Area 3",
+    "slug": "industrial-area-3"
+  },
+  {
+    "locationName": "Industrial Area 4",
+    "slug": "industrial-area-4"
+  },
+  {
+    "locationName": "Industrial Area 5",
+    "slug": "industrial-area-5"
+  },
+  {
+    "locationName": "Industrial Area 6",
+    "slug": "industrial-area-6"
+  },
+  {
+    "locationName": "Industrial Area 7",
+    "slug": "industrial-area-7"
+  },
+  {
+    "locationName": "Industrial Area 8",
+    "slug": "industrial-area-8"
+  },
+  {
+    "locationName": "Industrial Area 9",
+    "slug": "industrial-area-9"
+  },
+  {
+    "locationName": "Kalba",
+    "slug": "kalba"
+  },
+  {
+    "locationName": "Khor Fakkan",
+    "slug": "khor-fakkan"
+  },
+  {
+    "locationName": "Maysaloon",
+    "slug": "maysaloon"
+  },
+  {
+    "locationName": "Muwafjah",
+    "slug": "muwafjah"
+  },
+  {
+    "locationName": "Muwaileh Commercial",
+    "slug": "muwaileh-commercial"
+  },
+  {
+    "locationName": "Muzairah",
+    "slug": "muzairah"
+  },
+  {
+    "locationName": "Rolla",
+    "slug": "rolla"
+  },
+  {
+    "locationName": "Saif Zone",
+    "slug": "saif-zone"
+  },
+  {
+    "locationName": "Samnan",
+    "slug": "samnan"
+  },
+  {
+    "locationName": "Sharqan",
+    "slug": "sharqan"
+  },
+  {
+    "locationName": "Um Altaraffa",
+    "slug": "um-altaraffa"
+  },
+  {
+    "locationName": "University of Sharjah",
+    "slug": "university-of-sharjah"
+  }
+]
