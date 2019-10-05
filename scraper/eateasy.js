@@ -204,18 +204,14 @@ const run = async () => {
 
           logger.info(`Scraping location: ${i + 1} / ${links.length} --- ${location.locationName} -- ${city}`);
 
-          let t0 = performance.now();
           let items = await scrapePage(page, location, city);
-          let t1 = performance.now();
-
-          logger.debug(`Eateasy scrapePage function call took: ${t1 - t0} msec.`);
 
           if (items != null) {
             logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
             logger.info(`Baselines for ${location.locationName} are: ${location.baseline}`);
 
             let flatResults = [].concat.apply([], items);
-            
+
             await parse.process_results(flatResults, db, city);
             totalCount += items.length;
 

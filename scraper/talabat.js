@@ -244,11 +244,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
         let location = locations[i];
         let logMsg = `Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName} --- ${city}`;
 
-        let t0 = performance.now();
         scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city);
-        let t1 = performance.now();
-
-        logger.debug(`Talabat scrapeInfiniteScrollItems function call took: ${t1 - t0} msec.`);
       }
     }
 
