@@ -27,6 +27,17 @@ export const offerSources = {
 
 export const TRACKING_ID = 'UA-142540848-1';
 
-export const CITIES = [{ key: 'dubai', text: 'Dubai', value: 'dubai' }];
+export const CITIES_MAP = {
+  dxb: {
+    name: 'Dubai',
+    slug: 'dubai',
+    key: 'dxb',
+  },
+  shj: {
+    name: 'Sharjah',
+    slug: 'sharjah',
+    key: 'shj',
+  },
+};
 
 export const PAGE_SIZE = 25;

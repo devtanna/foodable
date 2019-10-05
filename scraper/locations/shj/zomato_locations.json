@@ -1,0 +1,191 @@
+[
+  {
+    "url": "https://www.zomato.com/sharjah/abu-shagara-restaurants?offers=1",
+    "locationName": "Abu Shagara",
+    "baseline": ["abu-shagara"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-ghuwair-restaurants?offers=1",
+    "locationName": "Al Ghuwair",
+    "baseline": ["al-ghuwair"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-jubail-restaurants?offers=1",
+    "locationName": "Al Jubail",
+    "baseline": ["al-jubail"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-khan-restaurants?offers=1",
+    "locationName": "Al Khan",
+    "baseline": ["al-khan"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-mahatah-restaurants?offers=1",
+    "locationName": "Al Mahatah",
+    "baseline": ["al-mahatta"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-majaz-restaurants?offers=1",
+    "locationName": "Al Majaz",
+    "baseline": ["al-majaz-1", "al-majaz-2", "al-majaz-3"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-manakh-restaurants?offers=1",
+    "locationName": "Al Manakh",
+    "baseline": ["al-manakh"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-mareija-restaurants?offers=1",
+    "locationName": "Al Mareija",
+    "baseline": ["al-mareija"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-mirgab-restaurants?offers=1",
+    "locationName": "Al Mirgab",
+    "baseline": ["al-mirgab"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-mujarrah-restaurants?offers=1",
+    "locationName": "Al Mujarrah",
+    "baseline": ["al-mujarah"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-nabba-restaurants?offers=1",
+    "locationName": "Al Nabba",
+    "baseline": ["al-nabba"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-nahda-restaurants?offers=1",
+    "locationName": "Al Nahda",
+    "baseline": ["al-nahda"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-nasseriya-restaurants?offers=1",
+    "locationName": "Al Nasseriya",
+    "baseline": ["al-nasserya"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-nud-restaurants?offers=1",
+    "locationName": "Al Nud",
+    "baseline": ["al-nad"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-qadisia-restaurants?offers=1",
+    "locationName": "Al Qadisia",
+    "baseline": ["al-qadisia"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-qulayaa-restaurants?offers=1",
+    "locationName": "Al Qulayaa",
+    "baseline": ["al-qulayaa"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-rifah-restaurants?offers=1",
+    "locationName": "Al Rifah",
+    "baseline": ["al-rifah"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-riqqa-suburb-restaurants?offers=1",
+    "locationName": "Al Riqqa Suburb",
+    "baseline": ["al-jazzat"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-sabkha-restaurants?offers=1",
+    "locationName": "Al Sabkha",
+    "baseline": ["al-sabkha"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-shuwaihean-restaurants?offers=1",
+    "locationName": "Al Shuwaihean",
+    "baseline": ["al-shuwaihen"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-soor-restaurants?offers=1",
+    "locationName": "Al Soor",
+    "baseline": ["al-soor"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/al-taawun-restaurants?offers=1",
+    "locationName": "Al Taawun",
+    "baseline": ["al-taawun"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/bu-tina-restaurants?offers=1",
+    "locationName": "Bu Tina",
+    "baseline": ["bu-tina"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/halwan-suburb-restaurants?offers=1",
+    "locationName": "Halwan Suburb",
+    "baseline": ["dasman", "al-ghubaiba", "al-fayha", "al-yarmook", "al-ramla-west"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/industrial-area-restaurants?offers=1",
+    "locationName": "Industrial Area",
+    "baseline": [
+      "industrial-area-1",
+      "industrial-area-2",
+      "industrial-area-3",
+      "industrial-area-4",
+      "industrial-area-5",
+      "industrial-area-6",
+      "industrial-area-7",
+      "industrial-area-8",
+      "industrial-area-9",
+      "industrial-area-10",
+      "industrial-area-11",
+      "industrial-area-12",
+      "industrial-area-13",
+      "industrial-area-14",
+      "industrial-area-15",
+      "industrial-area-16",
+      "industrial-area-17",
+      "industrial-area-18"
+    ]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/khor-fakkan-restaurants?offers=1",
+    "locationName": "Khor Fakkan",
+    "baseline": ["khor-fakkan"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/maysaloon-restaurants?offers=1",
+    "locationName": "Maysaloon",
+    "baseline": ["maysaloon"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/mughaidir-suburb-restaurants?offers=1",
+    "locationName": "Mughaidir Suburb",
+    "baseline": ["al-riffa", "al-talaa", "al-tarfa"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/muwailih-commercial-restaurants?offers=1",
+    "locationName": "Muwailih Commercial",
+    "baseline": ["industrial-area-13", "industrial-area-15"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/saif-zone-restaurants?offers=1",
+    "locationName": "Saif Zone",
+    "baseline": ["saif-zone"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/sharqan-restaurants?offers=1",
+    "locationName": "Sharqan",
+    "baseline": ["sharqan"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/the-flag-island-restaurants?offers=1",
+    "locationName": "The Flag Island",
+    "baseline": ["al-layyah", "al-majaz-1", "al-majaz-2", "al-majaz-3"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/university-city-restaurants?offers=1",
+    "locationName": "University City",
+    "baseline": ["university-of-sharjah"]
+  },
+  {
+    "url": "https://www.zomato.com/sharjah/wasit-suburb-restaurants?offers=1",
+    "locationName": "Wasit Suburb",
+    "baseline": ["al-goaz", "al-ramtha", "al-sweihat", "al-ramaqia"]
+  }
+]

@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-const settings = require('../settings')();
+const settings = require('../../../settings')();
 const areas = require('./zomato_areas.json');
 const fs = require('fs');
 const path = require('path');
@@ -42,9 +42,7 @@ const run = async () => {
       data.push({ url: res, name: areas[i].name });
     }
 
-    fs.writeFile(outputFile, JSON.stringify(data, null, 2), err =>
-      err ? console.log(err) : 'Done!'
-    );
+    fs.writeFile(outputFile, JSON.stringify(data, null, 2), err => (err ? console.log(err) : 'Done!'));
   } catch (e) {
     console.log(e);
   } finally {

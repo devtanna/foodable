@@ -1,5 +1,5 @@
 const { createSitemap } = require('sitemap');
-const baselines = require('./scraper/baseline_locations.json');
+const CITIES = ['dxb', 'shj'];
 
 const urls = [
   {
@@ -20,12 +20,16 @@ const urls = [
   },
 ];
 
-baselines.forEach(baseline =>
-  urls.push({
-    url: `https://foodable.ae/dubai/${baseline.slug}/`,
-    changefreq: 'monthly',
-  })
-);
+CITIES.forEach(city => {
+  const baselines = require(`./scraper/locations/${city}/baseline_locations.json`);
+
+  baselines.forEach(baseline =>
+    urls.push({
+      url: `https://foodable.ae/${city}/${baseline.slug}/`,
+      changefreq: 'monthly',
+    })
+  );
+});
 
 const sitemap = createSitemap({
   hostname: 'https://foodable.ae',

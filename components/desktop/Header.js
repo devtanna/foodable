@@ -1,8 +1,11 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import { trackEvent } from '../../helpers/utils';
+import { CITIES_MAP } from '../../helpers/constants';
+import _find from 'lodash/find';
 
 const Header = ({ location }) => {
+  const cityName = _find(CITIES_MAP, { slug: location.city }).name;
   return (
     <header>
       <div className="wrapper">
@@ -19,7 +22,9 @@ const Header = ({ location }) => {
                 <Icon name="map marker alternate" size="large" color="grey" />
                 <div>
                   <div className="addressHeading">Delivery address:</div>
-                  <div className="address">Dubai, {location.text}</div>
+                  <div className="address">
+                    {cityName}, {location.text}
+                  </div>
                 </div>
               </div>
             </li>

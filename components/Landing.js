@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dropdown, Button } from 'semantic-ui-react';
 import { device } from '../helpers/device';
 import { hideVirtualKeyboard } from '../helpers/utils';
-import { CITIES } from '../helpers/constants';
+import { CITIES_MAP } from '../helpers/constants';
 
 const Landing = ({ locations }) => {
-  const [selectedCity, setSelectedCity] = useState('dubai');
+  const CITIES = Object.keys(locations).map(location => {
+    const city = CITIES_MAP[`${location}`];
+    return {
+      key: location,
+      value: location,
+      text: city.name,
+    };
+  });
+
+  const foundDxb = CITIES.find(city => city.key === 'dxb') ? 'dxb' : null;
+  const defaultCity = foundDxb || CITIES.length > 0 ? CITIES[0].key : '';
+
+  const [selectedCity, setSelectedCity] = useState(defaultCity);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [locationsOptions, setLocationsOptions] = useState([]);
+
+  useEffect(() => {
+    setLocationsOptions(locations[selectedCity]);
+    setSelectedLocation(null);
+  }, [selectedCity]);
 
   const handleSubmit = () => {
     if (!selectedLocation) return;
-    window.location.pathname = `/${selectedCity}/${selectedLocation}/`;
+    let citySlug = CITIES_MAP[`${selectedCity}`].slug;
+    window.location.pathname = `/${citySlug}/${selectedLocation}/`;
   };
 
   return (
@@ -36,7 +55,7 @@ const Landing = ({ locations }) => {
               hideVirtualKeyboard();
               setSelectedCity(value);
             }}
-            disabled
+            disabled={CITIES.length === 1}
             className="fdbDropdown"
           />
           <Dropdown
@@ -44,7 +63,7 @@ const Landing = ({ locations }) => {
             placeholder="Select your area"
             fluid
             search
-            options={locations}
+            options={locationsOptions}
             onChange={(e, { value }) => {
               hideVirtualKeyboard();
               setSelectedLocation(value);

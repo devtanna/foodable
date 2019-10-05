@@ -1,6 +1,5 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
-const baselineLocations = require('./baseline_locations');
 
 function getProxy() {
   const url = 'https://gimmeproxy.com/api/getProxy?protocol=socks5&supportsHttps=true';
@@ -186,8 +185,9 @@ function compare_strings(base_string, scraped_string) {
   return similarity(base_string, scraped_string);
 }
 
-function getBaselineLocations(city = 'dubai') {
+function getBaselineLocations(city) {
   let resultLocationObject = {};
+  const baselineLocations = require(`./locations/${city}/baseline_locations`);
   if (baselineLocations.length) {
     baselineLocations.forEach(element => {
       resultLocationObject[element.slug] = {

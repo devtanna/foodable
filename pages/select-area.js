@@ -3,6 +3,7 @@ import { device } from '../helpers/device';
 import { trackPageView } from '../helpers/utils';
 import Landing from '../components/Landing';
 import { getLocations } from '../helpers/api';
+import _groupBy from 'lodash/groupBy';
 
 const SelectArea = ({ locations, utmSource }) => {
   useEffect(() => {
@@ -27,8 +28,9 @@ const SelectArea = ({ locations, utmSource }) => {
 
 SelectArea.getInitialProps = async ({ req, res, query }) => {
   const { locations } = await getLocations();
+  const groupedLocations = _groupBy(locations, 'city');
   const utmSource = query['utm_source'];
-  return { locations, utmSource };
+  return { locations: groupedLocations, utmSource };
 };
 
 export default SelectArea;

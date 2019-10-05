@@ -6,7 +6,9 @@ const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 
-let locationsJson = require('./zomato_locations.json');
+const CITY = process.argv[4] || 'dxb';
+
+let locationsJson = require(`./locations/${CITY}/zomato_locations.json`);
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -64,9 +66,8 @@ const scrapePage = async (location, page, pageNum = 1) => {
         href: $('.result-title', this).prop('href'),
         image: cleanImg($('.feat-img', this).prop('data-original')),
         location: location.baseline,
-        address: $('.search-result-address', this)
-          .text()
-          .trim(),
+        address: location.baseline,
+        city: CITY,
         cuisine: cuisine.join(', '),
         offer: $('.res-offers .zgreen', this)
           .text()
@@ -210,12 +211,14 @@ const run = async () => {
         while (hasNext && pageNum <= maxPage) {
           try {
             await utils.delay(1000);
-            logger.info('zomato scraper: Starting page: ' + pageNum + ' in ' + location.locationName);
+            logger.info(
+              'zomato scraper: Starting page: ' + pageNum + ' in ' + location.locationName + ' --- city: ' + CITY
+            );
             let res = await scrapePage(location, page, pageNum);
             if (res != undefined) {
               var flatResults = [].concat.apply([], res.result);
 
-              await parse.process_results(flatResults, db, dbClient, scraper_name, (batch = true));
+              await parse.process_results(flatResults, db, CITY);
 
               logger.info(
                 `zomato scraper: Scraped ${pageNum} pages. Results count: ${res.result.length} in ${

@@ -53,4 +53,4 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-    command: ["mongod", "--bind_ip_all", "--smallfiles", "--logpath=/tmp/mongod.log"]
+    command: ["mongod", "--bind_ip_all", "--logpath=/tmp/mongod.log"]
