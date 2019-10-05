@@ -24,12 +24,17 @@ start=`date +%s`
 echo "< dbclean ..." && node scraper/cleanup/dbClean.js && echo "... dbclean >" &&
 wait
 
-node devops/slackBot.js "Running dxb Talabat 0 to 90"
+node devops/slackBot.js "Running dxb Talabat 0 to 180"
 wait
-echo "< talabat ..." && node scraper/talabat.js 0 90 dxb && echo "... talabat >" &&
+node devops/slackBot.js "Running dxb Zomato 0 to 87"
+wait
+node scraper/talabat.js 0 180 dxb &
+node scraper/zomato.js 0 87 dxb &
 wait
 
 node devops/slackLogBot.js talabat
+wait
+node devops/slackLogBot.js zomato
 wait
 
 node devops/slackBot.js "Running dxb Deliveroo"
@@ -56,47 +61,13 @@ wait
 node devops/slackLogBot.js carriage
 wait
 
-node devops/slackBot.js "Running dxb Talabat 91 to 180"
-wait
-echo "< talabat ..." && node scraper/talabat.js 91 180 dxb && echo "... talabat >" &&
-wait
-
-node devops/slackLogBot.js talabat
-wait
-
-# sudo systemctl restart tor
-# wait
-
-node devops/slackBot.js "Running dxb Zomato 0 to 44"
-wait
-echo "< zomato ..." && node scraper/zomato.js 0 44 dxb && echo "... zomato >" &&
-wait
-
-node devops/slackLogBot.js zomato
-wait
-
-node devops/slackBot.js "Running Zomato 45 to 87"
-wait
-echo "< zomato ..." && node scraper/zomato.js 45 87 dxb && echo "... zomato >" &&
-wait
-
-node devops/slackLogBot.js zomato
-wait
-
 ####################### SHJ!!!!!!!!!
-node devops/slackBot.js "Running shj Talabat 0 to 50"
+node devops/slackBot.js "Running shj Talabat 0 to 99"
 wait
-echo "< talabat ..." && node scraper/talabat.js 0 50 shj && echo "... talabat >" &&
-wait
-
 node devops/slackBot.js "Running shj Zomato 0 to 34"
 wait
-echo "< zomato ..." && node scraper/zomato.js 0 34 shj && echo "... zomato >" &&
-wait
-
-node devops/slackBot.js "Running shj Talabat 51 to 99"
-wait
-echo "< talabat ..." && node scraper/talabat.js 51 99 shj && echo "... talabat >" &&
+node scraper/talabat.js 0 99 shj &
+node scraper/zomato.js 0 34 shj &
 wait
 ####################### SHJ!!!!!!!!!
 
