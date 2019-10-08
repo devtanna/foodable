@@ -200,6 +200,16 @@ app
       res.status(200).sendFile(req.url, options);
     });
 
+    server.get('/.well-known/assetlinks.json', (req, res) => {
+      const options = {
+        root: path.join(__dirname, 'static'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      res.status(200).sendFile(req.url, options);
+    });
+
     server.get('/sitemap.xml', function(req, res) {
       try {
         const xml = sitemap.toXML();

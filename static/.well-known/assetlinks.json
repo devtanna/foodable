@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "ae.foodable.ae",
+      "sha256_cert_fingerprints": [
+        "A5:4E:AE:80:DC:3B:C6:D2:9E:70:D7:92:FC:60:65:B2:53:58:F5:7A:3F:56:6C:45:37:3E:78:3B:0B:19:EC:CB"
+      ]
+    }
+  }
+]
