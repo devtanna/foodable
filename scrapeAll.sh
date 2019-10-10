@@ -98,6 +98,14 @@ node devops/slackBot.js "Running shj Talabat 51 to 99"
 wait
 echo "< talabat ..." && node scraper/talabat.js 51 99 shj && echo "... talabat >" &&
 wait
+
+node devops/slackBot.js "Running shj Eateasy"
+wait
+echo "< eateasy ..." && node scraper/eateasy.js shj && echo "... eateasy >" &&
+wait
+
+node devops/slackLogBot.js eateasy
+wait
 ####################### SHJ!!!!!!!!!
 
 node devops/slackBot.js "dxb Running Re Index"
