@@ -1,0 +1,647 @@
+[
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-abu-shaqara-664/offer-offer-1",
+    "locationName": "Abu Shaqara",
+    "baseline": ["abu-shagara"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-abu-tina-665/offer-offer-1",
+    "locationName": "Abu Tina",
+    "baseline": ["bu-tina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-abar-767/offer-offer-1",
+    "locationName": "Al Abar",
+    "baseline": ["al-abar"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-azra-670/offer-offer-1",
+    "locationName": "Al Azra",
+    "baseline": ["al-azra"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-bu-daniq-671/offer-offer-1",
+    "locationName": "Al Bu Daniq",
+    "baseline": ["bu-danig"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-buteena-672/offer-offer-1",
+    "locationName": "Al Buteena",
+    "baseline": ["bu-tina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-darrare-673/offer-offer-1",
+    "locationName": "Al Darrare",
+    "baseline": ["al-darari"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-falaj-674/offer-offer-1",
+    "locationName": "Al Falaj",
+    "baseline": ["al-falaj"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-fayha-675/offer-offer-1",
+    "locationName": "Al Fayha",
+    "baseline": ["al-fayha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-fisht-676/offer-offer-1",
+    "locationName": "Al Fisht",
+    "baseline": ["al-fisht"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ghaphia-679/offer-offer-1",
+    "locationName": "Al Ghaphia",
+    "baseline": ["al-ghaphia"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-gharayen-680/offer-offer-1",
+    "locationName": "Al Gharayen",
+    "baseline": ["al-gharayen"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-gharb-681/offer-offer-1",
+    "locationName": "Al Gharb",
+    "baseline": ["al-musalla"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ghubaiba-682/offer-offer-1",
+    "locationName": "Al Ghubaiba",
+    "baseline": ["al-ghubaiba"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ghuwair-683/offer-offer-1",
+    "locationName": "Al Ghuwair",
+    "baseline": ["al-ghuwair"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-goaz-684/offer-offer-1",
+    "locationName": "Al Goaz",
+    "baseline": ["al-goaz"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-hazana-685/offer-offer-1",
+    "locationName": "Al Hazana",
+    "baseline": ["al-hazana"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-heera-suburb-686/offer-offer-1",
+    "locationName": "Al Heera Suburb",
+    "baseline": ["al-mirgab", "al-nekhailat"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ittihad-road-688/offer-offer-1",
+    "locationName": "Al Ittihad Road",
+    "baseline": ["al-taawun", "al-nahda"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-jazzat-690/offer-offer-1",
+    "locationName": "Al Jazzat",
+    "baseline": ["al-jazzat"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-jubail-691/offer-offer-1",
+    "locationName": "Al Jubail",
+    "baseline": ["al-jubail"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-juraina-692/offer-offer-1",
+    "locationName": "Al Juraina",
+    "baseline": ["al-juraina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-juraina-1-693/offer-offer-1",
+    "locationName": "Al Juraina 1",
+    "baseline": ["al-juraina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-juraina-2-877/offer-offer-1",
+    "locationName": "Al Juraina 2",
+    "baseline": ["al-juraina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-juraina-3-878/offer-offer-1",
+    "locationName": "Al Juraina 3",
+    "baseline": ["al-juraina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-khaildia-suburb-694/offer-offer-1",
+    "locationName": "Al Khaildia Suburb",
+    "baseline": ["al-khaledia-suburb"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-khaledia-695/offer-offer-1",
+    "locationName": "Al Khaledia",
+    "baseline": ["al-khaledia-suburb"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-khan-697/offer-offer-1",
+    "locationName": "Al Khan",
+    "baseline": ["al-khan"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-khezamia-698/offer-offer-1",
+    "locationName": "Al Khezamia",
+    "baseline": ["al-khezamia"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-layyah-suburb-700/offer-offer-1",
+    "locationName": "Al Layyah Suburb",
+    "baseline": ["al-layyah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-layyeh-701/offer-offer-1",
+    "locationName": "Al Layyeh",
+    "baseline": ["al-layyah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-mahatah-702/offer-offer-1",
+    "locationName": "Al Mahatah",
+    "baseline": ["al-mahatta"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-majaz-506/offer-offer-1",
+    "locationName": "Al Majaz",
+    "baseline": ["al-majaz-1", "al-majaz-2", "al-majaz-3"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-majaz-1-704/offer-offer-1",
+    "locationName": "Al Majaz 1",
+    "baseline": ["al-majaz-1"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-majaz-2-705/offer-offer-1",
+    "locationName": "Al Majaz 2",
+    "baseline": ["al-majaz-2"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-majaz-3-706/offer-offer-1",
+    "locationName": "Al Majaz 3",
+    "baseline": ["al-majaz-3"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-mamzar-707/offer-offer-1",
+    "locationName": "Al Mamzar",
+    "baseline": ["al-mamzar"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-manakh-708/offer-offer-1",
+    "locationName": "Al Manakh",
+    "baseline": ["al-manakh"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-mansura-709/offer-offer-1",
+    "locationName": "Al Mansura",
+    "baseline": ["al-mansura"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-mareija-711/offer-offer-1",
+    "locationName": "Al Mareija",
+    "baseline": ["al-mareija"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-mirgab-714/offer-offer-1",
+    "locationName": "Al Mirgab",
+    "baseline": ["al-mirgab"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-mujarah-715/offer-offer-1",
+    "locationName": "Al Mujarah",
+    "baseline": ["al-mujarah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-muntazah-716/offer-offer-1",
+    "locationName": "Al Muntazah",
+    "baseline": ["al-muntazah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-musalla-717/offer-offer-1",
+    "locationName": "Al Musalla",
+    "baseline": ["al-musalla"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-nabba-718/offer-offer-1",
+    "locationName": "Al Nabba",
+    "baseline": ["al-nabba"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-nahda-sharjah-719/offer-offer-1",
+    "locationName": "Al Nahda Sharjah",
+    "baseline": ["al-nahda"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-nasserya-720/offer-offer-1",
+    "locationName": "Al Nasserya",
+    "baseline": ["al-nasserya"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-nekhailat-721/offer-offer-1",
+    "locationName": "Al Nekhailat",
+    "baseline": ["al-nekhailat"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-noaf-722/offer-offer-1",
+    "locationName": "Al Noaf",
+    "baseline": ["al-noof"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-nud-723/offer-offer-1",
+    "locationName": "Al Nud",
+    "baseline": ["al-nad"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qadisiya-725/offer-offer-1",
+    "locationName": "Al Qadisiya",
+    "baseline": ["al-qadisia"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qarain-1-726/offer-offer-1",
+    "locationName": "Al Qarain 1",
+    "baseline": ["al-juraina", "al-falah-suburb"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qarain-2-727/offer-offer-1",
+    "locationName": "Al Qarain 2",
+    "baseline": ["al-juraina", "al-falah-suburb"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qarain-3-728/offer-offer-1",
+    "locationName": "Al Qarain 3",
+    "baseline": ["al-juraina", "al-falah-suburb"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qarain-4-729/offer-offer-1",
+    "locationName": "Al Qarain 4",
+    "baseline": ["al-juraina", "al-falah-suburb"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qasba-730/offer-offer-1",
+    "locationName": "Al Qasba",
+    "baseline": ["al-taawun", "al-majaz-1", "al-majaz-2"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qasimia-731/offer-offer-1",
+    "locationName": "Al Qasimia",
+    "baseline": ["al-qasimia"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-quasimiya-1-736/offer-offer-1",
+    "locationName": "Al Quasimiya 1",
+    "baseline": ["al-qasimia"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-quilaiaah-738/offer-offer-1",
+    "locationName": "Al Quilaiaah",
+    "baseline": ["al-qulayaa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qulayaa-739/offer-offer-1",
+    "locationName": "Al Qulayaa",
+    "baseline": ["al-qulayaa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-rahmaniah-740/offer-offer-1",
+    "locationName": "Al Rahmaniah",
+    "baseline": ["al-rahmania"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ramaqta-741/offer-offer-1",
+    "locationName": "Al Ramaqta",
+    "baseline": ["al-ramaqia"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ramla-742/offer-offer-1",
+    "locationName": "Al Ramla",
+    "baseline": ["al-ramla-east", "al-ramla-west"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ramla-east-743/offer-offer-1",
+    "locationName": "Al Ramla East",
+    "baseline": ["al-ramla-east"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ramla-west-744/offer-offer-1",
+    "locationName": "Al Ramla West",
+    "baseline": ["al-ramla-west"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ramtha-745/offer-offer-1",
+    "locationName": "Al Ramtha",
+    "baseline": ["al-ramtha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-rifah-747/offer-offer-1",
+    "locationName": "Al Rifah",
+    "baseline": ["al-rifah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-riffa-746/offer-offer-1",
+    "locationName": "Al Riffa",
+    "baseline": ["al-riffa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-riqa-suburb-748/offer-offer-1",
+    "locationName": "Al Riqa Suburb",
+    "baseline": ["al-jazzat"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-sabkha-749/offer-offer-1",
+    "locationName": "Al Sabkha",
+    "baseline": ["al-sabkha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-shahba-752/offer-offer-1",
+    "locationName": "Al Shahba",
+    "baseline": ["al-shahba"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-sharqan-755/offer-offer-1",
+    "locationName": "Al Sharqan",
+    "baseline": ["sharqan"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-shuwaihen-756/offer-offer-1",
+    "locationName": "Al Shuwaihen",
+    "baseline": ["al-shuwaihen"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-soor-757/offer-offer-1",
+    "locationName": "Al Soor",
+    "baseline": ["al-soor"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-sweihat-759/offer-offer-1",
+    "locationName": "Al Sweihat",
+    "baseline": ["al-sweihat"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-taawun-660/offer-offer-1",
+    "locationName": "Al Taawun",
+    "baseline": ["al-taawun"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-talae-760/offer-offer-1",
+    "locationName": "Al Talae",
+    "baseline": ["al-talaa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-tarfana-761/offer-offer-1",
+    "locationName": "Al Tarfana",
+    "baseline": ["al-tarfa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-turrfa-762/offer-offer-1",
+    "locationName": "Al Turrfa",
+    "baseline": ["al-tarfa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-yarmook-764/offer-offer-1",
+    "locationName": "Al Yarmook",
+    "baseline": ["al-yarmook"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-yash-765/offer-offer-1",
+    "locationName": "Al Yash",
+    "baseline": ["al-elyash"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-american-university-of-sharjah-768/offer-offer-1",
+    "locationName": "American University of Sharjah",
+    "baseline": ["university-of-sharjah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-bu-danig-776/offer-offer-1",
+    "locationName": "Bu Danig",
+    "baseline": ["bu-danig"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-bu-tina-777/offer-offer-1",
+    "locationName": "Bu Tina",
+    "baseline": ["bu-tina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-buhairah-corniche-778/offer-offer-1",
+    "locationName": "Buhairah Corniche",
+    "baseline": ["al-majaz-1", "al-majaz-2", "al-majaz-3"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-clock-roundabout-781/offer-offer-1",
+    "locationName": "Clock Roundabout",
+    "baseline": ["al-musalla", "al-nabba"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-corniche-782/offer-offer-1",
+    "locationName": "Corniche",
+    "baseline": ["al-majaz-1", "al-majaz-2", "al-majaz-3"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-dasman-785/offer-offer-1",
+    "locationName": "Dasman",
+    "baseline": ["dasman"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-elyash-786/offer-offer-1",
+    "locationName": "Elyash",
+    "baseline": ["al-elyash"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-halwan-suburb-793/offer-offer-1",
+    "locationName": "Halwan Suburb",
+    "baseline": ["dasman", "al-ghubaiba", "al-fayha", "al-yarmook", "al-ramla-west"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-1-802/offer-offer-1",
+    "locationName": "Industrial Area 1",
+    "baseline": ["industrial-area-1"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-10-797/offer-offer-1",
+    "locationName": "Industrial Area 10",
+    "baseline": ["industrial-area-10"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-11-798/offer-offer-1",
+    "locationName": "Industrial Area 11",
+    "baseline": ["industrial-area-11"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-12-799/offer-offer-1",
+    "locationName": "Industrial Area 12",
+    "baseline": ["industrial-area-12"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-13-874/offer-offer-1",
+    "locationName": "Industrial Area 13",
+    "baseline": ["industrial-area-13"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-14-876/offer-offer-1",
+    "locationName": "Industrial Area 14",
+    "baseline": ["industrial-area-13"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-15-800/offer-offer-1",
+    "locationName": "Industrial Area 15",
+    "baseline": ["industrial-area-15"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-17-801/offer-offer-1",
+    "locationName": "Industrial Area 17",
+    "baseline": ["industrial-area-17"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-2-803/offer-offer-1",
+    "locationName": "Industrial Area 2",
+    "baseline": ["industrial-area-2"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-3-804/offer-offer-1",
+    "locationName": "Industrial Area 3",
+    "baseline": ["industrial-area-3"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-4-805/offer-offer-1",
+    "locationName": "Industrial Area 4",
+    "baseline": ["industrial-area-4"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-5-806/offer-offer-1",
+    "locationName": "Industrial Area 5",
+    "baseline": ["industrial-area-5"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-6-807/offer-offer-1",
+    "locationName": "Industrial Area 6",
+    "baseline": ["industrial-area-6"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-7-808/offer-offer-1",
+    "locationName": "Industrial Area 7",
+    "baseline": ["industrial-area-7"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-8-809/offer-offer-1",
+    "locationName": "Industrial Area 8",
+    "baseline": ["industrial-area-8"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-industrial-area-9-875/offer-offer-1",
+    "locationName": "Industrial Area 9",
+    "baseline": ["industrial-area-9"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-jamal-abdul-nasser-812/offer-offer-1",
+    "locationName": "Jamal Abdul Nasser",
+    "baseline": ["al-majaz-1", "al-majaz-2", "al-majaz-3"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-king-faisal-814/offer-offer-1",
+    "locationName": "King Faisal",
+    "baseline": ["al-majaz-1", "abu-shagara"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-maysaloon-817/offer-offer-1",
+    "locationName": "Maysaloon",
+    "baseline": ["maysaloon"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-mughaiidir-suburb-821/offer-offer-1",
+    "locationName": "Mughaiidir Suburb",
+    "baseline": ["al-riffa", "al-talaa", "al-tarfa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-muwafjah-824/offer-offer-1",
+    "locationName": "Muwafjah",
+    "baseline": ["muwafjah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-muwailah-825/offer-offer-1",
+    "locationName": "Muwailah",
+    "baseline": ["industrial-area-13", "industrial-area-15"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-muwaileh-camp-826/offer-offer-1",
+    "locationName": "Muwaileh Camp",
+    "baseline": ["industrial-area-13", "industrial-area-15"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-muwaileh-commercial-827/offer-offer-1",
+    "locationName": "Muwaileh Commercial",
+    "baseline": ["muwaileh-commercial"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-om-khanoor-828/offer-offer-1",
+    "locationName": "Om Khanoor",
+    "baseline": ["al-sabkha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-port-khalid-829/offer-offer-1",
+    "locationName": "Port Khalid",
+    "baseline": ["al-layyah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-riffa-832/offer-offer-1",
+    "locationName": "Riffa",
+    "baseline": ["al-riffa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-rolla-833/offer-offer-1",
+    "locationName": "Rolla",
+    "baseline": ["rolla"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-saif-zone-834/offer-offer-1",
+    "locationName": "Saif Zone",
+    "baseline": ["saif-zone"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-samnan-835/offer-offer-1",
+    "locationName": "Samnan",
+    "baseline": ["samnan"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-sharjah-airport-free-zone-845/offer-offer-1",
+    "locationName": "Sharjah Airport Free Zone",
+    "baseline": ["al-elyash"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-sharjah-freezone-847/offer-offer-1",
+    "locationName": "Sharjah Freezone",
+    "baseline": ["al-elyash"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-sharjah-university-city-850/offer-offer-1",
+    "locationName": "Sharjah University City",
+    "baseline": ["university-of-sharjah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-sharqan-844/offer-offer-1",
+    "locationName": "Sharqan",
+    "baseline": ["sharqan"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-taawoon-855/offer-offer-1",
+    "locationName": "Taawoon",
+    "baseline": ["al-taawun"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-the-king-faisal-street-857/offer-offer-1",
+    "locationName": "The King Faisal Street",
+    "baseline": ["al-majaz-1", "abu-shagara"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-university-of-sharjah-860/offer-offer-1",
+    "locationName": "University Of Sharjah",
+    "baseline": ["university-of-sharjah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-wahda-road-861/offer-offer-1",
+    "locationName": "Wahda Road",
+    "baseline": ["al-majaz-1", "al-majaz-2", "al-majaz-3"]
+  },
+  {
+    "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-wasit-suburb-863/offer-offer-1",
+    "locationName": "Wasit Suburb",
+    "baseline": ["al-goaz", "al-ramtha", "al-sweihat", "al-ramaqia"]
+  }
+]
