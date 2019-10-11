@@ -5,28 +5,39 @@ import Listing from './Listing';
 import Pagination from '../Pagination';
 import NoResults from '../NoResults';
 import Collections from './Collections';
-import { removeObjEmpty } from '../../helpers/utils';
+import { removeObjEmpty, deslugify, capitalizeFirstLetter } from '../../helpers/utils';
 import _isEmpty from 'lodash/isEmpty';
 
 const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) => {
-  let isSearchPage = !_isEmpty(removeObjEmpty(filters));
-  let hasOffers = offers.length > 0;
+  const isSearchPage = !_isEmpty(removeObjEmpty(filters));
+  const hasOffers = offers.length > 0;
+
+  const defaultSearchPageHeading = `Food deals near <span>${location.text}</span>`;
+
+  const cuisinePageHeading =
+    filters.cuisine.length > 0
+      ? filters.cuisine.map(x => `<span>${capitalizeFirstLetter(deslugify(x))}</span>`).join(' and ') +
+        ` food deals near <span>${location.text}</span>`
+      : '';
+
+  const keywordsPageHeading =
+    filters.keywords !== ''
+      ? `Food deals near <span>${location.text}</span> matching <span>"${filters.keywords}"</span>`
+      : '';
+
+  const searchPageHeading = {
+    __html: cuisinePageHeading || keywordsPageHeading || defaultSearchPageHeading,
+  };
 
   return (
     <div>
       <Header cuisines={cuisines} filters={filters} />
       <main>
         <div className="mainWrapper">
-          {!isSearchPage && hasOffers && (
-            <Fragment>
-              <Collections cuisines={cuisines} />
-              <h1 className="sectionHeading">
-                <span>Food deals near</span> {location.text}
-              </h1>
-            </Fragment>
-          )}
           {hasOffers ? (
             <Fragment>
+              {!isSearchPage && <Collections cuisines={cuisines} />}
+              <h1 className="mlSectionHeading" dangerouslySetInnerHTML={searchPageHeading} />
               <div className="listingsWrapper">
                 {offers.map((offer, index) => (
                   <Listing offer={offer} key={index} />
@@ -45,14 +56,15 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
           height: 100%;
           background-color: #fafafa;
         }
-        .sectionHeading {
+        .mlSectionHeading {
           color: #3b3b3b;
           margin: 0;
           padding: 15px 0 0 0;
           font-size: 16px;
-        }
-        .sectionHeading span {
           font-weight: normal;
+        }
+        :global(.mlSectionHeading span) {
+          font-weight: bold;
         }
         .mainWrapper {
           padding: 0 5px 30px;
