@@ -23,7 +23,7 @@ const Collections = ({ cuisines }) => {
           {cuisinesList.map((collection, index) => (
             <div key={index} className="item">
               <Label basic size="medium" as="a" image onClick={() => handleClick(collection.name)}>
-                <img src={collection.image} />
+                <img src={collection.image} alt={`deals on ${collection.name} cuisine`} />
                 {collection.name}
               </Label>
             </div>
