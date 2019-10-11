@@ -17,9 +17,9 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
       <Header cuisines={cuisines} filters={filters} />
       <main>
         <div className="mainWrapper">
-          <Collections cuisines={cuisines} />
           {!isSearchPage && hasOffers && (
             <Fragment>
+              <Collections cuisines={cuisines} />
               <h1 className="sectionHeading">
                 <span>Food deals near</span> {location.text}
               </h1>
