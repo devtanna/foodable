@@ -40,4 +40,43 @@ export const CITIES_MAP = {
   },
 };
 
+export const COLLECTIONS = [
+  {
+    name: 'Pizza',
+    image: '/static/collections/pizza.webp',
+  },
+  {
+    name: 'Burger',
+    image: '/static/collections/burger.webp',
+  },
+  {
+    name: 'Sandwiches',
+    image: '/static/collections/sandwiches.webp',
+  },
+  {
+    name: 'Kebab',
+    image: '/static/collections/kebab.webp',
+  },
+  {
+    name: 'Indian',
+    image: '/static/collections/indian.webp',
+  },
+  {
+    name: 'Italian',
+    image: '/static/collections/italian.webp',
+  },
+  {
+    name: 'Lebanese',
+    image: '/static/collections/lebanese.webp',
+  },
+  {
+    name: 'Healthy Food',
+    image: '/static/collections/healthy.webp',
+  },
+  {
+    name: 'Desserts',
+    image: '/static/collections/desserts.webp',
+  },
+];
+
 export const PAGE_SIZE = 25;
