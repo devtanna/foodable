@@ -7,18 +7,9 @@ const SearchModal = ({ cuisines, filters }) => {
   const { searchModalOpen, setSearchModalOpen } = useContext(AppContext);
 
   return (
-    <Modal
-      closeIcon
-      basic
-      centered={false}
-      open={searchModalOpen}
-      onClose={() => setSearchModalOpen(false)}>
+    <Modal closeIcon basic centered={false} open={searchModalOpen} onClose={() => setSearchModalOpen(false)}>
       <Modal.Content>
-        <Search
-          cuisines={cuisines}
-          filters={filters}
-          onSearch={() => setSearchModalOpen(false)}
-        />
+        <Search cuisines={cuisines} filters={filters} onSearch={() => setSearchModalOpen(false)} />
       </Modal.Content>
     </Modal>
   );

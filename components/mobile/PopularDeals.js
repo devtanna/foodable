@@ -15,16 +15,10 @@ const PopularDeals = ({ deals }) => (
             target="_blank"
             key={index}
             rel="noopener"
-            onClick={() =>
-              trackEvent('offer_click', 'popular', deal.source, deal.title)
-            }
+            onClick={() => trackEvent('offer_click', 'popular', deal.source, deal.title)}
             className={`deal ${deal.source}`}>
             <div className="imgWrapper">
-              <img
-                width={hasImg ? '100%' : '50%'}
-                src={imgSrc}
-                alt={deal.title}
-              />
+              <img width={hasImg ? '100%' : '50%'} src={imgSrc} alt={deal.title} />
             </div>
             <div className="content">
               <div className={`offer ${offerType}`}>

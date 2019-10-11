@@ -4,13 +4,8 @@ import { device } from '../../helpers/device';
 import { redirectToPage, trackPageView, deslugify, capitalizeFirstLetter, removeObjEmpty } from '../../helpers/utils';
 import FoodablesMobile from '../../components/mobile/';
 import FoodablesDesktop from '../../components/desktop/';
-import {
-  getOffers,
-  getRandomOffers,
-  getLocations,
-  getCuisines,
-} from '../../helpers/api';
-import { CITIES_MAP } from "../../helpers/constants";;
+import { getOffers, getRandomOffers, getLocations, getCuisines } from '../../helpers/api';
+import { CITIES_MAP } from '../../helpers/constants';
 import Cookies from 'universal-cookie';
 import qs from 'qs';
 import base64 from 'base-64';
@@ -18,8 +13,34 @@ import _pick from 'lodash/pick';
 import _findKey from 'lodash/findKey';
 
 const PageHead = ({ page, location, filters }) => {
-  const title = `Discover & compare ${filters.cuisine.length > 0 ? filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ') + " cuisine " : ''}food delivery deals and offers in ${location.text}, ${capitalizeFirstLetter(location.city)} ${filters.keywords !== '' ? ", matching keywords '" + filters.keywords + "'": ''} | Foodable.ae${page > 1 ? " - Page " + page : ''}`
-  const description = `Compare food delivery promotions and discover great deals from top food delivery websites. Search by restaurant name or your favorite cuisine and find top deals in your area. ${filters.cuisine.length > 0 ? ' ' + filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ') + ' restaurants in ' + location.text + ', ' + capitalizeFirstLetter(location.city) + '.' : ''}${filters.keywords !== '' ? " Restaurants matching keyword '" + filters.keywords + "' in " + location.text + ', ' + capitalizeFirstLetter(location.city) + '.' : ''}`;
+  const title = `Discover & compare ${
+    filters.cuisine.length > 0
+      ? filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ') + ' cuisine '
+      : ''
+  }food delivery deals and offers in ${location.text}, ${capitalizeFirstLetter(location.city)} ${
+    filters.keywords !== '' ? ", matching keywords '" + filters.keywords + "'" : ''
+  } | Foodable.ae${page > 1 ? ' - Page ' + page : ''}`;
+  const description = `Compare food delivery promotions and discover great deals from top food delivery websites. Search by restaurant name or your favorite cuisine and find top deals in your area. ${
+    filters.cuisine.length > 0
+      ? ' ' +
+        filters.cuisine.map(x => capitalizeFirstLetter(deslugify(x))).join(' and ') +
+        ' restaurants in ' +
+        location.text +
+        ', ' +
+        capitalizeFirstLetter(location.city) +
+        '.'
+      : ''
+  }${
+    filters.keywords !== ''
+      ? " Restaurants matching keyword '" +
+        filters.keywords +
+        "' in " +
+        location.text +
+        ', ' +
+        capitalizeFirstLetter(location.city) +
+        '.'
+      : ''
+  }`;
   return (
     <Head>
       <title>{title}</title>
@@ -36,12 +57,12 @@ const Location = ({
   cuisines = [],
   searchFilters = null,
   device = 'phone',
-  utmSource
+  utmSource,
 }) => {
   useEffect(() => {
     let _filters = qs.stringify(removeObjEmpty(searchFilters));
     if (_filters) {
-      trackPageView('search', `/${selectedLocation.city}/${selectedLocation.slug}/?${_filters}`);  
+      trackPageView('search', `/${selectedLocation.city}/${selectedLocation.slug}/?${_filters}`);
     } else {
       trackPageView('homepage', `/${selectedLocation.city}/${selectedLocation.slug}/${utmSource ? 'pwa/' : ''}`);
     }
@@ -51,7 +72,7 @@ const Location = ({
     <Fragment>
       <PageHead page={page} location={selectedLocation} filters={searchFilters} />
       <div className="wrapper">
-        {device === 'phone' && (
+        {(device === 'phone' || device === 'tablet') && (
           <FoodablesMobile
             offers={offers}
             randomOffers={randomOffers}
@@ -82,7 +103,7 @@ const Location = ({
 };
 
 Location.getInitialProps = async ({ req, res, query }) => {
-	let cookies;
+  let cookies;
 
   if (res) {
     cookies = new Cookies(req.headers.cookie);
@@ -90,7 +111,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
     cookies = new Cookies();
   }
 
-	const { city, location } = query;
+  const { city, location } = query;
   const citySlug = _findKey(CITIES_MAP, { slug: city });
 
   try {
@@ -99,9 +120,9 @@ Location.getInitialProps = async ({ req, res, query }) => {
     let selectedLocation = {
       city,
       slug: location,
-      text: deslugify(location)
+      text: deslugify(location),
     };
-    
+
     // Let's start getting offers data, first, check if any search filters or page params are set
     let searchFilters = { keywords: '', cuisine: [] };
     searchFilters = Object.assign(searchFilters, _pick(qs.parse(query), ['keywords', 'cuisine']));
@@ -109,15 +130,10 @@ Location.getInitialProps = async ({ req, res, query }) => {
     const page = query.page ? query.page : 1;
 
     // Get offers by location, page and search filters
-    const { offers } = await getOffers(
-      location,
-      page,
-      searchFilters,
-      citySlug
-    );
+    const { offers } = await getOffers(location, page, searchFilters, citySlug);
 
     const isSearchPage = searchFilters.keywords !== '' || searchFilters.cuisine.length > 0;
-    
+
     if (offers.length === 0 && page === 1 && !isSearchPage) {
       redirectToPage(res, '/select-area');
       return;
@@ -138,7 +154,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
       cuisines,
       searchFilters,
       device,
-      utmSource
+      utmSource,
     };
   } catch (e) {
     console.log(e);

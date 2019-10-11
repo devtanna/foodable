@@ -1,13 +1,6 @@
 import Listings from './Listings';
 
-const Foodables = ({
-  offers,
-  randomOffers,
-  location,
-  page,
-  cuisines,
-  filters,
-}) => (
+const Foodables = ({ offers, randomOffers, location, page, cuisines, filters }) => (
   <Listings
     offers={offers}
     randomOffers={randomOffers}

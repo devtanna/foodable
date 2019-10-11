@@ -2,10 +2,7 @@ const settings = require('../settings')();
 var MongoClient = require('mongodb').MongoClient;
 
 function insertOneEntryIntoMongo(data, collectionName) {
-  MongoClient.connect(settings.DB, { useNewUrlParser: true }, function(
-    err,
-    db
-  ) {
+  MongoClient.connect(settings.DB, { useNewUrlParser: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db(settings.DB_NAME);
 

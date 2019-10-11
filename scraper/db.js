@@ -25,12 +25,7 @@ function getCurrentDBCollection(offset = '+4') {
     return settings.MONGO_COLLECTION_NAME + '99_99_99';
   }
   var currentdate = getCurrentDateTime(offset);
-  var datetimeNow =
-    currentdate.getDate() +
-    '_' +
-    (currentdate.getMonth() + 1) +
-    '_' +
-    currentdate.getFullYear();
+  var datetimeNow = currentdate.getDate() + '_' + (currentdate.getMonth() + 1) + '_' + currentdate.getFullYear();
 
   return settings.MONGO_COLLECTION_NAME + datetimeNow;
 }
@@ -45,12 +40,7 @@ function checkDBhasActiveCollection(collections) {
 }
 
 function getDBCollectionForDateTime(datetime, offset = '+4') {
-  var datetimeNow =
-    datetime.getDate() +
-    '_' +
-    (datetime.getMonth() + 1) +
-    '_' +
-    datetime.getFullYear();
+  var datetimeNow = datetime.getDate() + '_' + (datetime.getMonth() + 1) + '_' + datetime.getFullYear();
   return settings.MONGO_COLLECTION_NAME + datetimeNow;
 }
 

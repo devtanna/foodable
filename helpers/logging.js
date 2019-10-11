@@ -31,20 +31,14 @@ function getLogger() {
       format.timestamp({
         format: 'YYYY-MM-DD HH:mm:ss',
       }),
-      format.printf(
-        info =>
-          `[${info.label}] ${info.timestamp} ${info.level}: ${info.message}`
-      )
+      format.printf(info => `[${info.label}] ${info.timestamp} ${info.level}: ${info.message}`)
     ),
     transports: [
       new transports.Console({
         level: 'debug',
         format: format.combine(
           format.colorize(),
-          format.printf(
-            info =>
-              `[${info.label}] ${info.timestamp} ${info.level}: ${info.message}`
-          )
+          format.printf(info => `[${info.label}] ${info.timestamp} ${info.level}: ${info.message}`)
         ),
       }),
       dailyRotateFileTransport,

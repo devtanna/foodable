@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Modal,
-  Input,
-  Form,
-  Icon,
-  Message,
-  TextArea,
-} from 'semantic-ui-react';
+import { Button, Modal, Input, Form, Icon, Message, TextArea } from 'semantic-ui-react';
 import { contactUs } from '../helpers/api';
 
 const ContactUsModal = () => {
@@ -55,17 +47,10 @@ const ContactUsModal = () => {
         <React.Fragment>
           <Modal.Content>
             <Modal.Description>
-              {error && (
-                <Message error size="tiny" icon="exclamation" header={error} />
-              )}
+              {error && <Message error size="tiny" icon="exclamation" header={error} />}
               <Form>
                 <Form.Field>
-                  <Input
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    fluid
-                    placeholder="Email address*"
-                  />
+                  <Input value={email} onChange={e => setEmail(e.target.value)} fluid placeholder="Email address*" />
                 </Form.Field>
                 <Form.Field>
                   <TextArea
