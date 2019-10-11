@@ -115,7 +115,6 @@ function calculateScore(item) {
       /^spend aed (\d+(.\d+)*), get (\d+)% off$/im,
       /^aed (\d+(.\d+)*) off selected items$/im,
       /^deals on$/im,
-      /^free item with all orders$/im,
     ],
 
     2: [
