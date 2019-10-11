@@ -1,17 +1,18 @@
 import { Button, Icon } from 'semantic-ui-react';
+import { device } from '../helpers/device';
 
 const NoResults = ({ isSearch }) => (
   <div className="wrapper">
     {isSearch ? (
-      <h2>
+      <h1 className="heading">
         Oops, No results found
         <small>We can't seem to find any offers that matches your search</small>
-      </h2>
+      </h1>
     ) : (
-      <h2>
+      <h1 className="heading">
         Oops, No more pages
         <small>Seems like you've reached the end of the line</small>
-      </h2>
+      </h1>
     )}
     <p>But fear not, we have more deals!</p>
     <a href="/" className="btn">
@@ -24,6 +25,9 @@ const NoResults = ({ isSearch }) => (
       .wrapper {
         text-align: center;
         padding: 30px 0;
+      }
+      .heading {
+        font-size: 1.4rem;
       }
       small {
         margin-top: 10px;
@@ -43,11 +47,19 @@ const NoResults = ({ isSearch }) => (
       .btn {
         background: #f34343;
         color: #fff;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         padding: 15px 50px;
         display: inline-block;
         border-radius: 40px;
+      }
+      @media ${device.tablet} {
+        .heading {
+          font-size: 1.7rem;
+        }
+        .btn {
+          font-size: 18px;
+        }
       }
     `}</style>
   </div>

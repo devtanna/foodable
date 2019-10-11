@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
@@ -42,11 +42,9 @@ class FoodableApp extends App {
     return (
       <Fragment>
         <PageHead />
-        <Container>
-          <AppProvider>
-            <Component {...pageProps} />
-          </AppProvider>
-        </Container>
+        <AppProvider>
+          <Component {...pageProps} />
+        </AppProvider>
         <style jsx global>{`
           #__next {
             height: 100%;
