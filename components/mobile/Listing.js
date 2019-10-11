@@ -123,7 +123,7 @@ const Listing = ({ offer }) => {
       <div className="actionBtns">
         {hasOtherOffers && (
           <button onClick={handleAccordion} className="actionBtns__moreDeals">
-            View All Deals
+            More Deals
           </button>
         )}
         <a
