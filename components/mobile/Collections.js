@@ -32,9 +32,9 @@ const Collections = ({ cuisines }) => {
       </div>
       <style jsx>{`
         .wrapper {
-          margin-bottom: -5px;
+          margin-bottom: -15px;
           width: 100%;
-          height: 55px;
+          height: 45px;
           overflow: hidden;
           position: relative;
         }
@@ -54,7 +54,6 @@ const Collections = ({ cuisines }) => {
           bottom: 0;
           overflow-x: scroll;
           overflow-y: hidden;
-          padding-top: 15px;
           padding-bottom: 100px;
           box-sizing: content-box;
         }

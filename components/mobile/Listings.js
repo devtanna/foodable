@@ -36,7 +36,12 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
         <div className="mainWrapper">
           {hasOffers ? (
             <Fragment>
-              {!isSearchPage && <Collections cuisines={cuisines} />}
+              {!isSearchPage && (
+                <Fragment>
+                  <p className="subheading">Quick links</p>
+                  <Collections cuisines={cuisines} />
+                </Fragment>
+              )}
               <h1 className="mlSectionHeading" dangerouslySetInnerHTML={searchPageHeading} />
               <div className="listingsWrapper">
                 {offers.map((offer, index) => (
@@ -56,6 +61,11 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
           height: 100%;
           background-color: #fafafa;
         }
+        .subheading {
+          color: #3b3b3b;
+          margin: 0;
+          padding: 5px 0;
+        }
         .mlSectionHeading {
           color: #3b3b3b;
           margin: 0;
@@ -70,7 +80,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
           padding: 0 5px 30px;
         }
         .listingsWrapper {
-          margin-top: 15px;
+          margin-top: 5px;
           margin-bottom: 30px;
         }
       `}</style>
