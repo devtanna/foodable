@@ -2,245 +2,152 @@
   {
     "url": "https://www.zomato.com/dubai/delivery-in-abu-hail?offers=1",
     "locationName": "Abu Hail",
-    "baseline": ["abu-hail", "al-baraha", "al-muteena", "corniche-deira"]
+    "baseline": ["abu-hail"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-garhoud?offers=1",
     "locationName": "Al Garhoud",
-    "baseline": [
-      "al-garhoud",
-      "umm-ramool",
-      "dubai-festival-city",
-      "deira-city-centre-area",
-      "dubai-international-airport-area"
-    ]
+    "baseline": ["al-garhoud"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-khabaisi?offers=1",
     "locationName": "Al Khabaisi",
-    "baseline": ["al-khabaisi", "al-muraqqabat", "al-muteena", "hor-al-anz", "dubai-international-airport-area"]
+    "baseline": ["al-khabaisi"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-muraqqabat?offers=1",
     "locationName": "Al Muraqqabat",
-    "baseline": ["al-muraqqabat", "al-rigga", "naif", "al-muteena", "al-khabaisi", "baniyas"]
+    "baseline": ["al-muraqqabat"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-muteena?offers=1",
     "locationName": "Al Muteena",
-    "baseline": [
-      "al-muteena",
-      "naif",
-      "al-baraha",
-      "abu-hail",
-      "hor-al-anz",
-      "al-khabaisi",
-      "al-muraqqabat",
-      "al-rigga"
-    ]
+    "baseline": ["al-muteena"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-ras?offers=1",
     "locationName": "Al Ras",
-    "baseline": ["al-ras", "naif", "al-rigga"]
+    "baseline": ["al-ras"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-rigga?offers=1",
     "locationName": "Al Rigga",
-    "baseline": ["al-rigga", "naif", "al-muteena", "al-muraqqabat", "al-ras", "baniyas"]
+    "baseline": ["al-rigga"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-baniyas?offers=1",
     "locationName": "Baniyas",
-    "baseline": ["baniyas", "al-muraqqabat", "al-rigga"]
+    "baseline": ["baniyas"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-deira-city-centre-area?offers=1",
     "locationName": "Deira City Centre Area",
-    "baseline": ["deira-city-centre-area", "al-garhoud"]
+    "baseline": ["deira-city-centre-area"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-festival-city?offers=1",
     "locationName": "Dubai Festival City",
-    "baseline": [
-      "dubai-festival-city",
-      "umm-ramool",
-      "al-jaddaf",
-      "nad-al-hamar",
-      "nad-shamma",
-      "al-garhoud",
-      "rashidiya"
-    ]
+    "baseline": ["dubai-festival-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-dubai-international-airport-area?offers=1",
     "locationName": "Dubai International Airport Area",
-    "baseline": [
-      "dubai-international-airport-area",
-      "rashidiya",
-      "al-garhoud",
-      "muhaisnah",
-      "umm-ramool",
-      "al-khabaisi",
-      "al-twar"
-    ]
+    "baseline": ["dubai-international-airport-area"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-hor-al-anz?offers=1",
     "locationName": "Hor Al Anz",
-    "baseline": ["hor-al-anz", "abu-hail", "al-muteena", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-mamzar?offers=1",
     "locationName": "Mamzar",
-    "baseline": ["al-mamzar", "al-nahda", "hor-al-anz", "corniche-deira", "the-palm-deira"]
+    "baseline": ["al-mamzar"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-naif?offers=1",
     "locationName": "Naif",
-    "baseline": ["naif", "al-ras", "al-baraha", "al-muteena", "al-muraqqabat", "al-rigga"]
+    "baseline": ["naif"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-rashidiya?offers=1",
     "locationName": "Rashidiya",
-    "baseline": [
-      "rashidiya",
-      "nad-shamma",
-      "umm-ramool",
-      "mirdif",
-      "al-warqa",
-      "nad-al-hamar",
-      "dubai-festival-city",
-      "dubai-international-airport-area"
-    ]
+    "baseline": ["rashidiya"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-karama?offers=1",
     "locationName": "Al Karama",
-    "baseline": ["al-karama", "oud-metha", "mankhool"]
+    "baseline": ["al-karama"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-mankhool?offers=1",
     "locationName": "Mankhool",
-    "baseline": [
-      "mankhool",
-      "al-raffa",
-      "al-souq-al-kabeer",
-      "umm-hurair",
-      "al-karama",
-      "al-jaffiliya",
-      "al-hudaiba-and-around"
-    ]
+    "baseline": ["mankhool"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-meena-bazaar?offers=1",
     "locationName": "Meena Bazaar",
-    "baseline": ["meena-bazaar", "al-souq-al-kabeer"]
+    "baseline": ["meena-bazaar"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-oud-metha?offers=1",
     "locationName": "Oud Metha",
-    "baseline": ["oud-metha", "al-karama", "umm-hurair", "zabeel", "dubai-healthcare-city"]
+    "baseline": ["oud-metha"]
   },
   {
     "url": "https://www.zomato.com/dubai/port-rashid-restaurants?offers=1",
     "locationName": "Port Rashid",
-    "baseline": ["port-rashid", "al-raffa", "al-baraha"]
+    "baseline": ["port-rashid"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-umm-hurair?offers=1",
     "locationName": "Umm Hurair",
-    "baseline": ["umm-hurair", "oud-metha", "al-karama", "al-jaddaf", "dubai-healthcare-city"]
+    "baseline": ["umm-hurair"]
   },
   {
     "url": "https://www.zomato.com/dubai/bluewaters-island-restaurants?offers=1",
     "locationName": "Bluewaters Island",
-    "baseline": ["bluewaters-island", "jumeirah-beach-residence-jbr"]
+    "baseline": ["bluewaters-island"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-dubai-marina?offers=1",
     "locationName": "Dubai Marina",
-    "baseline": [
-      "dubai-marina",
-      "dubai-internet-city",
-      "dubai-media-city",
-      "jumeirah-lake-towers-jlt",
-      "dubai-knowledge-village"
-    ]
+    "baseline": ["dubai-marina"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-emirates-hills?offers=1",
     "locationName": "Emirates Hills",
-    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows", "jumeirah-lake-towers-jlt"]
+    "baseline": ["emirates-hills"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jumeirah-beach-residence-jbr?offers=1",
     "locationName": "Jumeirah Beach Residence (JBR)",
-    "baseline": [
-      "jumeirah-beach-residence-jbr",
-      "jumeirah-lake-towers-jlt",
-      "dubai-marina",
-      "dubai-media-city",
-      "dubai-internet-city",
-      "bluewaters-island"
-    ]
+    "baseline": ["jumeirah-beach-residence-jbr"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jumeirah-lake-towers-jlt?offers=1",
     "locationName": "Jumeirah Lake Towers (JLT)",
-    "baseline": [
-      "jumeirah-lake-towers-jlt",
-      "jumeirah-heights",
-      "jumeirah-beach-residence-jbr",
-      "dubai-marina",
-      "meadows",
-      "emirates-hills"
-    ]
+    "baseline": ["jumeirah-lake-towers-jlt"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-palm-jumeirah?offers=1",
     "locationName": "Palm Jumeirah",
-    "baseline": [
-      "palm-jumeirah",
-      "dubai-knowledge-village",
-      "al-sufouh",
-      "dubai-internet-city",
-      "dubai-media-city",
-      "dubai-marina",
-      "jumeirah-beach-residence-jbr",
-      "palm-residences"
-    ]
+    "baseline": ["palm-jumeirah"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-barsha-restaurants?offers=1",
     "locationName": "Al Barsha",
-    "baseline": [
-      "al-barsha",
-      "al-sufouh",
-      "umm-al-sheif",
-      "al-quoz-industrial-area",
-      "barsha-heights",
-      "al-barsha-south",
-      "the-greens"
-    ]
+    "baseline": ["al-barsha"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-barsha-south?offers=1",
     "locationName": "Al Barsha South",
-    "baseline": [
-      "al-barsha-south",
-      "al-barsha",
-      "jumeirah-village-circle",
-      "dubai-sports-city",
-      "motor-city",
-      "arabian-ranches",
-      "dubai-studio-city"
-    ]
+    "baseline": ["al-barsha-south"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-quoz?offers=1",
     "locationName": "Al Quoz",
-    "baseline": ["al-quoz", "al-quoz-industrial-area"]
+    "baseline": ["al-quoz"]
   },
   {
     "url": "https://www.zomato.com/dubai/dubai-hills-restaurants?offers=1",
@@ -250,96 +157,87 @@
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jumeirah-village-circle?offers=1",
     "locationName": "Jumeirah Village",
-    "baseline": [
-      "jumeirah-village-circle",
-      "jumeirah-village-triangle-jvt",
-      "jumeirah-park",
-      "springs",
-      "al-barsha-south",
-      "motor-city",
-      "dubai-sports-city",
-      "impz"
-    ]
+    "baseline": ["jumeirah-village-circle"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-safa?offers=1",
     "locationName": "Al Safa",
-    "baseline": ["al-safa", "al-quoz"]
+    "baseline": ["al-safa"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jumeirah-1?offers=1",
     "locationName": "Jumeirah 1",
-    "baseline": ["jumeirah-1", "al-badaa", "al-wasl"]
+    "baseline": ["jumeirah-1"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jumeirah-2?offers=1",
     "locationName": "Jumeirah 2",
-    "baseline": ["jumeirah-2", "al-wasl", "al-safa"]
+    "baseline": ["jumeirah-2"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jumeirah-3?offers=1",
     "locationName": "Jumeirah 3",
-    "baseline": ["jumeirah-3", "al-safa", "umm-suqeim"]
+    "baseline": ["jumeirah-3"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-madinat-jumeirah?offers=1",
     "locationName": "Madinat Jumeirah",
-    "baseline": ["madinat-jumeirah", "al-sufouh", "umm-suqeim"]
+    "baseline": ["madinat-jumeirah"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-umm-suqeim?offers=1",
     "locationName": "Umm Suqeim",
-    "baseline": ["umm-suqeim", "umm-al-sheif", "al-sufouh", "al-manara", "madinat-jumeirah", "al-safa", "jumeirah-3"]
+    "baseline": ["umm-suqeim"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-business-bay?offers=1",
     "locationName": "Business Bay",
-    "baseline": ["business-bay", "downtown-dubai", "al-wasl", "al-quoz"]
+    "baseline": ["business-bay"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-downtown-dubai?offers=1",
     "locationName": "Downtown Dubai",
-    "baseline": ["downtown-dubai", "business-bay", "difc"]
+    "baseline": ["downtown-dubai"]
   },
   {
     "url": "https://www.zomato.com/dubai/dubai-design-district-restaurants?offers=1",
     "locationName": "Dubai Design District",
-    "baseline": ["dubai-design-district", "downtown-dubai", "zabeel", "ras-al-khor", "business-bay"]
+    "baseline": ["dubai-design-district"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-academic-city?offers=1",
     "locationName": "Academic City",
-    "baseline": ["academic-city", "dubai-silicon-oasis-dso", "international-city", "the-villas", "dubai-outlet-mall"]
+    "baseline": ["academic-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-awir-beyond-restaurants?offers=1",
     "locationName": "Al Awir & Beyond",
-    "baseline": ["al-awir-and-beyond", "al-khawaneej"]
+    "baseline": ["al-awir-and-beyond"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-dubai-outlet-mall?offers=1",
     "locationName": "Dubai Outlet Mall",
-    "baseline": ["dubai-outlet-mall", "the-villas", "academic-city"]
+    "baseline": ["dubai-outlet-mall"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-silicon-oasis?offers=1",
     "locationName": "Dubai Silicon Oasis (DSO)",
-    "baseline": ["dubai-silicon-oasis-dso", "academic-city", "international-city", "liwan", "nad-al-sheba"]
+    "baseline": ["dubai-silicon-oasis-dso"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-international-city?offers=1",
     "locationName": "International City",
-    "baseline": ["international-city", "al-warqa", "nad-al-hamar", "ras-al-khor", "nad-al-sheba"]
+    "baseline": ["international-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-furjan-restaurants?offers=1",
     "locationName": "Al Furjan",
-    "baseline": ["al-furjan", "discovery-gardens", "jebel-ali-village", "green-community-village"]
+    "baseline": ["al-furjan"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-discovery-gardens?offers=1",
     "locationName": "Discovery Gardens",
-    "baseline": ["discovery-gardens", "al-furjan"]
+    "baseline": ["discovery-gardens"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-dubai-investment-park?offers=1",
@@ -349,273 +247,187 @@
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jafza?offers=1",
     "locationName": "Jafza",
-    "baseline": ["jafza", "jebel-ali-village"]
+    "baseline": ["jafza"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jebel-ali-industrial-area?offers=1",
     "locationName": "Jebel Ali Industrial Area",
-    "baseline": ["jebel-ali-industrial-area", "jebel-ali-village"]
+    "baseline": ["jebel-ali-industrial-area"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-jebel-ali-village?offers=1",
     "locationName": "Jebel Ali Village",
-    "baseline": [
-      "jebel-ali-village",
-      "discovery-gardens",
-      "al-furjan",
-      "jafza",
-      "jebel-ali-industrial-area",
-      "the-palm-jebel-ali"
-    ]
+    "baseline": ["jebel-ali-village"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-nahda?offers=1",
     "locationName": "Al Nahda",
-    "baseline": ["al-nahda", "al-qusais"]
+    "baseline": ["al-nahda"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-muhaisnah?offers=1",
     "locationName": "Muhaisnah",
-    "baseline": [
-      "muhaisnah",
-      "al-twar",
-      "al-qusais",
-      "oud-al-muteena",
-      "al-mizhar",
-      "mirdif",
-      "rashidiya",
-      "dubai-international-airport-area"
-    ]
+    "baseline": ["muhaisnah"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-qusais?offers=1",
     "locationName": "Qusais",
-    "baseline": ["al-qusais", "hor-al-anz", "al-nahda", "al-twar"]
+    "baseline": ["al-qusais"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-difc?offers=1",
     "locationName": "DIFC",
-    "baseline": ["difc", "trade-centre-area", "downtown-dubai", "zabeel", "sheikh-zayed-road"]
+    "baseline": ["difc"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-trade-centre-area?offers=1",
     "locationName": "Trade Centre Area",
-    "baseline": ["trade-centre-area", "difc", "al-satwa", "zabeel", "sheikh-zayed-road"]
+    "baseline": ["trade-centre-area"]
   },
   {
     "url": "https://www.zomato.com/dubai/zaabeel-restaurants?offers=1",
     "locationName": "Za'abeel",
-    "baseline": [
-      "zabeel",
-      "dubai-healthcare-city",
-      "oud-metha",
-      "umm-hurair",
-      "trade-centre-area",
-      "difc",
-      "dubai-creek",
-      "downtown-dubai",
-      "dubai-design-district"
-    ]
+    "baseline": ["zabeel"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-khawaneej-restaurants?offers=1",
     "locationName": "Al Khawaneej",
-    "baseline": ["al-khawaneej", "oud-al-muteena", "al-mizhar", "al-awir-and-beyond"]
+    "baseline": ["al-khawaneej"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-warqa?offers=1",
     "locationName": "Al Warqa",
-    "baseline": ["al-warqa", "international-city", "ras-al-khor", "nad-al-hamar", "nad-shamma", "mirdif"]
+    "baseline": ["al-warqa"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-mirdif?offers=1",
     "locationName": "Mirdif",
-    "baseline": ["mirdif", "rashidiya", "al-twar", "al-mizhar", "al-warqa", "nad-al-hamar"]
+    "baseline": ["mirdif"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-sufouh?offers=1",
     "locationName": "Al Sufouh",
-    "baseline": ["al-sufouh", "al-barsha", "madinat-jumeirah"]
+    "baseline": ["al-sufouh"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-barsha-heights?offers=1",
     "locationName": "Barsha Heights",
-    "baseline": [
-      "barsha-heights",
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "the-greens",
-      "al-barsha",
-      "al-sufouh"
-    ]
+    "baseline": ["barsha-heights"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-dubai-internet-city?offers=1",
     "locationName": "Dubai Internet City",
-    "baseline": [
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "dubai-media-city",
-      "barsha-heights",
-      "the-greens",
-      "jumeirah-lake-towers-jlt"
-    ]
+    "baseline": ["dubai-internet-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-dubai-knowledge-village?offers=1",
     "locationName": "Dubai Knowledge Park",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-internet-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-dubai-media-city?offers=1",
     "locationName": "Dubai Media City",
-    "baseline": ["dubai-media-city", "dubai-internet-city", "dubai-knowledge-village", "dubai-marina"]
+    "baseline": ["dubai-media-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-the-greens?offers=1",
     "locationName": "The Greens",
-    "baseline": ["the-greens", "barsha-heights", "dubai-internet-city", "emirates-hills"]
+    "baseline": ["the-greens"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-al-barari?offers=1",
     "locationName": "Al Barari",
-    "baseline": ["al-barari", "legends", "majan", "city-of-arabia", "falcon-city"]
+    "baseline": ["al-barari"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-qudra-restaurants?offers=1",
     "locationName": "Al Qudra",
-    "baseline": ["al-qudra", "remraam", "arabian-ranches"]
+    "baseline": ["al-qudra"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-arabian-ranches?offers=1",
     "locationName": "Arabian Ranches",
-    "baseline": [
-      "arabian-ranches",
-      "remraam",
-      "motor-city",
-      "al-barsha-south",
-      "the-sustainable-city",
-      "layan",
-      "mudon",
-      "dubai-lifestyle-city",
-      "al-qudra",
-      "damac-hills",
-      "reem",
-      "town-square"
-    ]
+    "baseline": ["arabian-ranches"]
   },
   {
     "url": "https://www.zomato.com/dubai/city-of-arabia-restaurants?offers=1",
     "locationName": "City of Arabia",
-    "baseline": ["city-of-arabia", "majan", "al-barari", "falcon-city", "legends", "global-village"]
+    "baseline": ["city-of-arabia"]
   },
   {
     "url": "https://www.zomato.com/dubai/damac-hills-restaurants?offers=1",
     "locationName": "DAMAC Hills",
-    "baseline": ["damac-hills", "remraam", "arabian-ranches", "jumeirah-golf-estates", "mudon"]
+    "baseline": ["damac-hills"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-dubai-sports-city?offers=1",
     "locationName": "Dubai Sports City",
-    "baseline": [
-      "dubai-sports-city",
-      "impz",
-      "jumeirah-village-circle",
-      "jumeirah-village-triangle-jvt",
-      "motor-city",
-      "dubai-studio-city",
-      "the-greens"
-    ]
+    "baseline": ["dubai-sports-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/dubai-studio-city-restaurants?offers=1",
     "locationName": "Dubai Studio City",
-    "baseline": ["dubai-studio-city", "dubai-sports-city", "motor-city", "the-greens"]
+    "baseline": ["dubai-studio-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/global-village-restaurants?offers=1",
     "locationName": "Global Village",
-    "baseline": ["global-village", "city-of-arabia", "legends"]
+    "baseline": ["global-village"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-impz?offers=1",
     "locationName": "IMPZ",
-    "baseline": ["impz", "jumeirah-village-triangle-jvt", "dubai-sports-city", "jumeirah-village-circle"]
+    "baseline": ["impz"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-motor-city?offers=1",
     "locationName": "Motor City",
-    "baseline": [
-      "motor-city",
-      "dubai-sports-city",
-      "jumeirah-village-circle",
-      "jumeirah-village-triangle-jvt",
-      "arabian-ranches",
-      "dubai-studio-city"
-    ]
+    "baseline": ["motor-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/mudon-restaurants?offers=1",
     "locationName": "Mudon",
-    "baseline": ["mudon", "dubai-studio-city", "arabian-ranches", "remraam", "motor-city", "damac-hills", "town-square"]
+    "baseline": ["mudon"]
   },
   {
     "url": "https://www.zomato.com/dubai/reem-restaurants?offers=1",
     "locationName": "Reem",
-    "baseline": ["reem", "arabian-ranches", "dubai-lifestyle-city"]
+    "baseline": ["reem"]
   },
   {
     "url": "https://www.zomato.com/dubai/remraam-restaurants?offers=1",
     "locationName": "Remraam",
-    "baseline": ["remraam", "mudon", "jumeirah-golf-estates", "al-qudra", "damac-hills", "town-square"]
+    "baseline": ["remraam"]
   },
   {
     "url": "https://www.zomato.com/dubai/the-villas-restaurants?offers=1",
     "locationName": "The Villas",
-    "baseline": [
-      "the-villas",
-      "academic-city",
-      "dubai-silicon-oasis-dso",
-      "falcon-city",
-      "liwan",
-      "city-of-arabia",
-      "dubai-outlet-mall"
-    ]
+    "baseline": ["the-villas"]
   },
   {
     "url": "https://www.zomato.com/dubai/town-square-restaurants?offers=1",
     "locationName": "Town Square",
-    "baseline": ["town-square", "arabian-ranches", "mudon", "remraam", "the-sustainable-city", "layan"]
+    "baseline": ["town-square"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-hudaiba-and-around-restaurants?offers=1",
     "locationName": "Al Hudaiba and Around",
-    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa", "mankhool"]
+    "baseline": ["al-hudaiba-and-around"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-satwa?offers=1",
     "locationName": "Al Satwa",
-    "baseline": ["al-satwa", "al-badaa", "al-jaffiliya", "trade-centre-area", "difc", "sheikh-zayed-road"]
+    "baseline": ["al-satwa"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-nad-al-sheba?offers=1",
     "locationName": "Nad Al Sheba",
-    "baseline": [
-      "nad-al-sheba",
-      "al-quoz",
-      "business-bay",
-      "dubai-design-district",
-      "ras-al-khor",
-      "meydan",
-      "international-city",
-      "dubai-silicon-oasis-dso",
-      "liwan"
-    ]
+    "baseline": ["nad-al-sheba"]
   },
   {
     "url": "https://www.zomato.com/dubai/delivery-in-ras-al-khor?offers=1",
     "locationName": "Ras Al Khor",
-    "baseline": ["ras-al-khor", "dubai-festival-city", "nad-al-hamar", "al-jaddaf", "dubai-design-district"]
+    "baseline": ["ras-al-khor"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-maktoum-international-airport-restaurants?offers=1",
