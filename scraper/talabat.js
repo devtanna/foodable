@@ -90,9 +90,11 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
                 .replace(/['"]+/g, '')
             )
           );
-          const _deliveryTime = $('span[ng-if="!showDeliveryRange || rest.dtim >= 120"]', this)
+          const _deliveryTime = $('div.col-xs-16.truncate', this)
             .text()
-            .trim();
+            .trim()
+            .split('•')[0]
+            .split('-')[1];
           const _deliveryCharge = $('span[ng-switch-when="0"]', this)
             .text()
             .trim();

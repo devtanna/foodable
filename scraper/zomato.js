@@ -63,7 +63,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
         title: $('.result-title', this)
           .text()
           .trim(),
-        href: $('.result-title', this).prop('href'),
+        href: $('.result-title', this).prop('href') + '/order',
         image: cleanImg($('.feat-img', this).prop('data-original')),
         location: location.baseline,
         address: location.baseline,
