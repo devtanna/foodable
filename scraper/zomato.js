@@ -143,6 +143,7 @@ const run = async () => {
 
   let start, end;
   let totalCount = 0;
+  let totalPages = 0;
   if (settings.SCRAPER_TEST_MODE) {
     start = 0;
     end = 4;
@@ -184,6 +185,7 @@ const run = async () => {
     dbClient.close();
     if (totalCount > 0) {
       logger.debug(`Total items scraped ${totalCount}`);
+      slackBot.sendSlackMessage(`Zomato Total Pages Traversed: ${totalPages}`);
       slackBot.sendSlackMessage(`Zomato Total Items Scraped: ${totalCount}`);
     }
 
@@ -229,6 +231,7 @@ const run = async () => {
 
               if (res.goNext) {
                 pageNum++;
+                totalPages++;
               } else {
                 hasNext = false;
               }

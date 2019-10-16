@@ -16,7 +16,7 @@ function sendLogFile(scraperName) {
       filetype: 'auto',
       title: `${scraperName} ${new Date().getFullYear()}-${m}-${d} Log`,
       initialComment: '',
-      channels: `${settings.SLACK_LOG_BOT_CHANEL_ID}`,
+      channels: `${settings.SLACK_LOG_BOT_LOGS_CHANEL_ID}`,
     },
     function(err, data) {
       if (err) {
