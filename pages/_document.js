@@ -24,21 +24,6 @@ class MyDocument extends Document {
     };
   }
 
-  setHotjar() {
-    return {
-      __html: `
-        (function(h,o,t,j,a,r){
-          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-          h._hjSettings={hjid:1532771,hjsv:6};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-      `,
-    };
-  }
-
   render() {
     const { isProduction } = this.props;
     return (
@@ -48,7 +33,6 @@ class MyDocument extends Document {
             <Fragment>
               <script defer src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`} />
               <script defer dangerouslySetInnerHTML={this.setGoogleTags()} />
-              <script defer dangerouslySetInnerHTML={this.setHotjar()} />
             </Fragment>
           )}
         </Head>
