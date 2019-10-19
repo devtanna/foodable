@@ -1,9 +1,13 @@
+import React, { useContext } from 'react';
 import { Label } from 'semantic-ui-react';
 import { COLLECTIONS } from '../../helpers/constants';
 import { slugify, trackEvent } from '../../helpers/utils';
+import { AppContext } from '../../helpers/contexts';
 import qs from 'qs';
 
 const Collections = ({ cuisines }) => {
+  const { setSearchModalOpen } = useContext(AppContext);
+
   const cuisinesList = COLLECTIONS.filter(collection => {
     const found = cuisines.indexOf(collection.name) > -1;
     return found;
@@ -28,6 +32,9 @@ const Collections = ({ cuisines }) => {
               </Label>
             </div>
           ))}
+          <a className="item" onClick={setSearchModalOpen}>
+            <strong>+ more</strong>
+          </a>
         </div>
       </div>
       <style jsx>{`
@@ -69,7 +76,7 @@ const Collections = ({ cuisines }) => {
           margin-right: 10px;
         }
         .item:last-child {
-          padding-right: 25px;
+          padding-right: 40px;
         }
       `}</style>
     </div>
