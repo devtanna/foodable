@@ -13,8 +13,8 @@ import _isEmpty from 'lodash/isEmpty';
 
 const PageHead = () => (
   <Head>
-    <title>Best deals from your favourite restaurants | Foodable.ae</title>
-    <meta name="description" content="Favourites at Foodable" />
+    <title>My favourites | Foodable.ae</title>
+    <meta name="description" content="My favourites at Foodable" />
   </Head>
 );
 

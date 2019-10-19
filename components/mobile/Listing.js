@@ -299,7 +299,7 @@ const Listing = ({ offer, onFavRemove = null }) => {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          max-width: 240px;
+          max-width: 230px;
         }
       `}</style>
     </div>
