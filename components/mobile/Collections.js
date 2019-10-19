@@ -5,7 +5,7 @@ import { slugify, trackEvent } from '../../helpers/utils';
 import { AppContext } from '../../helpers/contexts';
 import qs from 'qs';
 
-const Collections = ({ cuisines }) => {
+const Collections = ({ cuisines, filters }) => {
   const { setSearchModalOpen } = useContext(AppContext);
 
   const cuisinesList = COLLECTIONS.filter(collection => {
@@ -24,15 +24,18 @@ const Collections = ({ cuisines }) => {
     <div className="wrapper">
       <div className="scrollable">
         <div className="content">
-          {cuisinesList.map((collection, index) => (
-            <div key={index} className="item">
-              <Label basic size="medium" as="a" image onClick={() => handleClick(collection.name)}>
-                <img src={collection.image} alt={`deals on ${collection.name} cuisine`} />
-                {collection.name}
-              </Label>
-            </div>
-          ))}
-          <a className="item" onClick={setSearchModalOpen}>
+          {cuisinesList.map((collection, index) => {
+            const isActive = filters.cuisine.length === 1 && filters.cuisine[0] === collection.name.toLowerCase();
+            return (
+              <div key={index} className="item">
+                <Label basic={!isActive} size="medium" as="a" image onClick={() => handleClick(collection.name)}>
+                  <img src={collection.image} alt={`deals on ${collection.name} cuisine`} />
+                  {collection.name}
+                </Label>
+              </div>
+            );
+          })}
+          <a className="item" onClick={() => setSearchModalOpen(true)}>
             <strong>+ more</strong>
           </a>
         </div>
