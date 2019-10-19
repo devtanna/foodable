@@ -170,6 +170,9 @@ export const getFavourites = async (location, page = 1, favourites) => {
               votes 
               image 
               href 
+              deliveryTime,
+              deliveryCharge,
+              minimumOrder
             } 
           }
         }
