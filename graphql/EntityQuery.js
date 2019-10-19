@@ -92,14 +92,13 @@ exports.EntityQuery = new GraphQLObjectType({
         resolve: async (root, args, context, info) => {
           const { pageSize, page, locationSlug, keywords, cuisine, city } = args;
 
-          var results = [];
           if (cuisine || keywords) {
             var orFilter = [];
             var andFilter = [];
             var matchObj = {
               type: 'offers',
-              locationSlug: args.locationSlug,
-              city: args.city,
+              locationSlug: locationSlug,
+              city: city,
             };
             if (cuisine) {
               cuisine.split(' ').forEach(function(item, index) {
@@ -192,6 +191,81 @@ exports.EntityQuery = new GraphQLObjectType({
           return items;
         },
       },
+      // ==========================================================
+      // Favourites!
+      favourites: {
+        type: new GraphQLList(entityType),
+        args: {
+          pageSize: { type: GraphQLInt },
+          page: { type: GraphQLInt },
+          locationSlug: { type: GraphQLNonNull(GraphQLString) },
+          favourites: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) }
+        },
+        resolve: async (root, args, context, info) => {
+          const { pageSize, page, locationSlug, favourites } = args;
+
+          var orFilter = [];
+          var matchObj = {
+            type: 'offers',
+            locationSlug: locationSlug
+          };
+          if (favourites) {
+            favourites.forEach(function(item, index) {
+              orFilter.push({
+                slug: { $regex: item, $options: 'gi' },
+              });
+            });
+            matchObj['$or'] = orFilter;
+          }
+
+          var items = await EntityModel.aggregate([
+            {
+              $match: matchObj,
+            },
+            { $unwind: '$offers' },
+            {
+              $project: {
+                added: 0,
+              },
+            },
+            {
+              $group: {
+                _id: '$slug',
+                offers: { $addToSet: '$offers' },
+              },
+            },
+            { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1, _id: 1 } },
+          ])
+            .skip(pageSize * (page - 1))
+            .limit(pageSize)
+            .exec();
+
+          items.forEach(item => {
+            if (item.offers.length > 1) {
+              // sort them
+              item.offers = item.offers.sort((a, b) => {
+                return (
+                  Number(b.scoreLevel) - Number(a.scoreLevel) || parseFloat(b.scoreValue) - parseFloat(a.scoreValue)
+                );
+              });
+
+              // remove dups by key {offer}-{source}
+              item.offers = _.uniqBy(item.offers, offer => [offer.offer, offer.source].join());
+            }
+          });
+
+          // sort by offer score over all items.
+          items.sort(function(a, b) {
+            return (
+              Number(b.offers[0].scoreLevel) - Number(a.offers[0].scoreLevel) ||
+              parseFloat(b.offers[0].scoreValue) - parseFloat(a.offers[0].scoreValue) ||
+              b.offers.length - a.offers.length
+            );
+          });
+          return items;
+        },
+      },
+      // ==========================================================
       // Find By Keyword
       findByKeyword: {
         type: new GraphQLList(entityType),

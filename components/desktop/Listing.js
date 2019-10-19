@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Icon, Rating, Loader, Transition } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
+import FavoriteBtn from '../FavoriteBtn';
 import { trackEvent, limitChars, showCurrency, showMins, toStartCase } from '../../helpers/utils';
 import copy from 'copy-to-clipboard';
 import qs from 'qs';
@@ -14,7 +15,8 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
   ),
 });
 
-const Listing = ({ offer }) => {
+const Listing = ({ offer, onFavRemove }) => {
+  const restId = offer._id;
   const mainOffer = offer.offers[0];
   const otherOffers = offer.offers.slice(1);
   const moreOffers = otherOffers.slice(2);
@@ -29,7 +31,7 @@ const Listing = ({ offer }) => {
         <LazyImage src={imgSrc} alt={mainOffer.title} width="200" height="200" />
       </div>
       <div className="listing__content">
-        <ListingMeta offer={mainOffer} />
+        <ListingMeta restId={restId} offer={mainOffer} onFavRemove={onFavRemove} />
         <BestOffer offer={mainOffer} />
         <OtherOffers
           mainOffer={mainOffer}
@@ -60,7 +62,7 @@ const Listing = ({ offer }) => {
   );
 };
 
-const ListingMeta = ({ offer }) => {
+const ListingMeta = ({ offer, restId, onFavRemove }) => {
   const { title, rating, cuisineArray, source } = offer;
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -89,14 +91,19 @@ const ListingMeta = ({ offer }) => {
 
   return (
     <div className="listing__meta">
-      <div>
-        <h2 className="meta__name">{toStartCase(title)}</h2>
-        <div className="meta__tags">
-          {cuisineArray.map((cuisine, index) => (
-            <a className="cuisineTag" key={index} href={`?cuisine%5B0%5D=${cuisine.toLowerCase()}`}>
-              {cuisine}
-            </a>
-          ))}
+      <div className="meta__container">
+        <div>
+          <h2 className="meta__name">{toStartCase(title)}</h2>
+          <div className="meta__tags">
+            {cuisineArray.map((cuisine, index) => (
+              <a className="cuisineTag" key={index} href={`?cuisine%5B0%5D=${cuisine.toLowerCase()}`}>
+                {cuisine}
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="meta__favorite">
+          <FavoriteBtn id={restId} onFavRemove={onFavRemove} slug={offer.locationSlug} />
         </div>
       </div>
       <div className="meta__footer">
@@ -104,6 +111,7 @@ const ListingMeta = ({ offer }) => {
           <div>
             <div className="rating__heading">Rating</div>
             <Rating size="large" icon="star" disabled defaultRating={Number(rating)} maxRating={5} />
+            <span className="rating__number">({Number(rating)})</span>
           </div>
         ) : (
           <div />
@@ -132,10 +140,17 @@ const ListingMeta = ({ offer }) => {
           padding: 25px 25px 25px 0;
           border-right: 1px solid #e7e7e7;
         }
+        .meta__container {
+          display: flex;
+          justify-content: space-between;
+        }
         .meta__name {
           margin: 0;
         }
         .meta__tags {
+          margin-top: 5px;
+        }
+        .meta__favorite {
           margin-top: 5px;
         }
         .cuisineTag {
@@ -164,6 +179,13 @@ const ListingMeta = ({ offer }) => {
         }
         .rating__heading {
           font-size: 10px;
+          color: #666;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        .rating__number {
+          vertical-align: top;
+          font-size: 14px;
           color: #666;
           font-weight: bold;
           text-transform: uppercase;

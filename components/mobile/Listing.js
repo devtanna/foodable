@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Rating, Loader } from 'semantic-ui-react';
 import { offerSources } from '../../helpers/constants';
+import FavoriteBtn from '../FavoriteBtn';
 import { trackEvent, limitChars, showCurrency, showMins, toStartCase } from '../../helpers/utils';
 import qs from 'qs';
 import dynamic from 'next/dynamic';
@@ -24,7 +25,7 @@ const getShareLink = keyword => {
   return url;
 };
 
-const Listing = ({ offer }) => {
+const Listing = ({ offer, onFavRemove = null }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [showOtherOffers, setShowOtherOffers] = useState(false);
 
@@ -75,14 +76,11 @@ const Listing = ({ offer }) => {
             {initialRating && (
               <div className="meta__rating">
                 <Rating size="small" icon="star" disabled defaultRating={Number(initialRating)} maxRating={5} />
+                <span className="rating__number">({Number(initialRating)})</span>
               </div>
             )}
           </div>
-          {hasNavigator && (
-            <a onClick={handleShare}>
-              <Icon name="share square" color="teal" size="small" />
-            </a>
-          )}
+          <FavoriteBtn id={offer._id} onFavRemove={onFavRemove} slug={mainOffer.locationSlug} />
         </div>
       </div>
       <div className="bestOffer">
@@ -91,6 +89,9 @@ const Listing = ({ offer }) => {
           <span>{mainOffer.source}</span>
         </div>
         <div className="bestOffer__offer">{limitChars(mainOffer.offer)}</div>
+        <a onClick={handleShare}>
+          <Icon name="share square" color="teal" size="small" />
+        </a>
       </div>
       {hasDeliveryInfo && (
         <div className="deliveryInfo__wrapper">
@@ -189,6 +190,13 @@ const Listing = ({ offer }) => {
           font-weight: normal;
           font-size: 13px;
         }
+        .rating__number {
+          vertical-align: top;
+          font-size: 14px;
+          color: #666;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
         .bestOffer {
           padding: 10px;
           display: flex;
@@ -214,6 +222,7 @@ const Listing = ({ offer }) => {
           font-size: 16px;
           font-weight: bold;
           margin-left: 15px;
+          flex: 1;
         }
         .deliveryInfo__wrapper {
           display: grid;
