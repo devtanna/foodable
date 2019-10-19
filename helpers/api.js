@@ -142,6 +142,46 @@ export const getCuisines = async city => {
   }
 };
 
+export const getFavourites = async (location, page = 1, favourites) => {
+  try {
+    const res = await client.query({
+      query: gql`
+        {
+          favourites
+          (
+            page: ${page}, 
+            pageSize: 50, 
+            locationSlug: "${location}", 
+            favourites: [${favourites.map(x => `"${x}"`)}]
+          ) 
+          { 
+            _id 
+            offers { 
+              title 
+              cuisine 
+              cuisineArray 
+              offer 
+              score 
+              source 
+              city
+              locationSlug 
+              rating 
+              cost_for_two 
+              votes 
+              image 
+              href 
+            } 
+          }
+        }
+      `,
+    });
+
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 // Fetch Queries
 const TIMEOUT_MS = 10000;
 

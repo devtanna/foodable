@@ -10,6 +10,7 @@ Run this first to load the locations
 - `node scraper/deliveroo.js`
 - `node scraper/carriage.js`
 - `node scraper/ubereats.js`
+- `node scraper/eateasy.js`
 
 * `node scraper/reindex.js`
 
@@ -23,15 +24,15 @@ Install Docker
 
 _Build_ the stack like this
 
-`docker-compose up --build scraper foodable_front foodable_back mongo nginx-proxy`
+`docker-compose up --build scraper foodable mongo nginx-proxy`
 
 Then to _stop_ the stack
 
-`docker stop scraper foodable_front foodable_back mongo nginx-proxy`
+`docker stop foodable mongo nginx-proxy`
 
 Then to _start_ the stack
 
-`docker-compose up scraper foodable_front foodable_back mongo nginx-proxy`
+`docker-compose up foodable mongo nginx-proxy`
 
 #### Docker endpoints:
 
@@ -45,15 +46,6 @@ Endpoints:
 ### Database cleanup:
 
 `node scraper/cleanup/dbClean.js`
-
-### Running a test run of scrapers
-
-1. Build the scraper container (only has to be done once) or skip if you followed the docker setup above
-2. Once built it will run a script to run all scrapers
-3. If you want to run the scrapers again
-   a) `docker stop scraper`
-   b) `docker start scraper`
-4. The scraper takes about 4min to complete (this is just a test run (subset) of all scraper results)
 
 ### Example Queries:
 
@@ -83,6 +75,10 @@ Get list of cuisines indexed by scraper so far
 Get list of Restaurants by keyword
 
 `query{ findByKeyword(page:1 pageSize:10 keyword:"pizza"){ title, cuisine, offer, score, source, locationSlug, rating, cost_for_two, votes, image, href }}`
+
+Get favourites
+
+`query { favourites(page: 1, pageSize: 2, locationSlug: "abu-hail", city: "dxb", favourites: ["la-pezza", "acai-beach", "961lb"]) { _id offers { title cuisine cuisineArray offer score source locationSlug rating cost_for_two votes image href } } }`
 
 ENDPOINT for contact us
 `http://foodable.local:8090/contactus`
@@ -131,18 +127,3 @@ Running a full scrape to update data on Production involves these steps:
 ### Deploying to production on Azure involves:
 
 1. Trigger a deployment via a commit message that contains `[azure-deploy]`
-
-### Deploying to production on Kubernetes involves two things
-
-1. Building the image - This is done when all changes are commited and now we want to start deploying to production.
-   So we make a commit into `master` branch with the following commit message `Triggering image build [image-build]`
-   This exact message will start a CI pipeline on gitlab to build and push the images to DockerHub
-
-2. Rolling out new image to GKE
-
-   WARNING: Please do this only after the CI pipeline is finished on gitlab.
-
-   For this step you will need your correct GCP credentials on the foodable cluster. You will also need kubectl linked to the foodable cluster on GCP. Once this is done you run the following two commands.
-   a) `kubectl scale --replicas=0 deployments/foodable-deployment`
-
-   b) `kubectl scale --replicas=1 deployments/foodable-deployment`

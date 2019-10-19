@@ -29,14 +29,21 @@ const Header = ({ cuisines, filters }) => {
             <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
           </a>
         </div>
-        <div className="searchWrapper">
-          <Icon name="search" onClick={() => setSearchModalOpen(true)} />
-        </div>
+        <ul className="menuWrapper">
+          <li>
+            <a className="add2favs" href="/favourites">
+              <Icon name="heart outline" />
+            </a>
+          </li>
+          <li>
+            <Icon name="search" onClick={() => setSearchModalOpen(true)} />
+          </li>
+        </ul>
       </div>
       <SearchModal cuisines={cuisines} filters={filters} />
       <style jsx>{`
         header {
-          padding: 10px 0;
+          padding: 0;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
           position: relative;
           z-index: 1;
@@ -50,13 +57,36 @@ const Header = ({ cuisines, filters }) => {
         }
         .logoWrapper {
           text-align: center;
+          padding: 5px 0;
         }
         .logo {
           max-width: 170px;
+          margin-top: 7px;
         }
-        .searchWrapper {
+        ul.menuWrapper {
+          list-style: none;
           display: flex;
+          margin: 0;
+          padding: 0;
           justify-content: flex-end;
+          height: 100%;
+        }
+        ul.menuWrapper li {
+          border-left: 1px solid #eaeaea;
+          padding: 0 10px;
+          display: flex;
+          align-items: center;
+        }
+        ul.menuWrapper li:last-child {
+          padding-right: 0;
+        }
+        :global(.menuWrapper i) {
+          margin: 0;
+        }
+        :global(.add2favs i) {
+          font-weight: bold;
+          margin-top: 5px;
+          color: rgba(0, 0, 0, 0.87);
         }
       `}</style>
     </header>

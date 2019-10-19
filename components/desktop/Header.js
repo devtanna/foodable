@@ -9,12 +9,6 @@ const Header = ({ location }) => {
   return (
     <header>
       <div className="wrapper">
-        <div />
-        <div className="logoWrapper">
-          <a href="/">
-            <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
-          </a>
-        </div>
         <nav>
           <ul className="navLinks">
             <li>
@@ -37,10 +31,22 @@ const Header = ({ location }) => {
             </li>
           </ul>
         </nav>
+        <div className="logoWrapper">
+          <a href="/">
+            <img className="logo" src="/static/logo.svg" alt="Foodable logo" />
+          </a>
+        </div>
+        <ul className="menuWrapper">
+          <li>
+            <a href="/favourites">
+              <Icon name="heart outline" /> Favourites
+            </a>
+          </li>
+        </ul>
       </div>
       <style jsx>{`
         header {
-          padding: 10px;
+          padding: 0;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
           position: relative;
           z-index: 1;
@@ -57,13 +63,15 @@ const Header = ({ location }) => {
         }
         .logoWrapper {
           text-align: center;
+          margin-top: 7px;
+          padding: 5px 0;
         }
         .logo {
           max-width: 225px;
         }
         nav {
           display: flex;
-          justify-content: flex-end;
+          justify-content: flex-start;
         }
         .navLinks {
           display: flex;
@@ -93,6 +101,28 @@ const Header = ({ location }) => {
         }
         .location__change {
           font-size: 12px;
+        }
+        ul.menuWrapper {
+          list-style: none;
+          display: flex;
+          margin: 0;
+          padding: 0;
+          justify-content: flex-end;
+          height: 100%;
+        }
+        ul.menuWrapper li a {
+          height: 100%;
+          border-left: 1px solid #eaeaea;
+          padding: 0 10px;
+          display: flex;
+          align-items: center;
+          color: rgba(0, 0, 0, 0.87);
+        }
+        ul.menuWrapper li:last-child a {
+          border-right: 1px solid #eaeaea;
+        }
+        ul.menuWrapper li a:hover {
+          background-color: #fbfbfb;
         }
       `}</style>
     </header>

@@ -27,6 +27,10 @@ const urls = [
     url: 'https://foodable.ae/terms',
     changefreq: 'monthly',
   },
+  {
+    url: 'https://foodable.ae/favourites',
+    changefreq: 'monthly',
+  },
 ];
 
 CITIES.forEach(city => {
