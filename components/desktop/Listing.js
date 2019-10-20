@@ -15,7 +15,7 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
   ),
 });
 
-const Listing = ({ offer, onFavRemove }) => {
+const Listing = ({ offer, onFavRemove, disableLazyLoad = false }) => {
   const restId = offer._id;
   const mainOffer = offer.offers[0];
   const otherOffers = offer.offers.slice(1);
@@ -28,7 +28,11 @@ const Listing = ({ offer, onFavRemove }) => {
   return (
     <div className="listing">
       <div className="listing__img">
-        <LazyImage src={imgSrc} alt={mainOffer.title} width="200" height="200" />
+        {disableLazyLoad ? (
+          <img alt={mainOffer.title} src={imgSrc} width="200" height="200" />
+        ) : (
+          <LazyImage src={imgSrc} alt={mainOffer.title} width="200" height="200" />
+        )}
       </div>
       <div className="listing__content">
         <ListingMeta restId={restId} offer={mainOffer} onFavRemove={onFavRemove} />
@@ -56,6 +60,11 @@ const Listing = ({ offer, onFavRemove }) => {
         }
         .listing__img {
           padding: 20px;
+        }
+        .listing__img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       `}</style>
     </div>

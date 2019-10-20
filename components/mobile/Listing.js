@@ -25,7 +25,7 @@ const getShareLink = keyword => {
   return url;
 };
 
-const Listing = ({ offer, onFavRemove = null }) => {
+const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [showOtherOffers, setShowOtherOffers] = useState(false);
 
@@ -65,7 +65,11 @@ const Listing = ({ offer, onFavRemove = null }) => {
     <div className="listing">
       <div className="listing__meta">
         <div className="listing__img">
-          <LazyImage src={imgSrc} alt={mainOffer.title} width="75px" height="75px" />
+          {disableLazyLoad ? (
+            <img alt={mainOffer.title} src={imgSrc} width="75px" height="75px" />
+          ) : (
+            <LazyImage src={imgSrc} alt={mainOffer.title} width="75px" height="75px" />
+          )}
         </div>
         <div className="listing__content">
           <div>
@@ -173,6 +177,11 @@ const Listing = ({ offer, onFavRemove = null }) => {
           width: 75px;
           height: 75px;
           padding: 10px;
+        }
+        .listing__img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         .listing__content {
           padding: 5px;

@@ -57,7 +57,7 @@ const Favourites = ({ offers = {}, device = 'phone' }) => {
                   </strong>
                 </h1>
                 {favouritesList.map((favourite, index) => (
-                  <Listing offer={favourite} onFavRemove={onRemove} key={index} />
+                  <Listing offer={favourite} onFavRemove={onRemove} disableLazyLoad={true} key={index} />
                 ))}
               </div>
             );
