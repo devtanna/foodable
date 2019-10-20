@@ -1,7 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
-import Static from '../components/Static';
+import Layout from '../components/Layout';
 import Head from 'next/head';
 import { trackPageView } from '../helpers/utils';
+
+const breadcrumbs = [
+  { key: 'Home', content: 'Home', href: '/' },
+  { key: 'AboutUs', content: 'About Us', active: true },
+];
 
 const PageHead = () => (
   <Head>
@@ -18,7 +23,7 @@ const AboutUs = () => {
   return (
     <Fragment>
       <PageHead />
-      <Static>
+      <Layout isStatic={true} breadcrumbs={breadcrumbs}>
         <h2>About Foodable</h2>
 
         <p>
@@ -30,7 +35,7 @@ const AboutUs = () => {
           of these deals and offers. Foodable's listings are simply links to the food delivery site which is hosting the
           deal, we do not handle ordering, we simply present our users with information.
         </p>
-      </Static>
+      </Layout>
     </Fragment>
   );
 };

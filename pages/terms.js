@@ -1,7 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
-import Static from '../components/Static';
+import Layout from '../components/Layout';
 import Head from 'next/head';
 import { trackPageView } from '../helpers/utils';
+
+const breadcrumbs = [
+  { key: 'Home', content: 'Home', href: '/' },
+  { key: 'Terms', content: 'Terms and Conditions', active: true },
+];
 
 const PageHead = () => (
   <Head>
@@ -18,7 +23,7 @@ const Terms = () => {
   return (
     <Fragment>
       <PageHead />
-      <Static>
+      <Layout isStatic={true} breadcrumbs={breadcrumbs}>
         <h2>Terms and Conditions</h2>
 
         <h3>Welcome to Foodable!</h3>
@@ -129,7 +134,7 @@ const Terms = () => {
           the information provided will be current. We are not liable to you or anyone else if your computer system is
           in any way damaged or affected by your use of this website.
         </p>
-      </Static>
+      </Layout>
     </Fragment>
   );
 };

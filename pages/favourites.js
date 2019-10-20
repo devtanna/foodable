@@ -11,6 +11,11 @@ import { getFavourites } from '../helpers/api';
 import { CITIES_MAP } from '../helpers/constants';
 import _isEmpty from 'lodash/isEmpty';
 
+const breadcrumbs = [
+  { key: 'Home', content: 'Home', href: '/' },
+  { key: 'Favourites', content: 'My Favourites', active: true },
+];
+
 const PageHead = () => (
   <Head>
     <title>My favourites | Foodable.ae</title>
@@ -42,7 +47,7 @@ const Favourites = ({ offers = {}, device = 'phone' }) => {
   return (
     <Fragment>
       <PageHead />
-      <Layout>
+      <Layout breadcrumbs={breadcrumbs}>
         {!_isEmpty(favourites) && hasFavourites ? (
           Object.entries(favourites).map(([location, favouritesList], index) => {
             if (_isEmpty(favouritesList)) return false;

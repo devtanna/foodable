@@ -1,7 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
-import Static from '../components/Static';
+import Layout from '../components/Layout';
 import Head from 'next/head';
 import { trackPageView } from '../helpers/utils';
+
+const breadcrumbs = [
+  { key: 'Home', content: 'Home', href: '/' },
+  { key: 'PrivacyPolicy', content: 'Privacy Policy', active: true },
+];
 
 const PageHead = () => (
   <Head>
@@ -18,7 +23,7 @@ const PrivacyPolicy = () => {
   return (
     <Fragment>
       <PageHead />
-      <Static>
+      <Layout isStatic={true} breadcrumbs={breadcrumbs}>
         <div className="listWrapper">
           <ul className="ui link list">
             <li role="listitem">
@@ -282,7 +287,7 @@ const PrivacyPolicy = () => {
             margin-bottom: 20px;
           }
         `}</style>
-      </Static>
+      </Layout>
     </Fragment>
   );
 };
