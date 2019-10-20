@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Icon } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
+import { trackEvent } from '../helpers/utils';
 
 const cookies = new Cookies();
 
@@ -29,6 +30,7 @@ const FavoriteBtn = ({ id, slug, onFavRemove = null }) => {
 
     setIsFavorite(true);
     cookies.set('fdb_favorites', favorites, { path: '/' });
+    trackEvent('favorites', 'add', id);
   };
 
   const removeFromFavorites = () => {
@@ -44,6 +46,7 @@ const FavoriteBtn = ({ id, slug, onFavRemove = null }) => {
 
     !onFavRemove && setIsFavorite(false);
     cookies.set('fdb_favorites', favorites, { path: '/' });
+    trackEvent('favorites', 'remove', id);
   };
 
   return (
