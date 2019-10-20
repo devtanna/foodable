@@ -199,7 +199,7 @@ exports.EntityQuery = new GraphQLObjectType({
           pageSize: { type: GraphQLInt },
           page: { type: GraphQLInt },
           locationSlug: { type: GraphQLNonNull(GraphQLString) },
-          favourites: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) }
+          favourites: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
         },
         resolve: async (root, args, context, info) => {
           const { pageSize, page, locationSlug, favourites } = args;
@@ -207,12 +207,12 @@ exports.EntityQuery = new GraphQLObjectType({
           var orFilter = [];
           var matchObj = {
             type: 'offers',
-            locationSlug: locationSlug
+            locationSlug: locationSlug,
           };
           if (favourites) {
             favourites.forEach(function(item, index) {
               orFilter.push({
-                slug: { $regex: item, $options: 'gi' },
+                slug: { $eq: item },
               });
             });
             matchObj['$or'] = orFilter;
