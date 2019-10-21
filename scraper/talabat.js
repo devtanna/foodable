@@ -6,6 +6,7 @@ const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 const urls = require(`./locations/${process.argv[4]}/talabat_locations.json`);
 const slackBot = require('../devops/slackBot');
+const slackLogBot = require('../devops/slackLogBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -182,6 +183,8 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
     process.exit();
   }
 
+  slackBot.sendSlackMessage(`Talabat started with arguments: ${process.argv.slice(2)}`);
+
   let browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: settings.PUPPETEER_BROWSER_ARGS,
@@ -233,6 +236,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
         logger.debug(`Total items scraped ${totalCount}`);
         slackBot.sendSlackMessage(`Talabat Total Items Scraped: ${totalCount}`);
       }
+      slackLogBot.sendLogFile('talabat');
       logger.info('Talabat Scrape Done!');
     };
 

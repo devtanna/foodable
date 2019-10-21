@@ -20,7 +20,7 @@ function sendLogFile(scraperName) {
     },
     function(err, data) {
       if (err) {
-        console.error(err);
+        console.log(err);
       } else {
         console.log('Uploaded file details: ', data);
       }
@@ -29,3 +29,7 @@ function sendLogFile(scraperName) {
 }
 
 sendLogFile(process.argv[2]);
+
+module.exports = {
+  sendLogFile,
+};

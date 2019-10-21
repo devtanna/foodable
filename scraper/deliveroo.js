@@ -6,6 +6,7 @@ const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 let links = require(`./locations/${process.argv[2]}/deliveroo_locations.json`);
 const slackBot = require('../devops/slackBot');
+const slackLogBot = require('../devops/slackLogBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -185,7 +186,7 @@ const run = async () => {
     logger.info('Deliveroo scraper is DISABLED. EXITING.');
     process.exit();
   }
-
+  slackBot.sendSlackMessage(`Deliveroo started with arguments: ${process.argv.slice(2)}`);
   let browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: settings.PUPPETEER_BROWSER_ARGS,
@@ -233,6 +234,7 @@ const run = async () => {
         logger.debug(`Total items scraped ${totalCount}`);
         slackBot.sendSlackMessage(`Deliveroo Total Items Scraped: ${totalCount}`);
       }
+      slackLogBot.sendLogFile('deliveroo');
       logger.info('Deliveroo Scrape Done!');
     };
 

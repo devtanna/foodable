@@ -6,6 +6,7 @@ const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 const slackBot = require('../devops/slackBot');
+const slackLogBot = require('../devops/slackLogBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -116,7 +117,7 @@ async function scrapeInfiniteScrollItems(page, location) {
     logger.info('Carriage scraper is DISABLED. EXITING.');
     process.exit();
   }
-
+  slackBot.sendSlackMessage(`Carriage started with arguments: ${process.argv.slice(2)}`);
   // Set up browser and page.
   const browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
@@ -164,6 +165,7 @@ async function scrapeInfiniteScrollItems(page, location) {
       logger.debug(`Total items scraped ${totalCount}`);
       slackBot.sendSlackMessage(`Carriage Total Items Scraped: ${totalCount}`);
     }
+    slackLogBot.sendLogFile('carriage');
     logger.info('Carriage Scrape Done!');
   };
 

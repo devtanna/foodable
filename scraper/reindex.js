@@ -4,6 +4,9 @@ const dbutils = require('../scraper/db');
 const CITY = process.argv[2] || 'dxb';
 const CUISINES_MAP = require('./cuisineMap').CUISINES_MAP;
 
+const slackBot = require('../devops/slackBot');
+const slackLogBot = require('../devops/slackLogBot');
+
 // logging init
 const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
@@ -29,6 +32,7 @@ MongoClient.connect(settings.DB_CONNECT_URL, options, function(err, client) {
   // Lets start reindexing!!
   reindex(db, dbClient, todayDateStr).then(() => {
     logger.info('All done!');
+    slackLogBot.sendLogFile('reindex');
     dbClient.close();
   });
 });
@@ -56,7 +60,7 @@ async function reindex(db, dbClient, todayDateStr) {
   var collectionName = dbutils.getCurrentDBCollection();
   var offerInserts = [];
   var cuisineArray = [];
-
+  slackBot.sendSlackMessage(`Reindex started with arguments: ${process.argv.slice(2)}`);
   // find all new restaurants
   var restaurants = await db
     .collection(collectionName)
