@@ -131,7 +131,7 @@ const run = async () => {
 
   let args = settings.PUPPETEER_BROWSER_ARGS;
 
-  if (!settings.SCRAPER_TEST_MODE) {
+  if (false) {
     // const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
     const myProxy = 'socks5://localhost:9050'; //await utils.getProxy();
     if (myProxy && myProxy.length > 0) {
@@ -178,7 +178,7 @@ const run = async () => {
     if (val > 0 && val < settings.MAX_TABS && yielded) {
       yielded = false;
       let res = fdbGen.next();
-    } else if (val === 0 && fdbGen.next().done) {
+    } else if (val <= 0 && fdbGen.next().done) {
       handleClose();
     }
   });

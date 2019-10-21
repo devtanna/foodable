@@ -176,7 +176,7 @@ const run = async () => {
       if (val > 0 && val < settings.MAX_TABS && yielded) {
         yielded = false;
         let res = fdbGen.next();
-      } else if (val === 0 && fdbGen.next().done) {
+      } else if (val <= 0 && fdbGen.next().done) {
         handleClose();
       }
     });

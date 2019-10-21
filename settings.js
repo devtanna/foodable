@@ -100,7 +100,7 @@ var scraperSettings = {
   ENABLE_DELIVEROO: true,
   ENABLE_CARRIAGE: true,
   ENABLE_EATEASY: true,
-  MAX_TABS: 5,
+  MAX_TABS: 15,
 };
 
 var systemSettings = {
@@ -108,7 +108,7 @@ var systemSettings = {
   PORT: 4000,
   SLACK_API_TOKEN: slackApiToken,
   SLACK_LOG_BOT_CHANEL_ID: slackLogBotChanelId,
-  SLACK_LOG_BOT_LOGS_CHANEL_ID: slackLogBotLogsChanelId
+  SLACK_LOG_BOT_LOGS_CHANEL_ID: slackLogBotLogsChanelId,
 };
 
 var devSettings = Object.assign({}, puppeteerSettings, mongoSettings, scraperSettings, systemSettings);
