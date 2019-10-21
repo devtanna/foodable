@@ -20,12 +20,11 @@ start=`date +%s`
 echo "< dbclean ..." && node scraper/cleanup/dbClean.js && echo "... dbclean >" &&
 wait
 
-node devops/slackBot.js "Running dxb Talabat 0 to 90"
-wait
-echo "< talabat ..." && timeout -k 15m 16m node scraper/talabat.js 0 90 dxb && echo "... talabat >" &&
+node devops/slackBot.js "Running dxb Talabat 0 to 180" && node devops/slackBot.js "Running dxb Zomato 0 to 44"
 wait
 
-node devops/slackLogBot.js talabat
+timeout -k 15m 16m node scraper/talabat.js 0 180 dxb & 
+timeout -k 15m 16m node scraper/zomato.js 0 87 dxb &
 wait
 
 node devops/slackBot.js "Running dxb Deliveroo"
@@ -52,25 +51,7 @@ wait
 node devops/slackLogBot.js carriage
 wait
 
-node devops/slackBot.js "Running dxb Talabat 91 to 180"
-wait
-echo "< talabat ..." && timeout -k 15m 16m node scraper/talabat.js 91 180 dxb && echo "... talabat >" &&
-wait
-
 node devops/slackLogBot.js talabat
-wait
-
-node devops/slackBot.js "Running dxb Zomato 0 to 44"
-wait
-echo "< zomato ..." && timeout -k 15m 16m node scraper/zomato.js 0 44 dxb && echo "... zomato >" &&
-wait
-
-node devops/slackLogBot.js zomato
-wait
-
-node devops/slackBot.js "Running Zomato 45 to 87"
-wait
-echo "< zomato ..." && timeout -k 15m 16m node scraper/zomato.js 45 87 dxb && echo "... zomato >" &&
 wait
 
 node devops/slackLogBot.js zomato
