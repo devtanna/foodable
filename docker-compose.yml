@@ -30,23 +30,20 @@ services:
       - mongo
     links:
       - mongo
-  
-#  scraper:
-#    container_name: scraper
-#    command: >
-#      sh -c "cron -f"
-#    restart: always
-#    volumes:
-#      - .:/app
-#      - ./docker/scraper/run_all_scrapers_script.sh:/app/run_all_scrapers_script.sh
-#      - /app/node_modules/
-#    build:
-#      context: .
-#      dockerfile: ./docker/scraper/Dockerfile
-#    environment:
-#      ENV: 'docker'
-#    links:
-#      - mongo
+
+  scraper:
+   container_name: foodable_scraper
+   command: >
+     sh -c "cron -f"
+   restart: always
+   volumes:
+     - .:/app
+     - /app/node_modules/
+   build:
+     context: .
+     dockerfile: ./docker/scraper/Dockerfile
+   environment:
+     ENV: 'localhost'
 
   mongo:
     container_name: mongo

@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const $ = require('cheerio');
 
 const slackBot = require('../devops/slackBot');
+const slackLogBot = require('../devops/slackLogBot');
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
@@ -126,9 +127,11 @@ const run = async () => {
     process.exit();
   }
 
+  slackBot.sendSlackMessage(`Zomato started with arguments: ${process.argv.slice(2)}`);
+
   let args = settings.PUPPETEER_BROWSER_ARGS;
 
-  if (!settings.SCRAPER_TEST_MODE) {
+  if (false) {
     // const myProxy = 'socks5://54.37.209.37:80'; //await utils.getProxy();
     const myProxy = 'socks5://localhost:9050'; //await utils.getProxy();
     if (myProxy && myProxy.length > 0) {
@@ -175,7 +178,7 @@ const run = async () => {
     if (val > 0 && val < settings.MAX_TABS && yielded) {
       yielded = false;
       let res = fdbGen.next();
-    } else if (val === 0 && fdbGen.next().done) {
+    } else if (val <= 0 && fdbGen.next().done) {
       handleClose();
     }
   });
@@ -188,7 +191,7 @@ const run = async () => {
       slackBot.sendSlackMessage(`Zomato Total Pages Traversed: ${totalPages}`);
       slackBot.sendSlackMessage(`Zomato Total Items Scraped: ${totalCount}`);
     }
-
+    slackLogBot.sendLogFile('zomato');
     logger.info('Zomato Scrape Done!');
   };
 

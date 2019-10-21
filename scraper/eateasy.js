@@ -6,6 +6,7 @@ const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 let links = require(`./locations/${process.argv[2]}/eateasy_locations.json`);
 const slackBot = require('../devops/slackBot');
+const slackLogBot = require('../devops/slackLogBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -140,7 +141,7 @@ const run = async () => {
     logger.info('Eateasy scraper is DISABLED. EXITING.');
     process.exit();
   }
-
+  slackBot.sendSlackMessage(`Eateasy started with arguments: ${process.argv.slice(2)}`);
   let browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
     args: settings.PUPPETEER_BROWSER_ARGS,
@@ -175,7 +176,7 @@ const run = async () => {
       if (val > 0 && val < settings.MAX_TABS && yielded) {
         yielded = false;
         let res = fdbGen.next();
-      } else if (val === 0 && fdbGen.next().done) {
+      } else if (val <= 0 && fdbGen.next().done) {
         handleClose();
       }
     });
@@ -187,6 +188,7 @@ const run = async () => {
         logger.debug(`Total items scraped ${totalCount}`);
         slackBot.sendSlackMessage(`Eateasy Total Items Scraped: ${totalCount}`);
       }
+      slackLogBot.sendLogFile('eateasy');
       logger.info('Eateasy Scrape Done!');
     };
 

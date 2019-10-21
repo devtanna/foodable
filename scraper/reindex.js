@@ -1,8 +1,11 @@
 const utils = require('./utils');
 const settings = require('../settings')();
 const dbutils = require('../scraper/db');
-var ObjectID = require('mongodb').ObjectID;
 const CITY = process.argv[2] || 'dxb';
+const CUISINES_MAP = require('./cuisineMap').CUISINES_MAP;
+
+const slackBot = require('../devops/slackBot');
+const slackLogBot = require('../devops/slackLogBot');
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -29,6 +32,7 @@ MongoClient.connect(settings.DB_CONNECT_URL, options, function(err, client) {
   // Lets start reindexing!!
   reindex(db, dbClient, todayDateStr).then(() => {
     logger.info('All done!');
+    slackLogBot.sendLogFile('reindex');
     dbClient.close();
   });
 });
@@ -56,7 +60,7 @@ async function reindex(db, dbClient, todayDateStr) {
   var collectionName = dbutils.getCurrentDBCollection();
   var offerInserts = [];
   var cuisineArray = [];
-
+  slackBot.sendSlackMessage(`Reindex started with arguments: ${process.argv.slice(2)}`);
   // find all new restaurants
   var restaurants = await db
     .collection(collectionName)
@@ -87,8 +91,25 @@ async function reindex(db, dbClient, todayDateStr) {
       // PART3 -> accumulate cuisine tags
       if (restaurant['cuisine'] != null) {
         let cuisineTags = restaurant['cuisine'].split(',').map(s => s.trim());
-        if (cuisineTags.length) {
-          cuisineArray.push(cuisineTags);
+        try {
+          if (cuisineTags.length) {
+            cuisineTags = cuisineTags.flat();
+            cuisineTags = Array.from(new Set(cuisineTags)); // this removes from local cuisines for this restaurant
+
+            cuisineTags = cuisineTags.filter(
+              item => CUISINES_MAP.findIndex(x => x.slugs.find(element => element == utils.slugify(item))) > 0
+            );
+            cuisineTags = cuisineTags.map(
+              item =>
+                CUISINES_MAP[CUISINES_MAP.findIndex(x => x.slugs.find(element => element == utils.slugify(item)))].name
+            );
+            cuisineTags = cuisineTags.filter((v, i) => cuisineTags.indexOf(v) === i);
+
+            // final push
+            cuisineArray.push(cuisineTags);
+          }
+        } catch (error) {
+          logger.error('Error in cuisine processing > ' + error);
         }
       }
     });
@@ -114,27 +135,17 @@ async function reindex(db, dbClient, todayDateStr) {
       }
     }
   }
-
-  var flattened = [];
-  for (var i = 0; i < cuisineArray.length; ++i) {
-    var current = cuisineArray[i];
-    for (var j = 0; j < current.length; ++j)
-      if (current[j]) {
-        flattened.push(current[j]);
-      }
+  if (cuisineArray.length > 0) {
+    cuisineArray = cuisineArray.flat(); // looks unnecessary but it is
+    cuisineArray = Array.from(new Set(cuisineArray)); // this removes duplicates from the global
+    logger.info(`Saving cuisines -> ${cuisineArray.length}`);
+    await bulkInsert(db, [{ type: 'cuisine', city: CITY, tags: cuisineArray }], collectionName);
   }
 
-  const cuisinesSet = new Set(flattened);
-  let cuisines = Array.from(cuisinesSet);
-  // capitalize each cuisine
-  cuisines = cuisines.map(function(x) {
-    return utils.capitalizeFirstLetter(x);
-  });
-  logger.info(`Saving cuisines -> ${cuisines.length}`);
-  await bulkInsert(db, [{ type: 'cuisine', city: CITY, tags: cuisines }], collectionName);
-
-  logger.info('Saving offers ->');
-  await bulkInsert(db, offerInserts, collectionName);
+  if (offerInserts) {
+    logger.info('Saving offers ->');
+    await bulkInsert(db, offerInserts, collectionName);
+  }
 }
 
 async function bulkInsert(db, ops, collectionName) {
@@ -151,7 +162,9 @@ async function bulkInsert(db, ops, collectionName) {
         bulk = db.collection(collectionName).initializeUnorderedBulkOp();
       }
     });
-    bulk.execute(); // leftovers
+    if (ops.length > 0) {
+      bulk.execute(); // leftovers
+    }
     logger.info('Ops DONE!');
   }
 }
