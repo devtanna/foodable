@@ -102,6 +102,10 @@ exports.EntityQuery = new GraphQLObjectType({
             };
             if (cuisine) {
               cuisine.split(' ').forEach(function(item, index) {
+                // since its a query param a space in the item comes in as a -
+                // Example healthy-food
+                item = item.replace('-', ' ');
+
                 orFilter.push({
                   'offers.cuisine': { $regex: item, $options: 'gi' },
                 });
@@ -318,7 +322,7 @@ exports.EntityQuery = new GraphQLObjectType({
         resolve: async (root, args, context, info) => {
           const { city } = args;
           const projections = getProjection(info);
-          var tags = await EntityModel.find({ type: 'cuisine', city }).exec();
+          var tags = await EntityModel.find({ type: 'cuisine', city: `${city}` }).exec();
           if (!tags) {
             throw new Error('Error while fetching all offers data.');
           }
