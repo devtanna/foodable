@@ -1,0 +1,382 @@
+[
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-29th-street-508/offer-offer-1",
+    "locationName": "29th Street",
+    "baseline": ["29th-street"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-abu-dhabi-industrial-area-511/offer-offer-1",
+    "locationName": "Abu Dhabi Industrial Area",
+    "baseline": ["mussafah-industrial-city"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-airport-road-512/offer-offer-1",
+    "locationName": "Airport Road",
+    "baseline": ["abu-dhabi-international-airport"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-airport-road-19th-513/offer-offer-1",
+    "locationName": "Airport Road 19th",
+    "baseline": ["abu-dhabi-international-airport"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-airport-road-31st-514/offer-offer-1",
+    "locationName": "Airport Road 31st",
+    "baseline": ["abu-dhabi-international-airport"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-aman-516/offer-offer-1",
+    "locationName": "Al Aman",
+    "baseline": ["al-aman"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-bahia-517/offer-offer-1",
+    "locationName": "Al Bahia",
+    "baseline": ["al-bahya"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-bandar-519/offer-offer-1",
+    "locationName": "Al Bandar",
+    "baseline": ["al-bandar-al-raha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-bateen-520/offer-offer-1",
+    "locationName": "Al Bateen",
+    "baseline": ["khor-al-bateen"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-dafrah-523/offer-offer-1",
+    "locationName": "Al Dafrah",
+    "baseline": ["al-dafrah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-falah-city-1248/offer-offer-1",
+    "locationName": "Al Falah City",
+    "baseline": ["al-falah-city"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-falah-street-527/offer-offer-1",
+    "locationName": "Al Falah Street",
+    "baseline": ["al-falah-city"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-hosn-528/offer-offer-1",
+    "locationName": "Al Hosn",
+    "baseline": ["al-hosn"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-ittihad-918/offer-offer-1",
+    "locationName": "Al Ittihad",
+    "baseline": ["al-etihad"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-karamah-530/offer-offer-1",
+    "locationName": "Al Karamah",
+    "baseline": ["al-karamah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-khalidiyah-532/offer-offer-1",
+    "locationName": "Al Khalidiyah",
+    "baseline": ["al-khalidiyah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-khubeirah-533/offer-offer-1",
+    "locationName": "Al Khubeirah",
+    "baseline": ["al-khubeirah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-madina-534/offer-offer-1",
+    "locationName": "Al Madina",
+    "baseline": ["madinat-zayed"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-madina-al-riyadiya-535/offer-offer-1",
+    "locationName": "Al Madina Al Riyadiya",
+    "baseline": ["zayed-sports-city"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-mafraq-536/offer-offer-1",
+    "locationName": "Al Mafraq",
+    "baseline": ["al-mafraq"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-manhal-539/offer-offer-1",
+    "locationName": "Al Manhal",
+    "baseline": ["al-manhal"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-maqtaa-540/offer-offer-1",
+    "locationName": "Al Maqtaa",
+    "baseline": ["al-maqta"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-markaziya-541/offer-offer-1",
+    "locationName": "Al Markaziya",
+    "baseline": ["al-markaziyah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-matar-542/offer-offer-1",
+    "locationName": "Al Matar",
+    "baseline": ["abu-dhabi-international-airport"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-meena-543/offer-offer-1",
+    "locationName": "Al Meena",
+    "baseline": ["al-mina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-muneera-544/offer-offer-1",
+    "locationName": "Al Muneera",
+    "baseline": ["al-muneera-al-raha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-musalla-546/offer-offer-1",
+    "locationName": "Al Musalla",
+    "baseline": ["al-musalla"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-mushrif-547/offer-offer-1",
+    "locationName": "Al Mushrif",
+    "baseline": ["al-mushrif"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-muzoon-548/offer-offer-1",
+    "locationName": "Al Muzoon",
+    "baseline": ["al-muzoon"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-nahyan-549/offer-offer-1",
+    "locationName": "Al Nahyan",
+    "baseline": ["al-nahyan"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-raha-beach-552/offer-offer-1",
+    "locationName": "Al Raha Beach",
+    "baseline": ["al-raha-beach"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-rahba-554/offer-offer-1",
+    "locationName": "Al Rahba",
+    "baseline": ["al-rahba"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-reef-555/offer-offer-1",
+    "locationName": "Al Reef",
+    "baseline": ["al-reef"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-reem-island-643/offer-offer-1",
+    "locationName": "Al Reem Island",
+    "baseline": ["reem-island"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-riyadiya-560/offer-offer-1",
+    "locationName": "Al Riyadiya",
+    "baseline": ["zayed-sports-city"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-rowdah-561/offer-offer-1",
+    "locationName": "Al Rowdah",
+    "baseline": ["al-rowdah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-rowdhat-1323/offer-offer-1",
+    "locationName": "Al Rowdhat",
+    "baseline": ["al-rowdah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-safarrat-564/offer-offer-1",
+    "locationName": "Al Safarrat",
+    "baseline": ["al-safarrat"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-samha-1-566/offer-offer-1",
+    "locationName": "Al Samha 1",
+    "baseline": ["al-samha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-samha-2-567/offer-offer-1",
+    "locationName": "Al Samha 2",
+    "baseline": ["al-samha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-shamkha-568/offer-offer-1",
+    "locationName": "Al Shamkha",
+    "baseline": ["al-shamkha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-shawamekh-1321/offer-offer-1",
+    "locationName": "Al Shawamekh",
+    "baseline": ["al-shawamekh"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-wahdah-571/offer-offer-1",
+    "locationName": "Al Wahdah",
+    "baseline": ["al-wahdah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-wathba-1320/offer-offer-1",
+    "locationName": "Al Wathba",
+    "baseline": ["al-wathba"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-zaab-572/offer-offer-1",
+    "locationName": "Al Zaab",
+    "baseline": ["al-zaab"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-zahraa-573/offer-offer-1",
+    "locationName": "Al Zahraa",
+    "baseline": ["al-zahraa"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-al-zeina-868/offer-offer-1",
+    "locationName": "Al Zeina",
+    "baseline": ["al-zeina-al-raha"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-bain-al-jesrain-between-the-bridges-576/offer-offer-1",
+    "locationName": "Bain Al Jesrain - Between The Bridges",
+    "baseline": ["bain-al-jesrain"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-baniyas-1257/offer-offer-1",
+    "locationName": "Baniyas",
+    "baseline": ["bani-yas-east", "bani-yas-west"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-break-water-579/offer-offer-1",
+    "locationName": "Break Water",
+    "baseline": ["breakwater"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-embassies-district-1325/offer-offer-1",
+    "locationName": "Embassies District",
+    "baseline": ["al-safarrat"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-hadbat-al-zafranah-595/offer-offer-1",
+    "locationName": "Hadbat Al Zafranah",
+    "baseline": ["al-zafranah"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-hydra-village-599/offer-offer-1",
+    "locationName": "Hydra Village",
+    "baseline": ["hydra-village-shahama"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-khalifa-a-city-605/offer-offer-1",
+    "locationName": "Khalifa A City",
+    "baseline": ["madinat-khalifa-a"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-khalifa-b-city-866/offer-offer-1",
+    "locationName": "Khalifa B City",
+    "baseline": ["madinat-khalifa-a"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-khalifa-c-city-867/offer-offer-1",
+    "locationName": "Khalifa C City",
+    "baseline": ["madinat-khalifa-c"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-khor-al-bateen-610/offer-offer-1",
+    "locationName": "Khor Al Bateen",
+    "baseline": ["khor-al-bateen"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-madinat-zayed-615/offer-offer-1",
+    "locationName": "Madinat Zayed",
+    "baseline": ["madinat-zayed"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-maryah-island-871/offer-offer-1",
+    "locationName": "Maryah Island",
+    "baseline": ["al-maryah-island"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-masdar-city-619/offer-offer-1",
+    "locationName": "Masdar City",
+    "baseline": ["masdar-city"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-mina-zayed-620/offer-offer-1",
+    "locationName": "Mina Zayed",
+    "baseline": ["port-zayed-al-mina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-ministries-complex-1324/offer-offer-1",
+    "locationName": "Ministries Complex",
+    "baseline": ["al-safarrat"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-mohammed-bin-zayed-city-622/offer-offer-1",
+    "locationName": "Mohammed Bin Zayed City",
+    "baseline": ["mohammed-bin-zayed-city"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-mussafah-628/offer-offer-1",
+    "locationName": "Mussafah",
+    "baseline": ["mussafah-south"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-new-shahama-632/offer-offer-1",
+    "locationName": "New Shahama",
+    "baseline": ["new-shahama"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-port-zayed-636/offer-offer-1",
+    "locationName": "Port Zayed",
+    "baseline": ["port-zayed-al-mina"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-qasr-el-bahr-638/offer-offer-1",
+    "locationName": "Qasr El Bahr",
+    "baseline": ["qasr-el-bahr"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-qasr-el-shantie-639/offer-offer-1",
+    "locationName": "Qasr El Shantie",
+    "baseline": ["qasr-el-shatie"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-ras-al-akhdar-641/offer-offer-1",
+    "locationName": "Ras Al Akhdar",
+    "baseline": ["al-ras-al-akhdar"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-saadiyat-island-646/offer-offer-1",
+    "locationName": "Saadiyat Island",
+    "baseline": ["saadiyat-island"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-sas-al-nakhl-649/offer-offer-1",
+    "locationName": "Sas Al Nakhl",
+    "baseline": ["sas-al-nakhl-island"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-shahama-864/offer-offer-1",
+    "locationName": "Shahama",
+    "baseline": ["shahama"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-shakhbout-city-1407/offer-offer-1",
+    "locationName": "Shakhbout City",
+    "baseline": ["shakhbout-city"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-tourist-club-area-655/offer-offer-1",
+    "locationName": "Tourist Club Area",
+    "baseline": ["tourist-club-area-al-zahiya"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-yas-island-658/offer-offer-1",
+    "locationName": "Yas Island",
+    "baseline": ["yas-island"]
+  },
+  {
+    "url": "https://www.eateasy.ae/abudhabi/restaurants/search/dlocations-zayed-sport-city-659/offer-offer-1",
+    "locationName": "Zayed Sport City",
+    "baseline": ["zayed-sports-city"]
+  }
+]
