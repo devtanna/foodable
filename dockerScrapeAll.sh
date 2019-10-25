@@ -82,6 +82,45 @@ node devops/slackLogBot.js eateasy
 wait
 ####################### SHJ!!!!!!!!!
 
+####################### ABU DHABI!!!!!!!!!
+node devops/slackBot.js "Running ABU DHABI Talabat 0 to 81" && node devops/slackBot.js "Running ABU DHABI Zomato 0 to 31"
+wait
+
+timeout -k 15m 16m node scraper/talabat.js 0 81 ad & 
+timeout -k 15m 16m node scraper/zomato.js 0 31 ad &
+wait
+
+node devops/slackLogBot.js talabat
+wait
+
+node devops/slackLogBot.js zomato
+wait
+
+node devops/slackBot.js "Running ABU DHABI Deliveroo"
+wait
+echo "< deliveroo ..." && timeout -k 15m 16m node scraper/deliveroo.js ad && echo "... deliveroo >" &&
+wait
+
+node devops/slackLogBot.js deliveroo
+wait
+
+node devops/slackBot.js "Running ABU DHABI Eateasy"
+wait
+echo "< eateasy ..." && timeout -k 15m 16m node scraper/eateasy.js ad && echo "... eateasy >" &&
+wait
+
+node devops/slackLogBot.js eateasy
+wait
+
+node devops/slackBot.js "Running ABU DHABI Carriage"
+wait
+echo "< carriage ..." && timeout -k 15m 16m node scraper/carriage.js ad && echo "... carriage >" &&
+wait
+
+node devops/slackLogBot.js carriage
+wait
+####################### ABU DHABI!!!!!!!!!
+
 node devops/slackBot.js "dxb Running Re Index"
 wait
 node scraper/reindex.js dxb
@@ -90,6 +129,11 @@ wait
 node devops/slackBot.js "shj Running Re Index"
 wait
 node scraper/reindex.js shj
+wait
+
+node devops/slackBot.js "AD Running Re Index"
+wait
+node scraper/reindex.js ad
 wait
 
 node devops/slackLogBot.js reindex

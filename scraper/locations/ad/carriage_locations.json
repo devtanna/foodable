@@ -1,0 +1,382 @@
+[
+  {
+    "locationName": "Abu Dhabi Gate City",
+    "id": "489",
+    "baseline": ["abu-dhabi-gate-city"]
+  },
+  {
+    "locationName": "Airport Area",
+    "id": "470",
+    "baseline": ["abu-dhabi-international-airport"]
+  },
+  {
+    "locationName": "Al Aman",
+    "id": "407",
+    "baseline": ["al-aman"]
+  },
+  {
+    "locationName": "Al Bahyah",
+    "id": "472",
+    "baseline": ["al-bahya"]
+  },
+  {
+    "locationName": "Al Bandar",
+    "id": "418",
+    "baseline": ["al-bandar-al-raha"]
+  },
+  {
+    "locationName": "Al Bateen",
+    "id": "417",
+    "baseline": ["khor-al-bateen"]
+  },
+  {
+    "locationName": "Al Dhafra",
+    "id": "1515",
+    "baseline": ["al-dafrah"]
+  },
+  {
+    "locationName": "Al Dhafrah",
+    "id": "437",
+    "baseline": ["al-dafrah"]
+  },
+  {
+    "locationName": "Al Etihad",
+    "id": "421",
+    "baseline": ["al-etihad"]
+  },
+  {
+    "locationName": "Al Falah",
+    "id": "420",
+    "baseline": ["al-falah-city"]
+  },
+  {
+    "locationName": "Al Forsan Village",
+    "id": "490",
+    "baseline": ["al-forsan-village-khalifa-a"]
+  },
+  {
+    "locationName": "Al Hosn",
+    "id": "440",
+    "baseline": ["al-hosn"]
+  },
+  {
+    "locationName": "Al Karamah",
+    "id": "459",
+    "baseline": ["al-karamah"]
+  },
+  {
+    "locationName": "Al Khalidiyah",
+    "id": "432",
+    "baseline": ["al-khalidiyah"]
+  },
+  {
+    "locationName": "Al Khubeirah",
+    "id": "426",
+    "baseline": ["al-khubeirah"]
+  },
+  {
+    "locationName": "Al Madina",
+    "id": "439",
+    "baseline": ["madinat-zayed"]
+  },
+  {
+    "locationName": "Al Mafraq",
+    "id": "389",
+    "baseline": ["al-mafraq"]
+  },
+  {
+    "locationName": "Al Manhal",
+    "id": "434",
+    "baseline": ["al-manhal"]
+  },
+  {
+    "locationName": "Al Maqta",
+    "id": "394",
+    "baseline": ["al-maqta"]
+  },
+  {
+    "locationName": "Al Markaziyah",
+    "id": "446",
+    "baseline": ["al-markaziyah"]
+  },
+  {
+    "locationName": "Al Markaziyah West",
+    "id": "443",
+    "baseline": ["al-markaziyah-west"]
+  },
+  {
+    "locationName": "Al Maryah Island",
+    "id": "452",
+    "baseline": ["al-maryah-island"]
+  },
+  {
+    "locationName": "Al Mina",
+    "id": "456",
+    "baseline": ["al-mina"]
+  },
+  {
+    "locationName": "Al Muneera",
+    "id": "419",
+    "baseline": ["al-muneera-al-raha"]
+  },
+  {
+    "locationName": "Al Muntazah",
+    "id": "406",
+    "baseline": ["al-muntazah"]
+  },
+  {
+    "locationName": "Al Musalla",
+    "id": "422",
+    "baseline": ["al-musalla"]
+  },
+  {
+    "locationName": "Al Mushrif",
+    "id": "412",
+    "baseline": ["al-mushrif"]
+  },
+  {
+    "locationName": "Al Muzoon",
+    "id": "395",
+    "baseline": ["al-muzoon"]
+  },
+  {
+    "locationName": "Al Nahyan",
+    "id": "427",
+    "baseline": ["al-nahyan"]
+  },
+  {
+    "locationName": "Al Raha Beach",
+    "id": "444",
+    "baseline": ["al-raha-beach"]
+  },
+  {
+    "locationName": "Al Raha Gardens",
+    "id": "492",
+    "baseline": ["al-raha"]
+  },
+  {
+    "locationName": "Al Rahba",
+    "id": "484",
+    "baseline": ["al-rahba"]
+  },
+  {
+    "locationName": "Al Ras Al Akhdar",
+    "id": "425",
+    "baseline": ["al-ras-al-akhdar"]
+  },
+  {
+    "locationName": "Al Rayyana",
+    "id": "396",
+    "baseline": ["al-rayyana-khalifa-a"]
+  },
+  {
+    "locationName": "Al Reef",
+    "id": "704",
+    "baseline": ["al-reef"]
+  },
+  {
+    "locationName": "Al Reem Island",
+    "id": "448",
+    "baseline": ["reem-island"]
+  },
+  {
+    "locationName": "Al Rowdah",
+    "id": "424",
+    "baseline": ["al-rowdah"]
+  },
+  {
+    "locationName": "Al Samha",
+    "id": "473",
+    "baseline": ["al-samha"]
+  },
+  {
+    "locationName": "Al Shahama",
+    "id": "485",
+    "baseline": ["shahama"]
+  },
+  {
+    "locationName": "Al Shamkha",
+    "id": "468",
+    "baseline": ["al-shamkha"]
+  },
+  {
+    "locationName": "Al Shawamekh",
+    "id": "466",
+    "baseline": ["al-shawamekh"]
+  },
+  {
+    "locationName": "Al Wahdah",
+    "id": "428",
+    "baseline": ["al-wahdah"]
+  },
+  {
+    "locationName": "Al Wathba",
+    "id": "486",
+    "baseline": ["al-wathba"]
+  },
+  {
+    "locationName": "Al Zaab",
+    "id": "430",
+    "baseline": ["al-zaab"]
+  },
+  {
+    "locationName": "Al Zafranah",
+    "id": "414",
+    "baseline": ["al-zafranah"]
+  },
+  {
+    "locationName": "Al Zahraa",
+    "id": "411",
+    "baseline": ["al-zahraa"]
+  },
+  {
+    "locationName": "Al Zeina",
+    "id": "491",
+    "baseline": ["al-zeina-al-raha"]
+  },
+  {
+    "locationName": "Al-Wathba North",
+    "id": "2306",
+    "baseline": ["al-wathba"]
+  },
+  {
+    "locationName": "Bani Yas",
+    "id": "463",
+    "baseline": ["bani-yas-east", "bani-yas-west"]
+  },
+  {
+    "locationName": "Baniyas East",
+    "id": "461",
+    "baseline": ["bani-yas-east"]
+  },
+  {
+    "locationName": "Baniyas North",
+    "id": "464",
+    "baseline": ["bani-yas-east", "bani-yas-west"]
+  },
+  {
+    "locationName": "Baniyas West",
+    "id": "460",
+    "baseline": ["bani-yas-west"]
+  },
+  {
+    "locationName": "Capital Centre",
+    "id": "1240",
+    "baseline": ["capital-centre"]
+  },
+  {
+    "locationName": "Embassies District",
+    "id": "402",
+    "baseline": ["al-safarrat"]
+  },
+  {
+    "locationName": "Golf Gardens",
+    "id": "399",
+    "baseline": ["golf-gardens-khalifa-a"]
+  },
+  {
+    "locationName": "Khalifa City",
+    "id": "401",
+    "baseline": ["madinat-khalifa-a"]
+  },
+  {
+    "locationName": "Khalifa City C",
+    "id": "1100",
+    "baseline": ["madinat-khalifa-c"]
+  },
+  {
+    "locationName": "Khor Al Maqta'a",
+    "id": "397",
+    "baseline": ["al-maqta"]
+  },
+  {
+    "locationName": "Madinat Zayed",
+    "id": "442",
+    "baseline": ["madinat-zayed"]
+  },
+  {
+    "locationName": "Masdar City",
+    "id": "403",
+    "baseline": ["masdar-city"]
+  },
+  {
+    "locationName": "Mina Zayed",
+    "id": "457",
+    "baseline": ["port-zayed-al-mina"]
+  },
+  {
+    "locationName": "Ministries Complex",
+    "id": "405",
+    "baseline": ["al-safarrat"]
+  },
+  {
+    "locationName": "Mohammed Bin Zayed City",
+    "id": "390",
+    "baseline": ["mohammed-bin-zayed-city"]
+  },
+  {
+    "locationName": "Mussafah",
+    "id": "465",
+    "baseline": ["mussafah-south"]
+  },
+  {
+    "locationName": "Qasr Al Bahr",
+    "id": "433",
+    "baseline": ["qasr-el-bahr"]
+  },
+  {
+    "locationName": "Qasr Al Shatie",
+    "id": "1478",
+    "baseline": ["qasr-el-shatie"]
+  },
+  {
+    "locationName": "Rowdhat Abu Dhabi",
+    "id": "400",
+    "baseline": ["al-rowdah"]
+  },
+  {
+    "locationName": "Saadiyat Island",
+    "id": "458",
+    "baseline": ["saadiyat-island"]
+  },
+  {
+    "locationName": "Sas Al Nakhl",
+    "id": "1622",
+    "baseline": ["sas-al-nakhl-island"]
+  },
+  {
+    "locationName": "Sas Al Nakhl Village",
+    "id": "392",
+    "baseline": ["sas-al-nakhl-island"]
+  },
+  {
+    "locationName": "Shakhbout City",
+    "id": "467",
+    "baseline": ["shakhbout-city"]
+  },
+  {
+    "locationName": "Yas Island",
+    "id": "447",
+    "baseline": ["yas-island"]
+  },
+  {
+    "locationName": "Yas North",
+    "id": "455",
+    "baseline": ["yas-island"]
+  },
+  {
+    "locationName": "Yas West",
+    "id": "438",
+    "baseline": ["yas-island"]
+  },
+  {
+    "locationName": "Zayed City",
+    "id": "1101",
+    "baseline": ["madinat-zayed"]
+  },
+  {
+    "locationName": "Zayed Sports City",
+    "id": "398",
+    "baseline": ["zayed-sports-city"]
+  }
+]
