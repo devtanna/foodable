@@ -8,10 +8,6 @@ const CITIES = [
     slug: 'shj',
     name: 'sharjah',
   },
-  {
-    slug: 'ad',
-    name: 'abu-dhabi',
-  },
 ];
 
 const urls = [

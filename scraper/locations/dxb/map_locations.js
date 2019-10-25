@@ -18,7 +18,7 @@ const fuse = new Fuse(baselineLocations, {
   threshold: 0.3,
 });
 
-const scrapers = ['talabat', 'carriage', 'deliveroo', 'zomato', 'eateasy'];
+const scrapers = ['talabat', 'carriage', 'deliveroo', 'zomato'];
 
 (async () => {
   let updateBaseline = false;
