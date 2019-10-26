@@ -6,12 +6,16 @@ import { CITIES_MAP } from '../helpers/constants';
 
 const Landing = ({ locations }) => {
   const CITIES = Object.keys(locations).map(location => {
-    const city = CITIES_MAP[`${location}`];
-    return {
-      key: location,
-      value: location,
-      text: city.name,
-    };
+    try {
+      const city = CITIES_MAP[`${location}`];
+      return {
+        key: location,
+        value: location,
+        text: city.name,
+      };
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   const foundDxb = CITIES.find(city => city.key === 'dxb') ? 'dxb' : null;
