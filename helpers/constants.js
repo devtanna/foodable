@@ -38,6 +38,11 @@ export const CITIES_MAP = {
     slug: 'sharjah',
     key: 'shj',
   },
+  ad: {
+    name: 'Abu Dhabi',
+    slug: 'abu-dhabi',
+    key: 'ad',
+  },
 };
 
 export const COLLECTIONS = [

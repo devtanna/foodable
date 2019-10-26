@@ -1,0 +1,330 @@
+[
+  {
+    "locationName": "29th Street",
+    "slug": "29th-street"
+  },
+  {
+    "locationName": "Abu Dhabi Gate City",
+    "slug": "abu-dhabi-gate-city"
+  },
+  {
+    "locationName": "Abu Dhabi Hills",
+    "slug": "abu-dhabi-hills"
+  },
+  {
+    "locationName": "Abu Dhabi International Airport",
+    "slug": "abu-dhabi-international-airport"
+  },
+  {
+    "locationName": "Al Adla ",
+    "slug": "al-adla"
+  },
+  {
+    "locationName": "Al Aman",
+    "slug": "al-aman"
+  },
+  {
+    "locationName": "Al Bahya",
+    "slug": "al-bahya"
+  },
+  {
+    "locationName": "Al Bandar (Al Raha)",
+    "slug": "al-bandar-al-raha"
+  },
+  {
+    "locationName": "Al Dafrah",
+    "slug": "al-dafrah"
+  },
+  {
+    "locationName": "Al Etihad",
+    "slug": "al-etihad"
+  },
+  {
+    "locationName": "Al Falah City",
+    "slug": "al-falah-city"
+  },
+  {
+    "locationName": "Al Forsan Village (Khalifa- A)",
+    "slug": "al-forsan-village-khalifa-a"
+  },
+  {
+    "locationName": "Al Gurum Resort",
+    "slug": "al-gurum-resort"
+  },
+  {
+    "locationName": "Al Hosn",
+    "slug": "al-hosn"
+  },
+  {
+    "locationName": "Al Karamah",
+    "slug": "al-karamah"
+  },
+  {
+    "locationName": "Al Khalidiyah",
+    "slug": "al-khalidiyah"
+  },
+  {
+    "locationName": "Al Khubeirah",
+    "slug": "al-khubeirah"
+  },
+  {
+    "locationName": "Al Mafraq",
+    "slug": "al-mafraq"
+  },
+  {
+    "locationName": "Al Manhal",
+    "slug": "al-manhal"
+  },
+  {
+    "locationName": "Al Maqta",
+    "slug": "al-maqta"
+  },
+  {
+    "locationName": "Al Markaziyah West",
+    "slug": "al-markaziyah-west"
+  },
+  {
+    "locationName": "Al Markaziyah",
+    "slug": "al-markaziyah"
+  },
+  {
+    "locationName": "Al Maryah Island",
+    "slug": "al-maryah-island"
+  },
+  {
+    "locationName": "Al Mina",
+    "slug": "al-mina"
+  },
+  {
+    "locationName": "Al Muneera (Al Raha)",
+    "slug": "al-muneera-al-raha"
+  },
+  {
+    "locationName": "Al Muntazah",
+    "slug": "al-muntazah"
+  },
+  {
+    "locationName": "Al Musalla",
+    "slug": "al-musalla"
+  },
+  {
+    "locationName": "Al Mushrif",
+    "slug": "al-mushrif"
+  },
+  {
+    "locationName": "Al Muzoon",
+    "slug": "al-muzoon"
+  },
+  {
+    "locationName": "Al Nahyan",
+    "slug": "al-nahyan"
+  },
+  {
+    "locationName": "Al Raha Beach",
+    "slug": "al-raha-beach"
+  },
+  {
+    "locationName": "Al Raha",
+    "slug": "al-raha"
+  },
+  {
+    "locationName": "Al Rahba",
+    "slug": "al-rahba"
+  },
+  {
+    "locationName": "Al Ras Al Akhdar",
+    "slug": "al-ras-al-akhdar"
+  },
+  {
+    "locationName": "Al Rayyana (Khalifa- A)",
+    "slug": "al-rayyana-khalifa-a"
+  },
+  {
+    "locationName": "Al Reef",
+    "slug": "al-reef"
+  },
+  {
+    "locationName": "Al Rowdah",
+    "slug": "al-rowdah"
+  },
+  {
+    "locationName": "Al Ruwais (Western Region)",
+    "slug": "al-ruwais-western-region"
+  },
+  {
+    "locationName": "Al Sader",
+    "slug": "al-sader"
+  },
+  {
+    "locationName": "Al Safarrat",
+    "slug": "al-safarrat"
+  },
+  {
+    "locationName": "Al Samha",
+    "slug": "al-samha"
+  },
+  {
+    "locationName": "Al Shaleela",
+    "slug": "al-shaleela"
+  },
+  {
+    "locationName": "Al Shamkha South",
+    "slug": "al-shamkha-south"
+  },
+  {
+    "locationName": "Al Shamkha",
+    "slug": "al-shamkha"
+  },
+  {
+    "locationName": "Al Shawamekh",
+    "slug": "al-shawamekh"
+  },
+  {
+    "locationName": "Al Wahdah",
+    "slug": "al-wahdah"
+  },
+  {
+    "locationName": "Al Wathba ",
+    "slug": "al-wathba"
+  },
+  {
+    "locationName": "Al Zaab",
+    "slug": "al-zaab"
+  },
+  {
+    "locationName": "Al Zafranah",
+    "slug": "al-zafranah"
+  },
+  {
+    "locationName": "Al Zahraa",
+    "slug": "al-zahraa"
+  },
+  {
+    "locationName": "Al Zeina (Al Raha)",
+    "slug": "al-zeina-al-raha"
+  },
+  {
+    "locationName": "Bain Al Jesrain",
+    "slug": "bain-al-jesrain"
+  },
+  {
+    "locationName": "Bani Yas East",
+    "slug": "bani-yas-east"
+  },
+  {
+    "locationName": "Bani Yas West",
+    "slug": "bani-yas-west"
+  },
+  {
+    "locationName": "BreakWater",
+    "slug": "breakwater"
+  },
+  {
+    "locationName": "Capital Centre",
+    "slug": "capital-centre"
+  },
+  {
+    "locationName": "Golf Gardens (Khalifa- A)",
+    "slug": "golf-gardens-khalifa-a"
+  },
+  {
+    "locationName": "Hydra Village (Shahama)",
+    "slug": "hydra-village-shahama"
+  },
+  {
+    "locationName": "Khor Al Bateen",
+    "slug": "khor-al-bateen"
+  },
+  {
+    "locationName": "Madinat Khalifa - A",
+    "slug": "madinat-khalifa-a"
+  },
+  {
+    "locationName": "Madinat Khalifa - C",
+    "slug": "madinat-khalifa-c"
+  },
+  {
+    "locationName": "Madinat Zayed",
+    "slug": "madinat-zayed"
+  },
+  {
+    "locationName": "Mahwi",
+    "slug": "mahwi"
+  },
+  {
+    "locationName": "Masdar City",
+    "slug": "masdar-city"
+  },
+  {
+    "locationName": "Mohammed Bin Zayed City",
+    "slug": "mohammed-bin-zayed-city"
+  },
+  {
+    "locationName": "Mussafah Industrial City",
+    "slug": "mussafah-industrial-city"
+  },
+  {
+    "locationName": "Mussafah South",
+    "slug": "mussafah-south"
+  },
+  {
+    "locationName": "New Shahama",
+    "slug": "new-shahama"
+  },
+  {
+    "locationName": "Old Bahya",
+    "slug": "old-bahya"
+  },
+  {
+    "locationName": "Port Zayed (Al Mina)",
+    "slug": "port-zayed-al-mina"
+  },
+  {
+    "locationName": "Qasr El Bahr",
+    "slug": "qasr-el-bahr"
+  },
+  {
+    "locationName": "Qasr El Shatie",
+    "slug": "qasr-el-shatie"
+  },
+  {
+    "locationName": "Reem Island",
+    "slug": "reem-island"
+  },
+  {
+    "locationName": "Saadiyat Island",
+    "slug": "saadiyat-island"
+  },
+  {
+    "locationName": "Sas Al Nakheel (Khalifa- A)",
+    "slug": "sas-al-nakheel-khalifa-a"
+  },
+  {
+    "locationName": "Sas Al Nakhl Island",
+    "slug": "sas-al-nakhl-island"
+  },
+  {
+    "locationName": "Shahama",
+    "slug": "shahama"
+  },
+  {
+    "locationName": "Shakhbout City",
+    "slug": "shakhbout-city"
+  },
+  {
+    "locationName": "Tourist Club Area (Al Zahiya)",
+    "slug": "tourist-club-area-al-zahiya"
+  },
+  {
+    "locationName": "Western Region",
+    "slug": "western-region"
+  },
+  {
+    "locationName": "Yas Island",
+    "slug": "yas-island"
+  },
+  {
+    "locationName": "Zayed Sports City",
+    "slug": "zayed-sports-city"
+  }
+]
