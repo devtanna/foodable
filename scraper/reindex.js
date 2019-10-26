@@ -7,6 +7,8 @@ const CUISINES_MAP = require('./cuisineMap').CUISINES_MAP;
 const slackBot = require('../devops/slackBot');
 const slackLogBot = require('../devops/slackLogBot');
 
+const _flatten = require('lodash/flatten');
+
 // logging init
 const logger = require('../helpers/logging').getLogger();
 // ########## START DB STUFF ####################
@@ -93,7 +95,7 @@ async function reindex(db, dbClient, todayDateStr) {
         let cuisineTags = restaurant['cuisine'].split(',').map(s => s.trim());
         try {
           if (cuisineTags.length) {
-            cuisineTags = cuisineTags.flat();
+            cuisineTags = _flatten(cuisineTags);
             cuisineTags = Array.from(new Set(cuisineTags)); // this removes from local cuisines for this restaurant
 
             cuisineTags = cuisineTags.filter(
@@ -136,7 +138,7 @@ async function reindex(db, dbClient, todayDateStr) {
     }
   }
   if (cuisineArray.length > 0) {
-    cuisineArray = cuisineArray.flat(); // looks unnecessary but it is
+    cuisineArray = _flatten(cuisineArray); // looks unnecessary but it is
     cuisineArray = Array.from(new Set(cuisineArray)); // this removes duplicates from the global
     logger.info(`Saving cuisines -> ${cuisineArray.length}`);
     await bulkInsert(db, [{ type: 'cuisine', city: CITY, tags: cuisineArray }], collectionName);
