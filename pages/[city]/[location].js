@@ -70,7 +70,6 @@ const Location = ({
 
   return (
     <Fragment>
-      <PageHead page={page} location={selectedLocation} filters={searchFilters} />
       <div className="wrapper">
         {(device === 'phone' || device === 'tablet') && (
           <FoodablesMobile
