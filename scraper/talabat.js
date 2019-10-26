@@ -71,8 +71,13 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
         logger.info(`Offers count for ${location.locationName} = ${finalOffersCount}`);
 
         $('.rest-link', html).each(function() {
-          let $ratingImgSrc = $('.rating-img > img', this).attr('src');
-          let starRating = $ratingImgSrc.match(new RegExp('rating-' + '(.*)' + '.svg'))[1];
+          let $ratingStarArr = $('.rating-img .rat-star', this)
+            .attr('class')
+            .split(' ');
+          let starRatingClass = $ratingStarArr[$ratingStarArr.length - 1];
+          let starRatingArr = starRatingClass.split('-');
+          let starRating = Number(starRatingArr[starRatingArr.length - 1]) / 10;
+
           let cuisine = [];
           $('.cuisShow .ng-binding', this).each(function() {
             cuisine.push($(this).text());
