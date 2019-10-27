@@ -83,24 +83,15 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
             cuisine.push($(this).text());
           });
           let title = clean_talabat_title(
-            $('.media-heading', this)
+            $('.res-name', this)
               .text()
               .trim()
               .replace(/['"]+/g, '')
           );
-          let rest_slug = utils.slugify(
-            clean_talabat_title(
-              $('.media-heading', this)
-                .text()
-                .trim()
-                .replace(/['"]+/g, '')
-            )
-          );
-          const _deliveryTime = $('div.col-xs-16.truncate', this)
+          let rest_slug = utils.slugify(title);
+          const _deliveryTime = $('span:contains("mins")', this)
             .text()
-            .trim()
-            .split('•')[0]
-            .split('-')[1];
+            .trim();
           const _deliveryCharge = $('span[ng-switch-when="0"]', this)
             .text()
             .trim();
@@ -109,18 +100,8 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
             .text()
             .trim();
           let result = {
-            title: clean_talabat_title(
-              $('.media-heading', this)
-                .text()
-                .trim()
-                .replace(/['"]+/g, '')
-            ),
-            branch: clean_talabat_branch(
-              $('.media-heading', this)
-                .text()
-                .trim()
-                .replace(/['"]+/g, '')
-            ),
+            title: title,
+            branch: clean_talabat_branch(title),
             slug: rest_slug,
             city: city,
             href: 'https://www.talabat.com' + $(this).attr('href'),
@@ -132,9 +113,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
             location: location.baseline,
             rating: starRating,
             cuisine: clean_talabat_cuisine(cuisine.join('')),
-            offer: $("div[ng-if='rest.offersnippet']", this)
-              .text()
-              .trim(),
+            offer: 'Special Talabat Deal',
             deliveryTime: utils.getNumFromString(_deliveryTime),
             minimumOrder: utils.getNumFromString(_minimumOrder),
             deliveryCharge: utils.getNumFromString(_deliveryCharge),

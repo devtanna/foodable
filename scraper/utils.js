@@ -75,6 +75,7 @@ function calculateScore(item) {
 
   var offerMapping = {
     5: [
+      /^Special Talabat Deal$/im,
       /^(\d+)% off all orders$/im,
       /^(\d+)% off$/im,
       /^(\d+) % off$/im,
