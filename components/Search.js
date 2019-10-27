@@ -34,12 +34,12 @@ const Search = ({ cuisines, filters, onSearch }) => {
 
     if (keywords) {
       query.keywords = keywords;
-      trackEvent('search', 'generic', 'keywords', query.keywords);
+      trackEvent('search', 'engagement', query.keywords);
     }
 
     if (selectedCuisine.length) {
       query.cuisine = selectedCuisine;
-      trackEvent('search', 'generic', 'cuisine', query.cuisine);
+      trackEvent('search', 'engagement', query.cuisine);
     }
 
     if (keywords === '' && selectedCuisine.length === 0) {
