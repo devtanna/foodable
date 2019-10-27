@@ -29,7 +29,7 @@ const FavoriteBtn = ({ id, slug, onFavRemove = null }) => {
     }
 
     setIsFavorite(true);
-    cookies.set('fdb_favorites', favorites, { path: '/' });
+    cookies.set('fdb_favorites', favorites, { path: '/', maxAge: 1.577e7 }); // 6 months maxAge
     trackEvent('favorites', 'add', id);
   };
 
