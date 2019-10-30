@@ -140,7 +140,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
     }
 
     // maxAge 6 months
-    res.cookie('fdb_location', base64.encode(JSON.stringify(selectedLocation)), { path: '/', maxAge: 1.577e+7 }); 
+    res.cookie('fdb_location', base64.encode(JSON.stringify(selectedLocation)), { path: '/', maxAge: 1.577e+10 }); 
 
     // All good so far? get cuisines and send back the needed information
     const { cuisines } = await getCuisines(citySlug);
