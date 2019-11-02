@@ -7,22 +7,25 @@ import NoResults from '../NoResults';
 import Collections from './Collections';
 import { removeObjEmpty, deslugify, capitalizeFirstLetter } from '../../helpers/utils';
 import _isEmpty from 'lodash/isEmpty';
+import { CITIES_MAP } from '../../helpers/constants';
+import _find from 'lodash/find';
 
 const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) => {
   const isSearchPage = !_isEmpty(removeObjEmpty(filters));
   const hasOffers = offers.length > 0;
+  const cityName = _find(CITIES_MAP, { slug: location.city }).name;
 
-  const defaultSearchPageHeading = `Food deals near <span>${location.text}</span>`;
+  const defaultSearchPageHeading = `Food deals near <span>${location.text}, ${cityName}</span>`;
 
   const cuisinePageHeading =
     filters.cuisine.length > 0
       ? filters.cuisine.map(x => `<span>${capitalizeFirstLetter(deslugify(x))}</span>`).join(' and ') +
-        ` food deals near <span>${location.text}</span>`
+        ` food deals near <span>${location.text}, ${cityName}</span>`
       : '';
 
   const keywordsPageHeading =
     filters.keywords !== ''
-      ? `Food deals near <span>${location.text}</span> matching <span>"${filters.keywords}"</span>`
+      ? `Food deals near <span>${location.text}, ${cityName}</span> matching <span>"${filters.keywords}"</span>`
       : '';
 
   const searchPageHeading = {

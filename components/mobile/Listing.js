@@ -308,7 +308,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          max-width: 230px;
+          max-width: 220px;
         }
       `}</style>
     </div>
