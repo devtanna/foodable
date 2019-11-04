@@ -74,6 +74,7 @@ const Listing = ({ offer, onFavRemove, disableLazyLoad = false }) => {
 const ListingMeta = ({ offer, restId, onFavRemove }) => {
   const { title, rating, cuisineArray, source } = offer;
   const [linkCopied, setLinkCopied] = useState(false);
+  const _rating = Number(rating) || 0;
 
   useEffect(() => {
     if (linkCopied) {
@@ -119,8 +120,8 @@ const ListingMeta = ({ offer, restId, onFavRemove }) => {
         {rating ? (
           <div>
             <div className="rating__heading">Rating</div>
-            <Rating size="large" icon="star" disabled defaultRating={Number(rating)} maxRating={5} />
-            <span className="rating__number">({Number(rating)})</span>
+            <Rating size="large" icon="star" disabled defaultRating={_rating} maxRating={5} />
+            <span className="rating__number">({_rating})</span>
           </div>
         ) : (
           <div />

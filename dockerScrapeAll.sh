@@ -20,7 +20,7 @@ start=`date +%s`
 echo "< dbclean ..." && node scraper/cleanup/dbClean.js && echo "... dbclean >" &&
 wait
 
-node devops/slackBot.js "Running dxb Talabat 0 to 180" && node devops/slackBot.js "Running dxb Zomato 0 to 44"
+node devops/slackBot.js "Running dxb Talabat 0 to 180" && node devops/slackBot.js "Running dxb Zomato 0 to 87"
 wait
 
 timeout -k 15m 16m node scraper/talabat.js 0 180 dxb & 

@@ -35,6 +35,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
   const imgSrc = hasImg ? mainOffer.image : '/static/placeholder.png';
 
   const initialRating = mainOffer.rating;
+  const _rating = Number(initialRating) || 0;
 
   const hasOtherOffers = otherOffers.length > 0;
 
@@ -79,8 +80,8 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
             </div>
             {initialRating && (
               <div className="meta__rating">
-                <Rating size="small" icon="star" disabled defaultRating={Number(initialRating)} maxRating={5} />
-                <span className="rating__number">({Number(initialRating)})</span>
+                <Rating size="small" icon="star" disabled defaultRating={_rating} maxRating={5} />
+                <span className="rating__number">({_rating})</span>
               </div>
             )}
           </div>

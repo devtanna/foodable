@@ -12,12 +12,12 @@
   {
     "locationName": "Al Bandar",
     "url": "/restaurants/abu-dhabi/al-bandar",
-    "baseline": ["al-bandar-al-raha"]
+    "baseline": ["al-bandar-al-raha", "abu-dhabi-international-airport"]
   },
   {
     "locationName": "Al Bateen",
     "url": "/restaurants/abu-dhabi/al-bateen",
-    "baseline": ["khor-al-bateen"]
+    "baseline": ["khor-al-bateen", "qasr-el-shatie", "al-ras-al-akhdar", "breakwater", "al-khalidiyah"]
   },
   {
     "locationName": "Al Dhafrah",
@@ -32,7 +32,7 @@
   {
     "locationName": "Al Hosn",
     "url": "/restaurants/abu-dhabi/al-hosn",
-    "baseline": ["al-hosn"]
+    "baseline": ["al-hosn", "al-markaziyah-west", "al-markaziyah"]
   },
   {
     "locationName": "Al Khubeirah",
@@ -42,17 +42,17 @@
   {
     "locationName": "Al Manhal",
     "url": "/restaurants/abu-dhabi/al-manhal",
-    "baseline": ["al-manhal"]
+    "baseline": ["al-manhal", "al-karamah", "al-khalidiyah"]
   },
   {
     "locationName": "Al Maqta",
     "url": "/restaurants/abu-dhabi/al-maqta",
-    "baseline": ["al-maqta"]
+    "baseline": ["al-maqta", "abu-dhabi-gate-city", "bain-al-jesrain", "sas-al-nakhl-island"]
   },
   {
     "locationName": "Al Maryah Island",
     "url": "/restaurants/abu-dhabi/al-maryah-island",
-    "baseline": ["al-maryah-island"]
+    "baseline": ["al-maryah-island", "al-mina", "port-zayed-al-mina", "tourist-club-area-al-zahiya"]
   },
   {
     "locationName": "Al Musalla",
@@ -62,32 +62,32 @@
   {
     "locationName": "Al Mushrif",
     "url": "/restaurants/abu-dhabi/al-mushrif",
-    "baseline": ["al-mushrif"]
+    "baseline": ["al-mushrif", "al-gurum-resort", "al-zaab", "al-zafranah", "al-zahraa", "qasr-el-shatie", "al-karamah"]
   },
   {
     "locationName": "Al Nahyan",
     "url": "/restaurants/abu-dhabi/al-nahyan",
-    "baseline": ["al-nahyan"]
+    "baseline": ["al-nahyan", "al-manhal", "al-wahdah", "qasr-el-bahr", "al-karamah"]
   },
   {
     "locationName": "Al Raha Beach",
     "url": "/restaurants/abu-dhabi/al-raha-beach",
-    "baseline": ["al-raha-beach"]
+    "baseline": ["al-raha-beach", "al-muneera-al-raha", "al-raha", "al-shaleela", "al-zeina-al-raha"]
   },
   {
     "locationName": "Al Reem Island",
     "url": "/restaurants/abu-dhabi/al-reem-island",
-    "baseline": ["reem-island"]
+    "baseline": ["reem-island", "qasr-el-bahr"]
   },
   {
     "locationName": "Al Shahama",
     "url": "/restaurants/abu-dhabi/al-shahama",
-    "baseline": ["shahama"]
+    "baseline": ["shahama", "al-bahya", "al-rahba", "hydra-village-shahama", "new-shahama", "old-bahya"]
   },
   {
     "locationName": "Al Shamkha",
     "url": "/restaurants/abu-dhabi/al-shamkha",
-    "baseline": ["al-shamkha"]
+    "baseline": ["al-shamkha", "al-adla", "al-sader", "al-shamkha-south"]
   },
   {
     "locationName": "Al Wahdah",
@@ -127,7 +127,7 @@
   {
     "locationName": "Bawabat Al Sharq",
     "url": "/restaurants/abu-dhabi/bawabat-al-sharq",
-    "baseline": ["abu-dhabi-gate-city"]
+    "baseline": ["abu-dhabi-gate-city", "al-mafraq", "al-shawamekh"]
   },
   {
     "locationName": "Bawabat East",
@@ -137,22 +137,30 @@
   {
     "locationName": "Embassies District",
     "url": "/restaurants/abu-dhabi/embassies-district",
-    "baseline": ["al-safarrat"]
+    "baseline": ["al-safarrat", "al-aman", "al-muntazah", "capital-centre"]
   },
   {
     "locationName": "Khalifa City",
     "url": "/restaurants/abu-dhabi/khalifa-city",
-    "baseline": ["madinat-khalifa-a"]
+    "baseline": [
+      "madinat-khalifa-a",
+      "al-forsan-village-khalifa-a",
+      "al-rayyana-khalifa-a",
+      "golf-gardens-khalifa-a",
+      "madinat-khalifa-c",
+      "sas-al-nakheel-khalifa-a",
+      "masdar-city"
+    ]
   },
   {
     "locationName": "Mussafah Community",
     "url": "/restaurants/abu-dhabi/mussafah-community",
-    "baseline": ["mussafah-south"]
+    "baseline": ["mussafah-south", "mohammed-bin-zayed-city"]
   },
   {
     "locationName": "Mussafah East",
     "url": "/restaurants/abu-dhabi/mussafah-east",
-    "baseline": ["mussafah-south"]
+    "baseline": ["mussafah-south", "mohammed-bin-zayed-city"]
   },
   {
     "locationName": "Mussafah Industrial",
@@ -162,7 +170,7 @@
   {
     "locationName": "New Al Falah",
     "url": "/restaurants/abu-dhabi/new-al-falah",
-    "baseline": ["al-falah-city"]
+    "baseline": ["al-falah-city", "abu-dhabi-international-airport", "al-reef"]
   },
   {
     "locationName": "Saadiyat",
@@ -172,7 +180,7 @@
   {
     "locationName": "Shakhbout City",
     "url": "/restaurants/abu-dhabi/shakhbout-city",
-    "baseline": ["shakhbout-city"]
+    "baseline": ["shakhbout-city", "al-mafraq", "mahwi"]
   },
   {
     "locationName": "Yas Island",
@@ -182,6 +190,6 @@
   {
     "locationName": "Zayed Sports City",
     "url": "/restaurants/abu-dhabi/zayed-sports-city",
-    "baseline": ["zayed-sports-city"]
+    "baseline": ["zayed-sports-city", "abu-dhabi-hills", "al-muzoon", "al-rowdah"]
   }
 ]
