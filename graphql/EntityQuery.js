@@ -160,7 +160,7 @@ exports.EntityQuery = new GraphQLObjectType({
                   offers: { $addToSet: '$offers' },
                 },
               },
-              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1, _id: 1 } },
+              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1, 'offers.0.sortSpread': -1, _id: 1 } },
             ])
               .skip(pageSize * (page - 1))
               .limit(pageSize)
@@ -175,7 +175,7 @@ exports.EntityQuery = new GraphQLObjectType({
               // sort them
               item.offers = item.offers.sort((a, b) => {
                 return (
-                  Number(b.scoreLevel) - Number(a.scoreLevel) || parseFloat(b.scoreValue) - parseFloat(a.scoreValue)
+                  Number(b.scoreLevel) - Number(a.scoreLevel) || parseFloat(b.scoreValue) - parseFloat(a.scoreValue) || Number(b.sortSpread) - Number(a.sortSpread)
                 );
               });
 
@@ -189,6 +189,7 @@ exports.EntityQuery = new GraphQLObjectType({
             return (
               Number(b.offers[0].scoreLevel) - Number(a.offers[0].scoreLevel) ||
               parseFloat(b.offers[0].scoreValue) - parseFloat(a.offers[0].scoreValue) ||
+              Number(b.offers[0].sortSpread) - Number(a.offers[0].sortSpread) ||
               b.offers.length - a.offers.length
             );
           });

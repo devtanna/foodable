@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const fs = require('fs');
 
 function getProxy() {
   const url = 'https://gimmeproxy.com/api/getProxy?protocol=socks5&supportsHttps=true';
@@ -9,6 +8,12 @@ function getProxy() {
       console.log('Got proxy: ', json.curl);
       return json.curl;
     });
+}
+
+function getRandomInt() {
+  const max = 1000;
+  const min = 1;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // logging init
@@ -228,4 +233,5 @@ module.exports = {
   compare_strings: compare_strings,
   getNumFromString: getNumFromString,
   capitalizeFirstLetter,
+  getRandomInt,
 };

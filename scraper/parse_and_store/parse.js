@@ -20,7 +20,7 @@ async function process_results(mergedResults, db, city) {
         offer.locationSlug = baseLocation.locationSlug;
         offer.locationName = baseLocation.locationName;
         offer.city = baseLocation.city;
-        offer.indexed = 0;
+        offer.sortSpread = utils.getRandomInt();
         delete offer._id; // delete so insert works
         delete offer.location; // no need for this
 
