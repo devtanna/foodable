@@ -10,11 +10,11 @@ function getProxy() {
     });
 }
 
-export const getRandomInt = () => {
+function getRandomInt() {
   const max = 1000;
   const min = 1;
   return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -233,4 +233,5 @@ module.exports = {
   compare_strings: compare_strings,
   getNumFromString: getNumFromString,
   capitalizeFirstLetter,
+  getRandomInt,
 };
