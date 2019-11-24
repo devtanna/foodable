@@ -28,6 +28,7 @@ const PageHead = () => (
       property="og:description"
       content="Compare food delivery promotions and discover great deals and offers from top food delivery websites in United Arab Emirates (UAE). Search by restaurant name or your favorite cuisine and find great food delivery deals in your area."
     />
+    <meta name="google-site-verification" content="_d2liYw_0AXsXzR4sVt3jObgk7yaDv6O0ICp3GzzmTM" />
     <meta property="og:url" content="https://foodable.ae/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://foodable.ae/static/icon-512.png" />
