@@ -17,23 +17,23 @@ const CITIES = [
 const urls = [
   {
     url: 'https://foodable.ae/about-us',
-    changefreq: 'monthly',
+    changefreq: 'weekly',
   },
   {
     url: 'https://foodable.ae/privacy-policy',
-    changefreq: 'monthly',
+    changefreq: 'weekly',
   },
   {
     url: 'https://foodable.ae/select-area',
-    changefreq: 'monthly',
+    changefreq: 'weekly',
   },
   {
     url: 'https://foodable.ae/terms',
-    changefreq: 'monthly',
+    changefreq: 'weekly',
   },
   {
     url: 'https://foodable.ae/favourites',
-    changefreq: 'monthly',
+    changefreq: 'weekly',
   },
 ];
 
@@ -43,7 +43,7 @@ CITIES.forEach(city => {
   baselines.forEach(baseline =>
     urls.push({
       url: `https://foodable.ae/${city.name}/${baseline.slug}/`,
-      changefreq: 'monthly',
+      changefreq: 'weekly',
     })
   );
 });
