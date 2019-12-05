@@ -74,7 +74,7 @@ const scrapePage = async (page, location, city) => {
       let cuisine = [];
       let rating = null;
       let votes = null;
-      $('li[class*="HomeFeedUICard"]', this)
+      $('li[class*="HomeFeedUILines"]', this)
         .eq(1)
         .children('span span')
         .each(function() {
@@ -93,12 +93,12 @@ const scrapePage = async (page, location, city) => {
           }
         });
 
-      let title = $('li[class*="HomeFeedUICard"] span p', this)
+      let title = $('li[class*="HomeFeedUILines"] span p', this)
         .eq(0)
         .text()
         .trim();
 
-      let offer = $('li[class*="HomeFeedUICard"]', this)
+      let offer = $('li[class*="HomeFeedUILines"]', this)
         .eq(-1)
         .children('span')
         .eq(2)
@@ -124,7 +124,7 @@ const scrapePage = async (page, location, city) => {
       }
       deliveryTime = deliveryTime.replace('min', '');
 
-      let deliveryCharge = $('li[class*="HomeFeedUICard"]', this)
+      let deliveryCharge = $('li[class*="HomeFeedUILines"]', this)
         .eq(-2)
         .children('span')
         .text()
@@ -132,12 +132,7 @@ const scrapePage = async (page, location, city) => {
 
       let result = {
         title,
-        slug: utils.slugify(
-          $('li[class*="HomeFeedUICard"] span p', this)
-            .eq(0)
-            .text()
-            .trim()
-        ),
+        slug: utils.slugify(title),
         href: `https://deliveroo.ae${clean_deliveroo_href($(this).prop('href'))}`,
         image: cleanImg(img),
         city: city,
@@ -194,7 +189,7 @@ const run = async () => {
 
   if (links != null) {
     if (settings.SCRAPER_TEST_MODE) {
-      links = links.slice(0, 4);
+      links = links.slice(0, 1);
     }
 
     logger.info('Number of locations received: ' + links.length);
