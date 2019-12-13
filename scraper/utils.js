@@ -83,6 +83,7 @@ function calculateScore(item) {
       /^Special Talabat Deal$/im,
       /^(\d+)% off all orders$/im,
       /^(\d+)% off$/im,
+      /^(\d+)% off entire menu$/im,
       /^(\d+) % off$/im,
       /^(\d+)% off on all orders$/im,
       /^(\d+)% off on all orders from/im,
