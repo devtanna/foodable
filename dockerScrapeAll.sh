@@ -20,15 +20,16 @@ start=`date +%s`
 echo "< dbclean ..." && node scraper/cleanup/dbClean.js && echo "... dbclean >" &&
 wait
 
-node devops/slackBot.js "Running dxb Talabat 0 to 180" && node devops/slackBot.js "Running dxb Zomato 0 to 87"
+# node devops/slackBot.js "Running dxb Talabat 0 to 180" && 
+node devops/slackBot.js "Running dxb Zomato 0 to 87"
 wait
 
-timeout -k 15m 16m node scraper/talabat.js 0 180 dxb & 
-timeout -k 15m 16m node scraper/zomato.js 0 87 dxb &
+# timeout -k 15m 16m node scraper/talabat.js 0 180 dxb & 
+timeout -k 15m 16m node scraper/zomato.js 0 87 dxb
 wait
 
-node devops/slackLogBot.js talabat
-wait
+# node devops/slackLogBot.js talabat
+# wait
 
 node devops/slackLogBot.js zomato
 wait
@@ -58,23 +59,24 @@ node devops/slackLogBot.js carriage
 wait
 
 ####################### SHJ!!!!!!!!!
-node devops/slackBot.js "Running shj Talabat 0 to 50" && node devops/slackBot.js "Running shj Zomato 0 to 34"
+# node devops/slackBot.js "Running shj Talabat 0 to 50" && 
+node devops/slackBot.js "Running shj Zomato 0 to 34"
 wait
 
-timeout -k 15m 16m node scraper/talabat.js 0 50 shj & 
-timeout -k 15m 16m node scraper/zomato.js 0 34 shj &
+# timeout -k 15m 16m node scraper/talabat.js 0 50 shj & 
+timeout -k 15m 16m node scraper/zomato.js 0 34 shj
 wait
 
 node devops/slackLogBot.js zomato
 wait
 
-node devops/slackBot.js "Running shj Talabat 51 to 99"
-wait
-echo "< talabat ..." && timeout -k 15m 16m node scraper/talabat.js 51 99 shj && echo "... talabat >" &&
-wait
+# node devops/slackBot.js "Running shj Talabat 51 to 99"
+# wait
+# echo "< talabat ..." && timeout -k 15m 16m node scraper/talabat.js 51 99 shj && echo "... talabat >" &&
+# wait
 
-node devops/slackLogBot.js talabat
-wait
+# node devops/slackLogBot.js talabat
+# wait
 
 node devops/slackBot.js "Running shj Eateasy"
 wait
@@ -86,15 +88,15 @@ wait
 ####################### SHJ!!!!!!!!!
 
 ####################### ABU DHABI!!!!!!!!!
-node devops/slackBot.js "Running ABU DHABI Talabat 0 to 40" && node devops/slackBot.js "Running ABU DHABI Talabat 41 to 81"
-wait
+# node devops/slackBot.js "Running ABU DHABI Talabat 0 to 40" && node devops/slackBot.js "Running ABU DHABI Talabat 41 to 81"
+# wait
 
-timeout -k 15m 16m node scraper/talabat.js 0 40 ad & 
-timeout -k 15m 16m node scraper/talabat.js 41 81 ad & 
-wait
+# timeout -k 15m 16m node scraper/talabat.js 0 40 ad & 
+# timeout -k 15m 16m node scraper/talabat.js 41 81 ad & 
+# wait
 
-node devops/slackLogBot.js talabat
-wait
+# node devops/slackLogBot.js talabat
+# wait
 
 node devops/slackBot.js "Running ABU DHABI Zomato 0 to 31"
 wait
