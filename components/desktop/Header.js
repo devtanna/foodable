@@ -39,7 +39,10 @@ const Header = ({ location }) => {
         <ul className="menuWrapper">
           <li>
             <a href="/favourites">
-              <Icon name="heart outline" /> My Favourites
+              <div>
+                <Icon name="heart outline" />
+              </div>
+              <div>My Favourites</div>
             </a>
           </li>
         </ul>

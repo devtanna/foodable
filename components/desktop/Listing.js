@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { offerSources } from '../../helpers/constants';
 import { Icon, Rating, Loader } from 'semantic-ui-react';
 import FavoriteBtn from '../FavoriteBtn';
 import { trackEvent, limitChars, showCurrency, showMins, toStartCase } from '../../helpers/utils';
@@ -296,7 +297,7 @@ const MainOffer = ({ offer }) => {
       <div className="mainOffer__wrapper">
         <h4 className="mainOffer__source">
           <small>Best Deal</small>
-          {source}
+          <img className="mainOffer__sourceImg" src={offerSources[source].logo} alt={source} />
         </h4>
         <div className="mainOffer__offerWrapper">
           <h3 className="mainOffer__offer">{limitChars(_offer)}</h3>
@@ -352,6 +353,11 @@ const MainOffer = ({ offer }) => {
           font-weight: normal;
           margin: 0;
           text-transform: capitalize;
+        }
+        .mainOffer__sourceImg {
+          width: 50px;
+          height: 50px;
+          border-radius: 4px;
         }
         .mainOffer__offerWrapper {
           padding-right: 20px;
@@ -444,7 +450,9 @@ const SideOffer = ({ offer }) => {
   return (
     <div className="sideOffer">
       <div className="sideOffer__wrapper">
-        <h5 className="sideOffer__source">{source}</h5>
+        <h5 className="sideOffer__source">
+          <img className="mainOffer__sourceImg" src={offerSources[source].logo} alt={source} />
+        </h5>
         <div className="sideOffer__offerWrapper">
           <h4 className="sideOffer__offer">{limitChars(_offer)}</h4>
           {hasDeliveryInfo && (
@@ -504,6 +512,11 @@ const SideOffer = ({ offer }) => {
           font-weight: normal;
           margin: 0;
           text-transform: capitalize;
+        }
+        .mainOffer__sourceImg {
+          width: 50px;
+          height: 50px;
+          border-radius: 4px;
         }
         .sideOffer__offerWrapper {
           padding-right: 20px;
