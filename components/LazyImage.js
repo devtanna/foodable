@@ -30,7 +30,7 @@ export class LazyImage extends React.Component {
         <style jsx>{`
           .lazy {
             width: 100%;
-            height: 100%;
+            height: ${height};
             object-fit: cover;
           }
         `}</style>

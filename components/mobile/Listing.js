@@ -67,9 +67,9 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
       <div className="listing__meta">
         <div className="listing__img">
           {disableLazyLoad ? (
-            <img alt={mainOffer.title} src={imgSrc} width="75px" height="75px" />
+            <img alt={mainOffer.title} src={imgSrc} width="75" height="75" />
           ) : (
-            <LazyImage src={imgSrc} alt={mainOffer.title} width="75px" height="75px" />
+            <LazyImage src={imgSrc} alt={mainOffer.title} width="100%" height="100%" />
           )}
         </div>
         <div className="listing__content">

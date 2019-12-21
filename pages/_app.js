@@ -68,8 +68,8 @@ class FoodableApp extends App {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 200px;
-            height: 200px;
+            width: 120px;
+            height: 120px;
             max-width: 100%;
             max-height: 100%;
           }
