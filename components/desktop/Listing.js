@@ -62,7 +62,7 @@ const Listing = ({ offer, onFavRemove, disableLazyLoad = false }) => {
         .listing__img img {
           width: 120px;
           height: 120px;
-          object-fit: contain;
+          object-fit: cover;
         }
       `}</style>
     </div>

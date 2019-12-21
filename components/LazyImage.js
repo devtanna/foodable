@@ -31,7 +31,7 @@ export class LazyImage extends React.Component {
           .lazy {
             width: 100%;
             height: ${height};
-            object-fit: contain;
+            object-fit: cover;
           }
         `}</style>
       </React.Fragment>
