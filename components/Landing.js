@@ -5,6 +5,7 @@ import { hideVirtualKeyboard } from '../helpers/utils';
 import { CITIES_MAP } from '../helpers/constants';
 
 const Landing = ({ locations }) => {
+  console.log('locations:', locations);
   const CITIES = Object.keys(locations).map(location => {
     try {
       const city = CITIES_MAP[`${location}`];
@@ -18,8 +19,13 @@ const Landing = ({ locations }) => {
     }
   });
 
+  console.log('CITIES:', CITIES);
+
   const foundDxb = CITIES.find(city => city.key === 'dxb') ? 'dxb' : null;
   const defaultCity = foundDxb || CITIES.length > 0 ? CITIES[0].key : '';
+
+  console.log('foundDxb:', foundDxb);
+  console.log('defaultCity:', defaultCity);
 
   const [selectedCity, setSelectedCity] = useState(defaultCity);
   const [selectedLocation, setSelectedLocation] = useState(null);
