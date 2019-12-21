@@ -30,7 +30,7 @@ const Listing = ({ offer, onFavRemove, disableLazyLoad = false }) => {
         {disableLazyLoad ? (
           <img alt={mainOffer.title} src={imgSrc} width="120" height="120" />
         ) : (
-          <LazyImage src={imgSrc} alt={mainOffer.title} width="120" height="120" />
+          <LazyImage src={imgSrc} alt={mainOffer.title} width="120px" height="120px" />
         )}
       </div>
       <div className="listing__content">
@@ -62,7 +62,7 @@ const Listing = ({ offer, onFavRemove, disableLazyLoad = false }) => {
         .listing__img img {
           width: 120px;
           height: 120px;
-          object-fit: cover;
+          object-fit: contain;
         }
       `}</style>
     </div>
