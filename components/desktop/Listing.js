@@ -404,6 +404,10 @@ const MainOffer = ({ offer }) => {
           padding: 0 5px 0 20px;
           font-size: 14px;
           font-weight: 500;
+          transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .mainOffer__cta:hover {
+          background: rgba(73, 178, 108);
         }
         .mainOffer__cta span {
           background: rgba(73, 178, 108);
@@ -557,6 +561,11 @@ const SideOffer = ({ offer }) => {
           font-size: 12px;
           font-weight: 500;
           border: 1px solid rgba(14, 23, 28, 0.1);
+          transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .sideOffer__cta:hover {
+          border-color: rgba(24, 44, 55, 0.6);
+          color: #333;
         }
         .sideOffer__cta span {
           border-radius: 2px;
