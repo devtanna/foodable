@@ -175,7 +175,9 @@ exports.EntityQuery = new GraphQLObjectType({
               // sort them
               item.offers = item.offers.sort((a, b) => {
                 return (
-                  Number(b.scoreLevel) - Number(a.scoreLevel) || parseFloat(b.scoreValue) - parseFloat(a.scoreValue) || Number(b.sortSpread) - Number(a.sortSpread)
+                  Number(b.scoreLevel) - Number(a.scoreLevel) ||
+                  parseFloat(b.scoreValue) - parseFloat(a.scoreValue) ||
+                  Number(b.sortSpread) - Number(a.sortSpread)
                 );
               });
 
@@ -188,8 +190,8 @@ exports.EntityQuery = new GraphQLObjectType({
           items.sort(function(a, b) {
             return (
               Number(b.offers[0].scoreLevel) - Number(a.offers[0].scoreLevel) ||
-              parseFloat(b.offers[0].scoreValue) - parseFloat(a.offers[0].scoreValue) ||
               Number(b.offers[0].sortSpread) - Number(a.offers[0].sortSpread) ||
+              parseFloat(b.offers[0].scoreValue) - parseFloat(a.offers[0].scoreValue) ||
               b.offers.length - a.offers.length
             );
           });
