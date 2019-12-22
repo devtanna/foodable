@@ -20,17 +20,11 @@ start=`date +%s`
 echo "< dbclean ..." && node scraper/cleanup/dbClean.js && echo "... dbclean >" &&
 wait
 
-# node devops/slackBot.js "Running dxb Talabat 0 to 180" && 
+####################### DXB!!!!!!!!!
 node devops/slackBot.js "Running dxb Zomato 0 to 87"
 wait
-
-# timeout -k 15m 16m node scraper/talabat.js 0 180 dxb & 
-timeout -k 15m 16m node scraper/zomato.js 0 87 dxb
+echo "< zomato ..." && timeout -k 15m 16m node scraper/zomato.js 0 87 dxb && echo "... zomato >" &&
 wait
-
-# node devops/slackLogBot.js talabat
-# wait
-
 node devops/slackLogBot.js zomato
 wait
 
@@ -38,7 +32,6 @@ node devops/slackBot.js "Running dxb Deliveroo"
 wait
 echo "< deliveroo ..." && timeout -k 15m 16m node scraper/deliveroo.js dxb && echo "... deliveroo >" &&
 wait
-
 node devops/slackLogBot.js deliveroo
 wait
 
@@ -46,7 +39,6 @@ node devops/slackBot.js "Running dxb Eateasy"
 wait
 echo "< eateasy ..." && timeout -k 15m 16m node scraper/eateasy.js dxb && echo "... eateasy >" &&
 wait
-
 node devops/slackLogBot.js eateasy
 wait
 
@@ -54,50 +46,27 @@ node devops/slackBot.js "Running dxb Carriage"
 wait
 echo "< carriage ..." && timeout -k 15m 16m node scraper/carriage.js dxb && echo "... carriage >" &&
 wait
-
 node devops/slackLogBot.js carriage
 wait
+####################### DXB!!!!!!!!!
 
 ####################### SHJ!!!!!!!!!
-# node devops/slackBot.js "Running shj Talabat 0 to 50" && 
 node devops/slackBot.js "Running shj Zomato 0 to 34"
 wait
-
-# timeout -k 15m 16m node scraper/talabat.js 0 50 shj & 
-timeout -k 15m 16m node scraper/zomato.js 0 34 shj
+echo "< zomato ..." && timeout -k 15m 16m node scraper/zomato.js 0 34 shj && echo "... zomato >" &&
 wait
-
 node devops/slackLogBot.js zomato
 wait
-
-# node devops/slackBot.js "Running shj Talabat 51 to 99"
-# wait
-# echo "< talabat ..." && timeout -k 15m 16m node scraper/talabat.js 51 99 shj && echo "... talabat >" &&
-# wait
-
-# node devops/slackLogBot.js talabat
-# wait
 
 node devops/slackBot.js "Running shj Eateasy"
 wait
 echo "< eateasy ..." && timeout -k 15m 16m node scraper/eateasy.js shj && echo "... eateasy >" &&
 wait
-
 node devops/slackLogBot.js eateasy
 wait
 ####################### SHJ!!!!!!!!!
 
 ####################### ABU DHABI!!!!!!!!!
-# node devops/slackBot.js "Running ABU DHABI Talabat 0 to 40" && node devops/slackBot.js "Running ABU DHABI Talabat 41 to 81"
-# wait
-
-# timeout -k 15m 16m node scraper/talabat.js 0 40 ad & 
-# timeout -k 15m 16m node scraper/talabat.js 41 81 ad & 
-# wait
-
-# node devops/slackLogBot.js talabat
-# wait
-
 node devops/slackBot.js "Running ABU DHABI Zomato 0 to 31"
 wait
 echo "< zomato ..." && timeout -k 15m 16m node scraper/zomato.js 0 31 ad && echo "... zomato >" &&
@@ -109,7 +78,6 @@ node devops/slackBot.js "Running ABU DHABI Deliveroo"
 wait
 echo "< deliveroo ..." && timeout -k 15m 16m node scraper/deliveroo.js ad && echo "... deliveroo >" &&
 wait
-
 node devops/slackLogBot.js deliveroo
 wait
 
@@ -117,7 +85,6 @@ node devops/slackBot.js "Running ABU DHABI Eateasy"
 wait
 echo "< eateasy ..." && timeout -k 15m 16m node scraper/eateasy.js ad && echo "... eateasy >" &&
 wait
-
 node devops/slackLogBot.js eateasy
 wait
 
@@ -125,7 +92,6 @@ node devops/slackBot.js "Running ABU DHABI Carriage"
 wait
 echo "< carriage ..." && timeout -k 15m 16m node scraper/carriage.js ad && echo "... carriage >" &&
 wait
-
 node devops/slackLogBot.js carriage
 wait
 ####################### ABU DHABI!!!!!!!!!
@@ -147,7 +113,6 @@ wait
 
 node devops/slackLogBot.js reindex
 wait
-
 node devops/slackBot.js "All Scrapers Done"
 wait
 node devops/systemPing.js
