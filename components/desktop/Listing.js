@@ -345,6 +345,7 @@ const MainOffer = ({ offer }) => {
         }
         .mainOffer__wrapper {
           display: grid;
+          align-items: center;
           grid-template-columns: 0.5fr 2fr 1fr;
           grid-column-gap: 10px;
           padding: 15px;
@@ -507,6 +508,7 @@ const SideOffer = ({ offer }) => {
         }
         .sideOffer__wrapper {
           display: grid;
+          align-items: center;
           grid-template-columns: 0.5fr 2fr 1fr;
           grid-column-gap: 10px;
           padding: 10px 15px;
