@@ -104,6 +104,7 @@ function calculateScore(item) {
       /^aed (\d+(.\d+)*) off all orders$/im,
       /^aed(\d+(.\d+)*) off all orders$/im,
       /^aed(\d+(.\d+)*) off on all orders above aed(\d+(.\d+)*)$/im,
+      /^aed(\d+(.\d+)*) off on dine-in above above aed(\d+(.\d+)*)$/im,
       /^(\d+) aed meals$/im,
       /^(\d+) aed meal$/im,
       /^special carriage offer$/im,
