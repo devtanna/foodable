@@ -28,134 +28,174 @@ if (settings.ENABLE_TALABAT) {
 }
 // ########## END DB STUFF ####################
 
+async function scrapePage(location, page, city, offerString) {
+  let items = [];
+  let keepGoing = true;
+  let index = 0;
+  let skippedCount = 0;
+  const MAX = 100;
+
+  while (keepGoing && index < MAX) {
+    logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
+    let htmlBefore = await page.content();
+    let offersCount = $('.rest-link', htmlBefore).length;
+    await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
+    await page.waitFor(1000);
+    let htmlAfter = await page.content();
+    let updatedOffersCount = $('.rest-link', htmlAfter).length;
+    if (updatedOffersCount === offersCount && index > 3) {
+      keepGoing = false;
+      break;
+    }
+    index++;
+  }
+
+  const html = await page.content();
+  const finalOffersCount = $('.rest-link', html).length;
+  logger.info(`Offers count for ${location.locationName} = ${finalOffersCount}`);
+
+  $('.rest-link', html).each(function() {
+    let $ratingStarArr = $('.rating-img .rat-star', this)
+      .attr('class')
+      .split(' ');
+    let starRatingClass = $ratingStarArr[$ratingStarArr.length - 1];
+    let starRatingArr = starRatingClass.split('-');
+    let starRating = Number(starRatingArr[starRatingArr.length - 1]) / 10;
+
+    let cuisine = [];
+    $('.cuisShow .ng-binding', this).each(function() {
+      cuisine.push($(this).text());
+    });
+    let title = clean_talabat_title(
+      $('.res-name', this)
+        .text()
+        .trim()
+        .replace(/['"]+/g, '')
+    );
+    let rest_slug = utils.slugify(title);
+    const _deliveryTime = $('span:contains("mins")', this)
+      .text()
+      .trim();
+    const _deliveryCharge = $('span[ng-switch-when="0"]', this)
+      .text()
+      .trim();
+    const _minimumOrder = $('span:contains("Min:")', this)
+      .next()
+      .text()
+      .trim();
+    let result = {
+      title: title,
+      branch: clean_talabat_branch(title),
+      slug: rest_slug,
+      city: city,
+      href: 'https://www.talabat.com' + $(this).attr('href'),
+      image: $('.valign-helper', this)
+        .next()
+        .prop('lazy-img')
+        .split('?')
+        .shift(),
+      location: location.baseline,
+      rating: starRating,
+      cuisine: clean_talabat_cuisine(cuisine.join('')),
+      offer: offerString,
+      deliveryTime: utils.getNumFromString(_deliveryTime),
+      minimumOrder: utils.getNumFromString(_minimumOrder),
+      deliveryCharge: utils.getNumFromString(_deliveryCharge),
+      cost_for_two: '', // no info on talabat
+      votes: clean_talabat_votes(
+        $('.rating-num', this)
+          .text()
+          .trim()
+      ),
+      source: `${scraper_name}`,
+      address: '', // no info on talabat
+      type: 'restaurant',
+    };
+
+    // if no offer, then skip
+    if (result.offer.length > 0) {
+      let { scoreLevel, scoreValue } = utils.calculateScore(result);
+      result['scoreLevel'] = scoreLevel;
+      result['scoreValue'] = scoreValue;
+      var index = items.indexOf(result); // dont want to push duplicates
+      if (index === -1) {
+        items.push(result); // write to db
+      }
+    } else {
+      skippedCount++;
+    }
+  });
+
+  return { items, skippedCount };
+}
+
 function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
   browser.newPage().then(page => {
     page.setViewport(settings.PUPPETEER_VIEWPORT);
-    page.goto(`https://www.talabat.com/${location.url}`, settings.PUPPETEER_GOTO_PAGE_ARGS).then(async () => {
-      logger.info(logMsg);
+    page
+      .goto(`https://www.talabat.com/${location.url}`, settings.PUPPETEER_GOTO_PAGE_ARGS)
+      .then(async () => {
+        logger.info(logMsg);
 
-      let items = [];
-
-      try {
-        await page.evaluate(() => {
-          Array.from(document.querySelectorAll('span'))
-            .filter(element => element.textContent === 'Offers')[0]
-            .click();
-        });
-
-        await page.waitFor(1000);
-
-        let keepGoing = true;
-        let index = 0;
-        const MAX = 100;
-
-        while (keepGoing && index < MAX) {
-          logger.info('Scrolling page number: ' + index + ' in ' + location.locationName);
-          let htmlBefore = await page.content();
-          let offersCount = $('.rest-link', htmlBefore).length;
-          await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
-          await page.waitFor(1000);
-          let htmlAfter = await page.content();
-          let updatedOffersCount = $('.rest-link', htmlAfter).length;
-          if (updatedOffersCount === offersCount && index > 3) {
-            keepGoing = false;
-            break;
-          }
-          index++;
-        }
-
+        let items = [];
         let skippedCount = 0;
 
-        const html = await page.content();
-        const finalOffersCount = $('.rest-link', html).length;
-        logger.info(`Offers count for ${location.locationName} = ${finalOffersCount}`);
+        const categoriesToScrape = [
+          { category: 'AED 20 Lunch', offerString: '20 Dhs Lunch' },
+          { category: 'Holiday Feasting', offerString: 'Special Talabat Deal' },
+        ];
 
-        $('.rest-link', html).each(function() {
-          let $ratingStarArr = $('.rating-img .rat-star', this)
-            .attr('class')
-            .split(' ');
-          let starRatingClass = $ratingStarArr[$ratingStarArr.length - 1];
-          let starRatingArr = starRatingClass.split('-');
-          let starRating = Number(starRatingArr[starRatingArr.length - 1]) / 10;
+        try {
+          for (let i = 0; i < categoriesToScrape.length; i++) {
+            if (i > 0) {
+              let cat2Scrape = categoriesToScrape[i - 1];
 
-          let cuisine = [];
-          $('.cuisShow .ng-binding', this).each(function() {
-            cuisine.push($(this).text());
-          });
-          let title = clean_talabat_title(
-            $('.res-name', this)
-              .text()
-              .trim()
-              .replace(/['"]+/g, '')
-          );
-          let rest_slug = utils.slugify(title);
-          const _deliveryTime = $('span:contains("mins")', this)
-            .text()
-            .trim();
-          const _deliveryCharge = $('span[ng-switch-when="0"]', this)
-            .text()
-            .trim();
-          const _minimumOrder = $('span:contains("Min:")', this)
-            .next()
-            .text()
-            .trim();
-          let result = {
-            title: title,
-            branch: clean_talabat_branch(title),
-            slug: rest_slug,
-            city: city,
-            href: 'https://www.talabat.com' + $(this).attr('href'),
-            image: $('.valign-helper', this)
-              .next()
-              .prop('lazy-img')
-              .split('?')
-              .shift(),
-            location: location.baseline,
-            rating: starRating,
-            cuisine: clean_talabat_cuisine(cuisine.join('')),
-            offer: 'Special Talabat Deal',
-            deliveryTime: utils.getNumFromString(_deliveryTime),
-            minimumOrder: utils.getNumFromString(_minimumOrder),
-            deliveryCharge: utils.getNumFromString(_deliveryCharge),
-            cost_for_two: '', // no info on talabat
-            votes: clean_talabat_votes(
-              $('.rating-num', this)
-                .text()
-                .trim()
-            ),
-            source: `${scraper_name}`,
-            address: '', // no info on talabat
-            type: 'restaurant',
-          };
+              await page.evaluate(cat2Scrape => {
+                Array.from(document.querySelectorAll('span'))
+                  .filter(element => element.textContent === cat2Scrape.category)[0]
+                  .click();
+              }, cat2Scrape);
 
-          // if no offer, then skip
-          if (result.offer.length > 0) {
-            let { scoreLevel, scoreValue } = utils.calculateScore(result);
-            result['scoreLevel'] = scoreLevel;
-            result['scoreValue'] = scoreValue;
-            var index = items.indexOf(result); // dont want to push duplicates
-            if (index === -1) {
-              items.push(result); // write to db
+              await page.waitFor(1000);
             }
-          } else {
-            skippedCount++;
-          }
-        });
-        totalCount += items.length > 0 ? items.length : 0;
-        logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
-        logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
 
-        let flatResults = [].concat.apply([], items);
-        parse.process_results(flatResults, db, city).then(async () => {
+            let cat2Scrape = categoriesToScrape[i];
+
+            await page.evaluate(cat2Scrape => {
+              Array.from(document.querySelectorAll('span'))
+                .filter(element => element.textContent === cat2Scrape.category)[0]
+                .click();
+            }, cat2Scrape);
+
+            await page.waitFor(1000);
+
+            let { items: offers, skippedCount: _skippedCount } = await scrapePage(
+              location,
+              page,
+              city,
+              cat2Scrape.offerString
+            );
+
+            skippedCount += _skippedCount;
+            items.push(...offers);
+          }
+
+          totalCount += items.length > 0 ? items.length : 0;
+          logger.info(`Number of items scraped: ${items.length} in ${location.locationName}`);
+          logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
+
+          let flatResults = [].concat.apply([], items);
+          parse.process_results(flatResults, db, city).then(async () => {
+            await page.close();
+            openPages.v--;
+          });
+        } catch (error) {
+          logger.error(`Error ${error}`);
           await page.close();
           openPages.v--;
-        });
-      } catch (error) {
-        logger.error(`Error ${error}`);
-        await page.close();
-        openPages.v--;
-      }
-    });
+        }
+      })
+      .catch(e => console.log(e));
   });
 }
 
@@ -234,7 +274,11 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
         let location = locations[i];
         let logMsg = `Scraping location: ${i + 1} / ${locations.length} --- ${location.locationName} --- ${city}`;
 
-        scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city);
+        try {
+          scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city);
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
 

@@ -21,6 +21,16 @@ echo "< dbclean ..." && node scraper/cleanup/dbClean.js && echo "... dbclean >" 
 wait
 
 ####################### DXB!!!!!!!!!
+node devops/slackBot.js "Running dxb Talabat 0 to 180"
+wait
+echo "< talabat ..." && 
+timeout -k 15m 16m node scraper/talabat.js 0 90 dxb & 
+timeout -k 15m 16m node scraper/talabat.js 91 180 dxb && 
+echo "... talabat >" &&
+wait
+node devops/slackLogBot.js talabat
+wait
+
 node devops/slackBot.js "Running dxb Zomato 0 to 87"
 wait
 echo "< zomato ..." && timeout -k 15m 16m node scraper/zomato.js 0 87 dxb && echo "... zomato >" &&
@@ -51,6 +61,16 @@ wait
 ####################### DXB!!!!!!!!!
 
 ####################### SHJ!!!!!!!!!
+node devops/slackBot.js "Running shj Talabat 0 to 99"
+wait
+echo "< talabat ..." && 
+timeout -k 15m 16m node scraper/talabat.js 0 50 shj & 
+timeout -k 15m 16m node scraper/talabat.js 51 99 shj && 
+echo "... talabat >" &&
+wait
+node devops/slackLogBot.js talabat
+wait
+
 node devops/slackBot.js "Running shj Zomato 0 to 34"
 wait
 echo "< zomato ..." && timeout -k 15m 16m node scraper/zomato.js 0 34 shj && echo "... zomato >" &&
@@ -67,6 +87,16 @@ wait
 ####################### SHJ!!!!!!!!!
 
 ####################### ABU DHABI!!!!!!!!!
+node devops/slackBot.js "Running AD Talabat 0 to 81"
+wait
+echo "< talabat ..." && 
+timeout -k 15m 16m node scraper/talabat.js 0 40 ad & 
+timeout -k 15m 16m node scraper/talabat.js 41 81 ad && 
+echo "... talabat >" &&
+wait
+node devops/slackLogBot.js talabat
+wait
+
 node devops/slackBot.js "Running ABU DHABI Zomato 0 to 31"
 wait
 echo "< zomato ..." && timeout -k 15m 16m node scraper/zomato.js 0 31 ad && echo "... zomato >" &&

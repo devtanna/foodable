@@ -81,6 +81,7 @@ function calculateScore(item) {
   var offerMapping = {
     5: [
       /^Special Talabat Deal$/im,
+      /^20 Dhs Lunch$/im,
       /^(\d+)% off all orders$/im,
       /^(\d+)% off$/im,
       /^(\d+)% off entire menu$/im,
