@@ -268,15 +268,16 @@ const OffersList = ({ mainOffer, otherOffer, hasMoreOffers, isMoreOffersOpen, to
         .showMoreBtn {
           font-weight: bold;
           text-transform: uppercase;
-          color: #999;
+          color: #5a5a5a;
+          background: #f5f5f5;
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 11px;
+          font-size: 12px;
           border-top: 1px solid #e7e7e7;
           outline: none;
           cursor: pointer;
-          padding: 5px 0;
+          padding: 7px 0;
         }
       `}</style>
     </div>
@@ -562,7 +563,7 @@ const SideOffer = ({ offer }) => {
           padding: 0 5px 0 20px;
           font-size: 12px;
           font-weight: 500;
-          border: 1px solid rgba(14, 23, 28, 0.1);
+          border: 1px solid rgba(14, 23, 28, 0.25);
           transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .sideOffer__cta:hover {
@@ -593,7 +594,7 @@ const MoreOffers = ({ offers, isOpen }) => {
           {offers.map((otherOffer, index) => (
             <li key={index}>
               <a className="otherOffer__offer" href={otherOffer.href} target="_blank">
-                <span>{otherOffer.source}</span>
+                <span className="otherOffer__source">{otherOffer.source}</span>
                 <span>{limitChars(otherOffer.offer)}</span>
                 <Icon name="angle right" />
               </a>
@@ -615,7 +616,7 @@ const MoreOffers = ({ offers, isOpen }) => {
           padding: 0;
           margin: 0;
           list-style: none;
-          border-top: 1px solid #eaeaea;
+          border-top: 1px solid #e7e7e7;
         }
         .otherOffers__list li {
           border-bottom: 1px solid #ddd;
@@ -633,6 +634,9 @@ const MoreOffers = ({ offers, isOpen }) => {
           display: grid;
           grid-template-columns: 1fr 2fr auto;
           color: #666;
+        }
+        .otherOffer__source {
+          text-transform: capitalize;
         }
       `}</style>
     </div>
