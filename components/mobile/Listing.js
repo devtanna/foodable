@@ -90,7 +90,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
       </div>
       <div className="bestOffer">
         <div className="bestOffer__heading">
-          <small>Best Deal</small>
+          <small>Great Deal</small>
           <span>{mainOffer.source}</span>
         </div>
         <div className="bestOffer__offer">{limitChars(mainOffer.offer)}</div>

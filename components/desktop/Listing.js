@@ -297,7 +297,7 @@ const MainOffer = ({ offer }) => {
     <div className="mainOffer">
       <div className="mainOffer__wrapper">
         <h4 className="mainOffer__source">
-          <small>Best Deal</small>
+          <small>Great Deal</small>
           <img className="mainOffer__sourceImg" src={offerSources[source].logo} alt={source} />
         </h4>
         <div className="mainOffer__offerWrapper">
@@ -593,7 +593,12 @@ const MoreOffers = ({ offers, isOpen }) => {
         <ul className="otherOffers__list">
           {offers.map((otherOffer, index) => (
             <li key={index}>
-              <a className="otherOffer__offer" href={otherOffer.href} target="_blank">
+              <a
+                className="otherOffer__offer"
+                href={otherOffer.href}
+                target="_blank"
+                rel="noopener"
+                onClick={() => trackEvent('offer_click', 'others', otherOffer.source, otherOffer.title)}>
                 <span className="otherOffer__source">{otherOffer.source}</span>
                 <span>{limitChars(otherOffer.offer)}</span>
                 <Icon name="angle right" />
