@@ -29,8 +29,8 @@ const ContactUsModal = () => {
   };
 
   return (
-    <Modal size="tiny" closeIcon trigger={<span>Give us Feedback</span>}>
-      <Modal.Header>We would love to hear your feedback!</Modal.Header>
+    <Modal size="tiny" closeIcon trigger={<span>Contact Us</span>}>
+      <Modal.Header>We would love to hear from you!</Modal.Header>
       {success ? (
         <Modal.Content>
           <Modal.Description>
