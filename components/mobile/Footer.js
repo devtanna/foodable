@@ -33,7 +33,7 @@ const Footer = ({ location }) => (
       </div>
       <div className="logoWrapper">
         <img className="logo" src="/static/logo-white.svg" alt="Foodable.ae" />
-        <div className="copyrights">Copyright 2019 foodable.ae | All rights reserved.</div>
+        <div className="copyrights">Copyright 2020 foodable.ae | All rights reserved.</div>
       </div>
     </div>
     <style jsx>{`
