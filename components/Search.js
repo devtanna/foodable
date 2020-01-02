@@ -43,7 +43,7 @@ const Search = ({ cuisines, filters, onSearch }) => {
     }
 
     if (keywords === '' && selectedCuisine.length === 0) {
-      window.location.pathname = '/';
+      window.location.href = '/';
     } else {
       window.location.search = `${qs.stringify(query)}`;
     }

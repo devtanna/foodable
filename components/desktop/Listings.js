@@ -5,6 +5,7 @@ import Search from '../Search';
 import Listing from './Listing';
 import Pagination from '../Pagination';
 import NoResults from '../NoResults';
+import Collections from './Collections';
 import { removeObjEmpty } from '../../helpers/utils';
 import _isEmpty from 'lodash/isEmpty';
 
@@ -17,6 +18,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
       <Header location={location} />
       <main>
         <div className="mainWrapper">
+          <Collections cuisines={cuisines} filters={filters} />
           <Search cuisines={cuisines} filters={filters} />
           {hasOffers ? (
             <Fragment>

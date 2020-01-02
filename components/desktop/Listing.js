@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { offerSources } from '../../helpers/constants';
 import { Icon, Rating, Loader } from 'semantic-ui-react';
 import FavoriteBtn from '../FavoriteBtn';
-import { trackEvent, limitChars, showCurrency, showMins, toStartCase } from '../../helpers/utils';
+import { trackEvent, limitChars, showCurrency, showMins, toStartCase, slugify } from '../../helpers/utils';
 import copy from 'copy-to-clipboard';
 import qs from 'qs';
 import dynamic from 'next/dynamic';
@@ -105,7 +105,7 @@ const ListingMeta = ({ offer, restId, onFavRemove }) => {
           <h3 className="meta__name">{toStartCase(title)}</h3>
           <div className="meta__tags">
             {cuisineArray.map((cuisine, index) => (
-              <a className="cuisineTag" key={index} href={`?cuisine%5B0%5D=${cuisine.toLowerCase()}`}>
+              <a className="cuisineTag" key={index} href={`?cuisine%5B0%5D=${slugify(cuisine.toLowerCase())}`}>
                 {cuisine}
               </a>
             ))}
