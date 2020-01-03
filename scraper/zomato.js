@@ -6,6 +6,10 @@ const slackLogBot = require('../devops/slackLogBot');
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
+const resUrls = require('./zomato_res_urls.json');
+const fs = require('fs');
+const path = require('path');
+const outputFile = path.join(__dirname, 'zomato_res_urls.json');
 
 const CITY = process.argv[4] || 'dxb';
 
@@ -53,44 +57,65 @@ const scrapePage = async (location, page, pageNum = 1) => {
     let result = [];
     let offersCount = $('.search-result', html).length;
 
-    $('.search-result', html).each(function() {
-      let cuisine = [];
+    $('.search-o2-card', html).each(function() {
+      let title = $('.result-order-flow-title', this)
+        .text()
+        .trim();
 
-      $('.search-page-text .nowrap a', this).each(function() {
-        cuisine.push($(this).text());
-      });
+      let resId = $('[data-res-id]', this).prop('data-res-id');
+      let href = resUrls[resId];
 
-      var singleItem = {
-        title: $('.result-title', this)
-          .text()
-          .trim(),
-        href: $('.result-title', this).prop('href') + '/order',
+      if (!href) {
+        logger.warn(`No URL for ${title} with ID: ${resId}`);
+
+        resUrls[resId] = 'FIXME';
+
+        skippedCount++;
+
+        logger.info(`Skipped in ${location.locationName} = ${skippedCount}`);
+        return { result, goNext: currentPage < totalPages };
+      }
+
+      let singleItem = {
+        title,
+        href,
         image: cleanImg($('.feat-img', this).prop('data-original')),
         location: location.baseline,
         address: location.baseline,
-        city: CITY,
-        cuisine: cuisine.join(', '),
-        offer: $('.res-offers .zgreen', this)
+        cuisine: $('.description .grey-text.nowrap', this)
+          .eq(0)
           .text()
           .trim(),
+        offer: $('.offer-text', this)
+          .text()
+          .trim()
+          .replace(/\./g, ''),
         rating: $('.rating-popup', this)
           .text()
           .trim(),
         votes: $('[class^="rating-votes-div"]', this)
           .text()
           .trim(),
-        cost_for_two: $('.res-cost span:nth-child(2)', this)
-          .text()
-          .trim(),
+        cost_for_two: '',
         source: `${scraper_name}`,
-        slug: utils.slugify(
-          $('.result-title', this)
+        slug: utils.slugify(title),
+        deliveryTime: utils.getNumFromString(
+          $('.description div', this)
+            .eq(3)
             .text()
             .trim()
+            .split('·')[1]
+            .trim()
         ),
-        deliveryTime: '?',
         deliveryCharge: '?',
-        minimumOrder: '?',
+        minimumOrder: utils.getNumFromString(
+          $('.description div', this)
+            .eq(3)
+            .text()
+            .trim()
+            .split('·')[0]
+            .trim()
+        ),
         type: 'restaurant',
       };
 
@@ -193,6 +218,7 @@ const run = async () => {
     }
     slackLogBot.sendLogFile('zomato');
     logger.info('Zomato Scrape Done!');
+    fs.writeFile(outputFile, JSON.stringify(resUrls, null, 2), err => (err ? console.log(err) : 'Done!'));
   };
 
   function* scrapeGenerator() {

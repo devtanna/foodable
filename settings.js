@@ -56,7 +56,7 @@ var puppeteerSettings = {
   ],
   PUPPETEER_VIEWPORT: { width: 1400, height: 800 },
   PUPPETEER_GOTO_PAGE_ARGS: {
-    timeout: 35000, // 15seconds
+    timeout: 15000, // 15seconds
     waitUntil: ['load'],
   },
 };

@@ -1,41 +1,41 @@
 [
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-bateen?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-bateen-order-online?delivery_subzone=5545&offers=1",
     "locationName": "Al Bateen",
     "baseline": ["khor-al-bateen", "qasr-el-shatie"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-dhafrah?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-dhafrah-order-online?delivery_subzone=5559&offers=1",
     "locationName": "Al Dhafrah",
     "baseline": ["al-dafrah"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-falah-city?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-falah-city-order-online?delivery_subzone=5560&offers=1",
     "locationName": "Al Falah City",
     "baseline": ["al-falah-city"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-karamah?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-karamah-order-online?delivery_subzone=5561&offers=1",
     "locationName": "Al Karamah",
     "baseline": ["al-karamah"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-khalidiya?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-khalidiya-order-online?delivery_subzone=5538&offers=1",
     "locationName": "Al Khalidiya",
     "baseline": ["al-khalidiyah", "al-hosn", "al-manhal", "al-markaziyah-west"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-khubeirah-al-khubeirah?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-khubeirah-al-khubeirah-order-online?delivery_subzone=5563&offers=1",
     "locationName": "Al Khubeirah",
     "baseline": ["al-khubeirah"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-madina-al-riyadiya?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-madina-al-riyadiya-order-online?delivery_subzone=5564&offers=1",
     "locationName": "Al Madina Al Riyadiya",
     "baseline": ["zayed-sports-city", "abu-dhabi-hills", "al-muzoon", "al-rowdah", "capital-centre"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-mafraq?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-mafraq-order-online?delivery_subzone=5565&offers=1",
     "locationName": "Al Mafraq",
     "baseline": [
       "al-mafraq",
@@ -48,37 +48,37 @@
     ]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-maqtaa?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-maqtaa-order-online?delivery_subzone=5603&offers=1",
     "locationName": "Al Maqtaa",
     "baseline": ["al-maqta", "abu-dhabi-gate-city", "bain-al-jesrain", "sas-al-nakhl-island"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-markaziya?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-markaziya-order-online?delivery_subzone=5568&offers=1",
     "locationName": "Al Markaziya",
     "baseline": ["al-markaziyah"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-maryah-island?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-maryah-island-order-online?delivery_subzone=5569&offers=1",
     "locationName": "Al Maryah Island",
     "baseline": ["al-maryah-island"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-mina?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-mina-order-online?delivery_subzone=5570&offers=1",
     "locationName": "Al Mina",
     "baseline": ["al-mina", "port-zayed-al-mina"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-mushrif?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-mushrif-order-online?delivery_subzone=5571&offers=1",
     "locationName": "Al Mushrif",
     "baseline": ["al-mushrif", "al-gurum-resort", "al-zaab", "al-zafranah", "al-zahraa", "qasr-el-shatie"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-nahyan?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-nahyan-order-online?delivery_subzone=5572&offers=1",
     "locationName": "Al Nahyan",
     "baseline": ["al-nahyan", "al-manhal", "al-wahdah", "qasr-el-bahr"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-raha?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-raha-order-online?delivery_subzone=5573&offers=1",
     "locationName": "Al Raha",
     "baseline": [
       "al-raha",
@@ -92,47 +92,47 @@
     ]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-ras-al-akhdar?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-ras-al-akhdar-order-online?delivery_subzone=5578&offers=1",
     "locationName": "Al Ras Al Akhdar",
     "baseline": ["al-ras-al-akhdar", "breakwater"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-reef?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-reef-order-online?delivery_subzone=5533&offers=1",
     "locationName": "Al Reef",
     "baseline": ["al-reef", "abu-dhabi-international-airport"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-reem-island-al-reem-island?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-reem-island-al-reem-island-order-online?delivery_subzone=5580&offers=1",
     "locationName": "Al Reem Island",
     "baseline": ["reem-island", "qasr-el-bahr"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/al-samha-restaurants?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-samha-order-online&offers=1",
     "locationName": "Al Samha",
     "baseline": ["al-samha"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-shahama?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-shahama-order-online?delivery_subzone=5581&offers=1",
     "locationName": "Al Shahama",
     "baseline": ["shahama", "al-bahya", "al-rahba", "hydra-village-shahama", "new-shahama", "old-bahya"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-al-shamkha?offers=1",
+    "url": "https://www.zomato.com/abudhabi/al-shamkha-order-online&offers=1",
     "locationName": "Al Shamkha",
     "baseline": ["al-shamkha", "al-adla", "al-sader", "al-shamkha-south"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-baniyas?offers=1",
+    "url": "https://www.zomato.com/abudhabi/baniyas-order-online?delivery_subzone=5584&offers=1",
     "locationName": "Baniyas",
     "baseline": ["bani-yas-east", "bani-yas-west"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-embassies-district?offers=1",
+    "url": "https://www.zomato.com/abudhabi/embassies-district-order-online?delivery_subzone=5586&offers=1",
     "locationName": "Embassies District",
     "baseline": ["al-safarrat", "al-aman", "al-muntazah", "capital-centre"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-khalifa-city?offers=1",
+    "url": "https://www.zomato.com/abudhabi/khalifa-city-order-online?delivery_subzone=8299&offers=1",
     "locationName": "Khalifa City",
     "baseline": [
       "madinat-khalifa-a",
@@ -144,37 +144,37 @@
     ]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-madinat-zayed?offers=1",
+    "url": "https://www.zomato.com/abudhabi/madinat-zayed-order-online?delivery_subzone=5590&offers=1",
     "locationName": "Madinat Zayed",
     "baseline": ["madinat-zayed", "western-region"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-masdar-city?offers=1",
+    "url": "https://www.zomato.com/abudhabi/masdar-city-order-online?delivery_subzone=5533&offers=1",
     "locationName": "Masdar City",
     "baseline": ["masdar-city", "abu-dhabi-international-airport"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-mussafah?offers=1",
+    "url": "https://www.zomato.com/abudhabi/mussafah-order-online?delivery_subzone=8406&offers=1",
     "locationName": "Mussafah Sanaiya",
     "baseline": ["mussafah-industrial-city", "mohammed-bin-zayed-city"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/mussafah-shabiya-restaurants?offers=1",
+    "url": "https://www.zomato.com/abudhabi/mussafah-shabiya-restaurants?order-online=1&delivery_subzone=7727&offers=1",
     "locationName": "Mussafah Shabiya",
     "baseline": ["mussafah-industrial-city", "mohammed-bin-zayed-city", "mussafah-south"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-saadiyat-island?offers=1",
+    "url": "https://www.zomato.com/abudhabi/saadiyat-island-order-online?delivery_subzone=5599&offers=1",
     "locationName": "Saadiyat Island",
     "baseline": ["saadiyat-island"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-tourist-club-area-al-zahiyah?offers=1",
+    "url": "https://www.zomato.com/abudhabi/tourist-club-area-al-zahiyah-order-online?delivery_subzone=5600&offers=1",
     "locationName": "Tourist Club Area (Al Zahiyah)",
     "baseline": ["tourist-club-area-al-zahiya", "al-zaab", "qasr-el-bahr"]
   },
   {
-    "url": "https://www.zomato.com/abudhabi/delivery-in-yas-island?offers=1",
+    "url": "https://www.zomato.com/abudhabi/yas-island-order-online?delivery_subzone=5601&offers=1",
     "locationName": "Yas Island",
     "baseline": ["yas-island"]
   }
