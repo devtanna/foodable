@@ -1,12 +1,17 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-const performance = require('perf_hooks').performance;
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
 const urls = require(`./locations/${process.argv[4]}/talabat_locations.json`);
 const slackBot = require('../devops/slackBot');
 const slackLogBot = require('../devops/slackLogBot');
+const SCRAPE_TIMING = process.argv[5] || 'morning';
+
+const CATEGORIES_TO_SCRAPE = [
+  { category: 'AED 20 Lunch', offerString: '20 Dhs Lunch', timing: ['morning', 'evening'] },
+  { category: 'Holiday Feasting', offerString: 'Special Talabat Deal', timing: ['evening'] },
+];
 
 // logging init
 const logger = require('../helpers/logging').getLogger();
@@ -139,11 +144,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
 
         let items = [];
         let skippedCount = 0;
-
-        const categoriesToScrape = [
-          { category: 'AED 20 Lunch', offerString: '20 Dhs Lunch' },
-          { category: 'Holiday Feasting', offerString: 'Special Talabat Deal' },
-        ];
+        let categoriesToScrape = CATEGORIES_TO_SCRAPE.filter(cat => cat.timing.includes(SCRAPE_TIMING));
 
         try {
           for (let i = 0; i < categoriesToScrape.length; i++) {
@@ -207,7 +208,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
     process.exit();
   }
 
-  slackBot.sendSlackMessage(`Talabat started with arguments: ${process.argv.slice(2)}`);
+  slackBot.sendSlackMessage(`Talabat started with arguments: ${process.argv.slice(3)}`);
 
   let browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,

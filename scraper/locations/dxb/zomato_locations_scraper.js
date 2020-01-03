@@ -18,8 +18,11 @@ const scrapePage = async url => {
       .eq(0)
       .attr('href');
     let urlObj = new URL(locationUrl ? locationUrl : url);
-    urlObj.search = 'offers=1';
-    return urlObj.href;
+    urlObj.search = 'order-online=1';
+    await page.goto(urlObj.href, settings.PUPPETEER_GOTO_PAGE_ARGS);
+    let locUrl = page.url();
+    locUrl = `${locUrl}&offers=1`;
+    return locUrl;
   } catch (e) {
     console.log(`error in ${url}`);
   }
@@ -42,7 +45,8 @@ const run = async () => {
       data.push({ url: res, name: areas[i].name });
     }
 
-    fs.writeFile(outputFile, JSON.stringify(data, null, 2), err => (err ? console.log(err) : 'Done!'));
+    console.log(data);
+    // fs.writeFile(outputFile, JSON.stringify(data, null, 2), err => (err ? console.log(err) : 'Done!'));
   } catch (e) {
     console.log(e);
   } finally {
