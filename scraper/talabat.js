@@ -9,8 +9,8 @@ const slackLogBot = require('../devops/slackLogBot');
 const SCRAPE_TIMING = process.argv[5] || 'morning';
 
 const CATEGORIES_TO_SCRAPE = [
-  { category: 'AED 20 Lunch', offerString: '20 Dhs Lunch', timing: ['morning', 'evening'] },
-  { category: 'Holiday Feasting', offerString: 'Special Talabat Deal', timing: ['evening'] },
+  { category: 'AED 20 Lunch', offerString: '20 Dhs Lunch', timing: ['morning'] },
+  { category: 'Holiday Feasting', offerString: 'Special Talabat Deal', timing: ['morning', 'evening'] },
 ];
 
 // logging init
