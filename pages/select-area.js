@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { device } from '../helpers/device';
 import { trackPageView } from '../helpers/utils';
 import Landing from '../components/Landing';
 import { getLocations } from '../helpers/api';

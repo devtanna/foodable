@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import Head from 'next/head';
-import { device } from '../../helpers/device';
 import { redirectToPage, trackPageView, deslugify, capitalizeFirstLetter, removeObjEmpty } from '../../helpers/utils';
 import FoodablesMobile from '../../components/mobile/';
 import FoodablesDesktop from '../../components/desktop/';
@@ -141,6 +140,10 @@ Location.getInitialProps = async ({ req, res, query }) => {
 
     // maxAge 6 months
     res.cookie('fdb_location', base64.encode(JSON.stringify(selectedLocation)), { path: '/', maxAge: 1.577e+10 }); 
+
+    // Visitors count cookie, to be used to fire up survey from tag manager
+    const visitsCount = Number(cookies.get('fdb_vc')) || 0;
+    res.cookie('fdb_vc', visitsCount + 1, { path: '/', maxAge: 1.577e+10 });
 
     // All good so far? get cuisines and send back the needed information
     const { cuisines } = await getCuisines(citySlug);
