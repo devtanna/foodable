@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Icon } from 'semantic-ui-react';
 import { device } from '../helpers/device';
-import { trackPageView } from '../helpers/utils';
+import { trackEvent } from '../helpers/utils';
 
 const NoResults = ({ isSearch }) => {
   useEffect(() => {
-    trackPageView('no-results', window.location.search, window.location.pathname);
+    trackEvent('search', 'engagement', 'no-results', window.location.href);
   }, []);
 
   return (
