@@ -134,6 +134,7 @@ function calculateScore(item) {
       /^Cheap Eats$/im,
       /^Free Dessert$/im,
       /^free delivery$/im,
+      /^aed(\d+) off on your first order Only applicable on orders above aed(\d+)$/im,
       /^(\d+)% off on your first order only applicable on orders above aed(\d+)$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us Offer on home-delivery only applicable when you order online on Zomato or the restaurant app$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us Offer on home-delivery only applicable when you order online on Zomato$/im,
