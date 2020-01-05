@@ -16,23 +16,7 @@ const CITIES = [
 
 const urls = [
   {
-    url: 'https://foodable.ae/about-us',
-    changefreq: 'weekly',
-  },
-  {
-    url: 'https://foodable.ae/privacy-policy',
-    changefreq: 'weekly',
-  },
-  {
-    url: 'https://foodable.ae/select-area',
-    changefreq: 'weekly',
-  },
-  {
-    url: 'https://foodable.ae/terms',
-    changefreq: 'weekly',
-  },
-  {
-    url: 'https://foodable.ae/favourites',
+    url: 'https://foodable.ae/',
     changefreq: 'weekly',
   },
 ];
