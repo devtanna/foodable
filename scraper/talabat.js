@@ -10,7 +10,7 @@ const SCRAPE_TIMING = process.argv[5] || 'morning';
 
 const CATEGORIES_TO_SCRAPE = [
   { category: 'AED 20 Lunch', offerString: '20 Dhs Lunch', timing: ['morning'] },
-  { category: 'Holiday Feasting', offerString: 'Special Talabat Deal', timing: ['morning', 'evening'] },
+  { category: 'Free Delivery', offerString: 'Free Delivery', timing: ['morning', 'evening'] },
 ];
 
 // logging init
