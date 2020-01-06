@@ -5,7 +5,7 @@ import { trackEvent } from '../helpers/utils';
 
 const NoResults = ({ isSearch }) => {
   useEffect(() => {
-    trackEvent('search', 'engagement', 'no-results', window.location.href);
+    trackEvent('no-results', 'engagement', window.location.href);
   }, []);
 
   return (
