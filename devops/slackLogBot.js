@@ -22,7 +22,7 @@ function sendLogFile(scraperName) {
       if (err) {
         console.log(err);
       } else {
-        console.log('Uploaded file details: ', data);
+        console.log('File Uploaded', scraperName);
       }
     }
   );
