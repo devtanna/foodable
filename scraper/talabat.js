@@ -209,9 +209,19 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
 
   slackBot.sendSlackMessage(`Talabat started with arguments: ${process.argv.slice(3)}`);
 
+  let args = settings.PUPPETEER_BROWSER_ARGS;
+
+  if (false) {
+    const myProxy = 'socks4://109.224.34.18:52015'; //await utils.getProxy();
+    // const myProxy = 'socks5://localhost:9050'; //await utils.getProxy();
+    if (myProxy && myProxy.length > 0) {
+      args.push(`--proxy-server=${myProxy}`);
+    }
+  }
+
   let browser = await puppeteer.launch({
     headless: settings.PUPPETEER_BROWSER_ISHEADLESS,
-    args: settings.PUPPETEER_BROWSER_ARGS,
+    args: args,
   });
 
   if (urls != null) {

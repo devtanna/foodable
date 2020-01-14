@@ -1,3 +1,3 @@
 # Times are in UTC as docker containers are UTC based
-15 6 * * * sh /app/dockerScrapeAll.sh morning >> /tmp/cronlog.txt 2>&1
-35 12 * * * sh /app/dockerScrapeAll.sh evening >> /tmp/cronlog.txt 2>&1
+30 6 * * * sh /app/dockerScrapeAll.sh morning >> /tmp/cronlog.txt 2>&1
+30 12 * * * sh /app/dockerScrapeAll.sh evening >> /tmp/cronlog.txt 2>&1

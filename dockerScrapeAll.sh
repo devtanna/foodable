@@ -21,15 +21,15 @@ echo "< dbclean ..." && node scraper/cleanup/dbClean.js && echo "... dbclean >" 
 wait
 
 ####################### DXB!!!!!!!!!
-node devops/slackBot.js "Running dxb Talabat 0 to 180"
-wait
-echo "< talabat ..." && 
-timeout -k 9m 10m node scraper/talabat.js 0 90 dxb $1 & 
-timeout -k 9m 10m node scraper/talabat.js 91 180 dxb $1 && 
-echo "... talabat >" &&
-wait
-node devops/slackLogBot.js talabat
-wait
+# node devops/slackBot.js "Running dxb Talabat 0 to 180"
+# wait
+# echo "< talabat ..." && 
+# timeout -k 9m 10m node scraper/talabat.js 0 90 dxb $1 & 
+# timeout -k 9m 10m node scraper/talabat.js 91 180 dxb $1 && 
+# echo "... talabat >" &&
+# wait
+# node devops/slackLogBot.js talabat
+# wait
 
 node devops/slackBot.js "Running dxb Deliveroo"
 wait
@@ -54,15 +54,15 @@ wait
 ####################### DXB!!!!!!!!!
 
 ####################### SHJ!!!!!!!!!
-node devops/slackBot.js "Running shj Talabat 0 to 99"
-wait
-echo "< talabat ..." && 
-timeout -k 9m 10m node scraper/talabat.js 0 50 shj $1 & 
-timeout -k 9m 10m node scraper/talabat.js 51 99 shj $1 && 
-echo "... talabat >" &&
-wait
-node devops/slackLogBot.js talabat
-wait
+# node devops/slackBot.js "Running shj Talabat 0 to 99"
+# wait
+# echo "< talabat ..." && 
+# timeout -k 9m 10m node scraper/talabat.js 0 50 shj $1 & 
+# timeout -k 9m 10m node scraper/talabat.js 51 99 shj $1 && 
+# echo "... talabat >" &&
+# wait
+# node devops/slackLogBot.js talabat
+# wait
 
 node devops/slackBot.js "Running shj Eateasy"
 wait
@@ -73,15 +73,15 @@ wait
 ####################### SHJ!!!!!!!!!
 
 ####################### ABU DHABI!!!!!!!!!
-node devops/slackBot.js "Running AD Talabat 0 to 81"
-wait
-echo "< talabat ..." && 
-timeout -k 9m 10m node scraper/talabat.js 0 40 ad $1 & 
-timeout -k 9m 10m node scraper/talabat.js 41 81 ad $1 && 
-echo "... talabat >" &&
-wait
-node devops/slackLogBot.js talabat
-wait
+# node devops/slackBot.js "Running AD Talabat 0 to 81"
+# wait
+# echo "< talabat ..." && 
+# timeout -k 9m 10m node scraper/talabat.js 0 40 ad $1 & 
+# timeout -k 9m 10m node scraper/talabat.js 41 81 ad $1 && 
+# echo "... talabat >" &&
+# wait
+# node devops/slackLogBot.js talabat
+# wait
 
 node devops/slackBot.js "Running ABU DHABI Deliveroo"
 wait
