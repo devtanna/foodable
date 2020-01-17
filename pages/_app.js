@@ -4,8 +4,8 @@ import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { AppProvider } from '../helpers/contexts';
-import '../static/nprogress.css';
-import '../static/semantic.min.css';
+import 'nprogress/nprogress.css';
+import 'semantic-ui-css/semantic.min.css';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
