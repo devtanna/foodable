@@ -1,5 +1,12 @@
 # Foodable
 
+## If there are permissions issues on the node_modules folder on a production server then run these commands:
+
+sudo chown -R $USER:$GROUP ~/.npm
+sudo chown -R $USER:$GROUP ~/.config
+
+# The above commands will restore permissions
+
 ### Running the scrapers locally:
 
 `node scraper/location.js`
