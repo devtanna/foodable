@@ -136,7 +136,7 @@ exports.EntityQuery = new GraphQLObjectType({
                   offers: { $addToSet: '$offers' },
                 },
               },
-              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1, _id: 1 } },
+              { $sort: { 'offers.0.scoreLevel': -1, _id: 1 } },
             ])
               .skip(pageSize * (page - 1))
               .limit(pageSize)
@@ -160,7 +160,7 @@ exports.EntityQuery = new GraphQLObjectType({
                   offers: { $addToSet: '$offers' },
                 },
               },
-              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.scoreValue': -1, 'offers.0.sortSpread': -1, _id: 1 } },
+              { $sort: { 'offers.0.scoreLevel': -1, 'offers.0.sortSpread': -1, _id: 1 } },
             ])
               .skip(pageSize * (page - 1))
               .limit(pageSize)
