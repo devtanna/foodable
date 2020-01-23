@@ -32,7 +32,7 @@ const PageHead = () => (
     <meta property="og:url" content="https://foodable.ae/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://foodable.ae/static/icon-512.png" />
-    <link rel="icon" href="/static/favicon.png" />
+    <link rel="shortcut icon" href="/static/favicon.png" />
     <link rel="manifest" href="/static/manifest.json" />
   </Head>
 );
