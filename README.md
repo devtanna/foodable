@@ -134,3 +134,9 @@ Running a full scrape to update data on Production involves these steps:
 ### Deploying to production on Azure involves:
 
 1. Trigger a deployment via a commit message that contains `[azure-deploy]`
+
+### Log
+
+- pm2 logs --lines=200
+- cat /var/log/nginx/error.log
+- cat /var/log/nginx/access.log
