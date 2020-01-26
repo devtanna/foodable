@@ -20,5 +20,7 @@ RUN service mongodb start \
     touch /tmp/cronlog.txt && \
     crontab /etc/cron.d/scraper-cron
 
+RUN mkdir ../data
+
 # Run the command on container startup
 CMD ["cron", "-f"]
