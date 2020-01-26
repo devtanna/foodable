@@ -74,7 +74,11 @@ const scrapePage = async (page, location, city) => {
       let cuisine = [];
       let rating = null;
       let votes = null;
-      $('li[class*="HomeFeedUILines"]', this)
+      $('span[class*="HomeFeedUICard"]', this)
+        .eq(-1)
+        .children('div[class*="HomeFeedUICard"]')
+        .eq(-1)
+        .find('li[class*="HomeFeedUILines"]')
         .eq(1)
         .children('span span')
         .each(function() {

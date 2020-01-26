@@ -3,13 +3,15 @@ const $ = require('cheerio');
 const settings = require('../settings')();
 const utils = require('./utils');
 const parse = require('./parse_and_store/parse');
-const urls = require(`./locations/${process.argv[4]}/talabat_locations.json`);
+const urls = require(`./locations/${process.argv[2]}/talabat_locations.json`);
 const slackBot = require('../devops/slackBot');
 const slackLogBot = require('../devops/slackLogBot');
-const SCRAPE_TIMING = process.argv[5] || 'morning';
+const SCRAPE_TIMING = process.argv[3] || 'morning';
 
 const CATEGORIES_TO_SCRAPE = [
   { category: 'Free Delivery', offerString: 'Free Delivery', timing: ['morning', 'evening'] },
+  { category: 'Best Deals', offerString: 'Special Talabat Deal', timing: ['evening'] },
+  { category: 'AED 20 Lunch', offerString: '20 Dhs Lunch', timing: ['morning'] },
 ];
 
 // logging init
@@ -159,25 +161,29 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
               await page.waitFor(1000);
             }
 
-            let cat2Scrape = categoriesToScrape[i];
+            try {
+              let cat2Scrape = categoriesToScrape[i];
 
-            await page.evaluate(cat2Scrape => {
-              Array.from(document.querySelectorAll('span'))
-                .filter(element => element.textContent === cat2Scrape.category)[0]
-                .click();
-            }, cat2Scrape);
+              await page.evaluate(cat2Scrape => {
+                Array.from(document.querySelectorAll('span'))
+                  .filter(element => element.textContent === cat2Scrape.category)[0]
+                  .click();
+              }, cat2Scrape);
 
-            await page.waitFor(1000);
+              await page.waitFor(1000);
 
-            let { items: offers, skippedCount: _skippedCount } = await scrapePage(
-              location,
-              page,
-              city,
-              cat2Scrape.offerString
-            );
+              let { items: offers, skippedCount: _skippedCount } = await scrapePage(
+                location,
+                page,
+                city,
+                cat2Scrape.offerString
+              );
 
-            skippedCount += _skippedCount;
-            items.push(...offers);
+              skippedCount += _skippedCount;
+              items.push(...offers);
+            } catch (error) {
+              logger.error(`Inner scrape error: ${error}`);
+            }
           }
 
           totalCount += items.length > 0 ? items.length : 0;
@@ -200,14 +206,14 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
 }
 
 (async () => {
-  const city = process.argv[4];
+  const city = process.argv[2];
 
   if (!settings.ENABLE_TALABAT) {
     logger.info('Talabat scraper is DISABLED. EXITING.');
     process.exit();
   }
 
-  slackBot.sendSlackMessage(`Talabat started with arguments: ${process.argv.slice(3)}`);
+  // slackBot.sendSlackMessage(`Talabat started with arguments: ${process.argv.slice(3)}`);
 
   let args = settings.PUPPETEER_BROWSER_ARGS;
 
@@ -225,16 +231,16 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
   });
 
   if (urls != null) {
-    let start, end;
-    if (settings.SCRAPER_TEST_MODE) {
-      start = 0;
-      end = 4;
-    } else {
-      start = process.argv[2];
-      end = Math.min(process.argv[3], 180);
-    }
-    let locations = urls.slice(start, end + 1);
-    logger.info(`Scraping locations range: [${start} - ${end}], count: ${locations.length}`);
+    // let start, end;
+    // if (settings.SCRAPER_TEST_MODE) {
+    //   start = 0;
+    //   end = 4;
+    // } else {
+    //   start = process.argv[2];
+    //   end = Math.min(process.argv[3], 180);
+    // }
+    let locations = urls;
+    // logger.info(`Scraping locations range: [${start} - ${end}], count: ${locations.length}`);
 
     let yielded = false;
     let fdbGen = scrapeGenerator();
