@@ -108,8 +108,16 @@
     "slug": "palm-jumeirah"
   },
   {
-    "locationName": "Al Barsha",
-    "slug": "al-barsha"
+    "locationName": "Al Barsha 1",
+    "slug": "al-barsha-1"
+  },
+  {
+    "locationName": "Al Barsha 2",
+    "slug": "al-barsha-2"
+  },
+  {
+    "locationName": "Al Barsha 3",
+    "slug": "al-barsha-3"
   },
   {
     "locationName": "Al Barsha South",

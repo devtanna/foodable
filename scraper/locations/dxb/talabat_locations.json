@@ -53,5 +53,20 @@
     "locationName": "Knowledge Village",
     "url": "/uae/restaurants/1270/knowledge-village",
     "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-internet-city", "dubai-marina", "al-sufouh"]
+  },
+  {
+    "locationName": "Al Barsha 1",
+    "url": "/uae/restaurants/1174/al-barsha-1",
+    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area", "barsha-heights"]
+  },
+  {
+    "locationName": "Al Barsha 2",
+    "url": "/uae/restaurants/1175/al-barsha-2",
+    "baseline": ["al-barsha-2", "al-quoz-industrial-area", "al-barsha-south"]
+  },
+  {
+    "locationName": "Al Barsha 3",
+    "url": "/uae/restaurants/1176/al-barsha-3",
+    "baseline": ["al-barsha-3", "the-greens", "barsha-heights"]
   }
 ]

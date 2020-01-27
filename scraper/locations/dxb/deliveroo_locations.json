@@ -17,29 +17,28 @@
   {
     "locationName": "Al Barsha 1",
     "url": "/restaurants/dubai/al-barsha-1",
-    "baseline": ["al-barsha", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area", "barsha-heights"]
+    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area", "barsha-heights"]
   },
   {
     "locationName": "Al Barsha 2",
     "url": "/restaurants/dubai/al-barsha-2",
-    "baseline": ["al-barsha", "al-quoz-industrial-area", "al-barsha-south"]
+    "baseline": ["al-barsha-2", "al-quoz-industrial-area", "al-barsha-south"]
   },
   {
     "locationName": "Al Barsha 3",
     "url": "/restaurants/dubai/al-barsha-3",
-    "baseline": ["al-barsha", "the-greens", "barsha-heights"]
+    "baseline": ["al-barsha-3", "the-greens", "barsha-heights"]
   },
   {
     "locationName": "Al Barsha Park 1",
     "url": "/restaurants/dubai/al-barsha-park-1",
-    "baseline": ["al-barsha", "al-sufouh", "barsha-heights"]
+    "baseline": ["al-barsha-1", "al-sufouh", "barsha-heights"]
   },
   {
     "locationName": "Al Barsha South",
     "url": "/restaurants/dubai/al-barsha-south",
     "baseline": [
       "al-barsha-south",
-      "al-barsha",
       "jumeirah-village-circle",
       "dubai-sports-city",
       "motor-city",
@@ -167,7 +166,7 @@
   {
     "locationName": "Al Sufouh",
     "url": "/restaurants/dubai/al-sufouh",
-    "baseline": ["al-sufouh", "al-barsha", "madinat-jumeirah"]
+    "baseline": ["al-sufouh", "madinat-jumeirah"]
   },
   {
     "locationName": "Al Twar",
@@ -712,14 +711,7 @@
   {
     "locationName": "TECOM",
     "url": "/restaurants/dubai/tecom",
-    "baseline": [
-      "barsha-heights",
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "the-greens",
-      "al-barsha",
-      "al-sufouh"
-    ]
+    "baseline": ["barsha-heights", "dubai-internet-city", "dubai-knowledge-village", "the-greens", "al-sufouh"]
   },
   {
     "locationName": "The Greens",
@@ -766,7 +758,7 @@
   {
     "locationName": "Umm Al Sheif",
     "url": "/restaurants/dubai/umm-al-sheif",
-    "baseline": ["umm-al-sheif", "al-quoz-industrial-area", "al-manara", "umm-suqeim", "al-barsha"]
+    "baseline": ["umm-al-sheif", "al-quoz-industrial-area", "al-manara", "umm-suqeim"]
   },
   {
     "locationName": "Umm Ramool",
