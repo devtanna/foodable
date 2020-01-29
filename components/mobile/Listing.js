@@ -242,7 +242,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
         }
         .deliveryInfo__item {
           line-height: 1em;
-          margin-right: 25px;
+          margin-right: 30px;
         }
         .deliveryInfo__value {
           font-size: 13px;

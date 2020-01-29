@@ -118,7 +118,6 @@ const ListingMeta = ({ offer, restId, onFavRemove }) => {
       <div className="meta__footer">
         {rating ? (
           <div>
-            <div className="rating__heading">Rating</div>
             <Rating size="large" icon="star" disabled defaultRating={_rating} maxRating={5} />
             <span className="rating__number">({_rating})</span>
           </div>
@@ -185,12 +184,6 @@ const ListingMeta = ({ offer, restId, onFavRemove }) => {
           display: block;
           font-weight: normal;
           font-size: 16px;
-        }
-        .rating__heading {
-          font-size: 10px;
-          color: #666;
-          font-weight: bold;
-          text-transform: uppercase;
         }
         .rating__number {
           vertical-align: top;
@@ -381,7 +374,7 @@ const MainOffer = ({ offer }) => {
         }
         .deliveryInfo__item {
           line-height: 1em;
-          margin-right: 25px;
+          margin-right: 30px;
         }
         .deliveryInfo__value {
           font-size: 13px;
@@ -539,7 +532,7 @@ const SideOffer = ({ offer }) => {
         }
         .deliveryInfo__item {
           line-height: 1em;
-          margin-right: 25px;
+          margin-right: 30px;
         }
         .deliveryInfo__value {
           font-size: 13px;
