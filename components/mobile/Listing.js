@@ -233,12 +233,12 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           font-weight: bold;
           margin-left: 15px;
           flex: 1;
+          padding-top: 7px;
         }
         .deliveryInfo__wrapper {
           display: flex;
           width: 100%;
-          padding: 0 10px 10px;
-          margin-top: -5px;
+          padding: 5px 10px 10px;
         }
         .deliveryInfo__item {
           line-height: 1em;
@@ -251,8 +251,9 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
         .deliveryInfo__desc {
           display: block;
           font-size: 10px;
-          color: #666;
           text-transform: capitalize;
+          color: #999;
+          font-weight: bold;
         }
         .actionBtns {
           display: grid;
