@@ -27,7 +27,7 @@
   {
     "locationName": "Al Barsha 3",
     "url": "/restaurants/dubai/al-barsha-3",
-    "baseline": ["al-barsha-3", "the-greens", "barsha-heights"]
+    "baseline": ["al-barsha-3", "barsha-heights"]
   },
   {
     "locationName": "Al Barsha Park 1",
@@ -191,7 +191,7 @@
   {
     "locationName": "American University of Dubai",
     "url": "/restaurants/dubai/american-university-of-dubai",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
+    "baseline": ["dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
   },
   {
     "locationName": "Arabian Ranches",
@@ -318,7 +318,7 @@
   {
     "locationName": "Emirates golf club",
     "url": "/restaurants/dubai/emirates-golf-club",
-    "baseline": ["the-greens", "the-lakes", "emirates-hills", "barsha-heights"]
+    "baseline": ["the-lakes", "emirates-hills", "barsha-heights"]
   },
   {
     "locationName": "Festival City",
@@ -372,23 +372,17 @@
   {
     "locationName": "Internet City",
     "url": "/restaurants/dubai/internet-city",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
   },
   {
     "locationName": "Internet City 2",
     "url": "/restaurants/dubai/internet-city-2",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
   },
   {
     "locationName": "J.B.R.",
     "url": "/restaurants/dubai/jbr",
-    "baseline": [
-      "jumeirah-beach-residence-jbr",
-      "dubai-marina",
-      "dubai-media-city",
-      "dubai-internet-city",
-      "bluewaters-island"
-    ]
+    "baseline": ["jumeirah-beach-residence-jbr", "dubai-marina", "dubai-media-city", "bluewaters-island"]
   },
   {
     "locationName": "J.L.T.",
@@ -520,7 +514,7 @@
   {
     "locationName": "Knowledge Village",
     "url": "/restaurants/dubai/knowledge-village",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-internet-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-marina", "al-sufouh"]
   },
   {
     "locationName": "Madinat Al Jumeirah",
@@ -530,17 +524,17 @@
   {
     "locationName": "Marina",
     "url": "/restaurants/dubai/marina",
-    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Marina Mall",
     "url": "/restaurants/dubai/marina-mall",
-    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Marina West",
     "url": "/restaurants/dubai/marina-west",
-    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Meadows 8",
@@ -550,7 +544,7 @@
   {
     "locationName": "Media City",
     "url": "/restaurants/dubai/media-city",
-    "baseline": ["dubai-media-city", "dubai-internet-city", "dubai-knowledge-village", "dubai-marina"]
+    "baseline": ["dubai-media-city", "dubai-knowledge-village", "dubai-marina"]
   },
   {
     "locationName": "Meydan",
@@ -653,8 +647,7 @@
       "jumeirah-village-circle",
       "jumeirah-village-triangle-jvt",
       "motor-city",
-      "dubai-studio-city",
-      "the-greens"
+      "dubai-studio-city"
     ]
   },
   {
@@ -665,22 +658,22 @@
   {
     "locationName": "Studio City",
     "url": "/restaurants/dubai/studio-city",
-    "baseline": ["dubai-studio-city", "dubai-sports-city", "motor-city", "the-greens"]
+    "baseline": ["dubai-studio-city", "dubai-sports-city", "motor-city"]
   },
   {
     "locationName": "TECOM",
     "url": "/restaurants/dubai/tecom",
-    "baseline": ["barsha-heights", "dubai-internet-city", "dubai-knowledge-village", "the-greens", "al-sufouh"]
+    "baseline": ["barsha-heights", "dubai-knowledge-village", "al-sufouh"]
   },
   {
     "locationName": "The Greens",
     "url": "/restaurants/dubai/the-greens",
-    "baseline": ["the-greens", "barsha-heights", "dubai-internet-city", "emirates-hills"]
+    "baseline": ["the-greens", "barsha-heights", "emirates-hills"]
   },
   {
     "locationName": "The Lakes",
     "url": "/restaurants/dubai/the-lakes",
-    "baseline": ["the-lakes", "emirates-hills", "the-greens"]
+    "baseline": ["the-lakes", "emirates-hills"]
   },
   {
     "locationName": "The Meadows",
@@ -694,7 +687,6 @@
       "palm-jumeirah",
       "dubai-knowledge-village",
       "al-sufouh",
-      "dubai-internet-city",
       "dubai-media-city",
       "dubai-marina",
       "jumeirah-beach-residence-jbr",

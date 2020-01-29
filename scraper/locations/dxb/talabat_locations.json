@@ -2,12 +2,12 @@
   {
     "locationName": "Dubai Internet City - DIC",
     "url": "/uae/restaurants/1266/dubai-internet-city-dic",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
   },
   {
     "locationName": "Dubai Marina",
     "url": "/uae/restaurants/1272/dubai-marina",
-    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Jumeirah Lakes Towers - JLT",
@@ -34,12 +34,12 @@
   {
     "locationName": "Dubai Media City",
     "url": "/uae/restaurants/1274/dubai-media-city",
-    "baseline": ["dubai-media-city", "dubai-internet-city", "dubai-knowledge-village", "dubai-marina"]
+    "baseline": ["dubai-media-city", "dubai-knowledge-village", "dubai-marina"]
   },
   {
     "locationName": "Knowledge Village",
     "url": "/uae/restaurants/1270/knowledge-village",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-internet-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-marina", "al-sufouh"]
   },
   {
     "locationName": "Al Barsha 1",
@@ -54,6 +54,11 @@
   {
     "locationName": "Al Barsha 3",
     "url": "/uae/restaurants/1176/al-barsha-3",
-    "baseline": ["al-barsha-3", "the-greens", "barsha-heights"]
+    "baseline": ["al-barsha-3", "barsha-heights"]
+  },
+  {
+    "locationName": "The Greens",
+    "url": "/uae/restaurants/1286/the-greens",
+    "baseline": ["the-greens", "barsha-heights", "dubai-internet-city", "emirates-hills"]
   }
 ]

@@ -37,7 +37,7 @@
   {
     "id": "832",
     "locationName": "Al Barsha 3",
-    "baseline": ["al-barsha-3", "the-greens", "barsha-heights"]
+    "baseline": ["al-barsha-3", "barsha-heights"]
   },
   {
     "id": "830",
@@ -59,7 +59,7 @@
   {
     "id": "1337",
     "locationName": "Al Hamriya",
-    "baseline": ["al-hamriya", "al-karama", "al-raffa", "umm-hurair", "al-souq-al-kabeer"]
+    "baseline": ["al-hamriya", "al-raffa", "umm-hurair", "al-souq-al-kabeer"]
   },
   {
     "id": "921",
@@ -117,15 +117,7 @@
   {
     "id": "925",
     "locationName": "Al Mankhool",
-    "baseline": [
-      "mankhool",
-      "al-raffa",
-      "al-souq-al-kabeer",
-      "umm-hurair",
-      "al-karama",
-      "al-jaffiliya",
-      "al-hudaiba-and-around"
-    ]
+    "baseline": ["mankhool", "al-raffa", "al-souq-al-kabeer", "umm-hurair", "al-jaffiliya", "al-hudaiba-and-around"]
   },
   {
     "id": "922",
@@ -391,7 +383,7 @@
   {
     "id": "836",
     "locationName": "Barsha Heights - TECOM",
-    "baseline": ["barsha-heights", "dubai-internet-city", "dubai-knowledge-village", "the-greens", "al-sufouh"]
+    "baseline": ["barsha-heights", "dubai-knowledge-village", "al-sufouh"]
   },
   {
     "id": "883",
@@ -459,7 +451,7 @@
   {
     "id": "899",
     "locationName": "Dubai Internet City",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
   },
   {
     "id": "712",
@@ -479,12 +471,12 @@
   {
     "id": "897",
     "locationName": "Dubai Marina",
-    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "id": "900",
     "locationName": "Dubai Media City",
-    "baseline": ["dubai-media-city", "dubai-internet-city", "dubai-knowledge-village", "dubai-marina"]
+    "baseline": ["dubai-media-city", "dubai-knowledge-village", "dubai-marina"]
   },
   {
     "id": "718",
@@ -505,14 +497,13 @@
       "jumeirah-village-circle",
       "jumeirah-village-triangle-jvt",
       "motor-city",
-      "dubai-studio-city",
-      "the-greens"
+      "dubai-studio-city"
     ]
   },
   {
     "id": "722",
     "locationName": "Dubai Studio City",
-    "baseline": ["dubai-studio-city", "dubai-sports-city", "motor-city", "the-greens"]
+    "baseline": ["dubai-studio-city", "dubai-sports-city", "motor-city"]
   },
   {
     "id": "1330",
@@ -600,13 +591,7 @@
   {
     "id": "896",
     "locationName": "Jumeirah Beach Residence",
-    "baseline": [
-      "jumeirah-beach-residence-jbr",
-      "dubai-marina",
-      "dubai-media-city",
-      "dubai-internet-city",
-      "bluewaters-island"
-    ]
+    "baseline": ["jumeirah-beach-residence-jbr", "dubai-marina", "dubai-media-city", "bluewaters-island"]
   },
   {
     "id": "1091",
@@ -683,7 +668,7 @@
   {
     "id": "901",
     "locationName": "Knowledge Village",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-internet-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-marina", "al-sufouh"]
   },
   {
     "id": "727",
@@ -823,7 +808,7 @@
   {
     "id": "926",
     "locationName": "Oud Metha",
-    "baseline": ["oud-metha", "al-karama", "umm-hurair", "zabeel", "dubai-healthcare-city"]
+    "baseline": ["oud-metha", "umm-hurair", "zabeel", "dubai-healthcare-city"]
   },
   {
     "id": "942",
@@ -908,12 +893,12 @@
   {
     "id": "845",
     "locationName": "The Greens",
-    "baseline": ["the-greens", "barsha-heights", "dubai-internet-city", "emirates-hills"]
+    "baseline": ["the-greens", "barsha-heights", "emirates-hills"]
   },
   {
     "id": "837",
     "locationName": "The Lakes",
-    "baseline": ["the-lakes", "emirates-hills", "the-greens"]
+    "baseline": ["the-lakes", "emirates-hills"]
   },
   {
     "id": "1623",
@@ -922,7 +907,6 @@
       "palm-jumeirah",
       "dubai-knowledge-village",
       "al-sufouh",
-      "dubai-internet-city",
       "dubai-media-city",
       "dubai-marina",
       "jumeirah-beach-residence-jbr",
@@ -960,12 +944,12 @@
   {
     "id": "929",
     "locationName": "Umm Hurair 1",
-    "baseline": ["umm-hurair", "al-karama", "oud-metha"]
+    "baseline": ["umm-hurair", "oud-metha"]
   },
   {
     "id": "927",
     "locationName": "Umm Hurair 2",
-    "baseline": ["umm-hurair", "oud-metha", "al-karama", "al-jaddaf", "dubai-healthcare-city"]
+    "baseline": ["umm-hurair", "oud-metha", "al-jaddaf", "dubai-healthcare-city"]
   },
   {
     "id": "868",
