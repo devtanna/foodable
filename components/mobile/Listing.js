@@ -40,7 +40,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
   const hasOtherOffers = otherOffers.length > 0;
 
   const { minimumOrder, deliveryCharge, deliveryTime } = mainOffer;
-  const hasDeliveryInfo = minimumOrder !== '?' || deliveryCharge !== '?' || deliveryTime !== '?';
+  const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
 
   const handleShare = async () => {
     const shareLink = getShareLink(mainOffer.title);
@@ -100,7 +100,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
       </div>
       {hasDeliveryInfo && (
         <div className="deliveryInfo__wrapper">
-          {minimumOrder && minimumOrder !== '?' && (
+          {minimumOrder && (
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">min order</span>
               <span className="deliveryInfo__value">
@@ -108,7 +108,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
               </span>
             </div>
           )}
-          {deliveryCharge && deliveryCharge !== '?' && (
+          {deliveryCharge && (
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">delivery fee</span>
               <span className="deliveryInfo__value">
@@ -116,7 +116,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
               </span>
             </div>
           )}
-          {deliveryTime && deliveryTime !== '?' && (
+          {deliveryTime && (
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">time est.</span>
               <span className="deliveryInfo__value">

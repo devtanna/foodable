@@ -284,7 +284,7 @@ const MainOffer = ({ offer }) => {
 
   const { href, source, offer: _offer, minimumOrder, deliveryCharge, deliveryTime } = offer;
 
-  const hasDeliveryInfo = minimumOrder !== '?' || deliveryCharge !== '?' || deliveryTime !== '?';
+  const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
 
   return (
     <div className="mainOffer">
@@ -297,7 +297,7 @@ const MainOffer = ({ offer }) => {
           <h3 className="mainOffer__offer">{limitChars(_offer)}</h3>
           {hasDeliveryInfo && (
             <div className="deliveryInfo__wrapper">
-              {minimumOrder && minimumOrder !== '?' && (
+              {minimumOrder && (
                 <div className="deliveryInfo__item">
                   <span className="deliveryInfo__desc">min order</span>
                   <span className="deliveryInfo__value">
@@ -305,7 +305,7 @@ const MainOffer = ({ offer }) => {
                   </span>
                 </div>
               )}
-              {deliveryCharge && deliveryCharge !== '?' && (
+              {deliveryCharge && (
                 <div className="deliveryInfo__item">
                   <span className="deliveryInfo__desc">delivery fee</span>
                   <span className="deliveryInfo__value">
@@ -313,7 +313,7 @@ const MainOffer = ({ offer }) => {
                   </span>
                 </div>
               )}
-              {deliveryTime && deliveryTime !== '?' && (
+              {deliveryTime && (
                 <div className="deliveryInfo__item">
                   <span className="deliveryInfo__desc">Time Est.</span>
                   <span className="deliveryInfo__value">
@@ -444,7 +444,7 @@ const SideOffer = ({ offer }) => {
   }
 
   const { minimumOrder, deliveryCharge, deliveryTime, href, source, offer: _offer, title } = offer;
-  const hasDeliveryInfo = minimumOrder !== '?' || deliveryCharge !== '?' || deliveryTime !== '?';
+  const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
 
   return (
     <div className="sideOffer">
@@ -456,7 +456,7 @@ const SideOffer = ({ offer }) => {
           <h4 className="sideOffer__offer">{limitChars(_offer)}</h4>
           {hasDeliveryInfo && (
             <div className="deliveryInfo__wrapper">
-              {minimumOrder && minimumOrder !== '?' && (
+              {minimumOrder && (
                 <div className="deliveryInfo__item">
                   <span className="deliveryInfo__desc">min order</span>
                   <span className="deliveryInfo__value">
@@ -464,7 +464,7 @@ const SideOffer = ({ offer }) => {
                   </span>
                 </div>
               )}
-              {deliveryCharge && deliveryCharge !== '?' && (
+              {deliveryCharge && (
                 <div className="deliveryInfo__item">
                   <span className="deliveryInfo__desc">delivery fee</span>
                   <span className="deliveryInfo__value">
@@ -472,7 +472,7 @@ const SideOffer = ({ offer }) => {
                   </span>
                 </div>
               )}
-              {deliveryTime && deliveryTime !== '?' && (
+              {deliveryTime && (
                 <div className="deliveryInfo__item">
                   <span className="deliveryInfo__desc">Time Est.</span>
                   <span className="deliveryInfo__value">

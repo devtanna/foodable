@@ -2,54 +2,47 @@
   {
     "locationName": "Dubai Internet City - DIC",
     "url": "/uae/restaurants/1266/dubai-internet-city-dic",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city"]
+    "baseline": ["dubai-internet-city"]
   },
   {
     "locationName": "Dubai Marina",
     "url": "/uae/restaurants/1272/dubai-marina",
-    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina"]
   },
   {
     "locationName": "Jumeirah Lakes Towers - JLT",
     "url": "/uae/restaurants/1308/jumeirah-lakes-towers-jlt",
-    "baseline": [
-      "jumeirah-lake-towers-jlt",
-      "jumeirah-heights",
-      "jumeirah-beach-residence-jbr",
-      "dubai-marina",
-      "meadows",
-      "emirates-hills"
-    ]
+    "baseline": ["jumeirah-lake-towers-jlt"]
   },
   {
     "locationName": "Al Karama",
     "url": "/uae/restaurants/1187/al-karama",
-    "baseline": ["al-karama", "oud-metha", "mankhool"]
+    "baseline": ["al-karama"]
   },
   {
     "locationName": "Al Mamzar",
     "url": "/uae/restaurants/1191/al-mamzar",
-    "baseline": ["al-mamzar", "al-nahda", "hor-al-anz", "corniche-deira", "the-palm-deira"]
+    "baseline": ["al-mamzar"]
   },
   {
     "locationName": "Dubai Media City",
     "url": "/uae/restaurants/1274/dubai-media-city",
-    "baseline": ["dubai-media-city", "dubai-knowledge-village", "dubai-marina"]
+    "baseline": ["dubai-media-city"]
   },
   {
     "locationName": "Knowledge Village",
     "url": "/uae/restaurants/1270/knowledge-village",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village"]
   },
   {
     "locationName": "Al Barsha 1",
     "url": "/uae/restaurants/1174/al-barsha-1",
-    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif"]
+    "baseline": ["al-barsha-1"]
   },
   {
     "locationName": "Al Barsha 2",
     "url": "/uae/restaurants/1175/al-barsha-2",
-    "baseline": ["al-barsha-2", "al-barsha-south"]
+    "baseline": ["al-barsha-2"]
   },
   {
     "locationName": "Al Barsha 3",
@@ -59,7 +52,7 @@
   {
     "locationName": "The Greens",
     "url": "/uae/restaurants/1286/the-greens",
-    "baseline": ["the-greens", "dubai-internet-city", "emirates-hills"]
+    "baseline": ["the-greens"]
   },
   {
     "locationName": "Barsha Heights - TECOM",
@@ -105,5 +98,32 @@
     "locationName": "Al Quoz Industrial Area 4",
     "url": "/uae/restaurants/1214/al-quoz-industrial-area-4",
     "baseline": ["al-quoz-industrial-area-4"]
+  },
+  {
+    "locationName": "Al Muteena",
+    "url": "/uae/restaurants/1203/al-muteena",
+    "baseline": [
+      "al-muteena",
+      "naif",
+      "al-baraha",
+      "abu-hail",
+      "hor-al-anz",
+      "al-khabaisi",
+      "al-muraqqabat",
+      "al-rigga"
+    ]
+  },
+  {
+    "locationName": "Al Mankhool",
+    "url": "/uae/restaurants/1193/al-mankhool",
+    "baseline": [
+      "mankhool",
+      "al-raffa",
+      "al-souq-al-kabeer",
+      "umm-hurair",
+      "al-karama",
+      "al-jaffiliya",
+      "al-hudaiba-and-around"
+    ]
   }
 ]

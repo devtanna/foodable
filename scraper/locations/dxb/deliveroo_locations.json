@@ -191,7 +191,7 @@
   {
     "locationName": "American University of Dubai",
     "url": "/restaurants/dubai/american-university-of-dubai",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city"]
+    "baseline": ["dubai-knowledge-village"]
   },
   {
     "locationName": "Arabian Ranches",
@@ -233,7 +233,7 @@
   {
     "locationName": "Century Mall",
     "url": "/restaurants/dubai/century-mall",
-    "baseline": ["hor-al-anz", "abu-hail", "al-muteena", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
   },
   {
     "locationName": "City Walk",
@@ -352,7 +352,7 @@
   {
     "locationName": "Hor Al Anz East",
     "url": "/restaurants/dubai/hor-al-anz-east",
-    "baseline": ["hor-al-anz", "abu-hail", "al-muteena", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
   },
   {
     "locationName": "IMPZ",
@@ -372,17 +372,17 @@
   {
     "locationName": "Internet City",
     "url": "/restaurants/dubai/internet-city",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Internet City 2",
     "url": "/restaurants/dubai/internet-city-2",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "J.B.R.",
     "url": "/restaurants/dubai/jbr",
-    "baseline": ["jumeirah-beach-residence-jbr", "dubai-marina", "dubai-media-city", "bluewaters-island"]
+    "baseline": ["jumeirah-beach-residence-jbr", "bluewaters-island"]
   },
   {
     "locationName": "J.L.T.",
@@ -391,7 +391,6 @@
       "jumeirah-lake-towers-jlt",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
-      "dubai-marina",
       "meadows",
       "emirates-hills"
     ]
@@ -403,7 +402,6 @@
       "jumeirah-lake-towers-jlt",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
-      "dubai-marina",
       "meadows",
       "emirates-hills"
     ]
@@ -415,7 +413,6 @@
       "jumeirah-lake-towers-jlt",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
-      "dubai-marina",
       "meadows",
       "emirates-hills"
     ]
@@ -423,7 +420,7 @@
   {
     "locationName": "Jafilia",
     "url": "/restaurants/dubai/jafilia",
-    "baseline": ["al-jaffiliya", "al-hudaiba-and-around", "trade-centre-area", "mankhool"]
+    "baseline": ["al-jaffiliya", "al-hudaiba-and-around", "trade-centre-area"]
   },
   {
     "locationName": "Jebel Ali",
@@ -514,7 +511,7 @@
   {
     "locationName": "Knowledge Village",
     "url": "/restaurants/dubai/knowledge-village",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village", "al-sufouh"]
   },
   {
     "locationName": "Madinat Al Jumeirah",
@@ -524,17 +521,17 @@
   {
     "locationName": "Marina",
     "url": "/restaurants/dubai/marina",
-    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-knowledge-village"]
   },
   {
     "locationName": "Marina Mall",
     "url": "/restaurants/dubai/marina-mall",
-    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-knowledge-village"]
   },
   {
     "locationName": "Marina West",
     "url": "/restaurants/dubai/marina-west",
-    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-knowledge-village"]
   },
   {
     "locationName": "Meadows 8",
@@ -544,7 +541,7 @@
   {
     "locationName": "Media City",
     "url": "/restaurants/dubai/media-city",
-    "baseline": ["dubai-media-city", "dubai-knowledge-village", "dubai-marina"]
+    "baseline": ["dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Meydan",
@@ -686,8 +683,6 @@
       "palm-jumeirah",
       "dubai-knowledge-village",
       "al-sufouh",
-      "dubai-media-city",
-      "dubai-marina",
       "jumeirah-beach-residence-jbr",
       "palm-residences"
     ]

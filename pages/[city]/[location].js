@@ -126,7 +126,7 @@ Location.getInitialProps = async ({ req, res, query }) => {
     let searchFilters = { keywords: '', cuisine: [] };
     searchFilters = Object.assign(searchFilters, _pick(qs.parse(query), ['keywords', 'cuisine']));
 
-    const page = query.page ? query.page : 1;
+    const page = query.page ? Number(query.page) : 1;
 
     // Get offers by location, page and search filters
     const { offers } = await getOffers(location, page, searchFilters, citySlug);

@@ -107,7 +107,7 @@ const scrapePage = async (location, page, pageNum = 1) => {
             .split('·')[1]
             .trim()
         ),
-        deliveryCharge: '?',
+        deliveryCharge: null,
         minimumOrder: utils.getNumFromString(
           $('.description div', this)
             .eq(3)

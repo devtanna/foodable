@@ -367,7 +367,7 @@
   {
     "url": "https://www.zomato.com/dubai/dubai-knowledge-village-order-online?delivery_subzone=3881&offers=1",
     "locationName": "Dubai Knowledge Park",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village", "al-sufouh"]
   },
   {
     "url": "https://www.zomato.com/dubai/dubai-media-city-order-online?delivery_subzone=3879&offers=1",
@@ -457,7 +457,7 @@
   {
     "url": "https://www.zomato.com/dubai/al-hudaiba-and-around-restaurants?order-online=1&delivery_subzone=4722&offers=1",
     "locationName": "Al Hudaiba and Around",
-    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa", "mankhool"]
+    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa"]
   },
   {
     "url": "https://www.zomato.com/dubai/satwa-order-online?delivery_subzone=4719&offers=1",

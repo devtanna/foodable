@@ -2,7 +2,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-abu-hail-67/offer-offer-1",
     "locationName": "Abu Hail",
-    "baseline": ["abu-hail", "al-baraha", "al-muteena", "corniche-deira"]
+    "baseline": ["abu-hail", "al-baraha", "corniche-deira"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-awir-96/offer-offer-1",
@@ -75,7 +75,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-hudaiba-1207/offer-offer-1",
     "locationName": "Al Hudaiba",
-    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa", "mankhool"]
+    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-jadaf-99/offer-offer-1",
@@ -93,17 +93,17 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-jafiliya-82/offer-offer-1",
     "locationName": "Al Jafiliya",
-    "baseline": ["al-jaffiliya", "al-hudaiba-and-around", "trade-centre-area", "mankhool"]
+    "baseline": ["al-jaffiliya", "al-hudaiba-and-around", "trade-centre-area"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-karama-6/offer-offer-1",
     "locationName": "Al Karama",
-    "baseline": ["al-karama", "oud-metha", "mankhool"]
+    "baseline": ["al-karama", "oud-metha"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-khabaisi-112/offer-offer-1",
     "locationName": "Al Khabaisi",
-    "baseline": ["al-khabaisi", "al-muraqqabat", "al-muteena", "hor-al-anz", "dubai-international-airport-area"]
+    "baseline": ["al-khabaisi", "al-muraqqabat", "hor-al-anz", "dubai-international-airport-area"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-khawaneej-86/offer-offer-1",
@@ -153,12 +153,12 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-muraqabat-100/offer-offer-1",
     "locationName": "Al Muraqabat",
-    "baseline": ["al-muraqqabat", "al-rigga", "naif", "al-muteena", "al-khabaisi", "baniyas"]
+    "baseline": ["al-muraqqabat", "al-rigga", "naif", "al-khabaisi", "baniyas"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-murar-116/offer-offer-1",
     "locationName": "Al Murar",
-    "baseline": ["al-mamzar", "naif", "al-muteena", "al-baraha"]
+    "baseline": ["al-mamzar", "naif", "al-baraha"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-muteena-117/offer-offer-1",
@@ -227,7 +227,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-raffa-101/offer-offer-1",
     "locationName": "Al Raffa",
-    "baseline": ["al-raffa", "al-souq-al-kabeer", "mankhool", "al-hudaiba-and-around"]
+    "baseline": ["al-raffa", "al-souq-al-kabeer", "al-hudaiba-and-around"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-ras-102/offer-offer-1",
@@ -251,7 +251,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-rigga-103/offer-offer-1",
     "locationName": "Al Rigga",
-    "baseline": ["al-rigga", "naif", "al-muteena", "al-muraqqabat", "al-ras", "baniyas"]
+    "baseline": ["al-rigga", "naif", "al-muraqqabat", "al-ras", "baniyas"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-safa-74/offer-offer-1",
@@ -362,14 +362,13 @@
       "al-muraqqabat",
       "hor-al-anz",
       "al-khabaisi",
-      "al-muteena",
       "al-ras"
     ]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-deira-al-baraha-97/offer-offer-1",
     "locationName": "Deira Al Baraha",
-    "baseline": ["al-baraha", "abu-hail", "al-muteena", "hor-al-anz", "naif", "corniche-deira"]
+    "baseline": ["al-baraha", "abu-hail", "hor-al-anz", "naif", "corniche-deira"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-difc-15/offer-offer-1",
@@ -442,7 +441,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-internet-city-dic-22/offer-offer-1",
     "locationName": "Dubai Internet City (DIC)",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-investment-park-dip-23/offer-offer-1",
@@ -452,7 +451,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-knowledge-village-24/offer-offer-1",
     "locationName": "Dubai Knowledge Village",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village", "al-sufouh"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-lifestyle-city-1381/offer-offer-1",
@@ -462,12 +461,12 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-marina-25/offer-offer-1",
     "locationName": "Dubai Marina",
-    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-knowledge-village"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-media-city-dmc-26/offer-offer-1",
     "locationName": "Dubai Media City (DMC)",
-    "baseline": ["dubai-media-city", "dubai-knowledge-village", "dubai-marina"]
+    "baseline": ["dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-motor-city-27/offer-offer-1",
@@ -514,7 +513,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-hor-al-anz-107/offer-offer-1",
     "locationName": "Hor Al Anz",
-    "baseline": ["hor-al-anz", "abu-hail", "al-muteena", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-international-city-32/offer-offer-1",
@@ -590,7 +589,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-jumeirah-beach-residence-jbr-34/offer-offer-1",
     "locationName": "Jumeirah Beach Residence (JBR)",
-    "baseline": ["jumeirah-beach-residence-jbr", "dubai-marina", "dubai-media-city", "bluewaters-island"]
+    "baseline": ["jumeirah-beach-residence-jbr", "bluewaters-island"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-jumeirah-golf-estates-52/offer-offer-1",
@@ -622,7 +621,6 @@
       "jumeirah-lake-towers-jlt",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
-      "dubai-marina",
       "meadows",
       "emirates-hills"
     ]
@@ -780,7 +778,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-naif-76/offer-offer-1",
     "locationName": "Naif",
-    "baseline": ["naif", "al-ras", "al-baraha", "al-muteena", "al-muraqqabat", "al-rigga"]
+    "baseline": ["naif", "al-ras", "al-baraha", "al-muraqqabat", "al-rigga"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-oud-al-mateena-91/offer-offer-1",
@@ -804,8 +802,6 @@
       "palm-jumeirah",
       "dubai-knowledge-village",
       "al-sufouh",
-      "dubai-media-city",
-      "dubai-marina",
       "jumeirah-beach-residence-jbr",
       "palm-residences"
     ]

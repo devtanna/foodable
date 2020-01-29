@@ -2,7 +2,7 @@
   {
     "id": "937",
     "locationName": "Abu Hail",
-    "baseline": ["abu-hail", "al-baraha", "al-muteena", "corniche-deira"]
+    "baseline": ["abu-hail", "al-baraha", "corniche-deira"]
   },
   {
     "id": "764",
@@ -17,7 +17,7 @@
   {
     "id": "933",
     "locationName": "Al Baraha",
-    "baseline": ["al-baraha", "abu-hail", "al-muteena", "hor-al-anz", "naif", "corniche-deira"]
+    "baseline": ["al-baraha", "abu-hail", "hor-al-anz", "naif", "corniche-deira"]
   },
   {
     "id": "834",
@@ -64,7 +64,7 @@
   {
     "id": "921",
     "locationName": "Al Hudaiba",
-    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa", "mankhool"]
+    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa"]
   },
   {
     "id": "865",
@@ -82,17 +82,17 @@
   {
     "id": "920",
     "locationName": "Al Jaffiliya",
-    "baseline": ["al-jaffiliya", "al-hudaiba-and-around", "trade-centre-area", "mankhool"]
+    "baseline": ["al-jaffiliya", "al-hudaiba-and-around", "trade-centre-area"]
   },
   {
     "id": "924",
     "locationName": "Al Karama",
-    "baseline": ["al-karama", "oud-metha", "mankhool"]
+    "baseline": ["al-karama", "oud-metha"]
   },
   {
     "id": "931",
     "locationName": "Al Khabaisi",
-    "baseline": ["al-khabaisi", "al-muraqqabat", "al-muteena", "hor-al-anz", "dubai-international-airport-area"]
+    "baseline": ["al-khabaisi", "al-muraqqabat", "hor-al-anz", "dubai-international-airport-area"]
   },
   {
     "id": "793",
@@ -142,12 +142,12 @@
   {
     "id": "932",
     "locationName": "Al Muraqqabat",
-    "baseline": ["al-muraqqabat", "al-rigga", "naif", "al-muteena", "al-khabaisi", "baniyas"]
+    "baseline": ["al-muraqqabat", "al-rigga", "naif", "al-khabaisi", "baniyas"]
   },
   {
     "id": "1146",
     "locationName": "Al Murar",
-    "baseline": ["al-mamzar", "naif", "al-muteena", "al-baraha"]
+    "baseline": ["al-mamzar", "naif", "al-baraha"]
   },
   {
     "id": "879",
@@ -232,7 +232,7 @@
   {
     "id": "923",
     "locationName": "Al Raffa",
-    "baseline": ["al-raffa", "al-souq-al-kabeer", "mankhool", "al-hudaiba-and-around"]
+    "baseline": ["al-raffa", "al-souq-al-kabeer", "al-hudaiba-and-around"]
   },
   {
     "id": "1145",
@@ -256,7 +256,7 @@
   {
     "id": "930",
     "locationName": "Al Rigga",
-    "baseline": ["al-rigga", "naif", "al-muteena", "al-muraqqabat", "al-ras", "baniyas"]
+    "baseline": ["al-rigga", "naif", "al-muraqqabat", "al-ras", "baniyas"]
   },
   {
     "id": "914",
@@ -411,7 +411,6 @@
       "al-muraqqabat",
       "hor-al-anz",
       "al-khabaisi",
-      "al-muteena",
       "al-ras"
     ]
   },
@@ -451,7 +450,7 @@
   {
     "id": "899",
     "locationName": "Dubai Internet City",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village"]
   },
   {
     "id": "712",
@@ -471,12 +470,12 @@
   {
     "id": "897",
     "locationName": "Dubai Marina",
-    "baseline": ["dubai-marina", "dubai-media-city", "dubai-knowledge-village"]
+    "baseline": ["dubai-marina", "dubai-knowledge-village"]
   },
   {
     "id": "900",
     "locationName": "Dubai Media City",
-    "baseline": ["dubai-media-city", "dubai-knowledge-village", "dubai-marina"]
+    "baseline": ["dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "id": "718",
@@ -544,12 +543,12 @@
   {
     "id": "934",
     "locationName": "Hor Al Anz",
-    "baseline": ["hor-al-anz", "abu-hail", "al-muteena", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
   },
   {
     "id": "939",
     "locationName": "Hor Al Anz East",
-    "baseline": ["hor-al-anz", "abu-hail", "al-muteena", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
   },
   {
     "id": "772",
@@ -591,7 +590,7 @@
   {
     "id": "896",
     "locationName": "Jumeirah Beach Residence",
-    "baseline": ["jumeirah-beach-residence-jbr", "dubai-marina", "dubai-media-city", "bluewaters-island"]
+    "baseline": ["jumeirah-beach-residence-jbr", "bluewaters-island"]
   },
   {
     "id": "1091",
@@ -623,7 +622,6 @@
       "jumeirah-lake-towers-jlt",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
-      "dubai-marina",
       "meadows",
       "emirates-hills"
     ]
@@ -668,7 +666,7 @@
   {
     "id": "901",
     "locationName": "Knowledge Village",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "dubai-marina", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village", "al-sufouh"]
   },
   {
     "id": "727",
@@ -798,7 +796,7 @@
   {
     "id": "1142",
     "locationName": "Naif",
-    "baseline": ["naif", "al-ras", "al-baraha", "al-muteena", "al-muraqqabat", "al-rigga"]
+    "baseline": ["naif", "al-ras", "al-baraha", "al-muraqqabat", "al-rigga"]
   },
   {
     "id": "798",
@@ -907,8 +905,6 @@
       "palm-jumeirah",
       "dubai-knowledge-village",
       "al-sufouh",
-      "dubai-media-city",
-      "dubai-marina",
       "jumeirah-beach-residence-jbr",
       "palm-residences"
     ]
