@@ -124,12 +124,36 @@
     "slug": "al-barsha-south"
   },
   {
-    "locationName": "Al Quoz",
-    "slug": "al-quoz"
+    "locationName": "Al Quoz 1",
+    "slug": "al-quoz-1"
   },
   {
-    "locationName": "Al Quoz Industrial Area",
-    "slug": "al-quoz-industrial-area"
+    "locationName": "Al Quoz 2",
+    "slug": "al-quoz-2"
+  },
+  {
+    "locationName": "Al Quoz 3",
+    "slug": "al-quoz-3"
+  },
+  {
+    "locationName": "Al Quoz 4",
+    "slug": "al-quoz-4"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 1",
+    "slug": "al-quoz-industrial-area-1"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 2",
+    "slug": "al-quoz-industrial-area-2"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 3",
+    "slug": "al-quoz-industrial-area-3"
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 4",
+    "slug": "al-quoz-industrial-area-4"
   },
   {
     "locationName": "Dubai Hills",

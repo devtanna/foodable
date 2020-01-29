@@ -22,17 +22,17 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-3/offer-offer-1",
     "locationName": "Al Barsha",
-    "baseline": ["al-barsha-3", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area", "al-barsha-south"]
+    "baseline": ["al-barsha-3", "al-sufouh", "umm-al-sheif", "al-barsha-south"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-1-1404/offer-offer-1",
     "locationName": "Al Barsha 1",
-    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area"]
+    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-2-1402/offer-offer-1",
     "locationName": "Al Barsha 2",
-    "baseline": ["al-barsha-2", "al-quoz-industrial-area", "al-barsha-south"]
+    "baseline": ["al-barsha-2", "al-barsha-south"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-3-1403/offer-offer-1",
@@ -118,7 +118,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-manara-73/offer-offer-1",
     "locationName": "Al Manara",
-    "baseline": ["al-manara", "umm-suqeim", "umm-al-sheif", "al-safa", "al-quoz", "al-quoz-industrial-area"]
+    "baseline": ["al-manara", "umm-suqeim", "umm-al-sheif", "al-safa"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-mankhool-83/offer-offer-1",
@@ -128,7 +128,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-meydan-136/offer-offer-1",
     "locationName": "Al Meydan",
-    "baseline": ["meydan", "nad-al-sheba", "al-quoz"]
+    "baseline": ["meydan", "nad-al-sheba"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-mezhar-87/offer-offer-1",
@@ -197,27 +197,27 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-quoz-8/offer-offer-1",
     "locationName": "Al Quoz",
-    "baseline": ["al-quoz", "al-quoz-industrial-area"]
+    "baseline": ["al-quoz-1"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-quoz-1-1317/offer-offer-1",
     "locationName": "Al Quoz 1",
-    "baseline": ["al-quoz"]
+    "baseline": ["al-quoz-1", "al-quoz-industrial-area-1"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-quoz-2-1318/offer-offer-1",
     "locationName": "Al Quoz 2",
-    "baseline": ["al-quoz", "meydan"]
+    "baseline": ["al-quoz-2", "meydan", "al-quoz-industrial-area-2"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-quoz-3-1319/offer-offer-1",
     "locationName": "Al Quoz 3",
-    "baseline": ["al-quoz"]
+    "baseline": ["al-quoz-3", "al-quoz-industrial-area-3"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-quoz-4-1401/offer-offer-1",
     "locationName": "Al Quoz 4",
-    "baseline": ["al-quoz", "al-quoz-industrial-area"]
+    "baseline": ["al-quoz-4", "al-quoz-industrial-area-4"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-qusais-9/offer-offer-1",
@@ -256,7 +256,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-safa-74/offer-offer-1",
     "locationName": "Al Safa",
-    "baseline": ["al-safa", "al-quoz"]
+    "baseline": ["al-safa"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-safouh-111/offer-offer-1",
@@ -339,7 +339,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-business-bay-72/offer-offer-1",
     "locationName": "Business Bay",
-    "baseline": ["business-bay", "downtown-dubai", "al-wasl", "al-quoz"]
+    "baseline": ["business-bay", "downtown-dubai", "al-wasl"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-corniche-deira-106/offer-offer-1",
@@ -770,7 +770,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-nad-al-shiba-40/offer-offer-1",
     "locationName": "Nad Al Shiba",
-    "baseline": ["nad-al-sheba", "al-quoz", "business-bay", "dubai-design-district", "ras-al-khor", "meydan"]
+    "baseline": ["nad-al-sheba", "business-bay", "dubai-design-district", "ras-al-khor", "meydan"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-nad-shamma-95/offer-offer-1",
@@ -910,7 +910,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-umm-al-sheif-77/offer-offer-1",
     "locationName": "Umm Al Sheif",
-    "baseline": ["umm-al-sheif", "al-quoz-industrial-area", "al-manara", "umm-suqeim"]
+    "baseline": ["umm-al-sheif", "al-manara", "umm-suqeim"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-umm-harair-85/offer-offer-1",

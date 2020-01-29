@@ -44,12 +44,12 @@
   {
     "locationName": "Al Barsha 1",
     "url": "/uae/restaurants/1174/al-barsha-1",
-    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area"]
+    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif"]
   },
   {
     "locationName": "Al Barsha 2",
     "url": "/uae/restaurants/1175/al-barsha-2",
-    "baseline": ["al-barsha-2", "al-quoz-industrial-area", "al-barsha-south"]
+    "baseline": ["al-barsha-2", "al-barsha-south"]
   },
   {
     "locationName": "Al Barsha 3",
@@ -65,5 +65,45 @@
     "locationName": "Barsha Heights - TECOM",
     "url": "/uae/restaurants/1350/barsha-heights-tecom",
     "baseline": ["barsha-heights"]
+  },
+  {
+    "locationName": "Al Quoz 1",
+    "url": "/uae/restaurants/1207/al-quoz-1",
+    "baseline": ["al-quoz-1"]
+  },
+  {
+    "locationName": "Al Quoz 2",
+    "url": "/uae/restaurants/1208/al-quoz-2",
+    "baseline": ["al-quoz-2"]
+  },
+  {
+    "locationName": "Al Quoz 3",
+    "url": "/uae/restaurants/1209/al-quoz-3",
+    "baseline": ["al-quoz-3"]
+  },
+  {
+    "locationName": "Al Quoz 4",
+    "url": "/uae/restaurants/1210/al-quoz-4",
+    "baseline": ["al-quoz-4"]
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 1",
+    "url": "/uae/restaurants/1211/al-quoz-industrial-area-1",
+    "baseline": ["al-quoz-industrial-area-1"]
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 2",
+    "url": "/uae/restaurants/1212/al-quoz-industrial-area-2",
+    "baseline": ["al-quoz-industrial-area-2"]
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 3",
+    "url": "/uae/restaurants/1213/al-quoz-industrial-area-3",
+    "baseline": ["al-quoz-industrial-area-3"]
+  },
+  {
+    "locationName": "Al Quoz Industrial Area 4",
+    "url": "/uae/restaurants/1214/al-quoz-industrial-area-4",
+    "baseline": ["al-quoz-industrial-area-4"]
   }
 ]

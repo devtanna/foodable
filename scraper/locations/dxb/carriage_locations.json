@@ -27,12 +27,12 @@
   {
     "id": "846",
     "locationName": "Al Barsha 1",
-    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area"]
+    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif"]
   },
   {
     "id": "833",
     "locationName": "Al Barsha 2",
-    "baseline": ["al-barsha-2", "al-quoz-industrial-area", "al-barsha-south"]
+    "baseline": ["al-barsha-2", "al-barsha-south"]
   },
   {
     "id": "832",
@@ -112,7 +112,7 @@
   {
     "id": "908",
     "locationName": "Al Manara",
-    "baseline": ["al-manara", "umm-suqeim", "umm-al-sheif", "al-safa", "al-quoz", "al-quoz-industrial-area"]
+    "baseline": ["al-manara", "umm-suqeim", "umm-al-sheif", "al-safa"]
   },
   {
     "id": "925",
@@ -162,42 +162,42 @@
   {
     "id": "849",
     "locationName": "Al Quoz",
-    "baseline": ["al-quoz", "al-quoz-industrial-area"]
+    "baseline": ["al-quoz-1"]
   },
   {
     "id": "853",
     "locationName": "Al Quoz 1",
-    "baseline": ["al-quoz"]
+    "baseline": ["al-quoz-1", "al-quoz-industrial-area-1"]
   },
   {
     "id": "851",
     "locationName": "Al Quoz 2",
-    "baseline": ["al-quoz", "meydan"]
+    "baseline": ["al-quoz-2", "meydan"]
   },
   {
     "id": "852",
     "locationName": "Al Quoz 3",
-    "baseline": ["al-quoz"]
+    "baseline": ["al-quoz-3"]
   },
   {
     "id": "850",
     "locationName": "Al Quoz 4",
-    "baseline": ["al-quoz", "al-quoz-industrial-area"]
+    "baseline": ["al-quoz-4"]
   },
   {
     "id": "1143",
     "locationName": "Al Quoz Industrial Area 2",
-    "baseline": ["al-quoz-industrial-area"]
+    "baseline": ["al-quoz-industrial-area-2"]
   },
   {
     "id": "848",
     "locationName": "Al Quoz Industrial Area 3",
-    "baseline": ["al-quoz-industrial-area", "umm-al-sheif"]
+    "baseline": ["al-quoz-industrial-area-3"]
   },
   {
     "id": "847",
     "locationName": "Al Quoz Industrial Area 4",
-    "baseline": ["al-quoz-industrial-area", "umm-al-sheif"]
+    "baseline": ["al-quoz-industrial-area-4"]
   },
   {
     "id": "1680",
@@ -261,17 +261,17 @@
   {
     "id": "914",
     "locationName": "Al Safa",
-    "baseline": ["al-safa", "al-quoz"]
+    "baseline": ["al-safa"]
   },
   {
     "id": "1516",
     "locationName": "Al Safa 1",
-    "baseline": ["al-safa", "al-quoz"]
+    "baseline": ["al-safa"]
   },
   {
     "id": "912",
     "locationName": "Al Safa 2",
-    "baseline": ["al-safa", "al-quoz"]
+    "baseline": ["al-safa"]
   },
   {
     "id": "918",
@@ -388,7 +388,7 @@
   {
     "id": "883",
     "locationName": "Business Bay",
-    "baseline": ["business-bay", "downtown-dubai", "al-wasl", "al-quoz"]
+    "baseline": ["business-bay", "downtown-dubai", "al-wasl"]
   },
   {
     "id": "753",
@@ -768,7 +768,7 @@
   {
     "id": "854",
     "locationName": "Nad Al Sheba 1",
-    "baseline": ["nad-al-sheba", "al-quoz", "business-bay", "dubai-design-district", "ras-al-khor", "meydan"]
+    "baseline": ["nad-al-sheba", "business-bay", "dubai-design-district", "ras-al-khor", "meydan"]
   },
   {
     "id": "856",
@@ -939,7 +939,7 @@
   {
     "id": "907",
     "locationName": "Umm Al Sheif",
-    "baseline": ["umm-al-sheif", "al-quoz-industrial-area", "al-manara", "umm-suqeim"]
+    "baseline": ["umm-al-sheif", "al-manara", "umm-suqeim"]
   },
   {
     "id": "929",

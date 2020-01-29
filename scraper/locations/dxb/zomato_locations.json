@@ -155,9 +155,44 @@
     "baseline": ["al-barsha-south"]
   },
   {
+    "url": "https://www.zomato.com/dubai/al-quoz-order-online?delivery_subzone=3782&offers=1",
+    "locationName": "Al Quoz 1",
+    "baseline": ["al-quoz-1"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-quoz-order-online?delivery_subzone=3783&offers=1",
+    "locationName": "Al Quoz 2",
+    "baseline": ["al-quoz-2"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-quoz-order-online?delivery_subzone=3784&offers=1",
+    "locationName": "Al Quoz 3",
+    "baseline": ["al-quoz-3"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-quoz-order-online?delivery_subzone=3785&offers=1",
+    "locationName": "Al Quoz 4",
+    "baseline": ["al-quoz-4"]
+  },
+  {
     "url": "https://www.zomato.com/dubai/al-quoz-order-online?delivery_subzone=8463&offers=1",
-    "locationName": "Al Quoz",
-    "baseline": ["al-quoz", "al-quoz-industrial-area"]
+    "locationName": "Al Quoz Industrial Area 1",
+    "baseline": ["al-quoz-industrial-area-1"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-quoz-order-online?delivery_subzone=8464&offers=1",
+    "locationName": "Al Quoz Industrial Area 2",
+    "baseline": ["al-quoz-industrial-area-2"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-quoz-order-online?delivery_subzone=8465&offers=1",
+    "locationName": "Al Quoz Industrial Area 3",
+    "baseline": ["al-quoz-industrial-area-3"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-quoz-order-online?delivery_subzone=8466&offers=1",
+    "locationName": "Al Quoz Industrial Area 4",
+    "baseline": ["al-quoz-industrial-area-4"]
   },
   {
     "url": "https://www.zomato.com/dubai/dubai-hills-restaurants?order-online=1&delivery_subzone=8466&offers=1",

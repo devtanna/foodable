@@ -17,12 +17,12 @@
   {
     "locationName": "Al Barsha 1",
     "url": "/restaurants/dubai/al-barsha-1",
-    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area"]
+    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif"]
   },
   {
     "locationName": "Al Barsha 2",
     "url": "/restaurants/dubai/al-barsha-2",
-    "baseline": ["al-barsha-2", "al-quoz-industrial-area", "al-barsha-south"]
+    "baseline": ["al-barsha-2", "al-barsha-south"]
   },
   {
     "locationName": "Al Barsha 3",
@@ -77,7 +77,7 @@
   {
     "locationName": "Al Manara",
     "url": "/restaurants/dubai/al-manara",
-    "baseline": ["al-manara", "umm-suqeim", "umm-al-sheif", "al-safa", "al-quoz", "al-quoz-industrial-area"]
+    "baseline": ["al-manara", "umm-suqeim", "umm-al-sheif", "al-safa"]
   },
   {
     "locationName": "Al Mizhar",
@@ -97,22 +97,22 @@
   {
     "locationName": "Al Quoz 1",
     "url": "/restaurants/dubai/al-quoz-1",
-    "baseline": ["al-quoz"]
+    "baseline": ["al-quoz-1", "al-quoz-industrial-area-1"]
   },
   {
     "locationName": "Al Quoz 2",
     "url": "/restaurants/dubai/al-quoz-2",
-    "baseline": ["al-quoz", "meydan"]
+    "baseline": ["al-quoz-2", "al-quoz-industrial-area-2"]
   },
   {
     "locationName": "Al Quoz 3",
     "url": "/restaurants/dubai/al-quoz-3",
-    "baseline": ["al-quoz"]
+    "baseline": ["al-quoz-3", "al-quoz-4", "al-quoz-industrial-area-3", "al-quoz-industrial-area-4"]
   },
   {
     "locationName": "Al Quoz Pond Park",
     "url": "/restaurants/dubai/al-quoz-pond-park",
-    "baseline": ["al-quoz"]
+    "baseline": ["al-quoz-1"]
   },
   {
     "locationName": "Al Qusais",
@@ -151,12 +151,12 @@
   {
     "locationName": "Al Safa 1",
     "url": "/restaurants/dubai/al-safa-1",
-    "baseline": ["al-safa", "al-quoz"]
+    "baseline": ["al-safa"]
   },
   {
     "locationName": "Al Safa 2",
     "url": "/restaurants/dubai/al-safa-2",
-    "baseline": ["al-safa", "al-quoz"]
+    "baseline": ["al-safa"]
   },
   {
     "locationName": "Al Satwa",
@@ -228,7 +228,7 @@
   {
     "locationName": "Business Bay",
     "url": "/restaurants/dubai/business-bay",
-    "baseline": ["business-bay", "downtown-dubai", "al-wasl", "al-quoz"]
+    "baseline": ["business-bay", "downtown-dubai", "al-wasl"]
   },
   {
     "locationName": "Century Mall",
@@ -549,7 +549,7 @@
   {
     "locationName": "Meydan",
     "url": "/restaurants/dubai/meydan",
-    "baseline": ["meydan", "nad-al-sheba", "al-quoz"]
+    "baseline": ["meydan", "nad-al-sheba"]
   },
   {
     "locationName": "Mirdif",
@@ -583,7 +583,6 @@
     "url": "/restaurants/dubai/nad-al-sheba",
     "baseline": [
       "nad-al-sheba",
-      "al-quoz",
       "business-bay",
       "dubai-design-district",
       "ras-al-khor",
@@ -709,7 +708,7 @@
   {
     "locationName": "Umm Al Sheif",
     "url": "/restaurants/dubai/umm-al-sheif",
-    "baseline": ["umm-al-sheif", "al-quoz-industrial-area", "al-manara", "umm-suqeim"]
+    "baseline": ["umm-al-sheif", "al-manara", "umm-suqeim"]
   },
   {
     "locationName": "Umm Ramool",
