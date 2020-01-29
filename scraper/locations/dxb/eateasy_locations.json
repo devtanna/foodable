@@ -22,19 +22,12 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-3/offer-offer-1",
     "locationName": "Al Barsha",
-    "baseline": [
-      "al-barsha-3",
-      "al-sufouh",
-      "umm-al-sheif",
-      "al-quoz-industrial-area",
-      "barsha-heights",
-      "al-barsha-south"
-    ]
+    "baseline": ["al-barsha-3", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area", "al-barsha-south"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-1-1404/offer-offer-1",
     "locationName": "Al Barsha 1",
-    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area", "barsha-heights"]
+    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-2-1402/offer-offer-1",
@@ -44,7 +37,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-3-1403/offer-offer-1",
     "locationName": "Al Barsha 3",
-    "baseline": ["al-barsha-3", "barsha-heights"]
+    "baseline": ["al-barsha-3"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-barsha-south-131/offer-offer-1",
@@ -449,7 +442,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-internet-city-dic-22/offer-offer-1",
     "locationName": "Dubai Internet City (DIC)",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-investment-park-dip-23/offer-offer-1",
@@ -516,7 +509,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-greens-31/offer-offer-1",
     "locationName": "Greens",
-    "baseline": ["the-greens", "barsha-heights", "emirates-hills"]
+    "baseline": ["the-greens", "emirates-hills"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-hor-al-anz-107/offer-offer-1",

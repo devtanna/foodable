@@ -17,7 +17,7 @@
   {
     "locationName": "Al Barsha 1",
     "url": "/restaurants/dubai/al-barsha-1",
-    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area", "barsha-heights"]
+    "baseline": ["al-barsha-1", "al-sufouh", "umm-al-sheif", "al-quoz-industrial-area"]
   },
   {
     "locationName": "Al Barsha 2",
@@ -27,12 +27,12 @@
   {
     "locationName": "Al Barsha 3",
     "url": "/restaurants/dubai/al-barsha-3",
-    "baseline": ["al-barsha-3", "barsha-heights"]
+    "baseline": ["al-barsha-3"]
   },
   {
     "locationName": "Al Barsha Park 1",
     "url": "/restaurants/dubai/al-barsha-park-1",
-    "baseline": ["al-barsha-1", "al-sufouh", "barsha-heights"]
+    "baseline": ["al-barsha-1", "al-sufouh"]
   },
   {
     "locationName": "Al Barsha South",
@@ -191,7 +191,7 @@
   {
     "locationName": "American University of Dubai",
     "url": "/restaurants/dubai/american-university-of-dubai",
-    "baseline": ["dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
+    "baseline": ["dubai-knowledge-village", "dubai-media-city"]
   },
   {
     "locationName": "Arabian Ranches",
@@ -318,7 +318,7 @@
   {
     "locationName": "Emirates golf club",
     "url": "/restaurants/dubai/emirates-golf-club",
-    "baseline": ["the-lakes", "emirates-hills", "barsha-heights"]
+    "baseline": ["the-lakes", "emirates-hills"]
   },
   {
     "locationName": "Festival City",
@@ -372,12 +372,12 @@
   {
     "locationName": "Internet City",
     "url": "/restaurants/dubai/internet-city",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city"]
   },
   {
     "locationName": "Internet City 2",
     "url": "/restaurants/dubai/internet-city-2",
-    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights"]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city"]
   },
   {
     "locationName": "J.B.R.",
@@ -668,7 +668,7 @@
   {
     "locationName": "The Greens",
     "url": "/restaurants/dubai/the-greens",
-    "baseline": ["the-greens", "barsha-heights", "emirates-hills"]
+    "baseline": ["the-greens", "emirates-hills"]
   },
   {
     "locationName": "The Lakes",
