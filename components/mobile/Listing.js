@@ -233,7 +233,6 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           font-weight: bold;
           margin-left: 15px;
           flex: 1;
-          padding-top: 7px;
         }
         .deliveryInfo__wrapper {
           display: flex;
