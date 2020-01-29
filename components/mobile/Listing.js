@@ -40,7 +40,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
   const hasOtherOffers = otherOffers.length > 0;
 
   const { minimumOrder, deliveryCharge, deliveryTime } = mainOffer;
-  const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
+  const hasDeliveryInfo = minimumOrder !== '?' || deliveryCharge !== '?' || deliveryTime !== '?';
 
   const handleShare = async () => {
     const shareLink = getShareLink(mainOffer.title);
@@ -100,7 +100,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
       </div>
       {hasDeliveryInfo && (
         <div className="deliveryInfo__wrapper">
-          {minimumOrder && (
+          {minimumOrder !== '?' && (
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">min order</span>
               <span className="deliveryInfo__value">
@@ -108,7 +108,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
               </span>
             </div>
           )}
-          {deliveryCharge && (
+          {deliveryCharge !== '?' && (
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">delivery fee</span>
               <span className="deliveryInfo__value">
@@ -116,7 +116,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
               </span>
             </div>
           )}
-          {deliveryTime && (
+          {deliveryTime !== '?' && (
             <div className="deliveryInfo__item">
               <span className="deliveryInfo__desc">time est.</span>
               <span className="deliveryInfo__value">
@@ -235,14 +235,14 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           flex: 1;
         }
         .deliveryInfo__wrapper {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+          display: flex;
           width: 100%;
           padding: 0 10px 10px;
           margin-top: -5px;
         }
         .deliveryInfo__item {
           line-height: 1em;
+          margin-right: 25px;
         }
         .deliveryInfo__value {
           font-size: 13px;
@@ -251,7 +251,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
         .deliveryInfo__desc {
           display: block;
           font-size: 10px;
-          color: #daa7a7;
+          color: #666;
           text-transform: capitalize;
         }
         .actionBtns {
