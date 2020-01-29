@@ -2,25 +2,12 @@
   {
     "locationName": "Dubai Internet City - DIC",
     "url": "/uae/restaurants/1266/dubai-internet-city-dic",
-    "baseline": [
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "dubai-media-city",
-      "barsha-heights",
-      "the-greens",
-      "jumeirah-lake-towers-jlt"
-    ]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
   },
   {
     "locationName": "Dubai Marina",
     "url": "/uae/restaurants/1272/dubai-marina",
-    "baseline": [
-      "dubai-marina",
-      "dubai-internet-city",
-      "dubai-media-city",
-      "jumeirah-lake-towers-jlt",
-      "dubai-knowledge-village"
-    ]
+    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Jumeirah Lakes Towers - JLT",

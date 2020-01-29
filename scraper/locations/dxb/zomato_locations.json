@@ -136,8 +136,18 @@
   },
   {
     "url": "https://www.zomato.com/dubai/al-barsha-restaurants?order-online=1&delivery_subzone=3786&offers=1",
-    "locationName": "Al Barsha",
-    "baseline": ["al-barsha-1", "al-barsha-2", "al-barsha-3", "umm-al-sheif", "al-quoz-industrial-area"]
+    "locationName": "Al Barsha 1",
+    "baseline": ["al-barsha-1"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-barsha-restaurants?order-online=1&delivery_subzone=3787&offers=1",
+    "locationName": "Al Barsha 2",
+    "baseline": ["al-barsha-2"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-barsha-restaurants?order-online=1&delivery_subzone=3788&offers=1",
+    "locationName": "Al Barsha 3",
+    "baseline": ["al-barsha-3"]
   },
   {
     "url": "https://www.zomato.com/dubai/barsha-south-order-online?delivery_subzone=3789&offers=1",

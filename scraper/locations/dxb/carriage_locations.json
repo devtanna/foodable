@@ -459,14 +459,7 @@
   {
     "id": "899",
     "locationName": "Dubai Internet City",
-    "baseline": [
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "dubai-media-city",
-      "barsha-heights",
-      "the-greens",
-      "jumeirah-lake-towers-jlt"
-    ]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
   },
   {
     "id": "712",
@@ -486,13 +479,7 @@
   {
     "id": "897",
     "locationName": "Dubai Marina",
-    "baseline": [
-      "dubai-marina",
-      "dubai-internet-city",
-      "dubai-media-city",
-      "jumeirah-lake-towers-jlt",
-      "dubai-knowledge-village"
-    ]
+    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "id": "900",
@@ -530,12 +517,12 @@
   {
     "id": "1330",
     "locationName": "Emirates Hills",
-    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows", "jumeirah-lake-towers-jlt"]
+    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows"]
   },
   {
     "id": "843",
     "locationName": "Emirates Hills 2",
-    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows", "jumeirah-lake-towers-jlt"]
+    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows"]
   },
   {
     "id": "761",
@@ -615,7 +602,6 @@
     "locationName": "Jumeirah Beach Residence",
     "baseline": [
       "jumeirah-beach-residence-jbr",
-      "jumeirah-lake-towers-jlt",
       "dubai-marina",
       "dubai-media-city",
       "dubai-internet-city",
@@ -638,12 +624,12 @@
   {
     "id": "816",
     "locationName": "Jumeirah Heights",
-    "baseline": ["jumeirah-heights", "jumeirah-lake-towers-jlt", "meadows", "jumeirah-islands"]
+    "baseline": ["jumeirah-heights", "meadows", "jumeirah-islands"]
   },
   {
     "id": "815",
     "locationName": "Jumeirah Islands",
-    "baseline": ["jumeirah-islands", "jumeirah-lake-towers-jlt", "jumeirah-heights", "meadows", "springs"]
+    "baseline": ["jumeirah-islands", "jumeirah-heights", "meadows", "springs"]
   },
   {
     "id": "817",
@@ -666,8 +652,7 @@
       "discovery-gardens",
       "springs",
       "jumeirah-islands",
-      "jumeirah-heights",
-      "jumeirah-lake-towers-jlt"
+      "jumeirah-heights"
     ]
   },
   {
@@ -728,7 +713,7 @@
   {
     "id": "818",
     "locationName": "Meadows 2",
-    "baseline": ["meadows", "jumeirah-heights", "jumeirah-lake-towers-jlt", "jumeirah-islands", "springs"]
+    "baseline": ["meadows", "jumeirah-heights", "jumeirah-islands", "springs"]
   },
   {
     "id": "789",

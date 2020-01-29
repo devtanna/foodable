@@ -191,14 +191,7 @@
   {
     "locationName": "American University of Dubai",
     "url": "/restaurants/dubai/american-university-of-dubai",
-    "baseline": [
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "dubai-media-city",
-      "barsha-heights",
-      "the-greens",
-      "jumeirah-lake-towers-jlt"
-    ]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
   },
   {
     "locationName": "Arabian Ranches",
@@ -315,7 +308,7 @@
   {
     "locationName": "Emirates Hills",
     "url": "/restaurants/dubai/emirates-hills",
-    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows", "jumeirah-lake-towers-jlt"]
+    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows"]
   },
   {
     "locationName": "Emirates Tower",
@@ -379,33 +372,18 @@
   {
     "locationName": "Internet City",
     "url": "/restaurants/dubai/internet-city",
-    "baseline": [
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "dubai-media-city",
-      "barsha-heights",
-      "the-greens",
-      "jumeirah-lake-towers-jlt"
-    ]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
   },
   {
     "locationName": "Internet City 2",
     "url": "/restaurants/dubai/internet-city-2",
-    "baseline": [
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "dubai-media-city",
-      "barsha-heights",
-      "the-greens",
-      "jumeirah-lake-towers-jlt"
-    ]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
   },
   {
     "locationName": "J.B.R.",
     "url": "/restaurants/dubai/jbr",
     "baseline": [
       "jumeirah-beach-residence-jbr",
-      "jumeirah-lake-towers-jlt",
       "dubai-marina",
       "dubai-media-city",
       "dubai-internet-city",
@@ -495,7 +473,7 @@
   {
     "locationName": "Jumeirah Heights",
     "url": "/restaurants/dubai/jumeirah-heights",
-    "baseline": ["jumeirah-heights", "jumeirah-lake-towers-jlt", "meadows", "jumeirah-islands"]
+    "baseline": ["jumeirah-heights", "meadows", "jumeirah-islands"]
   },
   {
     "locationName": "Jumeirah Park",
@@ -506,8 +484,7 @@
       "discovery-gardens",
       "springs",
       "jumeirah-islands",
-      "jumeirah-heights",
-      "jumeirah-lake-towers-jlt"
+      "jumeirah-heights"
     ]
   },
   {
@@ -553,40 +530,22 @@
   {
     "locationName": "Marina",
     "url": "/restaurants/dubai/marina",
-    "baseline": [
-      "dubai-marina",
-      "dubai-internet-city",
-      "dubai-media-city",
-      "jumeirah-lake-towers-jlt",
-      "dubai-knowledge-village"
-    ]
+    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Marina Mall",
     "url": "/restaurants/dubai/marina-mall",
-    "baseline": [
-      "dubai-marina",
-      "dubai-internet-city",
-      "dubai-media-city",
-      "jumeirah-lake-towers-jlt",
-      "dubai-knowledge-village"
-    ]
+    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Marina West",
     "url": "/restaurants/dubai/marina-west",
-    "baseline": [
-      "dubai-marina",
-      "dubai-internet-city",
-      "dubai-media-city",
-      "jumeirah-lake-towers-jlt",
-      "dubai-knowledge-village"
-    ]
+    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "locationName": "Meadows 8",
     "url": "/restaurants/dubai/meadows-8",
-    "baseline": ["meadows", "jumeirah-heights", "jumeirah-lake-towers-jlt", "jumeirah-islands", "springs"]
+    "baseline": ["meadows", "jumeirah-heights", "jumeirah-islands", "springs"]
   },
   {
     "locationName": "Media City",
@@ -726,7 +685,7 @@
   {
     "locationName": "The Meadows",
     "url": "/restaurants/dubai/the-meadows",
-    "baseline": ["meadows", "jumeirah-heights", "jumeirah-lake-towers-jlt", "jumeirah-islands", "springs"]
+    "baseline": ["meadows", "jumeirah-heights", "jumeirah-islands", "springs"]
   },
   {
     "locationName": "The Palm",

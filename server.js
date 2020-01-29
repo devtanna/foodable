@@ -129,8 +129,6 @@ app
 
     // Simple ContactUs Endpoint + VALIDATION
     server.post('/contactus', async (req, res) => {
-      console.log(req.body);
-
       if (!req.body.email) {
         return res.status(400).send({
           success: 'false',

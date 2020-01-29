@@ -458,14 +458,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-internet-city-dic-22/offer-offer-1",
     "locationName": "Dubai Internet City (DIC)",
-    "baseline": [
-      "dubai-internet-city",
-      "dubai-knowledge-village",
-      "dubai-media-city",
-      "barsha-heights",
-      "the-greens",
-      "jumeirah-lake-towers-jlt"
-    ]
+    "baseline": ["dubai-internet-city", "dubai-knowledge-village", "dubai-media-city", "barsha-heights", "the-greens"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-investment-park-dip-23/offer-offer-1",
@@ -485,13 +478,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-marina-25/offer-offer-1",
     "locationName": "Dubai Marina",
-    "baseline": [
-      "dubai-marina",
-      "dubai-internet-city",
-      "dubai-media-city",
-      "jumeirah-lake-towers-jlt",
-      "dubai-knowledge-village"
-    ]
+    "baseline": ["dubai-marina", "dubai-internet-city", "dubai-media-city", "dubai-knowledge-village"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-dubai-media-city-dmc-26/offer-offer-1",
@@ -523,7 +510,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-emirates-hills-30/offer-offer-1",
     "locationName": "Emirates Hills",
-    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows", "jumeirah-lake-towers-jlt"]
+    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-falcon-city-69/offer-offer-1",
@@ -621,7 +608,6 @@
     "locationName": "Jumeirah Beach Residence (JBR)",
     "baseline": [
       "jumeirah-beach-residence-jbr",
-      "jumeirah-lake-towers-jlt",
       "dubai-marina",
       "dubai-media-city",
       "dubai-internet-city",
@@ -644,12 +630,12 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-jumeirah-heights-1102/offer-offer-1",
     "locationName": "Jumeirah Heights",
-    "baseline": ["jumeirah-heights", "jumeirah-lake-towers-jlt", "meadows", "jumeirah-islands"]
+    "baseline": ["jumeirah-heights", "meadows", "jumeirah-islands"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-jumeirah-island-53/offer-offer-1",
     "locationName": "Jumeirah Island",
-    "baseline": ["jumeirah-islands", "jumeirah-lake-towers-jlt", "jumeirah-heights", "meadows", "springs"]
+    "baseline": ["jumeirah-islands", "jumeirah-heights", "meadows", "springs"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-jumeirah-lake-towers-jlt-35/offer-offer-1",
@@ -672,8 +658,7 @@
       "discovery-gardens",
       "springs",
       "jumeirah-islands",
-      "jumeirah-heights",
-      "jumeirah-lake-towers-jlt"
+      "jumeirah-heights"
     ]
   },
   {
@@ -743,7 +728,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-meadows-38/offer-offer-1",
     "locationName": "Meadows",
-    "baseline": ["meadows", "jumeirah-heights", "jumeirah-lake-towers-jlt", "jumeirah-islands", "springs"]
+    "baseline": ["meadows", "jumeirah-heights", "jumeirah-islands", "springs"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-meena-bazar-51/offer-offer-1",
