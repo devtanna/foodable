@@ -128,8 +128,16 @@ Location.getInitialProps = async ({ req, res, query }) => {
 
     const page = query.page ? Number(query.page) : 1;
 
-    // Get offers by location, page and search filters
-    const { offers } = await getOffers(location, page, searchFilters, citySlug);
+    let offers = [];
+    try {
+      // Get offers by location, page and search filters
+      const res = await getOffers(location, page, searchFilters, citySlug);
+      if (res) {
+        offers = res.offers;
+      }
+    } catch(e) {
+      console.log('Error while fetching offers:', e);
+    }
 
     const isSearchPage = searchFilters.keywords !== '' || searchFilters.cuisine.length > 0;
 
@@ -145,8 +153,17 @@ Location.getInitialProps = async ({ req, res, query }) => {
     const visitsCount = Number(cookies.get('fdb_vc')) || 0;
     res.cookie('fdb_vc', visitsCount + 1, { path: '/', maxAge: 1.577e+10 });
 
-    // All good so far? get cuisines and send back the needed information
-    const { cuisines } = await getCuisines(citySlug);
+    let cuisines = [];
+    try {
+      // All good so far? get cuisines and send back the needed information
+      const res = await getCuisines(citySlug);
+      if (res) {
+        cuisines = res.cuisines;
+      }
+    } catch(e) {
+      console.log('Error while fetching cuisines:', e);
+    }
+    
     const device = res ? req.device.type : cookies.get('fdb_device');
 
     const utmSource = query['utm_source'];

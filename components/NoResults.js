@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { Icon } from 'semantic-ui-react';
 import { device } from '../helpers/device';
 import { trackEvent } from '../helpers/utils';
@@ -11,23 +11,34 @@ const NoResults = ({ isSearch }) => {
   return (
     <div className="wrapper">
       {isSearch ? (
-        <h1 className="heading">
-          Oops, No results found
-          <small>We can't seem to find any offers that matches your search</small>
-        </h1>
+        <Fragment>
+          <h1 className="heading">
+            Oops, No results found
+            <small>We can't seem to find any offers that matches your search</small>
+          </h1>
+          <p>But fear not, we have more deals!</p>
+          <a href="/" className="btn">
+            <span className="flex">
+              See all food deals
+              <Icon name="angle right" />
+            </span>
+          </a>
+        </Fragment>
       ) : (
-        <h1 className="heading">
-          Oops, No more pages
-          <small>Seems like you've reached the end of the line</small>
-        </h1>
+        <Fragment>
+          <h1 className="heading">
+            Oops, No more pages
+            <small>Seems like you've reached the end of the line</small>
+          </h1>
+          <p>Let's start over and try to find more deals!</p>
+          <a href="/" className="btn">
+            <span className="flex">
+              Back to Homepage
+              <Icon name="angle right" />
+            </span>
+          </a>
+        </Fragment>
       )}
-      <p>But fear not, we have more deals!</p>
-      <a href="/" className="btn">
-        <span className="flex">
-          See all food deals
-          <Icon name="angle right" />
-        </span>
-      </a>
       <style jsx>{`
         .wrapper {
           text-align: center;

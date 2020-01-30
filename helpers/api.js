@@ -72,7 +72,7 @@ export const getOffers = async (location, page, searchFilters, city) => {
 
     return res.data;
   } catch (e) {
-    console.log(e);
+    console.log('Error in API getOffers:', e);
   }
 };
 
@@ -101,7 +101,7 @@ export const getRandomOffers = async location => {
 
     return res.data;
   } catch (e) {
-    console.log(e);
+    console.log('Error in API getRandomOffers:', e);
   }
 };
 
@@ -121,7 +121,7 @@ export const getLocations = async () => {
     });
     return res.data;
   } catch (e) {
-    console.log(e);
+    console.log('Error in API getLocations:', e);
   }
 };
 
@@ -138,7 +138,7 @@ export const getCuisines = async city => {
     });
     return { cuisines: res.data.cuisines[0].tags };
   } catch (e) {
-    console.log(e);
+    console.log('Error in API getCuisines:', e);
   }
 };
 
@@ -181,7 +181,7 @@ export const getFavourites = async (location, page = 1, favourites) => {
 
     return res.data;
   } catch (e) {
-    console.log(e);
+    console.log('Error in API getFavourites:', e);
   }
 };
 

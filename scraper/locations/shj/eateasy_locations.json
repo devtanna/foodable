@@ -92,7 +92,7 @@
   {
     "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-ittihad-road-688/offer-offer-1",
     "locationName": "Al Ittihad Road",
-    "baseline": ["al-taawun", "al-nahda"]
+    "baseline": ["al-nahda"]
   },
   {
     "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-jazzat-690/offer-offer-1",
@@ -277,7 +277,7 @@
   {
     "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qasba-730/offer-offer-1",
     "locationName": "Al Qasba",
-    "baseline": ["al-taawun", "al-majaz-1", "al-majaz-2"]
+    "baseline": ["al-majaz-1", "al-majaz-2"]
   },
   {
     "url": "https://www.eateasy.ae/sharjah/restaurants/search/dlocations-al-qasimia-731/offer-offer-1",

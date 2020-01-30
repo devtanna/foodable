@@ -134,6 +134,20 @@ const scrapePage = async (page, location, city) => {
         .text()
         .trim();
 
+      if (deliveryCharge) {
+        const matchDeliveryCharge = deliveryCharge.match(/aed\s*\d+(\.\d+)? delivery/gi);
+        if (!matchDeliveryCharge) {
+          const matchFreeCharge = deliveryCharge.match(/free delivery/gi);
+          if (!matchFreeCharge) {
+            deliveryCharge = null;
+          } else {
+            deliveryCharge = '0.00';
+          }
+        } else {
+          deliveryCharge = matchDeliveryCharge[0];
+        }
+      }
+
       let result = {
         title,
         slug: utils.slugify(title),
