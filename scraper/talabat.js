@@ -10,6 +10,7 @@ const SCRAPE_TIMING = process.argv[3] || 'morning';
 
 const CATEGORIES_TO_SCRAPE = [
   { category: 'Free Delivery', offerString: 'Free Delivery', timing: ['morning', 'evening'] },
+  { category: 'Best Deals', offerString: 'Special Deal', timing: ['evening'] },
   { category: 'AED 20 Lunch', offerString: '20 Dhs Lunch', timing: ['morning'] },
 ];
 

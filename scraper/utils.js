@@ -80,7 +80,8 @@ function calculateScore(item) {
 
   var offerMapping = {
     5: [
-      /^Special Talabat Deal$/im,
+      /^Special Deal$/im,
+      /^free delivery$/im,
       /^special carriage offer$/im,
       /^20 Dhs Lunch$/im,
       /^(\d+) aed meals$/im,
@@ -140,7 +141,6 @@ function calculateScore(item) {
       /^free [\w\s]+ with orders over aed (\d+(.\d+)*)$/im,
       /^Cheap Eats$/im,
       /^Free Dessert$/im,
-      /^free delivery$/im,
       /^aed(\d+) off on your first order Only applicable on orders above aed(\d+)$/im,
       /^(\d+)% off on your first order only applicable on orders above aed(\d+)$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us Offer on home-delivery only applicable when you order online on Zomato or the restaurant app$/im,

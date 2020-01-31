@@ -21,7 +21,7 @@ const Collections = ({ cuisines, filters }) => {
     <div className="wrapper">
       <p className="subheading">Quick links:</p>
       {cuisinesList.map((collection, index) => {
-        const isActive = filters.cuisine.length === 1 && filters.cuisine[0] === collection.name.toLowerCase();
+        const isActive = filters.cuisine.length === 1 && filters.cuisine[0] === slugify(collection.name);
         return (
           <div key={index} className="item">
             <Label basic={!isActive} size="medium" as="a" image onClick={() => handleClick(collection.name)}>
