@@ -100,7 +100,7 @@ var scraperSettings = {
   ENABLE_DELIVEROO: true,
   ENABLE_CARRIAGE: true,
   ENABLE_EATEASY: true,
-  MAX_TABS: 15,
+  MAX_TABS: 10,
 };
 
 var systemSettings = {

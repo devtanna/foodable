@@ -189,6 +189,7 @@ const scrapePage = async (page, location, city) => {
     return items;
   } catch (error) {
     logger.error('Error in data extract: ' + error);
+    return;
   }
 };
 
