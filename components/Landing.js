@@ -76,7 +76,7 @@ const Landing = ({ locations }) => {
             className="fdbDropdown"
           />
           <Button onClick={handleSubmit} size="large" className="searchBtn">
-            Get offers!
+            Find Deals
           </Button>
         </div>
       </div>

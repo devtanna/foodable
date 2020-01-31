@@ -193,6 +193,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
         .meta__name {
           font-weight: bold;
           font-size: 16px;
+          color: #333;
         }
         .meta__cuisine {
           color: #8f8f8f;
@@ -228,10 +229,11 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           font-weight: 700;
         }
         .bestOffer__offer {
-          color: #333;
-          font-size: 16px;
+          color: #000;
+          font-size: 18px;
           font-weight: bold;
-          margin-left: 15px;
+          margin-left: 5px;
+          padding-right: 10px;
           flex: 1;
         }
         .deliveryInfo__wrapper {

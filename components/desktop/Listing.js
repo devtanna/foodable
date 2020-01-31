@@ -154,6 +154,7 @@ const ListingMeta = ({ offer, restId, onFavRemove }) => {
         }
         .meta__name {
           margin: 0;
+          color: #333;
         }
         .meta__tags {
           margin-top: 5px;
@@ -365,7 +366,8 @@ const MainOffer = ({ offer }) => {
         }
         .mainOffer__offer {
           margin: 0;
-          color: #333;
+          color: #000;
+          font-size: 20px;
         }
         .deliveryInfo__wrapper {
           display: flex;

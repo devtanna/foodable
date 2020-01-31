@@ -56,7 +56,7 @@ const Collections = ({ cuisines, filters }) => {
           position: absolute;
           width: 1px;
           background: #fafafa;
-          box-shadow: -1px 0 24px 30px #fafafa;
+          box-shadow: -1px 0 30px 40px #fafafa;
         }
         .scrollable {
           width: 100%;
