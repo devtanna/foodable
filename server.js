@@ -234,12 +234,13 @@ app
     });
 
     server.get(['/static/:name', '/static/**/:name'], function(req, res, next) {
-      console.log('USER PLATFORM IS: >>>>>>>>>>>>>>>>>>>>>', req.useragent.platform);
       let rootUrl = req.url.split('/');
       rootUrl.pop();
       rootUrl = rootUrl.join('/');
-      const isSafari = req.useragent.browser && req.useragent.browser.toLowerCase() === 'safari';
-      const isIOS = req.useragent.platform && req.useragent.platform.toLowerCase() === 'ios';
+      const userBrowser = req.useragent.browser ? req.useragent.browser.toLowerCase() : '';
+      const userPlatform = req.useragent.platform ? req.useragent.platform.toLowerCase() : '';
+      const isSafari = userBrowser === 'safari';
+      const isIOS = ['ios', 'iphone', 'ipad'].indexOf(userPlatform) > -1;
       const denyWebp = isSafari || isIOS;
       const options = {
         root: path.join(__dirname, rootUrl),
