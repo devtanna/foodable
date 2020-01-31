@@ -234,6 +234,7 @@ app
     });
 
     server.get(['/static/:name', '/static/**/:name'], function(req, res, next) {
+      console.log('USER PLATFORM IS: >>>>>>>>>>>>>>>>>>>>>', req.useragent.platform);
       let rootUrl = req.url.split('/');
       rootUrl.pop();
       rootUrl = rootUrl.join('/');
