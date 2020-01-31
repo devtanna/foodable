@@ -49,7 +49,9 @@ async function scrapePage(location, page, city, offerString) {
     await page.waitFor(1000);
     let htmlAfter = await page.content();
     let updatedOffersCount = $('.rest-link', htmlAfter).length;
-    if (updatedOffersCount === offersCount && index > 3) {
+    const isBusy = $('img[ng-src*=tag_busy]', htmlBefore).length > 0;
+    const isClosed = $('img[ng-src*=tag_closed]', htmlBefore).length > 0;
+    if ((updatedOffersCount === offersCount && index > 3) || isBusy || isClosed) {
       keepGoing = false;
       break;
     }
