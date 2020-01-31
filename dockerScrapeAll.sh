@@ -28,13 +28,6 @@ wait
 node devops/slackLogBot.js eateasy
 wait
 
-node devops/slackBot.js "Running dxb Carriage"
-wait
-echo "< carriage ..." && timeout -k 9m 10m node scraper/carriage.js dxb && echo "... carriage >" &&
-wait
-node devops/slackLogBot.js carriage
-wait
-
 node devops/slackBot.js "Running dxb Deliveroo"
 wait
 echo "< deliveroo ..." && timeout -k 9m 10m node scraper/deliveroo.js dxb && echo "... deliveroo >" &&
@@ -92,13 +85,6 @@ wait
 echo "< eateasy ..." && timeout -k 9m 10m node scraper/eateasy.js ad && echo "... eateasy >" &&
 wait
 node devops/slackLogBot.js eateasy
-wait
-
-node devops/slackBot.js "Running ABU DHABI Carriage"
-wait
-echo "< carriage ..." && timeout -k 9m 10m node scraper/carriage.js ad && echo "... carriage >" &&
-wait
-node devops/slackLogBot.js carriage
 wait
 
 node devops/slackBot.js "Running ABU DHABI Deliveroo"

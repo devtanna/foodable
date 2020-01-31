@@ -94,7 +94,7 @@ app
     );
 
     // Simple Email Subscribe Endpoint + VALIDATION
-    server.post('/subscribe', (req, res) => {
+    server.post('/subscribe', async (req, res) => {
       const refererArea = req.body.area;
       const refererCity = req.body.city;
 
@@ -111,15 +111,29 @@ app
         });
       }
 
-      dbHelper.insertOneEntryIntoMongo(
-        {
-          area: refererArea,
-          city: refererCity,
-          email: req.body.email,
-          added: new Date(),
-        },
-        settings.SUBSCRIPTION_MONGO_COLLECTION_NAME
-      );
+      try {
+        const MAILER_SETUP = {
+          service: 'gmail',
+          port: 587,
+          secure: false,
+          auth: {
+            user: 'foodable.ae@gmail.com',
+            pass: 'fdb4life',
+          },
+        };
+
+        let transporter = nodemailer.createTransport(MAILER_SETUP);
+
+        await transporter.sendMail({
+          from: 'foodable.ae@gmail.com',
+          to: 'foodable.ae@gmail.com',
+          subject: `New subscription from: ${req.body.email}`,
+          text: `${req.body.email} is subscribing in: ${refererArea}, ${refererCity}`,
+        });
+      } catch (e) {
+        console.error(e);
+        return res.status(500).end();
+      }
 
       return res.status(201).send({
         success: 'true',
@@ -223,13 +237,15 @@ app
       let rootUrl = req.url.split('/');
       rootUrl.pop();
       rootUrl = rootUrl.join('/');
-      const acceptsWebp = req.useragent.browser && req.useragent.browser.toLowerCase() !== 'safari';
+      const isSafari = req.useragent.browser && req.useragent.browser.toLowerCase() === 'safari';
+      const isIOS = req.useragent.platform && req.useragent.platform.toLowerCase() === 'ios';
+      const denyWebp = isSafari || isIOS;
       const options = {
         root: path.join(__dirname, rootUrl),
       };
       let fileName = req.params.name;
       const fileType = fileName.split('.')[1];
-      if (fileType === 'webp' && !acceptsWebp) {
+      if (fileType === 'webp' && denyWebp) {
         fileName = fileName.replace('webp', 'png');
       }
       return res.status(200).sendFile(fileName, options);

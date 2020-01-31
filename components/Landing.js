@@ -46,7 +46,6 @@ const Landing = ({ locations }) => {
           <img src="/static/restaurant-banners/talabat_lp.webp" alt="Talabat partner" />
           <img src="/static/restaurant-banners/deliveroo_lp.webp" alt="Deliveroo partner" />
           <img src="/static/restaurant-banners/eateasy_lp.webp" alt="Eat easy partner" />
-          <img src="/static/restaurant-banners/carriage_lp.webp" alt="Carriage partner" />
         </div>
         <div className="ctaWrapper">
           <Dropdown
