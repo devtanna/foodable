@@ -51,28 +51,28 @@ export const COLLECTIONS = [
     image: '/static/collections/pizza.webp',
   },
   {
-    name: 'Burger',
-    image: '/static/collections/burger.webp',
-  },
-  {
-    name: 'Sandwiches',
-    image: '/static/collections/sandwiches.webp',
-  },
-  {
-    name: 'Kebab',
-    image: '/static/collections/kebab.webp',
-  },
-  {
     name: 'Indian',
     image: '/static/collections/indian.webp',
+  },
+  {
+    name: 'Burger',
+    image: '/static/collections/burger.webp',
   },
   {
     name: 'Italian',
     image: '/static/collections/italian.webp',
   },
   {
+    name: 'Sandwiches',
+    image: '/static/collections/sandwiches.webp',
+  },
+  {
     name: 'Lebanese',
     image: '/static/collections/lebanese.webp',
+  },
+  {
+    name: 'Kebab',
+    image: '/static/collections/kebab.webp',
   },
   {
     name: 'Healthy Food',

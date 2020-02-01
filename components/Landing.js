@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Dropdown, Button } from 'semantic-ui-react';
 import { device } from '../helpers/device';
-import { hideVirtualKeyboard } from '../helpers/utils';
+import { hideVirtualKeyboard, slugify } from '../helpers/utils';
 import { CITIES_MAP } from '../helpers/constants';
+import { getGeolocation } from '../helpers/geolocation';
 
 const Landing = ({ locations }) => {
   const CITIES = Object.keys(locations).map(location => {
@@ -24,11 +25,39 @@ const Landing = ({ locations }) => {
   const [selectedCity, setSelectedCity] = useState(defaultCity);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [locationsOptions, setLocationsOptions] = useState([]);
+  const [geolocation, setGeolocation] = useState(null);
+
+  useEffect(() => {
+    initGeolocation();
+  }, []);
 
   useEffect(() => {
     setLocationsOptions(locations[selectedCity]);
     setSelectedLocation(null);
   }, [selectedCity]);
+
+  useEffect(() => {
+    if (!geolocation || !locations) return;
+    Object.entries(locations).some(([citySlug, cityLocations]) => {
+      const foundLoc = cityLocations.find(loc => loc.key === geolocation);
+      if (foundLoc) {
+        setSelectedCity(foundLoc.city);
+        setSelectedLocation(foundLoc.value);
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }, [geolocation]);
+
+  const initGeolocation = async () => {
+    try {
+      const res = await getGeolocation();
+      setGeolocation(slugify(res));
+    } catch (e) {
+      console.log('Could not use geolocation');
+    }
+  };
 
   const handleSubmit = () => {
     if (!selectedLocation) return;
