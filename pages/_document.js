@@ -6,6 +6,8 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { Fragment } from 'react';
 import { TRACKING_ID } from '../helpers/constants';
 
+const API_KEY = 'AIzaSyBqt7-8jO2YC1F9iRTbolj6KA3AP-n9-mM';
+
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -35,6 +37,7 @@ class MyDocument extends Document {
               <script defer dangerouslySetInnerHTML={this.setGoogleTags()} />
             </Fragment>
           )}
+          <script src={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}`} type="text/javascript" />
         </Head>
         <body className="custom_class">
           <Main />
