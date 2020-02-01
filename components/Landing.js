@@ -25,6 +25,7 @@ const Landing = ({ locations }) => {
   const [selectedCity, setSelectedCity] = useState(defaultCity);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [locationsOptions, setLocationsOptions] = useState([]);
+  const [isAreaLoading, setIsAreaLoading] = useState(false);
   const [geolocation, setGeolocation] = useState(null);
 
   useEffect(() => {
@@ -52,12 +53,15 @@ const Landing = ({ locations }) => {
 
   const initGeolocation = async () => {
     try {
+      setIsAreaLoading(true);
       const res = await getGeolocation();
       if (res) {
         setGeolocation(slugify(res));
       }
     } catch (e) {
       console.log('Could not use geolocation: ', e);
+    } finally {
+      setIsAreaLoading(false);
     }
   };
 
@@ -97,6 +101,7 @@ const Landing = ({ locations }) => {
             placeholder="Select your area"
             fluid
             search
+            loading={isAreaLoading}
             options={locationsOptions}
             onChange={(e, { value }) => {
               hideVirtualKeyboard();
