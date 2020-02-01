@@ -154,7 +154,7 @@ const ListingMeta = ({ offer, restId, onFavRemove }) => {
         }
         .meta__name {
           margin: 0;
-          color: #333;
+          color: rgba(0, 0, 0, 0.75);
         }
         .meta__tags {
           margin-top: 5px;
@@ -399,7 +399,7 @@ const MainOffer = ({ offer }) => {
           color: #fff;
           border-radius: 2px;
           padding: 0 5px 0 20px;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 500;
           transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -525,7 +525,8 @@ const SideOffer = ({ offer }) => {
         }
         .sideOffer__offer {
           margin: 0;
-          color: rgba(24, 44, 55, 0.7);
+          font-size: 17px;
+          color: rgba(24, 44, 55, 0.8);
         }
         .deliveryInfo__wrapper {
           display: flex;
@@ -553,16 +554,16 @@ const SideOffer = ({ offer }) => {
           align-items: center;
           width: 100%;
           height: 38px;
-          color: rgba(24, 44, 55, 0.6);
+          color: rgba(24, 44, 55, 0.8);
           border-radius: 2px;
           padding: 0 5px 0 20px;
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 500;
           border: 1px solid rgba(14, 23, 28, 0.25);
           transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .sideOffer__cta:hover {
-          border-color: rgba(24, 44, 55, 0.6);
+          border-color: rgba(24, 44, 55, 0.8);
           color: #333;
         }
         .sideOffer__cta span {

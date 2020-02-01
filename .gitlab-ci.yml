@@ -44,6 +44,3 @@ deploy_azure_production:
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && npm install'
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && npm run build'
     - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'cd ~/foodable && npm run stop-azure && npm run start-azure'
-    - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'sudo nginx -t'
-    - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'sudo systemctl restart nginx'
-    - ssh -o StrictHostKeyChecking=no foodableae@$AZURE_IP 'sudo systemctl status nginx'
