@@ -5,7 +5,7 @@ export const getGeolocation = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
         const geocoder = new google.maps.Geocoder();
-        const latlng = new google.maps.LatLng(pos);
+        const latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
         return new Promise((resolve, reject) => {
           geocoder.geocode({ latLng: latlng }, (results, status) => {
