@@ -56,6 +56,7 @@ const Landing = ({ locations }) => {
     try {
       setIsAreaLoading(true);
       const res = await getGeolocation();
+      console.log(res);
       if (res) {
         setGeolocation(slugify(res));
       }
