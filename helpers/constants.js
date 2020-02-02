@@ -84,4 +84,7 @@ export const COLLECTIONS = [
   },
 ];
 
-export const PAGE_SIZE = 25;
+export const PAGE_SIZE = {
+  desktop: 25,
+  mobile: 50,
+};

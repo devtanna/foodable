@@ -7,6 +7,7 @@ import Pagination from '../Pagination';
 import NoResults from '../NoResults';
 import Collections from './Collections';
 import { removeObjEmpty } from '../../helpers/utils';
+import { PAGE_SIZE } from '../../helpers/constants';
 import _isEmpty from 'lodash/isEmpty';
 
 const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) => {
@@ -27,7 +28,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
                   <Listing offer={offer} key={index} />
                 ))}
               </div>
-              <Pagination listingsCount={offers.length} filters={filters} page={page} />
+              <Pagination listingsCount={offers.length} filters={filters} page={page} pageSize={PAGE_SIZE.desktop} />
             </Fragment>
           ) : (
             <NoResults isSearch={isSearchPage} />

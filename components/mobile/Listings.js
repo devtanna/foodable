@@ -7,7 +7,7 @@ import NoResults from '../NoResults';
 import Collections from './Collections';
 import { removeObjEmpty, deslugify, capitalizeFirstLetter } from '../../helpers/utils';
 import _isEmpty from 'lodash/isEmpty';
-import { CITIES_MAP } from '../../helpers/constants';
+import { CITIES_MAP, PAGE_SIZE } from '../../helpers/constants';
 import _find from 'lodash/find';
 
 const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) => {
@@ -47,7 +47,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
                   <Listing offer={offer} key={index} />
                 ))}
               </div>
-              <Pagination listingsCount={offers.length} filters={filters} page={page} />
+              <Pagination listingsCount={offers.length} filters={filters} page={page} pageSize={PAGE_SIZE.mobile} />
             </Fragment>
           ) : (
             <NoResults isSearch={isSearchPage} />
