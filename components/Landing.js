@@ -93,7 +93,7 @@ const Landing = ({ locations }) => {
               hideVirtualKeyboard();
               setSelectedCity(value);
             }}
-            disabled={CITIES.length === 1}
+            disabled={CITIES.length === 1 || isAreaLoading}
             className="fdbDropdown"
           />
           <Dropdown
