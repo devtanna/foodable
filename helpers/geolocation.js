@@ -2,12 +2,12 @@ export const getGeolocation = () => {
   let location;
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const geocoder = new google.maps.Geocoder();
-        const latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const geocoder = new google.maps.Geocoder();
+          const latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-        return new Promise((resolve, reject) => {
           geocoder.geocode({ latLng: latlng }, (results, status) => {
             if (status == google.maps.GeocoderStatus.OK) {
               if (results.length) {
@@ -33,12 +33,12 @@ export const getGeolocation = () => {
               reject('Geocoder failed due to: ', status);
             }
           });
-        });
-      },
-      error => {
-        console.log('Geolocation error:', error);
-      }
-    );
+        },
+        error => {
+          reject('Geolocation error:', error);
+        }
+      );
+    });
   } else {
     // Browser doesn't support Geolocation
     console.log('HTML 5 Geolocation not supported');
