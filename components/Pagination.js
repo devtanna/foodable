@@ -1,7 +1,6 @@
 import { Icon } from 'semantic-ui-react';
 import { device } from '../helpers/device';
 import { removeObjEmpty } from '../helpers/utils';
-import { PAGE_SIZE } from '../helpers/constants';
 import qs from 'qs';
 
 const getPageUrl = (page, filters) => {
@@ -9,12 +8,12 @@ const getPageUrl = (page, filters) => {
   return `?${qs.stringify(params)}`;
 };
 
-const Pagination = ({ listingsCount, filters, page }) => {
+const Pagination = ({ listingsCount, filters, page, pageSize }) => {
   const current = Number(page);
   const prevPage = current - 1;
   const nextPage = current + 1;
   const _filters = removeObjEmpty(filters);
-  const hasNext = listingsCount >= PAGE_SIZE;
+  const hasNext = listingsCount >= pageSize;
 
   return (
     <div className="wrapper">

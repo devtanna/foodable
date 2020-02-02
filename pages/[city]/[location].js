@@ -4,7 +4,7 @@ import { redirectToPage, trackPageView, deslugify, capitalizeFirstLetter, remove
 import FoodablesMobile from '../../components/mobile/';
 import FoodablesDesktop from '../../components/desktop/';
 import { getOffers, getRandomOffers, getLocations, getCuisines } from '../../helpers/api';
-import { CITIES_MAP } from '../../helpers/constants';
+import { CITIES_MAP, PAGE_SIZE } from '../../helpers/constants';
 import Cookies from 'universal-cookie';
 import qs from 'qs';
 import base64 from 'base-64';
@@ -128,10 +128,14 @@ Location.getInitialProps = async ({ req, res, query }) => {
 
     const page = query.page ? Number(query.page) : 1;
 
+    const device = res ? req.device.type : cookies.get('fdb_device');
+
+    const pageSize = device === 'phone' ? PAGE_SIZE.mobile : PAGE_SIZE.desktop;
+
     let offers = [];
     try {
       // Get offers by location, page and search filters
-      const res = await getOffers(location, page, searchFilters, citySlug);
+      const res = await getOffers(location, page, searchFilters, citySlug, pageSize);
       if (res) {
         offers = res.offers;
       }
@@ -163,8 +167,6 @@ Location.getInitialProps = async ({ req, res, query }) => {
     } catch(e) {
       console.log('Error while fetching cuisines:', e);
     }
-    
-    const device = res ? req.device.type : cookies.get('fdb_device');
 
     const utmSource = query['utm_source'];
 

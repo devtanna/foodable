@@ -27,11 +27,11 @@ const client = new ApolloClient({
   defaultOptions: defaultOptions,
 });
 
-export const getOffers = async (location, page, searchFilters, city) => {
+export const getOffers = async (location, page, searchFilters, city, pageSize = PAGE_SIZE.desktop) => {
   try {
     const queryParams = [];
     queryParams.push(`page: ${page}`);
-    queryParams.push(`pageSize: ${PAGE_SIZE}`);
+    queryParams.push(`pageSize: ${pageSize}`);
     queryParams.push(`locationSlug: "${location}"`);
     queryParams.push(`city: "${city}"`);
 
