@@ -102,6 +102,7 @@ const Landing = ({ locations }) => {
             fluid
             search
             loading={isAreaLoading}
+            disabled={isAreaLoading}
             options={locationsOptions}
             onChange={(e, { value }) => {
               hideVirtualKeyboard();
