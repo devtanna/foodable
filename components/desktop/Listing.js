@@ -295,7 +295,11 @@ const MainOffer = ({ offer }) => {
           <img className="mainOffer__sourceImg" src={offerSources[source].logo} alt={source} />
         </h4>
         <div className="mainOffer__offerWrapper">
-          <h3 className="mainOffer__offer">{limitChars(_offer)}</h3>
+          <h3 className="mainOffer__offer">
+            <a href={href} target="_blank" onClick={track} rel="noopener">
+              {limitChars(_offer)}
+            </a>
+          </h3>
           {hasDeliveryInfo && (
             <div className="deliveryInfo__wrapper">
               {minimumOrder && (
@@ -366,8 +370,13 @@ const MainOffer = ({ offer }) => {
         }
         .mainOffer__offer {
           margin: 0;
+        }
+        .mainOffer__offer a {
           color: #000;
           font-size: 20px;
+        }
+        .mainOffer__offer a:hover {
+          color: rgba(0, 0, 0, 0.7);
         }
         .deliveryInfo__wrapper {
           display: flex;
