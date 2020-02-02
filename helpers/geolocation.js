@@ -18,14 +18,11 @@ export const getGeolocation = () => {
                 const closest = address['address_components'].find(
                   obj => obj.types.includes('neighborhood') || obj.types.includes('sublocality_level_1')
                 );
-                console.log(address);
-                console.log(closest);
                 if (closest) {
                   location = closest['long_name'];
                 } else {
                   location = address['formatted_address'].split('-')[0].trim();
                 }
-                console.log(location);
 
                 resolve(location);
               }
@@ -35,7 +32,7 @@ export const getGeolocation = () => {
           });
         },
         error => {
-          reject('Geolocation error:', error);
+          reject(error);
         }
       );
     });

@@ -39,7 +39,6 @@ const Landing = ({ locations }) => {
 
   useEffect(() => {
     if (!geolocation || !locations) return;
-    console.log(geolocation);
     Object.entries(locations).some(([citySlug, cityLocations]) => {
       const foundLoc = cityLocations.find(loc => loc.key === geolocation);
       if (foundLoc) {
@@ -56,7 +55,6 @@ const Landing = ({ locations }) => {
     try {
       setIsAreaLoading(true);
       const res = await getGeolocation();
-      console.log(res);
       if (res) {
         setGeolocation(slugify(res));
       }
