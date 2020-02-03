@@ -1,5 +1,20 @@
 [
   {
+    "locationName": "Abu Hail",
+    "url": "/uae/restaurants/1169/abu-hail",
+    "baseline": ["abu-hail"]
+  },
+  {
+    "locationName": "Al Garhoud",
+    "url": "/uae/restaurants/1182/al-garhoud",
+    "baseline": ["garhoud"]
+  },
+  {
+    "locationName": "Al Muraqqabat",
+    "url": "/uae/restaurants/1200/al-muraqqabat",
+    "baseline": ["al-muraqqabat"]
+  },
+  {
     "locationName": "Dubai Internet City - DIC",
     "url": "/uae/restaurants/1266/dubai-internet-city-dic",
     "baseline": ["dubai-internet-city"]
@@ -12,7 +27,7 @@
   {
     "locationName": "Jumeirah Lakes Towers - JLT",
     "url": "/uae/restaurants/1308/jumeirah-lakes-towers-jlt",
-    "baseline": ["jumeirah-lake-towers-jlt"]
+    "baseline": ["jumeirah-lake-towers"]
   },
   {
     "locationName": "Al Karama",
@@ -102,28 +117,11 @@
   {
     "locationName": "Al Muteena",
     "url": "/uae/restaurants/1203/al-muteena",
-    "baseline": [
-      "al-muteena",
-      "naif",
-      "al-baraha",
-      "abu-hail",
-      "hor-al-anz",
-      "al-khabaisi",
-      "al-muraqqabat",
-      "al-rigga"
-    ]
+    "baseline": ["muteena"]
   },
   {
     "locationName": "Al Mankhool",
     "url": "/uae/restaurants/1193/al-mankhool",
-    "baseline": [
-      "mankhool",
-      "al-raffa",
-      "al-souq-al-kabeer",
-      "umm-hurair",
-      "al-karama",
-      "al-jaffiliya",
-      "al-hudaiba-and-around"
-    ]
+    "baseline": ["al-mankhool"]
   }
 ]

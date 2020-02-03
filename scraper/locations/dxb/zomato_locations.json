@@ -2,12 +2,12 @@
   {
     "url": "https://www.zomato.com/dubai/abu-hail-order-online?delivery_subzone=3803&offers=1",
     "locationName": "Abu Hail",
-    "baseline": ["abu-hail", "al-baraha", "corniche-deira"]
+    "baseline": ["abu-hail"]
   },
   {
     "url": "https://www.zomato.com/dubai/garhoud-order-online?delivery_subzone=3819&offers=1",
     "locationName": "Al Garhoud",
-    "baseline": ["al-garhoud", "umm-ramool"]
+    "baseline": ["garhoud"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-khabaisi-order-online?delivery_subzone=3804&offers=1",
@@ -22,7 +22,7 @@
   {
     "url": "https://www.zomato.com/dubai/al-muteena-order-online?delivery_subzone=3808&offers=1",
     "locationName": "Al Muteena",
-    "baseline": ["al-muteena", "al-baraha"]
+    "baseline": ["muteena", "al-baraha"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-ras-order-online?delivery_subzone=3809&offers=1",
@@ -71,8 +71,8 @@
   },
   {
     "url": "https://www.zomato.com/dubai/rashidiya-order-online?delivery_subzone=3822&offers=1",
-    "locationName": "Rashidiya",
-    "baseline": ["rashidiya", "nad-shamma", "umm-ramool", "nad-al-hamar"]
+    "locationName": "Al Rashidiya",
+    "baseline": ["al-rashidiya", "nad-shamma", "umm-ramool", "nad-al-hamar"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-karama-order-online?delivery_subzone=3792&offers=1",
@@ -81,8 +81,8 @@
   },
   {
     "url": "https://www.zomato.com/dubai/mankhool-order-online?delivery_subzone=7990&offers=1",
-    "locationName": "Mankhool",
-    "baseline": ["mankhool", "al-raffa", "al-souq-al-kabeer", "al-jaffiliya"]
+    "locationName": "Al Mankhool",
+    "baseline": ["al-mankhool", "al-raffa", "al-souq-al-kabeer", "al-jaffiliya"]
   },
   {
     "url": "https://www.zomato.com/dubai/meena-bazaar-order-online?delivery_subzone=3796&offers=1",
@@ -127,7 +127,7 @@
   {
     "url": "https://www.zomato.com/dubai/jumeirah-lake-towers-jlt-order-online?delivery_subzone=3851&offers=1",
     "locationName": "Jumeirah Lake Towers (JLT)",
-    "baseline": ["jumeirah-lake-towers-jlt", "jumeirah-heights", "meadows"]
+    "baseline": ["jumeirah-lake-towers", "jumeirah-heights", "meadows"]
   },
   {
     "url": "https://www.zomato.com/dubai/palm-jumeirah-order-online?delivery_subzone=8459&offers=1",

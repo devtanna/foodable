@@ -138,7 +138,7 @@
     "locationName": "Al Rashidiya",
     "url": "/restaurants/dubai/al-rashidiya",
     "baseline": [
-      "rashidiya",
+      "al-rashidiya",
       "nad-shamma",
       "umm-ramool",
       "mirdif",
@@ -176,7 +176,7 @@
   {
     "locationName": "Al Waheda",
     "url": "/restaurants/dubai/al-waheda",
-    "baseline": ["abu-hail", "hor-al-anz", "al-mamzar"]
+    "baseline": ["hor-al-anz", "al-mamzar"]
   },
   {
     "locationName": "Al Warqaa",
@@ -233,7 +233,7 @@
   {
     "locationName": "Century Mall",
     "url": "/restaurants/dubai/century-mall",
-    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "al-khabaisi", "al-baraha"]
   },
   {
     "locationName": "City Walk",
@@ -243,7 +243,7 @@
   {
     "locationName": "Corniche Deira",
     "url": "/restaurants/dubai/corniche-deira",
-    "baseline": ["corniche-deira", "al-baraha", "abu-hail", "al-mamzar"]
+    "baseline": ["corniche-deira", "al-baraha", "al-mamzar"]
   },
   {
     "locationName": "D.I.F.C.",
@@ -259,21 +259,21 @@
     "locationName": "Deira",
     "url": "/restaurants/dubai/deira",
     "baseline": [
-      "deira-city-centre-area",
+      "al-muraqqabat",
       "abu-hail",
+      "muteena",
+      "deira-city-centre-area",
       "al-baraha",
       "naif",
-      "al-muraqqabat",
       "hor-al-anz",
       "al-khabaisi",
-      "al-muteena",
       "al-ras"
     ]
   },
   {
     "locationName": "Deira City Centre",
     "url": "/restaurants/dubai/deira-city-centre",
-    "baseline": ["deira-city-centre-area", "al-garhoud"]
+    "baseline": ["deira-city-centre-area"]
   },
   {
     "locationName": "Design District",
@@ -323,21 +323,13 @@
   {
     "locationName": "Festival City",
     "url": "/restaurants/dubai/festival-city",
-    "baseline": [
-      "dubai-festival-city",
-      "umm-ramool",
-      "al-jaddaf",
-      "nad-al-hamar",
-      "nad-shamma",
-      "al-garhoud",
-      "rashidiya"
-    ]
+    "baseline": ["dubai-festival-city", "umm-ramool", "al-jaddaf", "nad-al-hamar", "nad-shamma", "al-rashidiya"]
   },
   {
     "locationName": "Garhoud",
     "url": "/restaurants/dubai/garhoud",
     "baseline": [
-      "al-garhoud",
+      "garhoud",
       "umm-ramool",
       "dubai-festival-city",
       "deira-city-centre-area",
@@ -352,7 +344,7 @@
   {
     "locationName": "Hor Al Anz East",
     "url": "/restaurants/dubai/hor-al-anz-east",
-    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "al-khabaisi", "al-baraha"]
   },
   {
     "locationName": "IMPZ",
@@ -388,7 +380,7 @@
     "locationName": "J.L.T.",
     "url": "/restaurants/dubai/jlt",
     "baseline": [
-      "jumeirah-lake-towers-jlt",
+      "jumeirah-lake-towers",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
       "meadows",
@@ -399,7 +391,7 @@
     "locationName": "J.L.T. West",
     "url": "/restaurants/dubai/jlt-west",
     "baseline": [
-      "jumeirah-lake-towers-jlt",
+      "jumeirah-lake-towers",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
       "meadows",
@@ -410,7 +402,7 @@
     "locationName": "JLT Connector",
     "url": "/restaurants/dubai/jlt-connector",
     "baseline": [
-      "jumeirah-lake-towers-jlt",
+      "jumeirah-lake-towers",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
       "meadows",
@@ -506,7 +498,7 @@
   {
     "locationName": "Karama",
     "url": "/restaurants/dubai/karama",
-    "baseline": ["al-karama", "oud-metha", "mankhool"]
+    "baseline": ["al-karama", "oud-metha", "al-mankhool"]
   },
   {
     "locationName": "Knowledge Village",
@@ -551,7 +543,7 @@
   {
     "locationName": "Mirdif",
     "url": "/restaurants/dubai/mirdif",
-    "baseline": ["mirdif", "rashidiya", "al-twar", "al-mizhar", "al-warqa", "nad-al-hamar"]
+    "baseline": ["mirdif", "al-rashidiya", "al-twar", "al-mizhar", "al-warqa", "nad-al-hamar"]
   },
   {
     "locationName": "Motor City",
@@ -568,7 +560,7 @@
   {
     "locationName": "Muhaisnah 1",
     "url": "/restaurants/dubai/muhaisnah-1",
-    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "rashidiya", "dubai-international-airport-area"]
+    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "al-rashidiya", "dubai-international-airport-area"]
   },
   {
     "locationName": "Muhaisnah 4",
@@ -607,7 +599,7 @@
   {
     "locationName": "Port Saeed",
     "url": "/restaurants/dubai/port-saeed",
-    "baseline": ["port-saeed", "al-muraqqabat", "al-khabaisi", "al-garhoud", "umm-hurair"]
+    "baseline": ["port-saeed", "al-khabaisi", "umm-hurair"]
   },
   {
     "locationName": "RemRaam",
@@ -708,14 +700,7 @@
   {
     "locationName": "Umm Ramool",
     "url": "/restaurants/dubai/umm-ramool",
-    "baseline": [
-      "umm-ramool",
-      "al-garhoud",
-      "rashidiya",
-      "nad-shamma",
-      "dubai-festival-city",
-      "dubai-international-airport-area"
-    ]
+    "baseline": ["umm-ramool", "al-rashidiya", "nad-shamma", "dubai-festival-city", "dubai-international-airport-area"]
   },
   {
     "locationName": "Umm Suqeim 1",

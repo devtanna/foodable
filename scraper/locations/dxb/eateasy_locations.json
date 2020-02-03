@@ -2,7 +2,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-abu-hail-67/offer-offer-1",
     "locationName": "Abu Hail",
-    "baseline": ["abu-hail", "al-baraha", "corniche-deira"]
+    "baseline": ["abu-hail"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-awir-96/offer-offer-1",
@@ -60,7 +60,7 @@
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-garhoud-5/offer-offer-1",
     "locationName": "Al Garhoud",
     "baseline": [
-      "al-garhoud",
+      "garhoud",
       "umm-ramool",
       "dubai-festival-city",
       "deira-city-centre-area",
@@ -103,7 +103,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-khabaisi-112/offer-offer-1",
     "locationName": "Al Khabaisi",
-    "baseline": ["al-khabaisi", "al-muraqqabat", "hor-al-anz", "dubai-international-airport-area"]
+    "baseline": ["al-khabaisi", "hor-al-anz", "dubai-international-airport-area"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-khawaneej-86/offer-offer-1",
@@ -123,7 +123,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-mankhool-83/offer-offer-1",
     "locationName": "Al Mankhool",
-    "baseline": ["mankhool", "al-raffa", "al-souq-al-kabeer", "umm-hurair", "al-jaffiliya", "al-hudaiba-and-around"]
+    "baseline": ["al-mankhool", "al-raffa", "al-souq-al-kabeer", "umm-hurair", "al-jaffiliya", "al-hudaiba-and-around"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-meydan-136/offer-offer-1",
@@ -163,16 +163,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-muteena-117/offer-offer-1",
     "locationName": "Al Muteena",
-    "baseline": [
-      "al-muteena",
-      "naif",
-      "al-baraha",
-      "abu-hail",
-      "hor-al-anz",
-      "al-khabaisi",
-      "al-muraqqabat",
-      "al-rigga"
-    ]
+    "baseline": ["muteena", "naif", "al-baraha", "hor-al-anz", "al-khabaisi", "al-rigga"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-nahda-7/offer-offer-1",
@@ -238,7 +229,7 @@
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-rashidiya-10/offer-offer-1",
     "locationName": "Al Rashidiya",
     "baseline": [
-      "rashidiya",
+      "al-rashidiya",
       "nad-shamma",
       "umm-ramool",
       "mirdif",
@@ -251,7 +242,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-rigga-103/offer-offer-1",
     "locationName": "Al Rigga",
-    "baseline": ["al-rigga", "naif", "al-muraqqabat", "al-ras", "baniyas"]
+    "baseline": ["al-rigga", "naif", "al-ras", "baniyas"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-safa-74/offer-offer-1",
@@ -281,7 +272,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-waheda-105/offer-offer-1",
     "locationName": "Al Waheda",
-    "baseline": ["abu-hail", "hor-al-anz", "al-mamzar"]
+    "baseline": ["hor-al-anz", "al-mamzar"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-al-warquaa-89/offer-offer-1",
@@ -344,7 +335,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-corniche-deira-106/offer-offer-1",
     "locationName": "Corniche Deira",
-    "baseline": ["corniche-deira", "al-baraha", "abu-hail", "al-mamzar"]
+    "baseline": ["corniche-deira", "al-baraha", "al-mamzar"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-damac-hills-1333/offer-offer-1",
@@ -354,21 +345,12 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-deira-14/offer-offer-1",
     "locationName": "Deira",
-    "baseline": [
-      "deira-city-centre-area",
-      "abu-hail",
-      "al-baraha",
-      "naif",
-      "al-muraqqabat",
-      "hor-al-anz",
-      "al-khabaisi",
-      "al-ras"
-    ]
+    "baseline": ["deira-city-centre-area", "al-baraha", "naif", "hor-al-anz", "al-khabaisi", "al-ras"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-deira-al-baraha-97/offer-offer-1",
     "locationName": "Deira Al Baraha",
-    "baseline": ["al-baraha", "abu-hail", "hor-al-anz", "naif", "corniche-deira"]
+    "baseline": ["al-baraha", "hor-al-anz", "naif", "corniche-deira"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-difc-15/offer-offer-1",
@@ -407,8 +389,8 @@
     "locationName": "Dubai Airport Free Zone (DAFZA)",
     "baseline": [
       "dubai-international-airport-area",
-      "rashidiya",
-      "al-garhoud",
+      "al-rashidiya",
+      "garhoud",
       "muhaisnah",
       "umm-ramool",
       "al-khabaisi",
@@ -429,8 +411,8 @@
       "al-jaddaf",
       "nad-al-hamar",
       "nad-shamma",
-      "al-garhoud",
-      "rashidiya"
+      "garhoud",
+      "al-rashidiya"
     ]
   },
   {
@@ -513,7 +495,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-hor-al-anz-107/offer-offer-1",
     "locationName": "Hor Al Anz",
-    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "al-khabaisi", "al-baraha"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-international-city-32/offer-offer-1",
@@ -618,7 +600,7 @@
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-jumeirah-lake-towers-jlt-35/offer-offer-1",
     "locationName": "Jumeirah Lake Towers (JLT)",
     "baseline": [
-      "jumeirah-lake-towers-jlt",
+      "jumeirah-lake-towers",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
       "meadows",
@@ -719,7 +701,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-mirdif-39/offer-offer-1",
     "locationName": "Mirdif",
-    "baseline": ["mirdif", "rashidiya", "al-twar", "al-mizhar", "al-warqa", "nad-al-hamar"]
+    "baseline": ["mirdif", "al-rashidiya", "al-twar", "al-mizhar", "al-warqa", "nad-al-hamar"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-mudon-1098/offer-offer-1",
@@ -729,12 +711,12 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-muhaisanah-109/offer-offer-1",
     "locationName": "Muhaisanah",
-    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "rashidiya", "dubai-international-airport-area"]
+    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "al-rashidiya", "dubai-international-airport-area"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-muhaisanah-1-124/offer-offer-1",
     "locationName": "Muhaisanah 1",
-    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "rashidiya", "dubai-international-airport-area"]
+    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "al-rashidiya", "dubai-international-airport-area"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-muhaisanah-2-125/offer-offer-1",
@@ -746,7 +728,7 @@
       "oud-al-muteena",
       "al-mizhar",
       "mirdif",
-      "rashidiya",
+      "al-rashidiya",
       "dubai-international-airport-area"
     ]
   },
@@ -773,12 +755,12 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-nad-shamma-95/offer-offer-1",
     "locationName": "Nad Shamma",
-    "baseline": ["nad-shamma", "dubai-festival-city", "umm-ramool", "rashidiya", "nad-al-hamar"]
+    "baseline": ["nad-shamma", "dubai-festival-city", "umm-ramool", "al-rashidiya", "nad-al-hamar"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-naif-76/offer-offer-1",
     "locationName": "Naif",
-    "baseline": ["naif", "al-ras", "al-baraha", "al-muraqqabat", "al-rigga"]
+    "baseline": ["naif", "al-ras", "al-baraha", "al-rigga"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-oud-al-mateena-91/offer-offer-1",
@@ -814,7 +796,7 @@
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-port-saeed-110/offer-offer-1",
     "locationName": "Port Saeed",
-    "baseline": ["port-saeed", "al-muraqqabat", "al-khabaisi", "al-garhoud", "umm-hurair"]
+    "baseline": ["port-saeed", "al-khabaisi", "garhoud", "umm-hurair"]
   },
   {
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-ras-al-khor-94/offer-offer-1",
@@ -918,8 +900,8 @@
     "locationName": "Umm Ramool",
     "baseline": [
       "umm-ramool",
-      "al-garhoud",
-      "rashidiya",
+      "garhoud",
+      "al-rashidiya",
       "nad-shamma",
       "dubai-festival-city",
       "dubai-international-airport-area"

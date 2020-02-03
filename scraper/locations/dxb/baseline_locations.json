@@ -5,7 +5,7 @@
   },
   {
     "locationName": "Al Garhoud",
-    "slug": "al-garhoud"
+    "slug": "garhoud"
   },
   {
     "locationName": "Al Khabaisi",
@@ -16,8 +16,8 @@
     "slug": "al-muraqqabat"
   },
   {
-    "locationName": "Al Muteena",
-    "slug": "al-muteena"
+    "locationName": "Muteena",
+    "slug": "muteena"
   },
   {
     "locationName": "Oud Al Muteena",
@@ -56,16 +56,16 @@
     "slug": "naif"
   },
   {
-    "locationName": "Rashidiya",
-    "slug": "rashidiya"
+    "locationName": "Al Rashidiya",
+    "slug": "al-rashidiya"
   },
   {
     "locationName": "Al Karama",
     "slug": "al-karama"
   },
   {
-    "locationName": "Mankhool",
-    "slug": "mankhool"
+    "locationName": "Al Mankhool",
+    "slug": "al-mankhool"
   },
   {
     "locationName": "Meena Bazaar",
@@ -101,7 +101,7 @@
   },
   {
     "locationName": "Jumeirah Lake Towers (JLT)",
-    "slug": "jumeirah-lake-towers-jlt"
+    "slug": "jumeirah-lake-towers"
   },
   {
     "locationName": "Palm Jumeirah",
@@ -276,7 +276,7 @@
     "slug": "al-sufouh"
   },
   {
-    "locationName": "Barsha Heights",
+    "locationName": "Barsha Heights (TECOM)",
     "slug": "barsha-heights"
   },
   {

@@ -2,7 +2,7 @@
   {
     "id": "937",
     "locationName": "Abu Hail",
-    "baseline": ["abu-hail", "al-baraha", "corniche-deira"]
+    "baseline": ["abu-hail"]
   },
   {
     "id": "764",
@@ -17,7 +17,7 @@
   {
     "id": "933",
     "locationName": "Al Baraha",
-    "baseline": ["al-baraha", "abu-hail", "hor-al-anz", "naif", "corniche-deira"]
+    "baseline": ["al-baraha", "hor-al-anz", "naif", "corniche-deira"]
   },
   {
     "id": "834",
@@ -92,7 +92,7 @@
   {
     "id": "931",
     "locationName": "Al Khabaisi",
-    "baseline": ["al-khabaisi", "al-muraqqabat", "hor-al-anz", "dubai-international-airport-area"]
+    "baseline": ["al-khabaisi", "hor-al-anz", "dubai-international-airport-area"]
   },
   {
     "id": "793",
@@ -117,7 +117,7 @@
   {
     "id": "925",
     "locationName": "Al Mankhool",
-    "baseline": ["mankhool", "al-raffa", "al-souq-al-kabeer", "umm-hurair", "al-jaffiliya", "al-hudaiba-and-around"]
+    "baseline": ["al-mankhool", "al-raffa", "al-souq-al-kabeer", "umm-hurair", "al-jaffiliya", "al-hudaiba-and-around"]
   },
   {
     "id": "922",
@@ -243,7 +243,7 @@
     "id": "867",
     "locationName": "Al Rashidiya",
     "baseline": [
-      "rashidiya",
+      "al-rashidiya",
       "nad-shamma",
       "umm-ramool",
       "mirdif",
@@ -256,7 +256,7 @@
   {
     "id": "930",
     "locationName": "Al Rigga",
-    "baseline": ["al-rigga", "naif", "al-muraqqabat", "al-ras", "baniyas"]
+    "baseline": ["al-rigga", "naif", "al-ras", "baniyas"]
   },
   {
     "id": "914",
@@ -316,7 +316,7 @@
   {
     "id": "938",
     "locationName": "Al Waheda",
-    "baseline": ["abu-hail", "hor-al-anz", "al-mamzar"]
+    "baseline": ["hor-al-anz", "al-mamzar"]
   },
   {
     "id": "781",
@@ -403,16 +403,7 @@
   {
     "id": "935",
     "locationName": "Deira",
-    "baseline": [
-      "deira-city-centre-area",
-      "abu-hail",
-      "al-baraha",
-      "naif",
-      "al-muraqqabat",
-      "hor-al-anz",
-      "al-khabaisi",
-      "al-ras"
-    ]
+    "baseline": ["deira-city-centre-area", "al-baraha", "naif", "hor-al-anz", "al-khabaisi", "al-ras"]
   },
   {
     "id": "813",
@@ -432,15 +423,7 @@
   {
     "id": "866",
     "locationName": "Dubai Festival City",
-    "baseline": [
-      "dubai-festival-city",
-      "umm-ramool",
-      "al-jaddaf",
-      "nad-al-hamar",
-      "nad-shamma",
-      "al-garhoud",
-      "rashidiya"
-    ]
+    "baseline": ["dubai-festival-city", "umm-ramool", "al-jaddaf", "nad-al-hamar", "nad-shamma", "al-rashidiya"]
   },
   {
     "id": "928",
@@ -523,7 +506,7 @@
     "id": "869",
     "locationName": "Garhoud",
     "baseline": [
-      "al-garhoud",
+      "garhoud",
       "umm-ramool",
       "dubai-festival-city",
       "deira-city-centre-area",
@@ -543,12 +526,12 @@
   {
     "id": "934",
     "locationName": "Hor Al Anz",
-    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "al-khabaisi", "al-baraha"]
   },
   {
     "id": "939",
     "locationName": "Hor Al Anz East",
-    "baseline": ["hor-al-anz", "abu-hail", "al-khabaisi", "al-muraqqabat", "al-baraha"]
+    "baseline": ["hor-al-anz", "al-khabaisi", "al-baraha"]
   },
   {
     "id": "772",
@@ -619,7 +602,7 @@
     "id": "817",
     "locationName": "Jumeirah Lakes Towers - JLT",
     "baseline": [
-      "jumeirah-lake-towers-jlt",
+      "jumeirah-lake-towers",
       "jumeirah-heights",
       "jumeirah-beach-residence-jbr",
       "meadows",
@@ -691,7 +674,7 @@
   {
     "id": "1339",
     "locationName": "Marsa Al Khor",
-    "baseline": ["dubai-festival-city", "al-garhoud", "dubai-festival-city", "al-jaddaf"]
+    "baseline": ["dubai-festival-city", "dubai-festival-city", "al-jaddaf"]
   },
   {
     "id": "818",
@@ -701,7 +684,7 @@
   {
     "id": "789",
     "locationName": "Mirdif",
-    "baseline": ["mirdif", "rashidiya", "al-twar", "al-mizhar", "al-warqa", "nad-al-hamar"]
+    "baseline": ["mirdif", "al-rashidiya", "al-twar", "al-mizhar", "al-warqa", "nad-al-hamar"]
   },
   {
     "id": "723",
@@ -730,14 +713,14 @@
       "oud-al-muteena",
       "al-mizhar",
       "mirdif",
-      "rashidiya",
+      "al-rashidiya",
       "dubai-international-airport-area"
     ]
   },
   {
     "id": "1518",
     "locationName": "Muhaisnah 1",
-    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "rashidiya", "dubai-international-airport-area"]
+    "baseline": ["muhaisnah", "al-twar", "al-mizhar", "mirdif", "al-rashidiya", "dubai-international-airport-area"]
   },
   {
     "id": "1677",
@@ -752,16 +735,7 @@
   {
     "id": "1563",
     "locationName": "Muteena",
-    "baseline": [
-      "al-muteena",
-      "naif",
-      "al-baraha",
-      "abu-hail",
-      "hor-al-anz",
-      "al-khabaisi",
-      "al-muraqqabat",
-      "al-rigga"
-    ]
+    "baseline": ["muteena", "naif", "al-baraha", "hor-al-anz", "al-khabaisi", "al-rigga"]
   },
   {
     "id": "854",
@@ -786,7 +760,7 @@
   {
     "id": "1338",
     "locationName": "Nad Shamma",
-    "baseline": ["nad-shamma", "dubai-festival-city", "umm-ramool", "rashidiya", "nad-al-hamar"]
+    "baseline": ["nad-shamma", "dubai-festival-city", "umm-ramool", "al-rashidiya", "nad-al-hamar"]
   },
   {
     "id": "864",
@@ -796,7 +770,7 @@
   {
     "id": "1142",
     "locationName": "Naif",
-    "baseline": ["naif", "al-ras", "al-baraha", "al-muraqqabat", "al-rigga"]
+    "baseline": ["naif", "al-ras", "al-baraha", "al-rigga"]
   },
   {
     "id": "798",
@@ -816,7 +790,7 @@
   {
     "id": "1513",
     "locationName": "Port Saeed",
-    "baseline": ["port-saeed", "al-muraqqabat", "al-khabaisi", "al-garhoud", "umm-hurair"]
+    "baseline": ["port-saeed", "al-khabaisi", "umm-hurair"]
   },
   {
     "id": "863",
@@ -950,14 +924,7 @@
   {
     "id": "868",
     "locationName": "Umm Ramool",
-    "baseline": [
-      "umm-ramool",
-      "al-garhoud",
-      "rashidiya",
-      "nad-shamma",
-      "dubai-festival-city",
-      "dubai-international-airport-area"
-    ]
+    "baseline": ["umm-ramool", "al-rashidiya", "nad-shamma", "dubai-festival-city", "dubai-international-airport-area"]
   },
   {
     "id": "911",

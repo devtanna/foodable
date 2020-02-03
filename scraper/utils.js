@@ -79,7 +79,7 @@ function calculateScore(item) {
   if (!offer) return;
 
   var offerMapping = {
-    5: [
+    4: [
       /^20 Dhs Lunch$/im,
       /^(\d+) aed meals$/im,
       /^(\d+) aed meal$/im,
@@ -112,8 +112,11 @@ function calculateScore(item) {
       /^(\d+)% off on all dine-in and home-delivery orders Only applicable on orders above aed\s*(\d+(.\d+)*) Offer on home-delivery only applicable when you order online on Zomato or the restaurant app$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us Valid from (\d+):(\d+) (pm|am) to (\d+):(\d+) (pm|am) Offer on home-delivery only applicable when you order online on Zomato$/im,
     ],
-    4: [/^Special Deal$/im, /^Special Carriage Offer$/im, /^free delivery$/im, /^Build Your Own Meal$/im],
     3: [
+      /^Special Deal$/im,
+      /^Special Carriage Offer$/im,
+      /^free delivery$/im,
+      /^Build Your Own Meal$/im,
       /^aed(\d+(.\d+)*) off on all orders above aed(\d+(.\d+)*)$/im,
       /^aed(\d+(.\d+)*) off on dine-in above above aed(\d+(.\d+)*)$/im,
       /^aed\s*(\d+(.\d+)*) off on all dine-in and home-delivery orders Only applicable on orders above aed\s*(\d+(.\d+)*) Offer on home-delivery only applicable when you order online on Zomato$/im,
@@ -133,7 +136,6 @@ function calculateScore(item) {
       /^deals on$/im,
       /^free item with all orders$/im,
     ],
-
     2: [
       /^free item with orders over aed (\d+(.\d+)*)$/im,
       /^free [\w\s]+ with orders over aed (\d+(.\d+)*)$/im,
@@ -149,7 +151,6 @@ function calculateScore(item) {
       /^(\d+)% off on your first order from/im,
       /^(\d+)% off on your first order$/im,
     ],
-
     1: [
       /^(feel good)*\s*meal deals$/im,
       /^special offers on menu items$/im,
