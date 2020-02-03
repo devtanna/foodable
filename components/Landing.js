@@ -93,7 +93,7 @@ const Landing = ({ locations }) => {
               hideVirtualKeyboard();
               setSelectedCity(value);
             }}
-            disabled={CITIES.length === 1 || isAreaLoading}
+            disabled={CITIES.length === 1}
             className="fdbDropdown"
           />
           <Dropdown
@@ -102,7 +102,6 @@ const Landing = ({ locations }) => {
             fluid
             search
             loading={isAreaLoading}
-            disabled={isAreaLoading}
             options={locationsOptions}
             onChange={(e, { value }) => {
               hideVirtualKeyboard();
