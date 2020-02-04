@@ -54,12 +54,20 @@ const Landing = ({ locations }) => {
   const initGeolocation = async () => {
     try {
       setIsAreaLoading(true);
+
+      setTimeout(() => {
+        if (isAreaLoading) {
+          setIsAreaLoading(false);
+        }
+      }, 3000);
+
       const res = await getGeolocation();
+
       if (res) {
         setGeolocation(slugify(res));
       }
     } catch (e) {
-      console.log('Could not use geolocation: ', e);
+      console.warn('Could not use geolocation: ', e);
     } finally {
       setIsAreaLoading(false);
     }

@@ -38,6 +38,6 @@ export const getGeolocation = () => {
     });
   } else {
     // Browser doesn't support Geolocation
-    console.log('HTML 5 Geolocation not supported');
+    throw 'HTML 5 Geolocation not supported';
   }
 };
