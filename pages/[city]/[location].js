@@ -44,6 +44,7 @@ const PageHead = ({ page, location, filters }) => {
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <script src="https://feedier.com/js/widgets/widgets.min.js" type="text/javascript" async />
     </Head>
   );
 };
@@ -91,6 +92,16 @@ const Location = ({
             page={page}
           />
         )}
+        <div 
+          className="feedier-widget" 
+          data-type="engager" 
+          data-layout="horizontal" 
+          data-shake="true" 
+          data-position="right" 
+          data-in-site="true" 
+          data-carrier-id="14121" 
+          data-key="JicKJF1DAjlDe1T0HFp5iavWmJZ3mxm1"
+        />
         <style jsx>{`
           .wrapper {
             height: 100%;
