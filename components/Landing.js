@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Dropdown, Button } from 'semantic-ui-react';
 import { device } from '../helpers/device';
-import { hideVirtualKeyboard, slugify } from '../helpers/utils';
+import { slugify } from '../helpers/utils';
 import { CITIES_MAP } from '../helpers/constants';
 import { getGeolocation } from '../helpers/geolocation';
 
@@ -27,6 +27,7 @@ const Landing = ({ locations }) => {
   const [locationsOptions, setLocationsOptions] = useState([]);
   const [isAreaLoading, setIsAreaLoading] = useState(false);
   const [geolocation, setGeolocation] = useState(null);
+  const [selectAreaError, setSelectAreaError] = useState(false);
 
   useEffect(() => {
     initGeolocation();
@@ -74,7 +75,11 @@ const Landing = ({ locations }) => {
   };
 
   const handleSubmit = () => {
-    if (!selectedLocation) return;
+    setSelectAreaError(false);
+    if (!selectedLocation) {
+      setSelectAreaError(true);
+      return;
+    }
     let citySlug = CITIES_MAP[`${selectedCity}`].slug;
     window.location.pathname = `/${citySlug}/${selectedLocation}/`;
   };
@@ -98,7 +103,6 @@ const Landing = ({ locations }) => {
             options={CITIES}
             value={selectedCity}
             onChange={(e, { value }) => {
-              hideVirtualKeyboard();
               setSelectedCity(value);
             }}
             disabled={CITIES.length === 1}
@@ -111,12 +115,18 @@ const Landing = ({ locations }) => {
             search
             loading={isAreaLoading}
             options={locationsOptions}
+            onFocus={() => {
+              if (selectAreaError) setSelectAreaError(false);
+            }}
+            onSearchChange={() => {
+              if (selectAreaError) setSelectAreaError(false);
+            }}
             onChange={(e, { value }) => {
-              hideVirtualKeyboard();
               setSelectedLocation(value);
             }}
             value={selectedLocation}
             className="fdbDropdown"
+            error={selectAreaError}
           />
           <Button onClick={handleSubmit} size="large" className="searchBtn">
             Find Deals
