@@ -38,6 +38,7 @@ class MyDocument extends Document {
             </Fragment>
           )}
           <script src={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}`} type="text/javascript" />
+          <script src="https://feedier.com/js/widgets/widgets.min.js" type="text/javascript" async />
         </Head>
         <body className="custom_class">
           <Main />

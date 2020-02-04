@@ -44,7 +44,6 @@ const PageHead = ({ page, location, filters }) => {
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <script src="https://feedier.com/js/widgets/widgets.min.js" type="text/javascript" async />
     </Head>
   );
 };
