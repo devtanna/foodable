@@ -56,6 +56,14 @@ class FoodableApp extends App {
           .ui.fluid.dropdown {
             border-radius: 0 !important;
           }
+          .searchBtn {
+            background: linear-gradient(270deg, #f34343 18.23%, #ff7e52 100%) !important;
+            color: #fff !important;
+            width: 100%;
+          }
+          .fdbDropdown {
+            font-size: 1.123em !important;
+          }
           .loaderWrapper {
             display: flex;
             justify-content: center;
