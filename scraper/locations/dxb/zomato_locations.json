@@ -22,7 +22,7 @@
   {
     "url": "https://www.zomato.com/dubai/al-muteena-order-online?delivery_subzone=3808&offers=1",
     "locationName": "Al Muteena",
-    "baseline": ["muteena", "al-baraha"]
+    "baseline": ["muteena"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-ras-order-online?delivery_subzone=3809&offers=1",
@@ -47,32 +47,32 @@
   {
     "url": "https://www.zomato.com/dubai/festival-city-order-online?delivery_subzone=3818&offers=1",
     "locationName": "Dubai Festival City",
-    "baseline": ["dubai-festival-city", "umm-ramool", "al-jaddaf", "nad-al-hamar", "nad-shamma"]
+    "baseline": ["dubai-festival-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/dubai-international-airport-area-order-online?delivery_subzone=3817&offers=1",
     "locationName": "Dubai International Airport Area",
-    "baseline": ["dubai-international-airport-area", "umm-ramool"]
+    "baseline": ["dubai-international-airport-area"]
   },
   {
     "url": "https://www.zomato.com/dubai/hor-al-anz-order-online?delivery_subzone=7992&offers=1",
     "locationName": "Hor Al Anz",
-    "baseline": ["hor-al-anz", "al-baraha"]
+    "baseline": ["hor-al-anz"]
   },
   {
     "url": "https://www.zomato.com/dubai/mamzar-order-online?delivery_subzone=3870&offers=1",
     "locationName": "Mamzar",
-    "baseline": ["al-mamzar", "corniche-deira", "the-palm-deira"]
+    "baseline": ["al-mamzar"]
   },
   {
     "url": "https://www.zomato.com/dubai/naif-order-online?delivery_subzone=7989&offers=1",
     "locationName": "Naif",
-    "baseline": ["naif", "al-baraha"]
+    "baseline": ["naif"]
   },
   {
     "url": "https://www.zomato.com/dubai/rashidiya-order-online?delivery_subzone=3822&offers=1",
     "locationName": "Al Rashidiya",
-    "baseline": ["al-rashidiya", "nad-shamma", "umm-ramool", "nad-al-hamar"]
+    "baseline": ["al-rashidiya"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-karama-order-online?delivery_subzone=3792&offers=1",
@@ -82,27 +82,27 @@
   {
     "url": "https://www.zomato.com/dubai/mankhool-order-online?delivery_subzone=7990&offers=1",
     "locationName": "Al Mankhool",
-    "baseline": ["al-mankhool", "al-raffa", "al-souq-al-kabeer", "al-jaffiliya"]
+    "baseline": ["al-mankhool"]
   },
   {
     "url": "https://www.zomato.com/dubai/meena-bazaar-order-online?delivery_subzone=3796&offers=1",
     "locationName": "Meena Bazaar",
-    "baseline": ["meena-bazaar", "al-souq-al-kabeer"]
+    "baseline": ["meena-bazaar"]
   },
   {
     "url": "https://www.zomato.com/dubai/oud-metha-order-online?delivery_subzone=3797&offers=1",
     "locationName": "Oud Metha",
-    "baseline": ["oud-metha", "dubai-healthcare-city"]
+    "baseline": ["oud-metha"]
   },
   {
     "url": "https://www.zomato.com/dubai/port-rashid-restaurants?order-online=1&delivery_subzone=7998&offers=1",
     "locationName": "Port Rashid",
-    "baseline": ["port-rashid", "al-raffa", "al-baraha"]
+    "baseline": ["port-rashid"]
   },
   {
     "url": "https://www.zomato.com/dubai/umm-hurair-order-online?delivery_subzone=4724&offers=1",
     "locationName": "Umm Hurair",
-    "baseline": ["umm-hurair", "al-jaddaf", "dubai-healthcare-city"]
+    "baseline": ["umm-hurair"]
   },
   {
     "url": "https://www.zomato.com/dubai/bluewaters-island-restaurants?order-online=1&delivery_subzone=3849&offers=1",
@@ -117,22 +117,22 @@
   {
     "url": "https://www.zomato.com/dubai/emirates-hills-order-online?delivery_subzone=3850&offers=1",
     "locationName": "Emirates Hills",
-    "baseline": ["emirates-hills", "the-lakes", "springs", "meadows"]
+    "baseline": ["emirates-hills"]
   },
   {
     "url": "https://www.zomato.com/dubai/jumeirah-beach-residence-jbr-order-online?delivery_subzone=3849&offers=1",
     "locationName": "Jumeirah Beach Residence (JBR)",
-    "baseline": ["jumeirah-beach-residence-jbr"]
+    "baseline": ["jumeirah-beach-residence"]
   },
   {
     "url": "https://www.zomato.com/dubai/jumeirah-lake-towers-jlt-order-online?delivery_subzone=3851&offers=1",
     "locationName": "Jumeirah Lake Towers (JLT)",
-    "baseline": ["jumeirah-lake-towers", "jumeirah-heights", "meadows"]
+    "baseline": ["jumeirah-lake-towers"]
   },
   {
     "url": "https://www.zomato.com/dubai/palm-jumeirah-order-online?delivery_subzone=8459&offers=1",
     "locationName": "Palm Jumeirah",
-    "baseline": ["palm-jumeirah", "palm-residences"]
+    "baseline": ["palm-jumeirah"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-barsha-restaurants?order-online=1&delivery_subzone=3786&offers=1",
@@ -202,7 +202,7 @@
   {
     "url": "https://www.zomato.com/dubai/jumeirah-village-circle-order-online?delivery_subzone=3790&offers=1",
     "locationName": "Jumeirah Village",
-    "baseline": ["jumeirah-village-circle", "jumeirah-village-triangle-jvt", "jumeirah-park", "springs"]
+    "baseline": ["jumeirah-village-circle"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-safa-order-online?delivery_subzone=3839&offers=1",
@@ -212,12 +212,12 @@
   {
     "url": "https://www.zomato.com/dubai/jumeirah-1-order-online?delivery_subzone=3841&offers=1",
     "locationName": "Jumeirah 1",
-    "baseline": ["jumeirah-1", "al-badaa", "al-wasl"]
+    "baseline": ["jumeirah-1"]
   },
   {
     "url": "https://www.zomato.com/dubai/jumeirah-2-order-online?delivery_subzone=3842&offers=1",
     "locationName": "Jumeirah 2",
-    "baseline": ["jumeirah-2", "al-wasl"]
+    "baseline": ["jumeirah-2"]
   },
   {
     "url": "https://www.zomato.com/dubai/jumeirah-3-order-online?delivery_subzone=3843&offers=1",
@@ -232,12 +232,12 @@
   {
     "url": "https://www.zomato.com/dubai/umm-suqeim-order-online?delivery_subzone=3845&offers=1",
     "locationName": "Umm Suqeim",
-    "baseline": ["umm-suqeim", "umm-al-sheif", "al-manara"]
+    "baseline": ["umm-suqeim"]
   },
   {
     "url": "https://www.zomato.com/dubai/business-bay-order-online?delivery_subzone=3801&offers=1",
     "locationName": "Business Bay",
-    "baseline": ["business-bay", "al-wasl"]
+    "baseline": ["business-bay"]
   },
   {
     "url": "https://www.zomato.com/dubai/downtown-dubai-order-online?delivery_subzone=3802&offers=1",
@@ -267,17 +267,17 @@
   {
     "url": "https://www.zomato.com/dubai/silicon-oasis-order-online?delivery_subzone=3861&offers=1",
     "locationName": "Dubai Silicon Oasis (DSO)",
-    "baseline": ["dubai-silicon-oasis-dso", "liwan"]
+    "baseline": ["dubai-silicon-oasis"]
   },
   {
     "url": "https://www.zomato.com/dubai/international-city-order-online?delivery_subzone=3858&offers=1",
     "locationName": "International City",
-    "baseline": ["international-city", "nad-al-hamar"]
+    "baseline": ["international-city"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-furjan-restaurants?order-online=1&delivery_subzone=4726&offers=1",
     "locationName": "Al Furjan",
-    "baseline": ["al-furjan", "green-community-village"]
+    "baseline": ["al-furjan"]
   },
   {
     "url": "https://www.zomato.com/dubai/discovery-gardens-order-online?delivery_subzone=3838&offers=1",
@@ -302,52 +302,67 @@
   {
     "url": "https://www.zomato.com/dubai/jebel-ali-village-order-online?delivery_subzone=3838&offers=1",
     "locationName": "Jebel Ali Village",
-    "baseline": ["jebel-ali-village", "the-palm-jebel-ali"]
+    "baseline": ["jebel-ali-village"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/al-nahda-order-online?delivery_subzone=10475&offers=1",
+    "locationName": "Al Nahda 1",
+    "baseline": ["al-nahda-1"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-nahda-order-online?delivery_subzone=3869&offers=1",
-    "locationName": "Al Nahda",
-    "baseline": ["al-nahda"]
+    "locationName": "Al Nahda 2",
+    "baseline": ["al-nahda-2"]
   },
   {
     "url": "https://www.zomato.com/dubai/muhaisnah-order-online?delivery_subzone=3874&offers=1",
     "locationName": "Muhaisnah",
-    "baseline": ["muhaisnah", "al-twar", "oud-al-muteena", "al-mizhar"]
+    "baseline": ["muhaisnah"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/qusais-order-online?delivery_subzone=3875&offers=1",
+    "locationName": "Qusais 1",
+    "baseline": ["al-qusais-1"]
   },
   {
     "url": "https://www.zomato.com/dubai/qusais-order-online?delivery_subzone=3876&offers=1",
-    "locationName": "Qusais",
-    "baseline": ["al-qusais", "al-twar"]
+    "locationName": "Qusais 2",
+    "baseline": ["al-qusais-2"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/qusais-order-online?delivery_subzone=3877&offers=1",
+    "locationName": "Qusais 3",
+    "baseline": ["al-qusais-3"]
   },
   {
     "url": "https://www.zomato.com/dubai/difc-order-online?delivery_subzone=3830&offers=1",
     "locationName": "DIFC",
-    "baseline": ["difc", "sheikh-zayed-road"]
+    "baseline": ["difc"]
   },
   {
     "url": "https://www.zomato.com/dubai/trade-centre-area-order-online?delivery_subzone=3844&offers=1",
     "locationName": "Trade Centre Area",
-    "baseline": ["trade-centre-area", "sheikh-zayed-road"]
+    "baseline": ["trade-centre-area"]
   },
   {
     "url": "https://www.zomato.com/dubai/zaabeel-restaurants?order-online=1&delivery_subzone=4723&offers=1",
     "locationName": "Za'abeel",
-    "baseline": ["zabeel", "dubai-healthcare-city", "dubai-creek"]
+    "baseline": ["zabeel"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-khawaneej-restaurants?order-online=1&delivery_subzone=42640&offers=1",
     "locationName": "Al Khawaneej",
-    "baseline": ["al-khawaneej", "oud-al-muteena", "al-mizhar"]
+    "baseline": ["al-khawaneej"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-warqa-order-online?delivery_subzone=3855&offers=1",
     "locationName": "Al Warqa",
-    "baseline": ["al-warqa", "nad-al-hamar", "nad-shamma"]
+    "baseline": ["al-warqa"]
   },
   {
     "url": "https://www.zomato.com/dubai/mirdif-order-online?delivery_subzone=42642&offers=1",
     "locationName": "Mirdif",
-    "baseline": ["mirdif", "al-twar", "al-mizhar", "nad-al-hamar"]
+    "baseline": ["mirdif"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-sufouh-order-online?delivery_subzone=3881&offers=1",
@@ -367,7 +382,7 @@
   {
     "url": "https://www.zomato.com/dubai/dubai-knowledge-village-order-online?delivery_subzone=3881&offers=1",
     "locationName": "Dubai Knowledge Park",
-    "baseline": ["dubai-knowledge-village", "al-sufouh"]
+    "baseline": ["dubai-knowledge-village"]
   },
   {
     "url": "https://www.zomato.com/dubai/dubai-media-city-order-online?delivery_subzone=3879&offers=1",
@@ -382,7 +397,7 @@
   {
     "url": "https://www.zomato.com/dubai/al-barari-order-online?delivery_subzone=42652&offers=1",
     "locationName": "Al Barari",
-    "baseline": ["al-barari", "legends", "majan", "falcon-city"]
+    "baseline": ["al-barari"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-qudra-restaurants?order-online=1&delivery_subzone=3868&offers=1",
@@ -392,17 +407,17 @@
   {
     "url": "https://www.zomato.com/dubai/arabian-ranches-order-online?delivery_subzone=42637&offers=1",
     "locationName": "Arabian Ranches",
-    "baseline": ["arabian-ranches", "the-sustainable-city", "layan", "dubai-lifestyle-city"]
+    "baseline": ["arabian-ranches"]
   },
   {
     "url": "https://www.zomato.com/dubai/city-of-arabia-restaurants?order-online=1&delivery_subzone=42653&offers=1",
     "locationName": "City of Arabia",
-    "baseline": ["city-of-arabia", "majan", "falcon-city", "legends"]
+    "baseline": ["city-of-arabia"]
   },
   {
     "url": "https://www.zomato.com/dubai/damac-hills-restaurants?order-online=1&delivery_subzone=42635&offers=1",
     "locationName": "DAMAC Hills",
-    "baseline": ["damac-hills", "jumeirah-golf-estates"]
+    "baseline": ["damac-hills"]
   },
   {
     "url": "https://www.zomato.com/dubai/dubai-sports-city-order-online?delivery_subzone=3825&offers=1",
@@ -417,7 +432,7 @@
   {
     "url": "https://www.zomato.com/dubai/global-village-restaurants?order-online=1&delivery_subzone=3866&offers=1",
     "locationName": "Global Village",
-    "baseline": ["global-village", "legends"]
+    "baseline": ["global-village"]
   },
   {
     "url": "https://www.zomato.com/dubai/impz-order-online?delivery_subzone=4713&offers=1",
@@ -437,42 +452,42 @@
   {
     "url": "https://www.zomato.com/dubai/reem-restaurants?order-online=1&delivery_subzone=42641&offers=1",
     "locationName": "Reem",
-    "baseline": ["reem", "dubai-lifestyle-city"]
+    "baseline": ["reem"]
   },
   {
     "url": "https://www.zomato.com/dubai/remraam-restaurants?order-online=1&delivery_subzone=4714&offers=1",
     "locationName": "Remraam",
-    "baseline": ["remraam", "jumeirah-golf-estates"]
+    "baseline": ["remraam"]
   },
   {
     "url": "https://www.zomato.com/dubai/the-villas-restaurants?order-online=1&delivery_subzone=8460&offers=1",
     "locationName": "The Villas",
-    "baseline": ["the-villas", "city-of-arabia"]
+    "baseline": ["the-villas"]
   },
   {
     "url": "https://www.zomato.com/dubai/town-square-restaurants?order-online=1&delivery_subzone=7977&offers=1",
     "locationName": "Town Square",
-    "baseline": ["town-square", "layan"]
+    "baseline": ["town-square"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-hudaiba-and-around-restaurants?order-online=1&delivery_subzone=4722&offers=1",
     "locationName": "Al Hudaiba and Around",
-    "baseline": ["al-hudaiba-and-around", "al-jaffiliya", "al-badaa", "al-raffa"]
+    "baseline": ["al-hudaiba-and-around"]
   },
   {
     "url": "https://www.zomato.com/dubai/satwa-order-online?delivery_subzone=4719&offers=1",
     "locationName": "Al Satwa",
-    "baseline": ["al-satwa", "al-badaa", "al-jaffiliya", "sheikh-zayed-road"]
+    "baseline": ["al-satwa"]
   },
   {
     "url": "https://www.zomato.com/dubai/nad-al-sheba-order-online?delivery_subzone=3867&offers=1",
     "locationName": "Nad Al Sheba",
-    "baseline": ["nad-al-sheba", "meydan", "liwan"]
+    "baseline": ["nad-al-sheba"]
   },
   {
     "url": "https://www.zomato.com/dubai/ras-al-khor-order-online?delivery_subzone=7996&offers=1",
     "locationName": "Ras Al Khor",
-    "baseline": ["ras-al-khor", "nad-al-hamar", "al-jaddaf"]
+    "baseline": ["ras-al-khor"]
   },
   {
     "url": "https://www.zomato.com/dubai/al-maktoum-international-airport-restaurants?order-online=1&delivery_subzone=3826&offers=1",

@@ -7,7 +7,7 @@
   {
     "id": "764",
     "locationName": "Academic City",
-    "baseline": ["academic-city", "dubai-silicon-oasis-dso", "international-city", "the-villas", "dubai-outlet-mall"]
+    "baseline": ["academic-city", "dubai-silicon-oasis", "international-city", "the-villas", "dubai-outlet-mall"]
   },
   {
     "id": "919",
@@ -463,12 +463,12 @@
   {
     "id": "718",
     "locationName": "Dubai Production City",
-    "baseline": ["impz", "jumeirah-village-triangle-jvt", "dubai-sports-city", "jumeirah-village-circle"]
+    "baseline": ["impz", "jumeirah-village-triangle", "dubai-sports-city", "jumeirah-village-circle"]
   },
   {
     "id": "765",
     "locationName": "Dubai Silicon Oasis",
-    "baseline": ["dubai-silicon-oasis-dso", "academic-city", "international-city", "liwan", "nad-al-sheba"]
+    "baseline": ["dubai-silicon-oasis", "academic-city", "international-city", "liwan", "nad-al-sheba"]
   },
   {
     "id": "719",
@@ -477,7 +477,7 @@
       "dubai-sports-city",
       "impz",
       "jumeirah-village-circle",
-      "jumeirah-village-triangle-jvt",
+      "jumeirah-village-triangle",
       "motor-city",
       "dubai-studio-city"
     ]
@@ -573,7 +573,7 @@
   {
     "id": "896",
     "locationName": "Jumeirah Beach Residence",
-    "baseline": ["jumeirah-beach-residence-jbr", "bluewaters-island"]
+    "baseline": ["jumeirah-beach-residence", "bluewaters-island"]
   },
   {
     "id": "1091",
@@ -584,7 +584,7 @@
       "dubai-sports-city",
       "dubai-studio-city",
       "green-community-village",
-      "jumeirah-village-triangle-jvt",
+      "jumeirah-village-triangle",
       "damac-hills"
     ]
   },
@@ -601,13 +601,7 @@
   {
     "id": "817",
     "locationName": "Jumeirah Lakes Towers - JLT",
-    "baseline": [
-      "jumeirah-lake-towers",
-      "jumeirah-heights",
-      "jumeirah-beach-residence-jbr",
-      "meadows",
-      "emirates-hills"
-    ]
+    "baseline": ["jumeirah-lake-towers", "jumeirah-heights", "jumeirah-beach-residence", "meadows", "emirates-hills"]
   },
   {
     "id": "814",
@@ -626,7 +620,7 @@
     "locationName": "Jumeirah Village Circle",
     "baseline": [
       "jumeirah-village-circle",
-      "jumeirah-village-triangle-jvt",
+      "jumeirah-village-triangle",
       "springs",
       "al-barsha-south",
       "motor-city",
@@ -638,7 +632,7 @@
     "id": "822",
     "locationName": "Jumeirah Village Triangle - JVT",
     "baseline": [
-      "jumeirah-village-triangle-jvt",
+      "jumeirah-village-triangle",
       "jumeirah-park",
       "springs",
       "jumeirah-village-circle",
@@ -664,7 +658,7 @@
   {
     "id": "762",
     "locationName": "Liwan",
-    "baseline": ["liwan", "dubai-silicon-oasis-dso"]
+    "baseline": ["liwan", "dubai-silicon-oasis"]
   },
   {
     "id": "835",
@@ -693,7 +687,7 @@
       "motor-city",
       "dubai-sports-city",
       "jumeirah-village-circle",
-      "jumeirah-village-triangle-jvt",
+      "jumeirah-village-triangle",
       "arabian-ranches",
       "dubai-studio-city"
     ]
@@ -755,7 +749,7 @@
   {
     "id": "858",
     "locationName": "Nad Al Sheba 4",
-    "baseline": ["nad-al-sheba", "dubai-silicon-oasis-dso", "liwan"]
+    "baseline": ["nad-al-sheba", "dubai-silicon-oasis", "liwan"]
   },
   {
     "id": "1338",
@@ -825,22 +819,22 @@
   {
     "id": "827",
     "locationName": "Springs 10",
-    "baseline": ["springs", "emirates-hills", "jumeirah-village-triangle-jvt"]
+    "baseline": ["springs", "emirates-hills", "jumeirah-village-triangle"]
   },
   {
     "id": "826",
     "locationName": "Springs 11",
-    "baseline": ["springs", "jumeirah-islands", "emirates-hills", "jumeirah-village-triangle-jvt"]
+    "baseline": ["springs", "jumeirah-islands", "emirates-hills", "jumeirah-village-triangle"]
   },
   {
     "id": "824",
     "locationName": "Springs 14",
-    "baseline": ["springs", "jumeirah-islands", "emirates-hills", "jumeirah-village-triangle-jvt"]
+    "baseline": ["springs", "jumeirah-islands", "emirates-hills", "jumeirah-village-triangle"]
   },
   {
     "id": "825",
     "locationName": "Springs 15",
-    "baseline": ["springs", "jumeirah-village-triangle-jvt", "emirates-hills", "jumeirah-islands"]
+    "baseline": ["springs", "jumeirah-village-triangle", "emirates-hills", "jumeirah-islands"]
   },
   {
     "id": "823",
@@ -850,12 +844,12 @@
   {
     "id": "828",
     "locationName": "Springs 7",
-    "baseline": ["springs", "emirates-hills", "jumeirah-village-circle", "jumeirah-village-triangle-jvt"]
+    "baseline": ["springs", "emirates-hills", "jumeirah-village-circle", "jumeirah-village-triangle"]
   },
   {
     "id": "1144",
     "locationName": "Springs 9",
-    "baseline": ["springs", "emirates-hills", "jumeirah-village-triangle-jvt"]
+    "baseline": ["springs", "emirates-hills", "jumeirah-village-triangle"]
   },
   {
     "id": "1140",
@@ -875,13 +869,7 @@
   {
     "id": "1623",
     "locationName": "The Palm Jumeirah",
-    "baseline": [
-      "palm-jumeirah",
-      "dubai-knowledge-village",
-      "al-sufouh",
-      "jumeirah-beach-residence-jbr",
-      "palm-residences"
-    ]
+    "baseline": ["palm-jumeirah", "dubai-knowledge-village", "al-sufouh", "jumeirah-beach-residence", "palm-residences"]
   },
   {
     "id": "728",
@@ -894,7 +882,7 @@
     "baseline": [
       "the-villas",
       "academic-city",
-      "dubai-silicon-oasis-dso",
+      "dubai-silicon-oasis",
       "falcon-city",
       "liwan",
       "city-of-arabia",

@@ -123,5 +123,30 @@
     "locationName": "Al Mankhool",
     "url": "/uae/restaurants/1193/al-mankhool",
     "baseline": ["al-mankhool"]
+  },
+  {
+    "locationName": "Al Qusais 1",
+    "url": "/uae/restaurants/1215/al-qusais-1",
+    "baseline": ["al-qusais-1"]
+  },
+  {
+    "locationName": "Al Qusais 2",
+    "url": "/uae/restaurants/1216/al-qusais-2",
+    "baseline": ["al-qusais-2"]
+  },
+  {
+    "locationName": "Al Qusais 3",
+    "url": "/uae/restaurants/1217/al-qusais-3",
+    "baseline": ["al-qusais-3"]
+  },
+  {
+    "locationName": "Al Nahda 1",
+    "url": "/uae/restaurants/1204/al-nahda-1",
+    "baseline": ["al-nahda-1"]
+  },
+  {
+    "locationName": "Al Nahda 2",
+    "url": "/uae/restaurants/1205/al-nahda-2",
+    "baseline": ["al-nahda-2"]
   }
 ]

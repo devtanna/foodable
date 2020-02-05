@@ -97,7 +97,7 @@
   },
   {
     "locationName": "Jumeirah Beach Residence (JBR)",
-    "slug": "jumeirah-beach-residence-jbr"
+    "slug": "jumeirah-beach-residence"
   },
   {
     "locationName": "Jumeirah Lake Towers (JLT)",
@@ -209,7 +209,7 @@
   },
   {
     "locationName": "Dubai Silicon Oasis (DSO)",
-    "slug": "dubai-silicon-oasis-dso"
+    "slug": "dubai-silicon-oasis"
   },
   {
     "locationName": "International City",
@@ -240,8 +240,12 @@
     "slug": "jebel-ali-village"
   },
   {
-    "locationName": "Al Nahda",
-    "slug": "al-nahda"
+    "locationName": "Al Nahda 1",
+    "slug": "al-nahda-1"
+  },
+  {
+    "locationName": "Al Nahda 2",
+    "slug": "al-nahda-2"
   },
   {
     "locationName": "Muhaisnah",
@@ -444,12 +448,12 @@
     "slug": "jumeirah-islands"
   },
   {
-    "locationName": "Jumeirah Village Circle",
+    "locationName": "Jumeirah Village Circle (JVC)",
     "slug": "jumeirah-village-circle"
   },
   {
-    "locationName": "Jumeirah Village Triangle - JVT",
-    "slug": "jumeirah-village-triangle-jvt"
+    "locationName": "Jumeirah Village Triangle (JVT)",
+    "slug": "jumeirah-village-triangle"
   },
   {
     "locationName": "Layan",
@@ -504,8 +508,16 @@
     "slug": "umm-ramool"
   },
   {
-    "locationName": "Al Qusais",
-    "slug": "al-qusais"
+    "locationName": "Al Qusais 1",
+    "slug": "al-qusais-1"
+  },
+  {
+    "locationName": "Al Qusais 2",
+    "slug": "al-qusais-2"
+  },
+  {
+    "locationName": "Al Qusais 3",
+    "slug": "al-qusais-3"
   },
   {
     "locationName": "Al Raffa",
