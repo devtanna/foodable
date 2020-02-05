@@ -78,11 +78,11 @@ const Search = ({ cuisines, filters, onSearch }) => {
           clearable
           closeOnChange
           options={cuisinesOptions}
-          className="fdbDropdown"
+          id="cuisineDropdown"
         />
       </div>
       <div>
-        <Button size="large" className="searchBtn" onClick={handleSearch}>
+        <Button size="large" id="searchBtn" onClick={handleSearch}>
           Search
         </Button>
       </div>
@@ -91,6 +91,14 @@ const Search = ({ cuisines, filters, onSearch }) => {
           margin: 50px 0 30px 0;
           display: grid;
           grid-row-gap: 15px;
+        }
+        :global(#searchBtn) {
+          background: linear-gradient(270deg, #f34343 18.23%, #ff7e52 100%) !important;
+          color: #fff !important;
+          width: 100%;
+        }
+        :global(#cuisineDropdown) {
+          font-size: 1.1em !important;
         }
         @media ${device.tablet} {
           .wrapper {
