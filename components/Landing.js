@@ -30,6 +30,12 @@ const Landing = ({ locations }) => {
   const [selectAreaError, setSelectAreaError] = useState(false);
 
   useEffect(() => {
+    setTimeout(() => {
+      if (isAreaLoading) {
+        setIsAreaLoading(false);
+      }
+    }, 2000);
+
     initGeolocation();
   }, []);
 
@@ -55,12 +61,6 @@ const Landing = ({ locations }) => {
   const initGeolocation = async () => {
     try {
       setIsAreaLoading(true);
-
-      setTimeout(() => {
-        if (isAreaLoading) {
-          setIsAreaLoading(false);
-        }
-      }, 3000);
 
       const res = await getGeolocation();
 
