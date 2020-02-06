@@ -106,7 +106,7 @@ const Landing = ({ locations }) => {
               setSelectedCity(value);
             }}
             disabled={CITIES.length === 1}
-            className="fdbDropdown"
+            className="fdbLandingDropdown"
           />
           <Dropdown
             selection
@@ -125,15 +125,23 @@ const Landing = ({ locations }) => {
               setSelectedLocation(value);
             }}
             value={selectedLocation}
-            className="fdbDropdown"
+            className="fdbLandingDropdown"
             error={selectAreaError}
           />
-          <Button onClick={handleSubmit} size="large" className="searchBtn">
+          <Button onClick={handleSubmit} size="large" id="findDealsBtn">
             Find Deals
           </Button>
         </div>
       </div>
       <style jsx>{`
+        :global(#findDealsBtn) {
+          background: linear-gradient(270deg, #f34343 18.23%, #ff7e52 100%) !important;
+          color: #fff !important;
+          width: 100%;
+        }
+        :global(.fdbLandingDropdown) {
+          font-size: 1.1em !important;
+        }
         main {
           height: 100%;
           background: #fff url('/static/lp-bg-s.webp') 30% 100% no-repeat;

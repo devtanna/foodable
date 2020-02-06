@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { trackPageView } from '../helpers/utils';
-import Landing from '../components/Landing';
+import Landing_A from '../components/Landing_A';
+import Landing_B from '../components/Landing_B';
 import { getLocations } from '../helpers/api';
 import _groupBy from 'lodash/groupBy';
 
@@ -15,7 +16,12 @@ const SelectArea = ({ locations, utmSource }) => {
 
   return (
     <div className="wrapper">
-      <Landing locations={locations} />
+      <div id="landingA" className="wrapper">
+        <Landing_A locations={locations} />
+      </div>
+      <div id="landingB" className="wrapper" hidden={true}>
+        <Landing_B locations={locations} />
+      </div>
       <style jsx>{`
         .wrapper {
           height: 100%;
