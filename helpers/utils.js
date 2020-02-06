@@ -43,13 +43,13 @@ export const trackPageView = (page_title = null, page_location = null, page_path
   }
 };
 
-export const trackEvent = (action, event_category = null, event_label = null, value = null) => {
+export const trackEvent = (action, event_category = null, event_label = null, customDimension = {}) => {
   if (!window.gtag) return;
   try {
     window.gtag('event', action, {
       event_category,
       event_label,
-      value,
+      ...customDimension,
     });
   } catch (error) {
     console.log('Tracking error:', error);

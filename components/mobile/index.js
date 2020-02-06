@@ -35,7 +35,7 @@ const Foodables = ({ offers, randomOffers, location, page, cuisines, filters }) 
               <a
                 href="/select-area"
                 onClick={() => {
-                  trackEvent('change_location', 'generic', location.text, '');
+                  trackEvent('change_location', 'generic', location.text);
                   setSidebarVisible(false);
                 }}>
                 <Icon name="edit outline" />

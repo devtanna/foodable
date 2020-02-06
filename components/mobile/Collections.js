@@ -16,7 +16,7 @@ const Collections = ({ cuisines, filters }) => {
   const handleClick = cuisine => {
     const query = {};
     query.cuisine = [slugify(cuisine)];
-    trackEvent('search', 'generic', 'collections', cuisine);
+    trackEvent('collections', 'engagement', cuisine);
     window.location.search = `${qs.stringify(query)}`;
   };
 
