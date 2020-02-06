@@ -51,7 +51,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
         url: shareLink,
       });
 
-      trackEvent('copy_link', 'generic', mainOffer.source, mainOffer.title);
+      trackEvent('copy_link', 'generic', mainOffer.title);
     } catch (error) {
       console.log('Error sharing', error);
     }
@@ -136,7 +136,12 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           href={mainOffer.href}
           target="_blank"
           rel="noopener"
-          onClick={() => trackEvent('offer_click', 'main', mainOffer.source, mainOffer.title)}
+          onClick={() =>
+            trackEvent('offer_click', 'main', mainOffer.source, {
+              restaurant_name: mainOffer.title,
+              offer_title: limitChars(mainOffer.offer),
+            })
+          }
           className="actionBtns__cta">
           <div>Place Order</div>
           <div>
@@ -152,7 +157,12 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
                 className="otherOffer__offer"
                 href={otherOffer.href}
                 rel="noopener"
-                onClick={() => trackEvent('offer_click', 'others', otherOffer.source, otherOffer.title)}
+                onClick={() =>
+                  trackEvent('offer_click', 'others', otherOffer.source, {
+                    restaurant_name: otherOffer.title,
+                    offer_title: limitChars(otherOffer.offer),
+                  })
+                }
                 target="_blank">
                 <span>{otherOffer.source}</span>
                 <span>{limitChars(otherOffer.offer)}</span>

@@ -90,12 +90,11 @@ const ListingMeta = ({ offer, restId, onFavRemove }) => {
     const url = new URL(window.location.href);
     url.search = qs.stringify(query);
 
-    const shareableLink = url;
     copy(url);
 
     setLinkCopied(true);
 
-    trackEvent('copy_link', 'generic', source, title);
+    trackEvent('copy_link', 'generic', title);
   };
 
   return (
@@ -280,7 +279,7 @@ const OffersList = ({ mainOffer, otherOffer, hasMoreOffers, isMoreOffersOpen, to
 
 const MainOffer = ({ offer }) => {
   const track = () => {
-    trackEvent('offer_click', 'main', offer.source, offer.title);
+    trackEvent('offer_click', 'main', offer.source, { restaurant_name: offer.title, offer_title: limitChars(_offer) });
   };
 
   const { href, source, offer: _offer, minimumOrder, deliveryCharge, deliveryTime } = offer;
@@ -499,7 +498,9 @@ const SideOffer = ({ offer }) => {
           href={href}
           target="_blank"
           rel="noopener"
-          onClick={() => trackEvent('offer_click', 'others', source, title)}>
+          onClick={() =>
+            trackEvent('offer_click', 'others', source, { restaurant_name: title, offer_title: limitChars(_offer) })
+          }>
           Place Order
           <span>
             <Icon name="external" size="small" />
@@ -603,7 +604,12 @@ const MoreOffers = ({ offers, isOpen }) => {
                 href={otherOffer.href}
                 target="_blank"
                 rel="noopener"
-                onClick={() => trackEvent('offer_click', 'others', otherOffer.source, otherOffer.title)}>
+                onClick={() =>
+                  trackEvent('offer_click', 'others', otherOffer.source, {
+                    restaurant_name: otherOffer.title,
+                    offer_title: limitChars(otherOffer.offer),
+                  })
+                }>
                 <span className="otherOffer__source">{otherOffer.source}</span>
                 <span>{limitChars(otherOffer.offer)}</span>
                 <Icon name="angle right" />
