@@ -20,8 +20,8 @@ const SelectArea = ({ locations, utmSource, device = 'phone' }) => {
       <div id="landingA" className="wrapper">
         <Landing_A locations={locations} />
       </div>
-      <div id="landingB" className="wrapper">
-        <Landing_B device={device} locations={locations} hidden={true} />
+      <div id="landingB" className="wrapper" hidden={true}>
+        <Landing_B device={device} locations={locations} />
       </div>
       <style jsx>{`
         .wrapper {
