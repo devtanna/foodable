@@ -19,7 +19,7 @@ const Collections = ({ cuisines, filters }) => {
 
   return (
     <div className="wrapper">
-      <p className="subheading">Quick links:</p>
+      <p className="subheading">Quick Searches:</p>
       {cuisinesList.map((collection, index) => {
         const isActive = filters.cuisine.length === 1 && filters.cuisine[0] === slugify(collection.name);
         return (

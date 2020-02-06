@@ -39,7 +39,7 @@ const Listings = ({ offers, randomOffers, location, page, cuisines, filters }) =
         <div className="mainWrapper">
           {hasOffers ? (
             <Fragment>
-              <p className="subheading">Quick links</p>
+              <p className="subheading">Quick Searches</p>
               <Collections cuisines={cuisines} filters={filters} />
               <h1 className="mlSectionHeading" dangerouslySetInnerHTML={searchPageHeading} />
               <div className="listingsWrapper">

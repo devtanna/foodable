@@ -5,7 +5,7 @@ import { slugify } from '../helpers/utils';
 import { CITIES_MAP } from '../helpers/constants';
 import { getGeolocation } from '../helpers/geolocation';
 
-const LocationSelector = ({ locations }) => {
+const LocationSelector = ({ locations, device: _device }) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [locationsOptions, setLocationsOptions] = useState([]);
   const [isAreaLoading, setIsAreaLoading] = useState(false);
@@ -13,7 +13,14 @@ const LocationSelector = ({ locations }) => {
   const [selectAreaError, setSelectAreaError] = useState(false);
 
   useEffect(() => {
-    setLocationsOptions(transformLocations(locations));
+    setLocationsOptions(transformLocations(locations, _device));
+
+    setTimeout(() => {
+      if (isAreaLoading) {
+        setIsAreaLoading(false);
+      }
+    }, 2000);
+
     initGeolocation();
   }, []);
 
@@ -34,12 +41,6 @@ const LocationSelector = ({ locations }) => {
   const initGeolocation = async () => {
     try {
       setIsAreaLoading(true);
-
-      setTimeout(() => {
-        if (isAreaLoading) {
-          setIsAreaLoading(false);
-        }
-      }, 3000);
 
       const res = await getGeolocation();
 
@@ -134,7 +135,7 @@ const LocationSelector = ({ locations }) => {
   );
 };
 
-const transformLocations = locations => {
+const transformLocations = (locations, device) => {
   const updatedLocations = [];
 
   Object.keys(locations).forEach(loc => {
@@ -144,31 +145,61 @@ const transformLocations = locations => {
         ...location,
         value: `${location.value}_${city.slug}`,
         content: (
-          <Header size="small">
-            <Icon name="map marker alternate" size="tiny" color="teal" />
-            <Header.Content>
-              <strong>{location.text}</strong>
-              <Header.Subheader>
-                <small>{city.name}</small>
-              </Header.Subheader>
-            </Header.Content>
-            <style jsx>{`
-              strong {
-                color: #333;
-                font-size: 15px;
-              }
-              small {
-                font-size: 13px;
-                color: #666;
-              }
-            `}</style>
-          </Header>
+          <div>
+            {device === 'desktop' ? (
+              <Header size="small">
+                <Icon name="map marker alternate" size="tiny" color="teal" />
+                <Header.Content>
+                  <strong>{location.text}</strong>
+                  <Header.Subheader>
+                    <small>{city.name}</small>
+                  </Header.Subheader>
+                </Header.Content>
+                <style jsx>{`
+                  strong {
+                    color: #333;
+                    font-size: 15px;
+                  }
+                  small {
+                    font-size: 13px;
+                    color: #666;
+                  }
+                `}</style>
+              </Header>
+            ) : (
+              <div>
+                <strong>
+                  {location.text}, <small>{city.name}</small>
+                </strong>
+                <style jsx>{`
+                  strong {
+                    color: #333;
+                    font-size: 13px;
+                  }
+                  small {
+                    font-size: 12px;
+                    color: #666;
+                  }
+                `}</style>
+              </div>
+            )}
+          </div>
         ),
       });
     });
   });
 
   updatedLocations.sort((a, b) => {
+    if (a.city === 'dxb' && b.city === 'dxb') {
+      if (a.city > b.city) {
+        return 1;
+      }
+      if (b.city > a.city) {
+        return -1;
+      }
+      return 0;
+    }
+
     if (a.city === 'dxb') return -1;
   });
 

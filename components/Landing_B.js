@@ -2,7 +2,7 @@ import React from 'react';
 import { device } from '../helpers/device';
 import LocationSelector from './LocationSelector';
 
-const Landing = ({ locations }) => {
+const Landing = ({ locations, device: _device }) => {
   return (
     <main>
       <div className="wrapper">
@@ -14,7 +14,7 @@ const Landing = ({ locations }) => {
           <img src="/static/restaurant-banners/deliveroo_lp.webp" alt="Deliveroo partner" />
           <img src="/static/restaurant-banners/eateasy_lp.webp" alt="Eat easy partner" />
         </div>
-        <LocationSelector locations={locations} />
+        <LocationSelector device={_device} locations={locations} />
       </div>
       <style jsx>{`
         main {
@@ -25,18 +25,18 @@ const Landing = ({ locations }) => {
         .wrapper {
           max-width: 800px;
           margin: 0 auto;
-          padding-top: 30px;
+          padding-top: 15px;
           text-align: center;
         }
         .logo {
           width: 100%;
-          max-width: 200px;
+          max-width: 180px;
           margin: 0 auto;
         }
         h1 {
-          font-size: 20px;
+          font-size: 18px;
           color: #7c7c7c;
-          margin: 15px 30px 0;
+          margin: 5px 15px;
         }
         .partners {
           margin: 15px auto 30px;
