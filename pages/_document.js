@@ -27,6 +27,18 @@ class MyDocument extends Document {
     };
   }
 
+  setAntiFlicker() {
+    return {
+      __html: `
+        (function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+        h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+        (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+        })(window,document.documentElement,'async-hide','dataLayer',2000,
+        {'${TRACKING_ID}':true});
+      `,
+    };
+  }
+
   render() {
     const { isProduction } = this.props;
     return (
@@ -34,6 +46,7 @@ class MyDocument extends Document {
         <Head>
           {isProduction && (
             <Fragment>
+              <script dangerouslySetInnerHTML={this.setAntiFlicker()} />
               <script defer dangerouslySetInnerHTML={this.setGoogleTags()} />
             </Fragment>
           )}
@@ -43,6 +56,11 @@ class MyDocument extends Document {
         <body className="custom_class">
           <Main />
           <NextScript />
+          <style jsx global>{`
+            .async-hide {
+              opacity: 0 !important;
+            }
+          `}</style>
         </body>
       </html>
     );
