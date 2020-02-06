@@ -110,10 +110,8 @@ const LocationSelector = ({ locations }) => {
           background: linear-gradient(270deg, #f34343 18.23%, #ff7e52 100%) !important;
           color: #fff !important;
           width: 100%;
-          box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.1);
         }
         :global(#locationDropdown) {
-          box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.1);
           font-size: 1.1em !important;
         }
         :global(#locationDropdown .ui.default.dropdown:not(.button) > .text, .ui.dropdown:not(.button)
@@ -123,6 +121,12 @@ const LocationSelector = ({ locations }) => {
         @media ${device.tablet} {
           .ctaWrapper {
             grid-template-columns: 2fr 150px;
+          }
+          :global(#findDealsBtn) {
+            box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.1);
+          }
+          :global(#locationDropdown) {
+            box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.1);
           }
         }
       `}</style>
