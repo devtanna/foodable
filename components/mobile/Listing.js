@@ -93,7 +93,20 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           <small>Great Deal</small>
           <span>{mainOffer.source}</span>
         </div>
-        <div className="bestOffer__offer">{limitChars(mainOffer.offer)}</div>
+        <div className="bestOffer__offer">
+          <a
+            href={mainOffer.href}
+            target="_blank"
+            rel="noopener"
+            onClick={() =>
+              trackEvent('offer_click', 'main', mainOffer.source, {
+                restaurant_name: mainOffer.title,
+                offer_title: limitChars(mainOffer.offer),
+              })
+            }>
+            {limitChars(mainOffer.offer)}
+          </a>
+        </div>
         <a onClick={handleShare}>
           <Icon name="share square" color="teal" size="small" />
         </a>
@@ -239,12 +252,17 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           font-weight: 700;
         }
         .bestOffer__offer {
-          color: #000;
-          font-size: 18px;
-          font-weight: bold;
           margin-left: 5px;
           padding-right: 10px;
           flex: 1;
+        }
+        .bestOffer__offer a {
+          color: #000;
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .bestOffer__offer a:hover {
+          color: #333;
         }
         .deliveryInfo__wrapper {
           display: flex;

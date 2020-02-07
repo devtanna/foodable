@@ -45,6 +45,11 @@
     "baseline": ["deira-city-centre-area"]
   },
   {
+    "url": "https://www.zomato.com/dubai/order-food-online?offers=1&delivery_subzone=7986&place_name=Al+Baraha",
+    "locationName": "Al Baraha",
+    "baseline": ["al-baraha"]
+  },
+  {
     "url": "https://www.zomato.com/dubai/festival-city-order-online?delivery_subzone=3818&offers=1",
     "locationName": "Dubai Festival City",
     "baseline": ["dubai-festival-city"]

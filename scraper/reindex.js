@@ -1,3 +1,4 @@
+const _uniqWith = require('lodash/uniqWith');
 const utils = require('./utils');
 const settings = require('../settings')();
 const dbutils = require('../scraper/db');
@@ -83,12 +84,18 @@ async function reindex(db, dbClient, todayDateStr) {
 
       // PART2 -> hash the restaurants
       if (key in restaurantMap) {
-        if (!restaurantMap[key].some(e => e.source == restaurant.source)) {
-          restaurantMap[key].push(restaurant);
-        }
+        restaurantMap[key].push(restaurant);
       } else {
         restaurantMap[key] = [restaurant];
       }
+      // Sort by scoreLevel, in case we have more than one restaurant instance
+      restaurantMap[key].sort((a, b) => b.scoreLevel - a.scoreLevel);
+
+      // Then, get the unique objects based on whether source and href are the same
+      restaurantMap[key] = _uniqWith(
+        restaurantMap[key],
+        (arrVal, othVal) => arrVal.source === othVal.source && arrVal.href === othVal.href
+      );
 
       // PART3 -> accumulate cuisine tags
       if (restaurant['cuisine'] != null) {

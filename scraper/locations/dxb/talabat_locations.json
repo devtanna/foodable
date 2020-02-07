@@ -148,5 +148,10 @@
     "locationName": "Al Nahda 2",
     "url": "/uae/restaurants/1205/al-nahda-2",
     "baseline": ["al-nahda-2"]
+  },
+  {
+    "locationName": "Al Baraha",
+    "url": "/uae/restaurants/1173/al-baraha",
+    "baseline": ["al-baraha"]
   }
 ]

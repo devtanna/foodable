@@ -463,7 +463,17 @@ const SideOffer = ({ offer }) => {
           <img className="mainOffer__sourceImg" src={offerSources[source].logo} alt={source} />
         </h5>
         <div className="sideOffer__offerWrapper">
-          <h4 className="sideOffer__offer">{limitChars(_offer)}</h4>
+          <h4 className="sideOffer__offer">
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener"
+              onClick={() =>
+                trackEvent('offer_click', 'others', source, { restaurant_name: title, offer_title: limitChars(_offer) })
+              }>
+              {limitChars(_offer)}
+            </a>
+          </h4>
           {hasDeliveryInfo && (
             <div className="deliveryInfo__wrapper">
               {minimumOrder && (
@@ -535,8 +545,13 @@ const SideOffer = ({ offer }) => {
         }
         .sideOffer__offer {
           margin: 0;
+        }
+        .sideOffer__offer a {
           font-size: 17px;
-          color: rgba(24, 44, 55, 0.8);
+          color: rgba(24, 44, 55, 0.9);
+        }
+        .sideOffer__offer a:hover {
+          color: rgba(24, 44, 55, 0.7);
         }
         .deliveryInfo__wrapper {
           display: flex;
