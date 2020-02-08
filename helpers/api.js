@@ -53,6 +53,7 @@ export const getOffers = async (location, page, searchFilters, city, pageSize = 
               cuisine,
               cuisineArray,
               offer,
+              description,
               score,
               source,
               locationSlug,
@@ -158,6 +159,7 @@ export const getFavourites = async (location, page = 1, favourites) => {
             _id 
             offers { 
               title 
+              description
               cuisine 
               cuisineArray 
               offer 

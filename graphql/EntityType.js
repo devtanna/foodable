@@ -12,6 +12,9 @@ const offerObjectType = new GraphQLObjectType({
     title: {
       type: GraphQLString,
     },
+    description: {
+      type: GraphQLString,
+    },
     added: {
       type: GraphQLFloat,
     },
@@ -112,6 +115,9 @@ exports.entityType = new GraphQLObjectType({
   fields: () => {
     return {
       title: {
+        type: GraphQLString,
+      },
+      description: {
         type: GraphQLString,
       },
       added: {

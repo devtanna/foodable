@@ -282,7 +282,7 @@ const MainOffer = ({ offer }) => {
     trackEvent('offer_click', 'main', offer.source, { restaurant_name: offer.title, offer_title: limitChars(_offer) });
   };
 
-  const { href, source, offer: _offer, minimumOrder, deliveryCharge, deliveryTime } = offer;
+  const { href, source, offer: _offer, minimumOrder, deliveryCharge, deliveryTime, description } = offer;
 
   const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
 
@@ -299,6 +299,7 @@ const MainOffer = ({ offer }) => {
               {limitChars(_offer)}
             </a>
           </h3>
+          {description && <div>{limitChars(description)}</div>}
           {hasDeliveryInfo && (
             <div className="deliveryInfo__wrapper">
               {minimumOrder && (
@@ -453,7 +454,7 @@ const SideOffer = ({ offer }) => {
     );
   }
 
-  const { minimumOrder, deliveryCharge, deliveryTime, href, source, offer: _offer, title } = offer;
+  const { minimumOrder, deliveryCharge, deliveryTime, href, source, offer: _offer, title, description } = offer;
   const hasDeliveryInfo = minimumOrder || deliveryCharge || deliveryTime;
 
   return (
@@ -474,6 +475,7 @@ const SideOffer = ({ offer }) => {
               {limitChars(_offer)}
             </a>
           </h4>
+          {description && <div className="sideOffer__desc">{limitChars(description)}</div>}
           {hasDeliveryInfo && (
             <div className="deliveryInfo__wrapper">
               {minimumOrder && (
@@ -553,6 +555,9 @@ const SideOffer = ({ offer }) => {
         .sideOffer__offer a:hover {
           color: rgba(24, 44, 55, 0.7);
         }
+        .sideOffer__desc {
+          color: rgba(24, 44, 55, 0.7);
+        }
         .deliveryInfo__wrapper {
           display: flex;
           width: 100%;
@@ -626,7 +631,10 @@ const MoreOffers = ({ offers, isOpen }) => {
                   })
                 }>
                 <span className="otherOffer__source">{otherOffer.source}</span>
-                <span>{limitChars(otherOffer.offer)}</span>
+                <span>
+                  <p className="otherOffer__title">{limitChars(otherOffer.offer)}</p>
+                  {otherOffer.description && <p className="otherOffer__desc">{limitChars(otherOffer.description)}</p>}
+                </span>
                 <Icon name="angle right" />
               </a>
             </li>
@@ -664,10 +672,18 @@ const MoreOffers = ({ offers, isOpen }) => {
         .otherOffer__offer {
           display: grid;
           grid-template-columns: 1fr 2fr auto;
-          color: #666;
+          color: #333;
+          align-items: center;
         }
         .otherOffer__source {
           text-transform: capitalize;
+        }
+        .otherOffer__title {
+          margin: 0;
+        }
+        .otherOffer__desc {
+          color: #666;
+          font-size: 12px;
         }
       `}</style>
     </div>

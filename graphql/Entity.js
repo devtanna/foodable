@@ -18,6 +18,11 @@ var OfferModelSchema = new Schema({
     index: true,
     required: false,
   },
+  description: {
+    type: String,
+    text: true,
+    required: false,
+  },
   score: {
     type: Number,
     text: true,
@@ -141,6 +146,11 @@ var EnityModelSchema = new Schema({
     type: String,
     text: true,
     index: true,
+    required: false,
+  },
+  description: {
+    type: String,
+    text: true,
     required: false,
   },
   score: {
