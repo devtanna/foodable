@@ -23,6 +23,10 @@ export const offerSources = {
     color: '#e71c38',
     logo: '/static/restaurant-banners/eateasy_lp.webp',
   },
+  pizzahut: {
+    color: '#e71c38',
+    logo: '/static/restaurant-banners/pizzahut.webp',
+  },
 };
 
 export const TRACKING_ID = 'GTM-TKCXPGC';

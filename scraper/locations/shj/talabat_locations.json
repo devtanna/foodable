@@ -3,5 +3,10 @@
     "locationName": "Al Taawun",
     "url": "/uae/restaurants/1562/al-taawun",
     "baseline": ["al-taawun"]
+  },
+  {
+    "locationName": "Al Nahda",
+    "url": "/uae/restaurants/1540/al-nahda",
+    "baseline": ["al-nahda"]
   }
 ]

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Icon, Rating, Loader } from 'semantic-ui-react';
-import { offerSources } from '../../helpers/constants';
 import FavoriteBtn from '../FavoriteBtn';
 import { trackEvent, limitChars, showCurrency, showMins, toStartCase } from '../../helpers/utils';
 import qs from 'qs';
@@ -13,7 +12,6 @@ const LazyImage = dynamic(() => import('../LazyImage'), {
     </div>
   ),
 });
-const hasNavigator = typeof navigator !== 'undefined' && navigator.share !== undefined;
 
 const getShareLink = keyword => {
   const query = {};
@@ -26,7 +24,6 @@ const getShareLink = keyword => {
 };
 
 const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
-  const [activeIndex, setActiveIndex] = useState(-1);
   const [showOtherOffers, setShowOtherOffers] = useState(false);
 
   const mainOffer = offer.offers[0];
@@ -106,6 +103,7 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
             }>
             {limitChars(mainOffer.offer)}
           </a>
+          {mainOffer.description && <div>{limitChars(mainOffer.description)}</div>}
         </div>
         <a onClick={handleShare}>
           <Icon name="share square" color="teal" size="small" />
@@ -178,7 +176,10 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
                 }
                 target="_blank">
                 <span>{otherOffer.source}</span>
-                <span>{limitChars(otherOffer.offer)}</span>
+                <span>
+                  <p className="otherOffer__title">{limitChars(otherOffer.offer)}</p>
+                  {otherOffer.description && <p className="otherOffer__desc">{limitChars(otherOffer.description)}</p>}
+                </span>
                 <Icon name="angle right" />
               </a>
             </li>
@@ -334,12 +335,22 @@ const Listing = ({ offer, onFavRemove = null, disableLazyLoad = false }) => {
           grid-template-columns: 1fr 2fr auto;
           color: #666;
           text-transform: capitalize;
+          align-items: center;
+        }
+        .otherOffer__title {
+          color: #333;
+          font-weight: bold;
+          margin: 0;
+        }
+        .otherOffer__desc {
+          color: #666;
+          font-size: 12px;
         }
         .truncate {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          max-width: 220px;
+          max-width: 180px;
         }
       `}</style>
     </div>
