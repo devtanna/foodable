@@ -136,6 +136,17 @@ node devops/slackLogBot.js talabat
 wait
 ####################### Talabat!!!!!!!!!
 
+####################### Pizza Hut!!!!!!!!!
+node devops/slackBot.js "Running Pizza Hut"
+wait
+echo "< pizzahut ..." && 
+timeout -k 9m 10m node scraper/pizzahut.js && 
+echo "... pizzahut >" &&
+wait
+node devops/slackLogBot.js pizzahut
+wait
+####################### Pizza Hut!!!!!!!!!
+
 node devops/slackBot.js "dxb Running Re Index"
 wait
 node scraper/reindex.js dxb

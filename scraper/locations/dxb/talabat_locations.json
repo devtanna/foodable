@@ -1,5 +1,10 @@
 [
   {
+    "locationName": "Academic City",
+    "url": "/uae/restaurants/1170/academic-city",
+    "baseline": ["academic-city"]
+  },
+  {
     "locationName": "Abu Hail",
     "url": "/uae/restaurants/1169/abu-hail",
     "baseline": ["abu-hail"]
