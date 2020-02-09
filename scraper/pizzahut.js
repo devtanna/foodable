@@ -72,11 +72,13 @@ const scrapePage = (location, page) => {
               .trim();
             let found = result.find(r => cardText.includes(r.offer));
             if (found) {
-              let price = cardText.match(/aed\s*(\d+(.\d+))/gi);
+              let regexMatchObject = cardText.match(/aed\s*(\d+(.\d+))/im);
+              let price = regexMatchObject[0];
+              let scoreValue = regexMatchObject && regexMatchObject[1] ? regexMatchObject[1] : 0;
               if (price) {
-                price = price[0];
                 if (price !== 'AED0.00') {
                   found.offer = `${found.offer} - ${price}`;
+                  found.scoreValue = scoreValue * -1;
                 }
               }
             }
