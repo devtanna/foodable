@@ -27,6 +27,10 @@ export const offerSources = {
     color: '#e71c38',
     logo: '/static/restaurant-banners/pizzahut.webp',
   },
+  hardees: {
+    color: '#e71c38',
+    logo: '/static/restaurant-banners/hardees.webp',
+  },
 };
 
 export const TRACKING_ID = 'GTM-TKCXPGC';
