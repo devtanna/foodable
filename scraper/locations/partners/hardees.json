@@ -1,0 +1,41 @@
+[
+  {
+    "url": "https://www.hardees.ae/deals",
+    "baseline": {
+      "dxb": [
+        "abu-hail",
+        "garhoud",
+        "al-muraqqabat",
+        "dubai-internet-city",
+        "dubai-marina",
+        "jumeirah-lake-towers",
+        "al-karama",
+        "al-mamzar",
+        "dubai-media-city",
+        "dubai-knowledge-village",
+        "al-barsha-1",
+        "al-barsha-2",
+        "al-barsha-3",
+        "the-greens",
+        "barsha-heights",
+        "al-quoz-1",
+        "al-quoz-2",
+        "al-quoz-3",
+        "al-quoz-4",
+        "al-quoz-industrial-area-1",
+        "al-quoz-industrial-area-2",
+        "al-quoz-industrial-area-3",
+        "al-quoz-industrial-area-4",
+        "muteena",
+        "al-mankhool",
+        "al-qusais-1",
+        "al-qusais-2",
+        "al-qusais-3",
+        "al-nahda-1",
+        "al-nahda-2",
+        "al-baraha"
+      ],
+      "shj": ["al-taawun", "al-nahda"]
+    }
+  }
+]

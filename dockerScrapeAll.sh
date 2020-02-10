@@ -147,6 +147,17 @@ node devops/slackLogBot.js pizzahut
 wait
 ####################### Pizza Hut!!!!!!!!!
 
+####################### Hardees!!!!!!!!!
+node devops/slackBot.js "Running Hardees"
+wait
+echo "< hardees ..." && 
+timeout -k 9m 10m node scraper/hardees.js && 
+echo "... hardees >" &&
+wait
+node devops/slackLogBot.js hardees
+wait
+####################### Hardees!!!!!!!!!
+
 node devops/slackBot.js "dxb Running Re Index"
 wait
 node scraper/reindex.js dxb
