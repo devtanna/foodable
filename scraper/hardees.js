@@ -60,7 +60,7 @@ const scrapePage = async (page, location) => {
 
       // if no offer, then skip
       if (singleItem.offer.length > 0) {
-        singleItem['scoreLevel'] = 5;
+        singleItem['scoreLevel'] = 4;
         singleItem['scoreValue'] = price * -1;
 
         var index = result.indexOf(singleItem); // dont want to push duplicates

@@ -46,7 +46,7 @@ async function scrapePage(location, page, city, offerString) {
     let htmlBefore = await page.content();
     let offersCount = $('.rest-link', htmlBefore).length;
     await page.evaluate('window.scrollBy({ left: 0, top: document.body.scrollHeight, behavior: "smooth"});');
-    await page.waitFor(1000);
+    await page.waitFor(500);
     let htmlAfter = await page.content();
     let updatedOffersCount = $('.rest-link', htmlAfter).length;
     const isBusy = $('img[ng-src*=tag_busy]', htmlBefore).length > 0;
@@ -160,7 +160,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
                   .click();
               }, cat2Scrape);
 
-              await page.waitFor(1000);
+              await page.waitFor(500);
             }
 
             try {
@@ -172,7 +172,7 @@ function scrapeInfiniteScrollItems(location, logMsg, browser, openPages, city) {
                   .click();
               }, cat2Scrape);
 
-              await page.waitFor(1000);
+              await page.waitFor(500);
 
               let { items: offers, skippedCount: _skippedCount } = await scrapePage(
                 location,
