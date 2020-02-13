@@ -158,5 +158,10 @@
     "locationName": "Al Baraha",
     "url": "/uae/restaurants/1173/al-baraha",
     "baseline": ["al-baraha"]
+  },
+  {
+    "locationName": "Al Rigga",
+    "url": "/uae/restaurants/1226/al-rigga",
+    "baseline": ["al-rigga"]
   }
 ]
