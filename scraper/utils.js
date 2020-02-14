@@ -81,11 +81,13 @@ function calculateScore(item) {
   var offerMapping = {
     4: [
       /^20 Dhs Lunch$/im,
+      /^Up to (\d+)% off$/im,
       /^(\d+) aed meals$/im,
       /^(\d+) aed meal$/im,
       /^(\d+)% off all orders$/im,
       /^(\d+)%% off on all orders$/im,
       /^(\d+)% off$/im,
+      /^(\d+)% off selected dishes$/im,
       /^(\d+)% off entire menu$/im,
       /^(\d+) % off$/im,
       /^(\d+)% off on all orders$/im,
@@ -115,6 +117,7 @@ function calculateScore(item) {
     3: [
       /^Special Deal$/im,
       /^Special Carriage Offer$/im,
+      /^Free Item$/im,
       /^free delivery$/im,
       /^Build Your Own Meal$/im,
       /^aed(\d+(.\d+)*) off on all orders above aed(\d+(.\d+)*)$/im,
@@ -142,6 +145,7 @@ function calculateScore(item) {
       /^Cheap Eats$/im,
       /^Free Dessert$/im,
       /^aed(\d+) off on your first order Only applicable on orders above aed(\d+)$/im,
+      /^aed(\d+) off on your first order Only applicable on orders above aed(\d+) from (\d+):(\d+) (pm|am) to (\d+):(\d+) (pm|am)$/im,
       /^(\d+)% off on your first order only applicable on orders above aed(\d+)$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us Offer on home-delivery only applicable when you order online on Zomato or the restaurant app$/im,
       /^(\d+)% off on dine-in and your first home-delivery order from us Offer on home-delivery only applicable when you order online on Zomato$/im,
