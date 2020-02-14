@@ -67,24 +67,24 @@ export const COLLECTIONS = [
     image: '/static/collections/burger.webp',
   },
   {
-    name: 'Italian',
-    image: '/static/collections/italian.webp',
+    name: 'Asian',
+    image: '/static/collections/asian.webp',
   },
   {
-    name: 'Sandwiches',
-    image: '/static/collections/sandwiches.webp',
+    name: 'Healthy Food',
+    image: '/static/collections/healthy.webp',
   },
   {
     name: 'Lebanese',
     image: '/static/collections/lebanese.webp',
   },
   {
-    name: 'Kebab',
-    image: '/static/collections/kebab.webp',
+    name: 'Sandwiches',
+    image: '/static/collections/sandwiches.webp',
   },
   {
-    name: 'Healthy Food',
-    image: '/static/collections/healthy.webp',
+    name: 'Italian',
+    image: '/static/collections/italian.webp',
   },
   {
     name: 'Desserts',
