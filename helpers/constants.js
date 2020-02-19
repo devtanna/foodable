@@ -31,6 +31,10 @@ export const offerSources = {
     color: '#e71c38',
     logo: '/static/restaurant-banners/hardees.webp',
   },
+  KFC: {
+    color: '#e71c38',
+    logo: '/static/restaurant-banners/kfc.webp',
+  },
 };
 
 export const TRACKING_ID = 'GTM-TKCXPGC';
