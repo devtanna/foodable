@@ -136,6 +136,17 @@ node devops/slackLogBot.js talabat
 wait
 ####################### Talabat!!!!!!!!!
 
+####################### KFC!!!!!!!!!
+node devops/slackBot.js "Running KFC"
+wait
+echo "< KFC ..." && 
+timeout -k 9m 10m node scraper/kfc.js && 
+echo "... KFC >" &&
+wait
+node devops/slackLogBot.js kfc
+wait
+####################### KFC!!!!!!!!!
+
 ####################### Pizza Hut!!!!!!!!!
 node devops/slackBot.js "Running Pizza Hut"
 wait
