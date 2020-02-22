@@ -163,5 +163,10 @@
     "locationName": "Al Rigga",
     "url": "/uae/restaurants/1226/al-rigga",
     "baseline": ["al-rigga"]
+  },
+  {
+    "locationName": "Bur Dubai",
+    "url": "/uae/restaurants/1367/za'abeel-2",
+    "baseline": ["bur-dubai"]
   }
 ]

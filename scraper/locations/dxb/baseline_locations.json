@@ -582,5 +582,9 @@
   {
     "locationName": "Waterfront",
     "slug": "waterfront"
+  },
+  {
+    "locationName": "Bur Dubai",
+    "slug": "bur-dubai"
   }
 ]

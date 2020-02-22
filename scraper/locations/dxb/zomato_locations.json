@@ -498,5 +498,10 @@
     "url": "https://www.zomato.com/dubai/al-maktoum-international-airport-restaurants?order-online=1&delivery_subzone=3826&offers=1",
     "locationName": "Al Maktoum International Airport",
     "baseline": ["al-maktoum-international-airport"]
+  },
+  {
+    "url": "https://www.zomato.com/dubai/bur-dubai-order-online?offers=1",
+    "locationName": "Bur Dubai",
+    "baseline": ["bur-dubai"]
   }
 ]

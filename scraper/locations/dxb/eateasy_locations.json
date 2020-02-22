@@ -735,5 +735,10 @@
     "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-zaabeel-75/offer-offer-1",
     "locationName": "Zaabeel",
     "baseline": ["zabeel"]
+  },
+  {
+    "url": "https://www.eateasy.ae/dubai/restaurants/search/dlocations-bur-dubai-13",
+    "locationName": "Bur Dubai",
+    "baseline": ["bur-dubai"]
   }
 ]
