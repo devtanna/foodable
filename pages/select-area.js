@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { trackPageView } from '../helpers/utils';
-import Landing_A from '../components/Landing_A';
+import Landing_B from '../components/Landing_B';
 import { getLocations } from '../helpers/api';
 import _groupBy from 'lodash/groupBy';
 import Cookies from 'universal-cookie';
@@ -17,7 +17,7 @@ const SelectArea = ({ locations, utmSource, device = 'phone' }) => {
   return (
     <div className="wrapper">
       <div id="landingA" className="wrapper">
-        <Landing_A locations={locations} />
+        <Landing_B device={device} locations={locations} />
       </div>
       <style jsx>{`
         .wrapper {
