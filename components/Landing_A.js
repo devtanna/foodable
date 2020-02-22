@@ -88,7 +88,7 @@ const Landing = ({ locations }) => {
     <main>
       <div className="wrapper">
         <img className="logo" src="/static/logo.svg" alt="Foodable.ae" />
-        <h1>Discover and compare great food deals from top food delivery websites!</h1>
+        <h1>Find your ideal meal and compare prices from different websites</h1>
         <div className="partners">
           <img src="/static/restaurant-banners/zomato_lp.webp" alt="Zomato partner" />
           <img src="/static/restaurant-banners/talabat_lp.webp" alt="Talabat partner" />
