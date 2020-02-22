@@ -12,7 +12,7 @@ const Landing = ({ locations, device: _device }) => {
           <img src="/static/restaurant-banners/zomato_lp.webp" alt="Zomato partner" />
           <img src="/static/restaurant-banners/talabat_lp.webp" alt="Talabat partner" />
           <img src="/static/restaurant-banners/deliveroo_lp.webp" alt="Deliveroo partner" />
-          <img src="/static/restaurant-banners/eateasy_lp.webp" alt="Eat easy partner" />
+          <img src="/static/restaurant-banners/eateasy_lp.webp" alt="Eat easy partner" />+ More
         </div>
         <LocationSelector device={_device} locations={locations} />
       </div>
@@ -42,6 +42,10 @@ const Landing = ({ locations, device: _device }) => {
           margin: 15px auto 30px;
           display: flex;
           justify-content: center;
+          align-items: center;
+          color: #ed4744;
+          font-weight: bold;
+          font-size: 12px;
         }
         .partners img {
           width: 38px;
@@ -68,6 +72,7 @@ const Landing = ({ locations, device: _device }) => {
           }
           .partners {
             margin: 30px auto 60px;
+            font-size: 14px;
           }
           .partners img {
             width: 50px;
