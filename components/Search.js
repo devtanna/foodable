@@ -62,7 +62,7 @@ const Search = ({ cuisines, filters, onSearch }) => {
           icon="search"
           iconPosition="left"
           size="large"
-          placeholder="Search for restaurant"
+          placeholder="Search by restaurant name"
         />
       </div>
       <div>
@@ -70,7 +70,7 @@ const Search = ({ cuisines, filters, onSearch }) => {
           value={selectedCuisine}
           onChange={(e, { value }) => setSelectedCuisine(value)}
           onKeyPress={e => e.key === 'Enter' && handleSearch()}
-          placeholder="Cuisine"
+          placeholder="Search by cuisines"
           fluid
           multiple
           search
