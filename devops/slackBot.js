@@ -3,7 +3,7 @@ const settings = require('../settings')();
 
 function sendSlackMessage(msg) {
   if (msg && msg.length > 5) {
-    const slackWebHook = 'https://hooks.slack.com/services/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';
+    const slackWebHook = '';
     let payload = {
       text: msg,
       username: 'azure-scraper',
