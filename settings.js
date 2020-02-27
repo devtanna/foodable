@@ -1,5 +1,5 @@
 // Global app settings
-const slackApiToken = 'xoxp-690095593765-691933474583-748104240066-f158dc195bad901199a9ccad63c40cc7';
+const slackApiToken = '';
 const slackLogBotChanelId = 'CLPT6LL3C';
 const slackLogBotLogsChanelId = 'CPFFZAN04';
 const isServerRequest = process && process.env && process.env.HOSTNAME != null;
